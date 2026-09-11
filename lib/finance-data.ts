@@ -240,14 +240,13 @@ export const feeStructures = [
     active: false,
   },
 ];
+export function csvCell(value: string | number) {
+  const text = String(value);
+  const safe = typeof value === "string" && /^[\s\u0000-\u001f]*[=+@-]/.test(text) ? "'" + text : text;
+  return '"' + safe.replace(/"/g, '""') + '"';
+}
 export function downloadCsv(name: string, rows: (string | number)[][]) {
-  const csv = rows
-    .map((row) =>
-      row
-        .map((value) => '"' + String(value).replace(/"/g, '""') + '"')
-        .join(","),
-    )
-    .join("\n");
+  const csv = rows.map(row => row.map(csvCell).join(",")).join("\r\n");
   const url = URL.createObjectURL(
     new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" }),
   );

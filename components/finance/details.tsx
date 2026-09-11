@@ -36,6 +36,7 @@ import {
   type Transaction,
 } from "@/lib/finance-data";
 import { Status } from "./operations";
+import { getStudentAccount, statementRows, refund } from "@/lib/finance-service";
 
 export function StudentDrawer({
   student,
@@ -44,19 +45,8 @@ export function StudentDrawer({
   student: Student | null;
   onClose: () => void;
 }) {
-  const isAkshat = student?.id === "251FA04E03";
-  const fees = isAkshat
-    ? ([
-        ["Tuition", 90000],
-        ["Examination", 5000],
-        ["Hostel", 40000],
-        ["Library", 2000],
-        ["Laboratory", 3000],
-      ] as const)
-    : ([
-        ["Programme tuition", (student?.demand ?? 0) - 40000],
-        ["Hostel & institutional fees", 40000],
-      ] as const);
+  const account = student ? getStudentAccount(student.id) : null;
+  const fees = account?.fees.map(f => [f.head, f.gross] as const) ?? [];
   return (
     <Sheet
       open={!!student}
@@ -105,15 +95,15 @@ export function StudentDrawer({
                   <span className="tabular-nums">{inr(amount)}</span>
                 </div>
               ))}
-              {isAkshat && (
+              {!!account?.scholarship && (
                 <>
                   <div className="flex justify-between border-t pt-3 text-sm">
                     <span>Total</span>
-                    <span>₹1,40,000</span>
+                    <span>{inr(account.gross)}</span>
                   </div>
                   <div className="flex justify-between text-sm text-success">
                     <span>Merit scholarship</span>
-                    <span>−₹20,000</span>
+                    <span>−{inr(account.scholarship)}</span>
                   </div>
                 </>
               )}
@@ -132,18 +122,7 @@ export function StudentDrawer({
             </div>
             <h3 className="mt-6 font-semibold">Payment timeline</h3>
             <div className="mt-4 flex flex-col gap-5">
-              {[
-                {
-                  date: "11 Sep 2026",
-                  amount: Math.min(30000, student.paid),
-                  method: "UPI · Gateway verified",
-                },
-                {
-                  date: "15 Jul 2026",
-                  amount: student.paid - Math.min(30000, student.paid),
-                  method: "Bank transfer · Reconciled",
-                },
-              ].map((payment) => (
+              {account?.payments.map((payment) => (
                 <div key={payment.date} className="flex items-start gap-3">
                   <div className="flex size-8 items-center justify-center rounded-full bg-success/8 text-success">
                     <Check className="size-4" />
@@ -154,7 +133,8 @@ export function StudentDrawer({
                       <span>{inr(payment.amount)}</span>
                     </div>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      {payment.method}
+                      {payment.id} · {payment.method}
+                      {payment.gateway !== payment.amount && ` · Gateway ${inr(payment.gateway)}; unresolved difference excluded from paid` }
                     </p>
                   </div>
                 </div>
@@ -164,16 +144,7 @@ export function StudentDrawer({
               className="mt-7 w-full"
               variant="outline"
               onClick={() => {
-                downloadCsv(`${student.id}-fee-statement-DEMO.csv`, [
-                  ["DEMO — current academic year 2026–27"],
-                  ["Student", student.name],
-                  ["Student ID", student.id],
-                  ...fees.map(([head, amount]) => [head, amount]),
-                  ["Scholarship", isAkshat ? -20000 : 0],
-                  ["Final demand", student.demand],
-                  ["Paid", student.paid],
-                  ["Outstanding", student.demand - student.paid],
-                ]);
+                downloadCsv(`${student.id}-fee-statement-DEMO.csv`, statementRows(student.id));
                 toast.success("Demo fee statement downloaded");
               }}
             >

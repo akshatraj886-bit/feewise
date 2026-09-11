@@ -33,7 +33,8 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Button } from "@/components/ui/button";
-import { ageing, collectionTrend, feeHeads } from "@/lib/finance-data";
+import { ageing, feeHeads } from "@/lib/finance-data";
+import { filteredCollections } from "@/lib/finance-service";
 
 export function Hero({ onAsk }: { onAsk: () => void }) {
   return (
@@ -60,7 +61,7 @@ export function Hero({ onAsk }: { onAsk: () => void }) {
             <ArrowUpRight data-icon="inline-end" />
           </Button>
           <span className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span className="online-dot" /> Finance Agent Online
+            <ShieldCheck className="size-3.5" /> Read-only financial intelligence
           </span>
         </div>
       </div>
@@ -256,26 +257,15 @@ export function CollectionIntelligence() {
   const [programme, setProgramme] = useState("All programmes");
   const [category, setCategory] = useState("All categories");
   const [head, setHead] = useState("All fee heads");
-  const factor =
-    (year === "2026–27" ? 1 : 0.87) *
-    (programme === "All programmes"
-      ? 1
-      : programme === "B.Tech CSE"
-        ? 0.46
-        : 0.27) *
-    (category === "All categories" ? 1 : category === "General" ? 0.78 : 0.22) *
-    (head === "All fee heads" ? 1 : head === "Tuition" ? 0.57 : 0.19);
-  const data = collectionTrend.map((d) => ({
-    ...d,
-    collected: +(d.collected * factor).toFixed(2),
-    demand: +(d.demand * factor).toFixed(2),
-  }));
+  const data = filteredCollections(year, programme, category, head);
+  const collected = data.reduce((sum, row) => sum + row.collected, 0);
+  const demand = data.reduce((sum, row) => sum + row.demand, 0);
   return (
     <Card className="panel h-full">
       <CardHeader>
         <CardTitle>Collection Intelligence</CardTitle>
         <CardDescription>
-          Your collection performance, at a glance
+          April–September · Explicit fictional aggregate records
         </CardDescription>
         <CardAction>
           <TrendingUp className="size-4 text-muted-foreground" />
@@ -326,12 +316,12 @@ export function CollectionIntelligence() {
         <div className="mt-5 flex items-center justify-between">
           <div className="flex items-baseline gap-2">
             <span className="text-2xl font-semibold tracking-tight tabular-nums">
-              ₹{(21.7 * factor).toFixed(2)} Cr
+              ₹{collected.toFixed(2)} Cr
             </span>
             <span className="text-sm text-muted-foreground">collected</span>
           </div>
           <span className="flex items-center gap-1 text-sm text-success">
-            <ArrowUpRight className="size-3.5" /> 12.8%
+            {demand ? `${((collected / demand) * 100).toFixed(1)}% collected` : "No records"}
           </span>
         </div>
         <ChartContainer
