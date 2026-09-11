@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useAuth, type UserRole } from "@/lib/auth-context";
+import { validateStudentCredentials } from "@/lib/finance-data";
 import { Button } from "@/components/ui/button";
 import { FinDeckLogo } from "@/components/ui/findeck-logo";
 import { TiltedCard } from "@/components/ui/tilted-card";
@@ -23,6 +24,7 @@ import {
   ArrowLeft,
   Mail,
   Loader2,
+  Calendar,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -90,7 +92,7 @@ const ROLE_CONFIGS: Record<UserRole, RoleConfig> = {
     role: "student",
     title: "Student Portal",
     badge: "Self-Service",
-    defaultEmail: "aaradhya.251FA04645@vignan.ac.in",
+    defaultEmail: "251FA04645",
     subtitle: "Dharanikota Aaradhya · B.Tech CSE",
     colorTheme: {
       badgeBg: "bg-emerald-100 border-emerald-300",
@@ -104,7 +106,7 @@ const ROLE_CONFIGS: Record<UserRole, RoleConfig> = {
       "Waterfall Fee Simulator",
       "Instant 80C Tax Cert PDF",
       "Bank Loan NOC (SBI/HDFC)",
-      "3-Installment EMI Plan",
+      "Secure Name@DOB Login",
     ],
   },
 };
@@ -126,15 +128,20 @@ export function LoginScreen() {
   // Open login modal for specific role
   function openRoleLogin(role: UserRole) {
     setActiveLoginRole(role);
-    setEmailInput(ROLE_CONFIGS[role].defaultEmail);
-    setPasswordInput("••••••••••••");
-    setTwoFactorPin("842019");
+    if (role === "student") {
+      setEmailInput("251FA04645");
+      setPasswordInput("Aaradhya@14032004");
+    } else {
+      setEmailInput(ROLE_CONFIGS[role].defaultEmail);
+      setPasswordInput("VignanAdmin2026@secure");
+      setTwoFactorPin("842019");
+    }
   }
 
   function handleLoginSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!emailInput.trim()) {
-      toast.error("Please enter a valid Gmail / Institutional email");
+      toast.error(activeLoginRole === "student" ? "Please enter your Student Roll Number" : "Please enter a valid email");
       return;
     }
     if (!passwordInput.trim()) {
@@ -146,15 +153,22 @@ export function LoginScreen() {
     const targetRole = activeLoginRole || "admin";
 
     setTimeout(() => {
-      setIsAuthenticating(false);
-      toast.success(`Authenticated as ${ROLE_CONFIGS[targetRole].title}!`);
-
       if (targetRole === "student") {
-        login("student", "251FA04645");
+        const check = validateStudentCredentials(emailInput, passwordInput);
+        if (!check.valid || !check.studentId) {
+          setIsAuthenticating(false);
+          toast.error("Invalid Student ID or Password! Format: Name@DDMMYYYY (e.g. Aaradhya@14032004)");
+          return;
+        }
+        setIsAuthenticating(false);
+        toast.success(`Authenticated student (${check.studentId}) successfully!`);
+        login("student", check.studentId);
       } else {
+        setIsAuthenticating(false);
+        toast.success(`Authenticated as ${ROLE_CONFIGS[targetRole].title}!`);
         login(targetRole);
       }
-    }, 600);
+    }, 500);
   }
 
   return (
@@ -442,18 +456,43 @@ export function LoginScreen() {
                   </button>
                 </div>
 
-                {/* Email / Gmail Field */}
+                {activeLoginRole === "student" && (
+                  <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-3 text-xs text-emerald-900 space-y-1">
+                    <div className="flex items-center gap-1.5 font-bold text-emerald-800">
+                      <Shield className="size-3.5 text-emerald-600" />
+                      Student Credential Protocol
+                    </div>
+                    <p className="text-[11px] leading-relaxed text-emerald-700">
+                      Password format: <strong>Name@DDMMYYYY</strong> (e.g. for student <em>Dharanikota Aaradhya</em> with DOB 14/03/2004, password is <code>Aaradhya@14032004</code>).
+                    </p>
+                  </div>
+                )}
+
+                {/* Email / Roll No Field */}
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                    <Mail className="size-3.5 text-primary" />
-                    Gmail or University Email
+                    {activeLoginRole === "student" ? (
+                      <>
+                        <GraduationCap className="size-3.5 text-primary" />
+                        Student Roll Number or Registered Email
+                      </>
+                    ) : (
+                      <>
+                        <Mail className="size-3.5 text-primary" />
+                        Gmail or University Email
+                      </>
+                    )}
                   </label>
                   <input
-                    type="email"
+                    type="text"
                     required
                     value={emailInput}
                     onChange={(e) => setEmailInput(e.target.value)}
-                    placeholder="Enter your Gmail address..."
+                    placeholder={
+                      activeLoginRole === "student"
+                        ? "Enter Student ID (e.g. 251FA04645)..."
+                        : "Enter your Gmail address..."
+                    }
                     className="w-full h-10 px-3 text-xs rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary/40 outline-none"
                   />
                 </div>
@@ -463,7 +502,7 @@ export function LoginScreen() {
                   <label className="text-xs font-bold text-slate-800 flex items-center justify-between">
                     <span className="flex items-center gap-1.5">
                       <Lock className="size-3.5 text-primary" />
-                      Account Password
+                      {activeLoginRole === "student" ? "Password (Name@DOB)" : "Account Password"}
                     </span>
                     <button
                       type="button"
@@ -486,41 +525,63 @@ export function LoginScreen() {
                     required
                     value={passwordInput}
                     onChange={(e) => setPasswordInput(e.target.value)}
-                    placeholder="Enter your password..."
+                    placeholder={
+                      activeLoginRole === "student"
+                        ? "Format: Name@DDMMYYYY (e.g. Aaradhya@14032004)"
+                        : "Enter your password..."
+                    }
                     className="w-full h-10 px-3 text-xs rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary/40 outline-none"
                   />
                 </div>
 
-                {/* 2FA Pin / Verification Code */}
-                <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-800 flex items-center justify-between">
-                    <span className="flex items-center gap-1.5">
-                      <KeyRound className="size-3.5 text-primary" />
-                      Two-Factor Auth (2FA Token)
+                {/* 2FA Pin / Verification Code or Student Verification Indicator */}
+                {activeLoginRole !== "student" ? (
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-slate-800 flex items-center justify-between">
+                      <span className="flex items-center gap-1.5">
+                        <KeyRound className="size-3.5 text-primary" />
+                        Two-Factor Auth (2FA Token)
+                      </span>
+                      <span className="text-[10px] text-emerald-700 font-bold">Demo Verified</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={twoFactorPin}
+                      onChange={(e) => setTwoFactorPin(e.target.value)}
+                      maxLength={6}
+                      className="w-full h-10 px-3 text-xs font-mono tracking-widest text-center rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary/40 outline-none font-bold"
+                    />
+                  </div>
+                ) : (
+                  <div className="rounded-xl bg-slate-50 border border-slate-200 p-2.5 text-[11px] flex items-center justify-between text-slate-700">
+                    <span className="flex items-center gap-1.5 font-medium">
+                      <Calendar className="size-3.5 text-primary" />
+                      DOB Authentication Gateway
                     </span>
-                    <span className="text-[10px] text-emerald-700 font-bold">Demo Verified</span>
-                  </label>
-                  <input
-                    type="text"
-                    value={twoFactorPin}
-                    onChange={(e) => setTwoFactorPin(e.target.value)}
-                    maxLength={6}
-                    className="w-full h-10 px-3 text-xs font-mono tracking-widest text-center rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary/40 outline-none font-bold"
-                  />
-                </div>
+                    <span className="text-emerald-700 font-bold flex items-center gap-1">
+                      <CheckCircle2 className="size-3" /> Encrypted & Verified
+                    </span>
+                  </div>
+                )}
 
                 {/* Quick Auto-Fill Demo Button */}
                 <div className="flex items-center justify-between text-[11px] text-slate-600 pt-0.5">
                   <button
                     type="button"
                     onClick={() => {
-                      setEmailInput(ROLE_CONFIGS[activeLoginRole].defaultEmail);
-                      setPasswordInput("VignanAdmin2026@secure");
-                      toast.info("Credentials auto-filled for testing");
+                      if (activeLoginRole === "student") {
+                        setEmailInput("251FA04645");
+                        setPasswordInput("Aaradhya@14032004");
+                        toast.info("Student credentials auto-filled: 251FA04645 / Aaradhya@14032004");
+                      } else {
+                        setEmailInput(ROLE_CONFIGS[activeLoginRole].defaultEmail);
+                        setPasswordInput("VignanAdmin2026@secure");
+                        toast.info("Credentials auto-filled for testing");
+                      }
                     }}
                     className="text-primary hover:underline cursor-pointer font-semibold"
                   >
-                    ↻ Reset to Default Demo
+                    ↻ Auto-fill Demo Credentials
                   </button>
 
                   <span className="flex items-center gap-1 text-emerald-700 font-semibold">

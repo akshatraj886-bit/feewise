@@ -55,8 +55,6 @@ import {
 } from "@/components/ui/card";
 import {
   navigation,
-  students,
-  transactions,
   initialAudit,
   downloadExcel,
   type AuditEntry,
@@ -64,6 +62,7 @@ import {
   type Transaction,
   type View,
 } from "@/lib/finance-data";
+import { useLiveFinance } from "@/context/live-finance-context";
 import {
   Hero,
   KpiCards,
@@ -146,6 +145,7 @@ export function FinanceDashboard() {
   const roleTitle = currentRole === "admin" ? "CEO Administrator" : "Finance Officer";
 
   const [view, setView] = useState<View>("Dashboard");
+  const { students, transactions } = useLiveFinance();
   const [moreOpen, setMoreOpen] = useState(false);
   const isMoreActive = moreNavItems.some((item) => item.label === view);
   const [menuOpen, setMenuOpen] = useState(false);

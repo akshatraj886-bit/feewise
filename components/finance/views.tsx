@@ -36,12 +36,11 @@ import {
   inr,
   instalmentPlans,
   printReceiptPdf,
-  students,
-  transactions,
   type AuditEntry,
   type Student,
   type Transaction,
 } from "@/lib/finance-data";
+import { useLiveFinance } from "@/context/live-finance-context";
 import { getInstalments } from "@/lib/finance-service";
 import { Status, AuditLog } from "./operations";
 import { CollectionIntelligence, FeeHeadOverview } from "./overview";
@@ -55,6 +54,7 @@ export function StudentsView({
   onStudent: (student: Student) => void;
   initialOverdue?: boolean;
 }) {
+  const { students } = useLiveFinance();
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState(
     initialOverdue ? "90+ days overdue" : "All students",
@@ -263,6 +263,7 @@ export function StudentsView({
 }
 
 export function FeeStructureView() {
+  const { students } = useLiveFinance();
   const [programme, setProgramme] = useState("All programmes");
   const [version, setVersion] = useState("Active versions");
   const filtered = feeStructures.filter(
@@ -369,6 +370,7 @@ export function PaymentsView({
 }: {
   onReview: (transaction: Transaction) => void;
 }) {
+  const { students, transactions } = useLiveFinance();
   const [query, setQuery] = useState("");
   const [method, setMethod] = useState("All methods");
   const rows = transactions.filter(
@@ -597,6 +599,7 @@ function InstalmentStatusBadge({ status }: { status: string }) {
 }
 
 export function InstalmentView() {
+  const { students } = useLiveFinance();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [filterStatus, setFilterStatus] = useState("All");
 
@@ -959,6 +962,7 @@ export function InstalmentView() {
 }
 
 export function ReportsView({ entries }: { entries: AuditEntry[] }) {
+  const { students, transactions } = useLiveFinance();
   const reports = [
     {
       title: "Outstanding balances",

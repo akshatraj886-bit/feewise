@@ -16,6 +16,7 @@ import {
 } from "@/lib/finance-data";
 import { getStudentAccount } from "@/lib/finance-service";
 import { useAuth } from "@/lib/auth-context";
+import { useLiveFinance } from "@/context/live-finance-context";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { FeeCertificatesPanel } from "@/components/finance/certificates";
 import { PartialPaymentSimulator } from "@/components/finance/partial-payment-modal";
@@ -50,9 +51,15 @@ import { toast } from "sonner";
 
 export function StudentPortal() {
   const { user, logout, login } = useAuth();
+  const {
+    students: liveStudents,
+    feeAllocations: liveFeeAllocations,
+    paymentReceipts: livePaymentReceipts,
+    getLiveStudentAccount,
+  } = useLiveFinance();
 
   // Find the logged-in student, or default to first student
-  const studentId = user?.studentId || students[0]?.id || "251FA04645";
+  const studentId = user?.studentId || liveStudents[0]?.id || "251FA04645";
   const [activeStudentId, setActiveStudentId] = useState(studentId);
   const [activeTab, setActiveTab] = useState<
     "overview" | "pay" | "breakdown" | "history" | "instalments" | "certificates" | "loans"
@@ -62,8 +69,8 @@ export function StudentPortal() {
   const [refreshKey, setRefreshKey] = useState(0);
 
   const student =
-    students.find((s) => s.id === activeStudentId) || students[0];
-  const account = getStudentAccount(student.id);
+    liveStudents.find((s) => s.id === activeStudentId) || liveStudents[0];
+  const account = getLiveStudentAccount(student.id) || getStudentAccount(student.id);
   const sqlState = getSqlDatabaseState();
 
   const prog = student.programme;
@@ -78,8 +85,17 @@ export function StudentPortal() {
   );
   const studentPlan = instalmentPlans.find((p) => p.studentId === student.id);
 
-  const alloc = feeAllocations[student.id];
-  const feeList = alloc
+  interface PortalFeeItem {
+    head: string;
+    gross: number;
+    demand: number;
+    paid: number;
+    outstanding: number;
+    status: string;
+  }
+
+  const alloc = liveFeeAllocations[student.id];
+  const feeList: PortalFeeItem[] = alloc
     ? alloc.map((a) => ({
         head: a.head,
         gross: a.gross,
@@ -88,7 +104,7 @@ export function StudentPortal() {
         outstanding: a.outstanding,
         status: a.status,
       }))
-    : (account?.fees ?? [
+    : ((account?.fees as unknown as PortalFeeItem[]) ?? [
         { head: "Tuition", gross: 90000, demand: 90000 - scholarshipAmount, paid: Math.min(totalPaid, 90000 - scholarshipAmount), outstanding: Math.max(0, 90000 - scholarshipAmount - totalPaid), status: "Partially Paid" },
         { head: "Hostel", gross: 25000, demand: 25000, paid: Math.max(0, Math.min(25000, totalPaid - 90000)), outstanding: Math.max(0, 25000 - Math.max(0, totalPaid - 90000)), status: "Unpaid" },
         { head: "Examination", gross: 5000, demand: 5000, paid: 5000, outstanding: 0, status: "Fully Cleared" },
@@ -147,16 +163,6 @@ export function StudentPortal() {
               ))}
             </select>
           </div>
-
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-xs gap-1.5"
-            onClick={() => login("admin")}
-          >
-            <ShieldCheck className="size-3.5 text-primary" />
-            <span className="hidden sm:inline">Switch to Admin</span>
-          </Button>
 
           <ThemeToggle className="size-8" />
 
@@ -606,7 +612,7 @@ export function StudentPortal() {
 
         {/* Tab: Receipts & History */}
         {activeTab === "history" && (() => {
-          const receipts = paymentReceipts[student.id] ?? (studentTransactions.length > 0 ? studentTransactions.map(t => ({
+          const receipts = livePaymentReceipts[student.id] ?? paymentReceipts[student.id] ?? (studentTransactions.length > 0 ? studentTransactions.map(t => ({
             txnId: t.id,
             date: t.date,
             channel: t.method,

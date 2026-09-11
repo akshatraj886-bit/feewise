@@ -11,3 +11,4 @@ export * from "./finance-data";
 export * from "./fee-allocations";
 export * from "./scholarship-status";
 export * from "./payment-receipts";
+export * from "./student-credentials";

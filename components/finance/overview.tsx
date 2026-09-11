@@ -147,6 +147,8 @@ const kpis = [
     direction: ArrowUpRight,
   },
 ];
+import { useLiveFinance } from "@/context/live-finance-context";
+
 export function KpiCards({
   onNavigate,
 }: {
@@ -154,9 +156,58 @@ export function KpiCards({
     view: "Payments" | "Reconciliation" | "Students" | "Fee Structure",
   ) => void;
 }) {
+  const { totalDemand, totalCollected, totalOutstanding, collectionRate, students } = useLiveFinance();
+
+  const demandCr = totalDemand / 10000000;
+  const collectedCr = totalCollected / 10000000;
+  const outstandingCr = totalOutstanding / 10000000;
+
+  const dynamicKpis = [
+    {
+      label: "Total fee demand",
+      value: demandCr,
+      icon: Wallet,
+      trend: "+8.4%",
+      note: `${students.length} students`,
+      tone: "primary",
+      bars: [12, 20, 18, 28, 23, 31, 36, 33, 43, 48],
+      direction: ArrowUpRight,
+    },
+    {
+      label: "Collected",
+      value: collectedCr,
+      icon: CreditCard,
+      trend: `${collectionRate.toFixed(1)}%`,
+      note: "collection rate",
+      tone: "success",
+      bars: [10, 15, 23, 18, 29, 25, 35, 32, 39, 47],
+      direction: ArrowUpRight,
+    },
+    {
+      label: "Outstanding",
+      value: outstandingCr,
+      icon: Coins,
+      trend: `${(100 - collectionRate).toFixed(1)}%`,
+      note: "due balance",
+      tone: "warning",
+      bars: [45, 40, 43, 33, 35, 29, 24, 29, 19, 16],
+      direction: ArrowDownRight,
+    },
+    {
+      label: "Reconciliation",
+      value: 97.8,
+      icon: RefreshCw,
+      trend: "127",
+      note: "transactions pending",
+      tone: "violet",
+      bars: [13, 18, 21, 27, 24, 33, 30, 39, 36, 46],
+      direction: ArrowUpRight,
+    },
+  ];
+
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-      {kpis.map((item, index) => (
+      {dynamicKpis.map((item, index) => (
         <button
           key={item.label}
           onClick={() =>
@@ -171,7 +222,7 @@ export function KpiCards({
               )[index],
             )
           }
-          className="kpi enter relative overflow-hidden rounded-2xl border border-border bg-card p-5 text-left text-foreground"
+          className="kpi enter relative overflow-hidden rounded-2xl border border-border bg-card p-5 text-left text-foreground cursor-pointer transition-all hover:border-primary/40 hover:shadow-md"
           style={{ animationDelay: `${index * 65}ms` }}
         >
           <div className="flex items-center justify-between">
@@ -210,6 +261,7 @@ export function KpiCards({
     </div>
   );
 }
+
 
 export function FeeHeadOverview() {
   return (

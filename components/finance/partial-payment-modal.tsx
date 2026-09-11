@@ -4,6 +4,8 @@ import { useState, useMemo } from "react";
 import { inr, type Student, printReceiptPdf } from "@/lib/finance-data";
 import { getStudentAccount, recordPayment } from "@/lib/finance-service";
 import { allocatePayment, PAYMENT_PRIORITY } from "@/lib/partial-payment";
+import { useLiveFinance } from "@/context/live-finance-context";
+import { PaymentGatewayModal } from "./payment-gateway-modal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -14,6 +16,7 @@ import {
   Sparkles,
   Printer,
   SlidersHorizontal,
+  ExternalLink,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -24,7 +27,9 @@ export function PartialPaymentSimulator({
   student: Student;
   onPaymentSuccess?: () => void;
 }) {
-  const account = getStudentAccount(student.id);
+  const { makeLivePayment, getLiveStudentAccount } = useLiveFinance();
+  const liveAccount = getLiveStudentAccount(student.id) || getStudentAccount(student.id);
+
   const totalOutstanding = Math.max(
     0,
     (student.demand ?? (student as any).totalDemand ?? 120000) -
@@ -37,49 +42,51 @@ export function PartialPaymentSimulator({
   const [selectedChannel, setSelectedChannel] = useState<
     "UPI" | "NetBanking" | "Debit Card" | "Bank Transfer"
   >("UPI");
-  const [isProcessing, setIsProcessing] = useState(false);
+  const [isGatewayOpen, setIsGatewayOpen] = useState(false);
 
   const numAmount = Math.max(0, Number(paymentInput) || 0);
 
   // Run priority allocation
   const allocation = useMemo(() => {
-    const feeList = account?.fees ?? [
+    const feeList = liveAccount?.fees ?? [
       { head: "Tuition", demand: 90000, paid: 55000, outstanding: 35000 },
       { head: "Examination", demand: 5000, paid: 2000, outstanding: 3000 },
       { head: "Hostel", demand: 40000, paid: 30000, outstanding: 10000 },
     ];
     return allocatePayment(feeList, numAmount);
-  }, [account?.fees, numAmount]);
+  }, [liveAccount?.fees, numAmount]);
 
   function handleQuickPreset(percentage: number) {
     const val = Math.round((totalOutstanding * percentage) / 100);
     setPaymentInput(String(val));
   }
 
-  function handleExecutePayment() {
+  function handleOpenGateway() {
     if (numAmount <= 0) {
       toast.error("Please enter a valid payment amount greater than ₹0.");
       return;
     }
+    setIsGatewayOpen(true);
+  }
 
-    setIsProcessing(true);
-    setTimeout(() => {
-      try {
-        const txn = recordPayment(student.id, numAmount, selectedChannel);
-        toast.success(
-          `Payment of ${inr(numAmount)} recorded successfully! Ref: ${txn.txnId}`
-        );
-        // Prompt print receipt
-        printReceiptPdf(txn);
-        if (onPaymentSuccess) {
-          onPaymentSuccess();
-        }
-      } catch (e: any) {
-        toast.error(e?.message || "Failed to record payment");
-      } finally {
-        setIsProcessing(false);
+  function handleGatewaySuccess(txnDetails: {
+    txnId: string;
+    amount: number;
+    channel: string;
+    date: string;
+  }) {
+    try {
+      makeLivePayment({
+        studentId: student.id,
+        amount: txnDetails.amount,
+        channel: txnDetails.channel,
+      });
+      if (onPaymentSuccess) {
+        onPaymentSuccess();
       }
-    }, 600);
+    } catch (err: any) {
+      console.error("Live payment update notice:", err);
+    }
   }
 
   return (
@@ -295,21 +302,25 @@ export function PartialPaymentSimulator({
           </div>
 
           <Button
-            className="w-full mt-2 gap-2"
-            onClick={handleExecutePayment}
-            disabled={numAmount <= 0 || isProcessing}
+            className="w-full mt-2 gap-2 h-11 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md shadow-emerald-500/20 cursor-pointer transition-all hover:scale-[1.01]"
+            onClick={handleOpenGateway}
+            disabled={numAmount <= 0}
           >
-            {isProcessing ? (
-              "Processing Payment..."
-            ) : (
-              <>
-                <CheckCircle2 className="size-4" />
-                Pay {inr(numAmount)} & Download Receipt
-              </>
-            )}
+            <CheckCircle2 className="size-4" />
+            Proceed to Payment Gateway ({inr(numAmount)})
+            <ExternalLink className="size-3.5 ml-1" />
           </Button>
         </div>
       </div>
+
+      <PaymentGatewayModal
+        isOpen={isGatewayOpen}
+        onClose={() => setIsGatewayOpen(false)}
+        student={student}
+        amount={numAmount}
+        onPaymentComplete={handleGatewaySuccess}
+      />
     </div>
   );
 }
+
