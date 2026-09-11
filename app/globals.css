@@ -1,0 +1,370 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-geist);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--primary);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--secondary);
+  --color-accent-foreground: var(--primary);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-violet: var(--violet);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
+  --color-chart-1: var(--primary);
+  --color-chart-2: var(--violet);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.65rem;
+  --radius-lg: 0.8rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.5rem;
+}
+:root {
+  color-scheme: light;
+  --background: #f6f8fc;
+  --foreground: #202b43;
+  --card: #ffffff;
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --card-foreground: var(--foreground);
+  --primary: #5263e8;
+  --primary-foreground: #ffffff;
+  --secondary: #edf0ff;
+  --secondary-foreground: var(--primary);
+  --muted: #f3f5fa;
+  --muted-foreground: #778094;
+  --accent: var(--secondary);
+  --accent-foreground: var(--primary);
+  --border: #e9ecf3;
+  --input: var(--border);
+  --ring: var(--primary);
+  --violet: #9a7aeb;
+  --success: #27977a;
+  --warning: #c78a29;
+  --destructive: #df6c75;
+  --chart-1: var(--primary);
+  --chart-2: var(--violet);
+  --chart-3: #8698ef;
+  --chart-4: #b1bcf3;
+  --chart-5: #c7cef3;
+  --radius: 0.8rem;
+}
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  select {
+    cursor: pointer;
+  }
+  button,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+  ::selection {
+    background: var(--secondary);
+    color: var(--primary);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+@layer components {
+  .app-container {
+    width: min(1536px, 100%);
+    margin-inline: auto;
+    padding-inline: 36px;
+  }
+  .panel {
+    border: 1px solid var(--border);
+    box-shadow: 0 3px 16px color-mix(in srgb, var(--foreground) 2%, transparent);
+    border-radius: 16px;
+    ring: none;
+    --card-spacing: 22px;
+  }
+  .panel[data-slot="card"] {
+    --tw-ring-shadow: 0 0 transparent;
+  }
+  .panel [data-slot="card-title"] {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    font-size: 16px;
+  }
+  .panel [data-slot="card-description"] {
+    font-size: 14px;
+  }
+  .hero {
+    background: linear-gradient(
+      112deg,
+      var(--secondary) 0%,
+      color-mix(in srgb, var(--card) 88%, var(--violet)) 60%,
+      var(--secondary) 100%
+    );
+  }
+  .hero-art {
+    mix-blend-mode: multiply;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 20%,
+      black 100%
+    );
+  }
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    color: var(--muted-foreground);
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+  .nav-link:hover {
+    color: var(--primary);
+    background: var(--secondary);
+  }
+  .nav-link[data-active="true"] {
+    color: var(--primary);
+    background: var(--secondary);
+  }
+  .filter-select {
+    max-width: 100%;
+    height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 0 28px 0 10px;
+    background-color: var(--card);
+    color: var(--muted-foreground);
+    font-size: 14px;
+    outline-color: var(--primary);
+  }
+  .data-table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .data-table th {
+    color: var(--muted-foreground);
+    font-weight: 400;
+    background: var(--muted);
+    padding: 12px 16px;
+    white-space: nowrap;
+  }
+  .data-table td {
+    padding: 15px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table tr:last-child td {
+    border-bottom: 0;
+  }
+  .data-table tbody tr {
+    transition: background 0.15s;
+  }
+  .data-table tbody tr:hover {
+    background: var(--muted);
+  }
+  .data-table tr.mismatch {
+    background: color-mix(in srgb, var(--destructive) 5%, var(--card));
+  }
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    border-radius: 6px;
+    padding: 3px 7px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .status-good {
+    color: var(--success);
+    background: color-mix(in srgb, var(--success) 8%, var(--card));
+  }
+  .status-attention {
+    color: var(--warning);
+    background: color-mix(in srgb, var(--warning) 8%, var(--card));
+  }
+  .status-critical {
+    color: var(--destructive);
+    background: color-mix(in srgb, var(--destructive) 8%, var(--card));
+  }
+  .status-info {
+    color: var(--primary);
+    background: var(--secondary);
+  }
+  .label {
+    font-size: 14px;
+    color: var(--muted-foreground);
+  }
+  .finance-assistant {
+    background: linear-gradient(
+      145deg,
+      var(--card),
+      color-mix(in srgb, var(--card) 98%, var(--violet))
+    );
+    border-color: color-mix(in srgb, var(--primary) 21%, var(--card));
+    box-shadow: 0 5px 24px color-mix(in srgb, var(--primary) 5%, transparent);
+  }
+  .assistant-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    color: var(--primary-foreground);
+    background: linear-gradient(135deg, var(--primary), var(--violet));
+    flex-shrink: 0;
+  }
+  .enter {
+    animation: enter 0.6s ease both;
+  }
+  .agent-float {
+    animation: floating 7s ease-in-out infinite;
+  }
+  .online-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 10%, transparent);
+    animation: pulse-soft 3s infinite;
+    flex-shrink: 0;
+  }
+  .kpi {
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+  }
+  .kpi:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 24px color-mix(in srgb, var(--primary) 9%, transparent);
+  }
+  .chart-legend-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+  .bar-grow {
+    transform-origin: left;
+    animation: grow 1s ease both;
+  }
+}
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes floating {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+@keyframes pulse-soft {
+  50% {
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--success) 3%, transparent);
+  }
+}
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@media (min-width: 1600px) {
+  .app-container {
+    padding-inline: 48px;
+  }
+}
+@media (max-width: 1023px) {
+  .app-container {
+    padding-inline: 24px;
+  }
+}
+@media (max-width: 639px) {
+  .app-container {
+    padding-inline: 16px;
+  }
+  .panel {
+    --card-spacing: 18px;
+  }
+  .mobile-cards thead {
+    display: none;
+  }
+  .mobile-cards tbody {
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-cards tr {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-cards td {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    gap: 3px;
+    border: 0;
+    padding: 7px;
+    overflow-wrap: anywhere;
+  }
+  .mobile-cards td::before {
+    content: attr(data-label);
+    font-size: 14px;
+    color: var(--muted-foreground);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
