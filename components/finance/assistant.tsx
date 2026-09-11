@@ -136,12 +136,10 @@ export function FinanceAssistant({
   onStudent,
   onRefund,
   onReconcile,
-  onExport,
 }: {
   onStudent: () => void;
   onRefund: () => void;
   onReconcile: () => void;
-  onExport: (studentId: string) => void;
 }) {
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
   const [input, setInput] = useState("");
@@ -221,7 +219,6 @@ export function FinanceAssistant({
         student.demand - student.paid,
       ],
     ]);
-    onExport(student.id);
     toast.success("Demo fee statement downloaded");
   }
   return (
@@ -277,7 +274,7 @@ export function FinanceAssistant({
       </div>
       <CardContent className="flex min-h-0 flex-1 flex-col">
         <div
-          className={cn("min-h-0 shrink-0", expanded ? "h-[530px]" : "h-[368px]")}
+          className={cn("min-h-0 flex-1", expanded ? "h-[530px]" : "h-[368px]")}
         >
           <MessageScrollerProvider>
             <MessageScroller>
