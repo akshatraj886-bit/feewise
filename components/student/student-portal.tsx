@@ -13,6 +13,7 @@ import {
 } from "@/lib/finance-data";
 import { getStudentAccount } from "@/lib/finance-service";
 import { useAuth } from "@/lib/auth-context";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { FeeCertificatesPanel } from "@/components/finance/certificates";
 import { PartialPaymentSimulator } from "@/components/finance/partial-payment-modal";
 import { Button } from "@/components/ui/button";
@@ -89,9 +90,16 @@ export function StudentPortal() {
   }
 
   return (
-    <div className="min-h-screen bg-muted/20 text-foreground flex flex-col" key={refreshKey}>
+    <div className="min-h-screen bg-background text-foreground flex flex-col relative selection:bg-primary/20 selection:text-primary" key={refreshKey}>
+      {/* Ambient background glow cones matching login screen */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div className="absolute -top-40 left-1/4 size-[550px] rounded-full bg-indigo-500/8 dark:bg-indigo-600/10 blur-[140px]" />
+        <div className="absolute top-1/3 -right-40 size-[450px] rounded-full bg-cyan-500/6 dark:bg-cyan-500/8 blur-[130px]" />
+        <div className="absolute bottom-10 left-10 size-[500px] rounded-full bg-purple-500/6 dark:bg-purple-600/6 blur-[150px]" />
+      </div>
+
       {/* Top Navbar */}
-      <header className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur-md px-4 sm:px-8 py-3 flex items-center justify-between">
+      <header className="sticky top-0 z-30 border-b border-border/80 bg-card/80 dark:bg-[#07090e]/80 backdrop-blur-xl px-4 sm:px-8 py-3 flex items-center justify-between transition-colors">
         <div className="flex items-center gap-3">
           <img
             src="/vignan-logo.png"
@@ -139,6 +147,8 @@ export function StudentPortal() {
             <ShieldCheck className="size-3.5 text-primary" />
             <span className="hidden sm:inline">Switch to Admin</span>
           </Button>
+
+          <ThemeToggle className="size-8" />
 
           <Button
             variant="ghost"

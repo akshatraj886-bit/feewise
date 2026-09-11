@@ -235,8 +235,15 @@ export function FinanceDashboard() {
     document.getElementById("agent-input")?.focus({ preventScroll: true });
   }
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-30 border-b border-border bg-card/95 backdrop-blur-md">
+    <div className="min-h-screen bg-background text-foreground relative selection:bg-primary/20 selection:text-primary">
+      {/* Ambient background glow cones matching login screen */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div className="absolute -top-40 left-1/4 size-[600px] rounded-full bg-indigo-500/8 dark:bg-indigo-600/10 blur-[140px]" />
+        <div className="absolute top-1/3 -right-40 size-[500px] rounded-full bg-cyan-500/6 dark:bg-cyan-500/8 blur-[130px]" />
+        <div className="absolute bottom-10 left-10 size-[500px] rounded-full bg-purple-500/6 dark:bg-purple-600/6 blur-[150px]" />
+      </div>
+
+      <header className="sticky top-0 z-30 border-b border-border/80 bg-card/80 dark:bg-[#07090e]/80 backdrop-blur-xl transition-colors">
         <div className="app-container flex min-h-20 items-center justify-between gap-5">
           <button
             onClick={() => navigate("Dashboard")}
@@ -344,8 +351,9 @@ export function FinanceDashboard() {
               )}
             </Button>
             <div className="hidden h-5 w-px bg-border sm:block" />
-            <div className="hidden lg:flex items-center gap-1.5 bg-muted/60 px-2.5 py-1 rounded-full text-xs border">
-              <span className="text-muted-foreground text-[11px]">Role:</span>
+            <div className="hidden lg:flex items-center gap-2 bg-muted/60 dark:bg-[#0c111d]/70 backdrop-blur-md px-3 py-1 rounded-full text-xs border border-border/80 dark:border-white/10 shadow-2xs">
+              <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+              <span className="text-muted-foreground text-[11px] font-medium">Role:</span>
               <span className="font-semibold text-foreground">
                 {roleTitle}
               </span>
@@ -356,7 +364,7 @@ export function FinanceDashboard() {
                     currentRole === "admin" ? "finance-officer" : "admin"
                   )
                 }
-                className="ml-1 text-[10px] text-primary hover:underline font-medium cursor-pointer"
+                className="ml-1 text-[10px] text-primary hover:underline font-semibold cursor-pointer"
               >
                 (Switch)
               </button>
