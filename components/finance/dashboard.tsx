@@ -776,7 +776,7 @@ export function FinanceDashboard() {
                 size="sm"
                 className="justify-start text-xs text-emerald-700 border-emerald-300 hover:bg-emerald-50"
                 onClick={() => {
-                  login("student", "251FA04E03");
+                  login("student", "251FA04645");
                   setProfileOpen(false);
                 }}
               >

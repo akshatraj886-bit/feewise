@@ -42,18 +42,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
 
   function login(role: UserRole, studentId?: string) {
-    if (role === "student" && studentId) {
-      const student = students.find((s) => s.id === studentId);
+    if (role === "student") {
+      const targetId = studentId || students[0]?.id || "251FA04645";
+      const student = students.find((s) => s.id === targetId) || students[0];
       if (student) {
         setUser({
           role: "student",
           name: student.name,
-          id: studentId,
-          studentId,
+          id: student.id,
+          studentId: student.id,
           avatar: student.initials,
         });
       }
-    } else if (role !== "student") {
+    } else {
       setUser({ role, ...STAFF_USERS[role] });
     }
   }

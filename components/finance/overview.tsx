@@ -292,7 +292,13 @@ export function CollectionIntelligence() {
           >
             <option>All programmes</option>
             <option>B.Tech CSE</option>
+            <option>B.Tech ECE</option>
+            <option>B.Tech EEE</option>
+            <option>B.Tech Mechanical</option>
+            <option>B.Tech Civil</option>
+            <option>B.Tech IT</option>
             <option>MBA</option>
+            <option>Biotechnology</option>
           </select>
           <select
             className="filter-select"
@@ -303,6 +309,7 @@ export function CollectionIntelligence() {
             <option>All categories</option>
             <option>General</option>
             <option>Scholarship</option>
+            <option>Management</option>
           </select>
           <select
             className="filter-select"

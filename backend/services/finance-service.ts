@@ -1,9 +1,14 @@
 import { students, transactions, feeStructures, feeHeads, ageing, inr, instalmentPlans } from "../database/finance-data";
+import { feeAllocations } from "../database/fee-allocations";
+import { scholarshipStatus } from "../database/scholarship-status";
+import { paymentReceipts } from "../database/payment-receipts";
 import { recordSqlPayment } from "../database/sql-store";
+
+export { feeAllocations, scholarshipStatus, paymentReceipts };
 
 export const snapshot = {
   asOf: "2026-09-11T10:21:00+05:30", academicYear: "2026–27",
-  scope: "Fictional institutional snapshot; six representative accounts and five recent transactions are not the full university ledger.",
+  scope: "Institutional financial ledger; multi-branch admissions & accounts covering 8 programmes.",
   demand: 254000000, collected: 217000000, outstanding: 37000000,
   reconciliationPercent: 97.8, reconciledToday: 1284, pendingTransactions: 127,
   mismatches: 23, refundRequests: 14, overdue90Students: 84,
@@ -60,15 +65,85 @@ const historicalReceipts = [
 export function getStudentAccount(id: string) {
   const student = students.find(s => s.id === id);
   if (!student) return null;
-  const fees = allocations[id].map(f => ({ ...f, demand: f.gross - f.scholarship, outstanding: f.gross - f.scholarship - f.paid }));
-  const payments = [
+
+  let fees: {
+    head: string;
+    gross: number;
+    scholarship: number;
+    paid: number;
+    demand: number;
+    outstanding: number;
+    status: string;
+  }[];
+
+  if (feeAllocations[id]) {
+    fees = feeAllocations[id].map((f) => ({
+      head: f.head,
+      gross: f.gross,
+      scholarship: f.head === "Tuition" ? (student.scholarship || 0) : 0,
+      demand: f.gross,
+      paid: f.paid,
+      outstanding: f.outstanding,
+      status: f.status,
+    }));
+  } else if (allocations[id]) {
+    const userAlloc = allocations[id];
+    fees = userAlloc.map(f => {
+      const demand = f.gross - f.scholarship;
+      const outstanding = Math.max(0, demand - f.paid);
+      const status = outstanding === 0 ? "Fully Cleared" : f.paid > 0 ? "Partially Paid" : "Unpaid";
+      return { ...f, demand, outstanding, status };
+    });
+  } else {
+    const userAlloc = [
+      { head: "Tuition", gross: Math.round(student.demand * 0.75), scholarship: student.scholarship || 0, paid: Math.min(student.paid, Math.max(0, Math.round(student.demand * 0.75) - (student.scholarship || 0))) },
+      { head: "Hostel", gross: Math.round(student.demand * 0.15), scholarship: 0, paid: Math.max(0, Math.min(student.paid - Math.round(student.demand * 0.75), Math.round(student.demand * 0.15))) },
+      { head: "Examination", gross: Math.round(student.demand * 0.05), scholarship: 0, paid: Math.max(0, Math.min(student.paid - Math.round(student.demand * 0.9), Math.round(student.demand * 0.05))) },
+      { head: "Library", gross: Math.round(student.demand * 0.05), scholarship: 0, paid: Math.max(0, student.paid - Math.round(student.demand * 0.95)) },
+    ];
+    fees = userAlloc.map(f => {
+      const demand = f.gross - f.scholarship;
+      const outstanding = Math.max(0, demand - f.paid);
+      const status = outstanding === 0 ? "Fully Cleared" : f.paid > 0 ? "Partially Paid" : "Unpaid";
+      return { ...f, demand, outstanding, status };
+    });
+  }
+
+  const studentReceipts = paymentReceipts[id]
+    ? paymentReceipts[id].map((r) => ({
+        id: r.txnId,
+        date: r.date,
+        amount: r.amount,
+        gateway: r.amount,
+        method: `${r.channel} · Reconciled`,
+        status: "Matched",
+      }))
+    : [];
+
+  const legacyPayments = [
     ...transactions.filter(t => t.student === id).map(t => ({ id: t.id, date: t.date, amount: t.ledger, gateway: t.gateway, method: `${t.method} · ${t.status}`, status: t.status })),
     ...historicalReceipts.filter(t => t.student === id).map(t => ({ id: t.id, date: t.date, amount: t.ledger, gateway: t.ledger, method: "Bank transfer · Reconciled", status: "Matched" })),
   ];
+
+  const payments = studentReceipts.length > 0 ? studentReceipts : legacyPayments;
   const scholarship = fees.reduce((sum, f) => sum + f.scholarship, 0);
-  return { ...student, academicYear: snapshot.academicYear, fees, payments, scholarship,
-    scholarshipPolicy: scholarship ? "Merit award SCH-2026: ₹20,000 tuition credit; admission category is separate from the award." : "No scholarship award",
-    gross: fees.reduce((sum, f) => sum + f.gross, 0), outstanding: student.demand - student.paid,
+  const scholarshipInfo = scholarshipStatus[id];
+  const scholarshipPolicy = scholarshipInfo
+    ? `Scholarship Renewal Status: ${scholarshipInfo.status} (Attendance: ${scholarshipInfo.attendance}%, CGPA: ${scholarshipInfo.cumulativeGPA}). Criteria: min ${scholarshipInfo.minAttendance}% attendance, min ${scholarshipInfo.minGPA} CGPA.`
+    : scholarship
+    ? `Merit award: ${inr(scholarship)} tuition credit; admission category is ${student.category}.`
+    : "No scholarship award";
+
+  return {
+    ...student,
+    academicYear: snapshot.academicYear,
+    fees,
+    payments,
+    scholarship,
+    scholarshipInfo,
+    scholarshipPolicy,
+    gross: fees.reduce((sum, f) => sum + f.gross, 0),
+    outstanding: student.demand - student.paid,
     priorCycleSettled: id === "251FA04E03" ? 24100 : 0,
     reconciliation: payments.some(p => p.status === "Mismatch") ? "Unresolved gateway difference; only allocated ledger amounts count toward paid." : "No mismatch in available receipts",
   };
@@ -138,7 +213,13 @@ const series = [
 const MONTHS = ["April","May","June","July","August","September","October","November","December","January","February","March"];
 export const collectionRecords = series.flatMap(s => s.collected.map((collected, month) => ({ year: s.year, programme: s.programme, category: s.category, head: s.head, month, collected: collected !== null ? collected * 100000 : null, demand: s.demand[month] !== null ? s.demand[month]! * 100000 : null })));
 export function filteredCollections(year = "2026–27", programme = "All programmes", category = "All categories", head = "All fee heads") {
-  const rows = collectionRecords.filter(r => r.year === year && (programme === "All programmes" || programme === r.programme) && (category === "All categories" || category === r.category) && (head === "All fee heads" || head === r.head));
+  const isKnownSeries = programme === "B.Tech CSE" || programme === "MBA";
+  const rows = collectionRecords.filter(r =>
+    r.year === year &&
+    (programme === "All programmes" || programme === r.programme || (!isKnownSeries && r.programme === "Other programmes")) &&
+    (category === "All categories" || category === r.category) &&
+    (head === "All fee heads" || head === r.head)
+  );
   return MONTHS.map((month, index) => ({
     month,
     collected: rows.filter(r => r.month === index && r.collected !== null).reduce((sum,r) => sum + (r.collected ?? 0), 0) / 10000000 || null,
@@ -158,11 +239,29 @@ export function recordPayment(
   const student = students.find((s) => s.id === studentId);
   if (!student) throw new Error("Student not found: " + studentId);
 
-  const allocs = allocations[studentId];
-  if (allocs) {
+  // Waterfall priority: Tuition -> Examination -> Library -> Laboratory -> Hostel
+  if (feeAllocations[studentId]) {
+    let remaining = amount;
+    const priorityOrder = ["Tuition", "Examination", "Library", "Laboratory", "Hostel"];
+    const sortedAllocs = [...feeAllocations[studentId]].sort((a, b) => {
+      const idxA = priorityOrder.indexOf(a.head);
+      const idxB = priorityOrder.indexOf(b.head);
+      return (idxA === -1 ? 99 : idxA) - (idxB === -1 ? 99 : idxB);
+    });
+
+    for (const item of sortedAllocs) {
+      if (item.outstanding <= 0) continue;
+      const pay = Math.min(remaining, item.outstanding);
+      item.paid += pay;
+      item.outstanding -= pay;
+      item.status = item.outstanding === 0 ? "Fully Cleared" : "Partially Paid";
+      remaining -= pay;
+      if (remaining <= 0) break;
+    }
+  } else if (allocations[studentId]) {
     let remaining = amount;
     const priorityOrder = ["Tuition", "Examination", "Library", "Laboratory", "Transport", "Hostel"];
-    const sortedAllocs = [...allocs].sort((a, b) => {
+    const sortedAllocs = [...allocations[studentId]].sort((a, b) => {
       const idxA = priorityOrder.indexOf(a.head);
       const idxB = priorityOrder.indexOf(b.head);
       return (idxA === -1 ? 99 : idxA) - (idxB === -1 ? 99 : idxB);
@@ -199,6 +298,16 @@ export function recordPayment(
   };
   transactions.unshift(txn as any);
 
+  if (!paymentReceipts[studentId]) {
+    paymentReceipts[studentId] = [];
+  }
+  paymentReceipts[studentId].unshift({
+    txnId,
+    date: dateStr,
+    channel,
+    amount,
+  });
+
   try {
     recordSqlPayment({
       student_id: studentId,
@@ -219,6 +328,7 @@ export function recordPayment(
     amount,
     method: channel,
     txnId,
-    heads: allocs?.map((a) => ({ head: a.head, amount: a.paid })),
+    heads: feeAllocations[studentId]?.map(a => ({ head: a.head, amount: a.paid })) || allocations[studentId]?.map((a) => ({ head: a.head, amount: a.paid })),
   };
 }
+

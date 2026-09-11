@@ -50,7 +50,7 @@ const quickPrompts = [
   {
     icon: GraduationCap,
     label: "Student Balance & Dues",
-    query: "Why does student 251FA04E03 (Akshat Raj) have ₹28,000 outstanding?",
+    query: "Why does student 251FA04645 (Dharanikota Aaradhya) have dues outstanding?",
     desc: "Check fee demand, paid sum, and scholarship deduction",
   },
   {

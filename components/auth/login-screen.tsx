@@ -90,8 +90,8 @@ const ROLE_CONFIGS: Record<UserRole, RoleConfig> = {
     role: "student",
     title: "Student Portal",
     badge: "Self-Service",
-    defaultEmail: "akshat.raj@gmail.com",
-    subtitle: "Akshat Raj · B.Tech CSE",
+    defaultEmail: "aaradhya.251FA04645@vignan.ac.in",
+    subtitle: "Dharanikota Aaradhya · B.Tech CSE",
     colorTheme: {
       badgeBg: "bg-emerald-100 border-emerald-300",
       badgeText: "text-emerald-900",
@@ -150,7 +150,7 @@ export function LoginScreen() {
       toast.success(`Authenticated as ${ROLE_CONFIGS[targetRole].title}!`);
 
       if (targetRole === "student") {
-        login("student", "251FA04E03");
+        login("student", "251FA04645");
       } else {
         login(targetRole);
       }

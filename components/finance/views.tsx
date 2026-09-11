@@ -59,11 +59,18 @@ export function StudentsView({
   const [filter, setFilter] = useState(
     initialOverdue ? "90+ days overdue" : "All students",
   );
+  const [branchFilter, setBranchFilter] = useState("All branches");
+  const [page, setPage] = useState(1);
+  const pageSize = 25;
+
+  const allBranches = Array.from(new Set(students.map((s) => s.programme)));
+
   const rows = students.filter(
     (student) =>
       `${student.name} ${student.id} ${student.programme}`
         .toLowerCase()
         .includes(search.toLowerCase()) &&
+      (branchFilter === "All branches" || student.programme === branchFilter) &&
       (filter === "All students" ||
         (filter === "90+ days overdue"
           ? student.overdue > 90
@@ -71,13 +78,16 @@ export function StudentsView({
             ? student.demand > student.paid
             : student.demand === student.paid)),
   );
+
+  const totalPages = Math.ceil(rows.length / pageSize) || 1;
+  const paginatedRows = rows.slice((page - 1) * pageSize, page * pageSize);
+
   return (
     <Card className="panel">
       <CardHeader>
         <CardTitle>Student accounts</CardTitle>
         <CardDescription>
-          Search and review individual fee accounts. Six representative demo
-          records.
+          Search and review {students.length} individual fee accounts across {allBranches.length} academic branches.
         </CardDescription>
         <CardAction>
           <Users className="size-5 text-primary" />
@@ -90,27 +100,74 @@ export function StudentsView({
               aria-label="Search students"
               placeholder="Search name, student ID or programme..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setPage(1);
+              }}
             />
             <InputGroupAddon>
               <Search />
             </InputGroupAddon>
           </InputGroup>
-          <select
-            className="filter-select"
-            aria-label="Student account filter"
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-          >
-            {[
-              "All students",
-              "Outstanding",
-              "90+ days overdue",
-              "Fully paid",
-            ].map((option) => (
-              <option key={option}>{option}</option>
-            ))}
-          </select>
+          <div className="flex flex-wrap items-center gap-2">
+            <select
+              className="filter-select"
+              aria-label="Filter by branch"
+              value={branchFilter}
+              onChange={(e) => {
+                setBranchFilter(e.target.value);
+                setPage(1);
+              }}
+            >
+              {["All branches", ...allBranches].map((b) => (
+                <option key={b}>{b}</option>
+              ))}
+            </select>
+            <select
+              className="filter-select"
+              aria-label="Student account filter"
+              value={filter}
+              onChange={(e) => {
+                setFilter(e.target.value);
+                setPage(1);
+              }}
+            >
+              {[
+                "All students",
+                "Outstanding",
+                "90+ days overdue",
+                "Fully paid",
+              ].map((option) => (
+                <option key={option}>{option}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className="text-xs text-muted-foreground mb-3 flex items-center justify-between">
+          <span>Showing {paginatedRows.length} of {rows.length} students {branchFilter !== "All branches" ? `(${branchFilter})` : ""}</span>
+          {totalPages > 1 && (
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 text-xs px-2"
+                disabled={page <= 1}
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+              >
+                Prev
+              </Button>
+              <span>Page {page} of {totalPages}</span>
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 text-xs px-2"
+                disabled={page >= totalPages}
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              >
+                Next
+              </Button>
+            </div>
+          )}
         </div>
         <table className="data-table mobile-cards">
           <thead>
@@ -130,7 +187,7 @@ export function StudentsView({
             </tr>
           </thead>
           <tbody>
-            {rows.map((student) => (
+            {paginatedRows.map((student) => (
               <tr key={student.id}>
                 <td data-label="Student">
                   <button
@@ -233,7 +290,7 @@ export function FeeStructureView() {
             value={programme}
             onChange={(e) => setProgramme(e.target.value)}
           >
-            {["All programmes", "B.Tech CSE", "B.Tech ECE", "MBA"].map((o) => (
+            {["All programmes", ...Array.from(new Set(students.map((s) => s.programme)))].map((o) => (
               <option key={o}>{o}</option>
             ))}
           </select>

@@ -5,6 +5,9 @@ import {
   inr,
   students,
   transactions,
+  feeAllocations,
+  scholarshipStatus,
+  paymentReceipts,
   instalmentPlans,
   printReceiptPdf,
   printStatementPdf,
@@ -49,7 +52,7 @@ export function StudentPortal() {
   const { user, logout, login } = useAuth();
 
   // Find the logged-in student, or default to first student
-  const studentId = user?.studentId || students[0]?.id || "251FA04E03";
+  const studentId = user?.studentId || students[0]?.id || "251FA04645";
   const [activeStudentId, setActiveStudentId] = useState(studentId);
   const [activeTab, setActiveTab] = useState<
     "overview" | "pay" | "breakdown" | "history" | "instalments" | "certificates" | "loans"
@@ -62,9 +65,6 @@ export function StudentPortal() {
     students.find((s) => s.id === activeStudentId) || students[0];
   const account = getStudentAccount(student.id);
   const sqlState = getSqlDatabaseState();
-  const scholarshipRisk = sqlState.scholarship_risks.find(
-    (r) => r.student_id === student.id
-  );
 
   const prog = student.programme;
   const totalDemand = student.demand;
@@ -78,11 +78,21 @@ export function StudentPortal() {
   );
   const studentPlan = instalmentPlans.find((p) => p.studentId === student.id);
 
-  const feeList = account?.fees ?? [
-    { head: "Tuition", gross: 90000, demand: 90000 - scholarshipAmount, paid: Math.min(totalPaid, 90000 - scholarshipAmount), outstanding: Math.max(0, 90000 - scholarshipAmount - totalPaid) },
-    { head: "Hostel", gross: 25000, demand: 25000, paid: Math.max(0, Math.min(25000, totalPaid - 90000)), outstanding: Math.max(0, 25000 - Math.max(0, totalPaid - 90000)) },
-    { head: "Examination", gross: 5000, demand: 5000, paid: 5000, outstanding: 0 },
-  ];
+  const alloc = feeAllocations[student.id];
+  const feeList = alloc
+    ? alloc.map((a) => ({
+        head: a.head,
+        gross: a.gross,
+        demand: a.gross,
+        paid: a.paid,
+        outstanding: a.outstanding,
+        status: a.status,
+      }))
+    : (account?.fees ?? [
+        { head: "Tuition", gross: 90000, demand: 90000 - scholarshipAmount, paid: Math.min(totalPaid, 90000 - scholarshipAmount), outstanding: Math.max(0, 90000 - scholarshipAmount - totalPaid), status: "Partially Paid" },
+        { head: "Hostel", gross: 25000, demand: 25000, paid: Math.max(0, Math.min(25000, totalPaid - 90000)), outstanding: Math.max(0, 25000 - Math.max(0, totalPaid - 90000)), status: "Unpaid" },
+        { head: "Examination", gross: 5000, demand: 5000, paid: 5000, outstanding: 0, status: "Fully Cleared" },
+      ]);
 
   function handlePaymentSuccess() {
     setRefreshKey((k) => k + 1);
@@ -355,91 +365,94 @@ export function StudentPortal() {
               </div>
             )}
 
-            {/* Scholarship Renewal & Academic Threshold Status (finance.scholarship_renewal_risk) */}
-            {scholarshipRisk && (
-              <div
-                className={`rounded-xl border p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${
-                  scholarshipRisk.risk_level === "NONE"
-                    ? "border-emerald-500/20 bg-emerald-500/5"
-                    : scholarshipRisk.risk_level === "WATCH"
-                    ? "border-amber-500/20 bg-amber-500/5"
-                    : "border-rose-500/20 bg-rose-500/5"
-                }`}
-              >
-                <div className="flex items-start gap-3.5">
-                  <div
-                    className={`p-2.5 rounded-xl mt-0.5 ${
-                      scholarshipRisk.risk_level === "NONE"
-                        ? "bg-emerald-500/10 text-emerald-600"
-                        : scholarshipRisk.risk_level === "WATCH"
-                        ? "bg-amber-500/10 text-amber-600"
-                        : "bg-rose-500/10 text-rose-600"
-                    }`}
-                  >
-                    {scholarshipRisk.risk_level === "NONE" ? (
-                      <ShieldCheck className="size-5" />
-                    ) : (
-                      <AlertTriangle className="size-5" />
-                    )}
+            {/* Scholarship Renewal Status Card */}
+            {scholarshipStatus[student.id] && (() => {
+              const s = scholarshipStatus[student.id];
+              const isSafe = s.status === "Safe";
+              const isAtRisk = s.status === "At Risk";
+              const isCritical = s.status === "Critical";
+
+              const borderBg = isSafe
+                ? "border-emerald-500/30 bg-emerald-500/10 dark:bg-emerald-500/10"
+                : isAtRisk
+                ? "border-amber-500/30 bg-amber-500/10 dark:bg-amber-500/10"
+                : "border-rose-500/30 bg-rose-500/10 dark:bg-rose-500/10";
+
+              const iconBg = isSafe
+                ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
+                : isAtRisk
+                ? "bg-amber-500/20 text-amber-600 dark:text-amber-400 border-amber-500/30"
+                : "bg-rose-500/20 text-rose-600 dark:text-rose-400 border-rose-500/30";
+
+              const badgeClass = isSafe
+                ? "bg-emerald-600 hover:bg-emerald-600 text-white font-semibold text-[11px]"
+                : isAtRisk
+                ? "bg-amber-600 hover:bg-amber-600 text-white font-semibold text-[11px]"
+                : "bg-rose-600 hover:bg-rose-600 text-white font-semibold text-[11px]";
+
+              return (
+                <div
+                  className={`rounded-2xl border ${borderBg} backdrop-blur-xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm`}
+                >
+                  <div className="flex items-start gap-3.5">
+                    <div className={`p-2.5 rounded-xl mt-0.5 border ${iconBg} shadow-xs`}>
+                      {isSafe ? (
+                        <ShieldCheck className="size-5" />
+                      ) : (
+                        <AlertTriangle className="size-5" />
+                      )}
+                    </div>
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-sm sm:text-base font-bold text-foreground tracking-tight">
+                          Scholarship Renewal Status &middot; AY 2026–27
+                        </h4>
+                        <Badge className={badgeClass}>
+                          {s.status}
+                        </Badge>
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        {isSafe
+                          ? "Academic criteria satisfied (Attendance \u2265 75%, CGPA \u2265 7.5). Scholarship award renewal is safe."
+                          : isAtRisk
+                          ? "Academic criteria nearing the renewal threshold. Maintain attendance and grades to safeguard award."
+                          : "Current metrics are below minimum renewal criteria. Immediate academic advisor review required."}
+                      </p>
+                    </div>
                   </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-sm font-semibold text-foreground">
-                        Scholarship Renewal Status &middot; AY 2026–27
-                      </h4>
-                      <Badge
+
+                  <div className="flex items-center gap-4 text-xs shrink-0 bg-background/80 dark:bg-background/60 backdrop-blur-md border rounded-xl px-4 py-2.5 shadow-xs">
+                    <div>
+                      <span className="text-muted-foreground block text-[10px] uppercase tracking-wider font-semibold">Attendance</span>
+                      <strong
                         className={
-                          scholarshipRisk.risk_level === "NONE"
-                            ? "bg-emerald-600 text-white text-[11px]"
-                            : scholarshipRisk.risk_level === "WATCH"
-                            ? "bg-amber-600 text-white text-[11px]"
-                            : "bg-rose-600 text-white text-[11px]"
+                          s.attendance >= s.minAttendance
+                            ? "text-emerald-600 dark:text-emerald-400 font-bold text-sm"
+                            : "text-rose-600 dark:text-rose-400 font-bold text-sm"
                         }
                       >
-                        {scholarshipRisk.risk_level === "NONE"
-                          ? "Criteria Met (Safe)"
-                          : scholarshipRisk.risk_level === "WATCH"
-                          ? "Watchlist"
-                          : "At Risk of Forfeiture"}
-                      </Badge>
+                        {s.attendance}%
+                      </strong>
+                      <span className="text-[10px] text-muted-foreground"> (Min {s.minAttendance}%)</span>
                     </div>
-                    <p className="text-xs text-muted-foreground">
-                      {scholarshipRisk.criteria_at_risk.notes}
-                    </p>
+                    <div className="h-7 w-px bg-border" />
+                    <div>
+                      <span className="text-muted-foreground block text-[10px] uppercase tracking-wider font-semibold">Cumulative GPA</span>
+                      <strong
+                        className={
+                          s.cumulativeGPA >= s.minGPA
+                            ? "text-emerald-600 dark:text-emerald-400 font-bold text-sm"
+                            : "text-rose-600 dark:text-rose-400 font-bold text-sm"
+                        }
+                      >
+                        {s.cumulativeGPA}
+                      </strong>
+                      <span className="text-[10px] text-muted-foreground"> (Min {s.minGPA})</span>
+                    </div>
                   </div>
                 </div>
-
-                <div className="flex items-center gap-4 text-xs shrink-0 bg-background/80 border rounded-lg px-3 py-2">
-                  <div>
-                    <span className="text-muted-foreground block text-[10px]">Attendance</span>
-                    <strong
-                      className={
-                        scholarshipRisk.attendance_pct >= 75
-                          ? "text-emerald-600 font-bold"
-                          : "text-rose-600 font-bold"
-                      }
-                    >
-                      {scholarshipRisk.attendance_pct}%
-                    </strong>
-                    <span className="text-[10px] text-muted-foreground"> (Min 75%)</span>
-                  </div>
-                  <div className="h-6 w-px bg-border" />
-                  <div>
-                    <span className="text-muted-foreground block text-[10px]">Cumulative GPA</span>
-                    <strong
-                      className={
-                        scholarshipRisk.cgpa >= 7.5
-                          ? "text-emerald-600 font-bold"
-                          : "text-rose-600 font-bold"
-                      }
-                    >
-                      {scholarshipRisk.cgpa}
-                    </strong>
-                    <span className="text-[10px] text-muted-foreground"> (Min 7.5)</span>
-                  </div>
-                </div>
-              </div>
-            )}
+              );
+            })()}
 
             {/* Quick Certificates Highlight */}
             <FeeCertificatesPanel student={student} />
@@ -592,73 +605,95 @@ export function StudentPortal() {
         )}
 
         {/* Tab: Receipts & History */}
-        {activeTab === "history" && (
-          <div className="space-y-4">
-            <div className="rounded-xl border bg-card p-5 shadow-xs space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-base font-semibold text-foreground">
-                    Payment Receipts & Ledger
-                  </h3>
-                  <p className="text-xs text-muted-foreground">
-                    All digital receipts verified with university treasury ref.
-                  </p>
-                </div>
-              </div>
+        {activeTab === "history" && (() => {
+          const receipts = paymentReceipts[student.id] ?? (studentTransactions.length > 0 ? studentTransactions.map(t => ({
+            txnId: t.id,
+            date: t.date,
+            channel: t.method,
+            amount: t.ledger || (t as any).amount || 0
+          })) : []);
 
-              {studentTransactions.length === 0 ? (
-                <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground text-xs">
-                  No payment transactions found yet. Use the Pay Dues tab to make a payment.
+          return (
+            <div className="space-y-4">
+              <div className="rounded-xl border bg-card p-5 shadow-xs space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-base font-semibold text-foreground">
+                      Receipts & History
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                      Official transaction receipts verified with university treasury ref.
+                    </p>
+                  </div>
                 </div>
-              ) : (
-                <div className="rounded-lg border overflow-hidden">
-                  <table className="w-full text-xs">
-                    <thead className="bg-muted/70 text-muted-foreground border-b">
-                      <tr>
-                        <th className="py-2.5 px-3 text-left font-semibold">Txn ID</th>
-                        <th className="py-2.5 px-3 text-left font-semibold">Date</th>
-                        <th className="py-2.5 px-3 text-left font-semibold">Payment Channel</th>
-                        <th className="py-2.5 px-3 text-right font-semibold">Amount Paid</th>
-                        <th className="py-2.5 px-3 text-center font-semibold">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-border">
-                      {studentTransactions.map((txn) => (
-                        <tr key={txn.id} className="hover:bg-muted/30">
-                          <td className="py-2.5 px-3 font-mono font-medium text-foreground">
-                            {txn.id}
-                          </td>
-                          <td className="py-2.5 px-3 text-muted-foreground">
-                            {txn.date}
-                          </td>
-                          <td className="py-2.5 px-3">
-                            <span className="inline-flex rounded bg-muted px-2 py-0.5 text-[11px] font-medium">
-                              {txn.method}
-                            </span>
-                          </td>
-                          <td className="py-2.5 px-3 text-right font-bold text-emerald-600">
-                            {inr(txn.ledger || (txn as any).amount || 0)}
-                          </td>
-                          <td className="py-2.5 px-3 text-center">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="h-7 text-xs gap-1"
-                              onClick={() => printReceiptPdf(txn)}
-                            >
-                              <Printer className="size-3" />
-                              PDF Receipt
-                            </Button>
-                          </td>
+
+                {receipts.length === 0 ? (
+                  <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground text-xs">
+                    No payments recorded yet
+                  </div>
+                ) : (
+                  <div className="rounded-lg border overflow-hidden">
+                    <table className="w-full text-xs">
+                      <thead className="bg-muted/70 text-muted-foreground border-b">
+                        <tr>
+                          <th className="py-2.5 px-3 text-left font-semibold">Txn ID</th>
+                          <th className="py-2.5 px-3 text-left font-semibold">Date</th>
+                          <th className="py-2.5 px-3 text-left font-semibold">Payment Channel</th>
+                          <th className="py-2.5 px-3 text-right font-semibold">Amount Paid</th>
+                          <th className="py-2.5 px-3 text-center font-semibold">Action</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
+                      </thead>
+                      <tbody className="divide-y divide-border">
+                        {receipts.map((rcpt) => (
+                          <tr key={rcpt.txnId} className="hover:bg-muted/30">
+                            <td className="py-2.5 px-3 font-mono font-medium text-foreground">
+                              {rcpt.txnId}
+                            </td>
+                            <td className="py-2.5 px-3 text-muted-foreground">
+                              {rcpt.date}
+                            </td>
+                            <td className="py-2.5 px-3">
+                              <span className="inline-flex rounded bg-muted px-2 py-0.5 text-[11px] font-medium">
+                                {rcpt.channel}
+                              </span>
+                            </td>
+                            <td className="py-2.5 px-3 text-right font-bold text-emerald-600">
+                              {inr(rcpt.amount)}
+                            </td>
+                            <td className="py-2.5 px-3 text-center">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="h-7 text-xs gap-1"
+                                onClick={() =>
+                                  printReceiptPdf({
+                                    txnId: rcpt.txnId,
+                                    id: rcpt.txnId,
+                                    date: rcpt.date,
+                                    method: rcpt.channel,
+                                    channel: rcpt.channel,
+                                    amount: rcpt.amount,
+                                    ledger: rcpt.amount,
+                                    studentId: student.id,
+                                    studentName: student.name,
+                                    programme: student.programme,
+                                  })
+                                }
+                              >
+                                <Printer className="size-3" />
+                                PDF Receipt
+                              </Button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
 
         {/* Tab: Instalment Plan */}
         {activeTab === "instalments" && (
