@@ -2,17 +2,17 @@ import { Analytics } from "@vercel/analytics/next";
 import { Geist } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import { Toaster } from "@/components/ui/sonner";
+import { AuthProvider } from "@/lib/auth-context";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 export const metadata: Metadata = {
-  title: "FEEWISE AI — University Finance Command Center",
+  title: "finDeck — Vignan's Foundation for Science, Technology & Research (VFSTR)",
   description:
-    "Agent 40 — An intelligent university fee-management demo. Explore fee demand, student balances, reconciliation and human-reviewed refund recommendations.",
+    "finDeck: Official University Finance Command Center — Vignan's Foundation for Science, Technology & Research (Deemed to be University). Automated fee demand, concessions, priority allocations & digital certificates.",
 };
 export const viewport: Viewport = {
-  colorScheme: "light",
-  themeColor: "#f6f8fc",
   width: "device-width",
   initialScale: 1,
 };
@@ -20,11 +20,13 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`light bg-background ${geist.variable}`}>
-      <body className="font-sans antialiased">
-        {children}
-        <Toaster theme="light" position="bottom-right" />
-        {process.env.NODE_ENV === "production" && <Analytics />}
+    <html lang="en" suppressHydrationWarning className={geist.variable}>
+      <body className="font-sans antialiased bg-background text-foreground min-h-screen">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <AuthProvider>{children}</AuthProvider>
+          <Toaster position="bottom-right" />
+          {process.env.NODE_ENV === "production" && <Analytics />}
+        </ThemeProvider>
       </body>
     </html>
   );

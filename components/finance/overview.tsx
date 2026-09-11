@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, ReferenceLine, XAxis, YAxis } from "recharts";
 import {
   ArrowDownLeft,
   ArrowDownRight,
@@ -258,14 +258,16 @@ export function CollectionIntelligence() {
   const [category, setCategory] = useState("All categories");
   const [head, setHead] = useState("All fee heads");
   const data = filteredCollections(year, programme, category, head);
-  const collected = data.reduce((sum, row) => sum + row.collected, 0);
-  const demand = data.reduce((sum, row) => sum + row.demand, 0);
+  const actualData = data.filter((d) => !d.projected);
+  const collected = actualData.reduce((sum, row) => sum + (row.collected ?? 0), 0);
+  const demand = actualData.reduce((sum, row) => sum + (row.demand ?? 0), 0);
+  const projectedDemand = data.filter((d) => d.projected).reduce((sum, row) => sum + (row.demand ?? 0), 0);
   return (
     <Card className="panel h-full">
       <CardHeader>
         <CardTitle>Collection Intelligence</CardTitle>
         <CardDescription>
-          April–September · Explicit fictional aggregate records
+          Apr–Sep actual · Oct–Mar projected
         </CardDescription>
         <CardAction>
           <TrendingUp className="size-4 text-muted-foreground" />
@@ -320,9 +322,16 @@ export function CollectionIntelligence() {
             </span>
             <span className="text-sm text-muted-foreground">collected</span>
           </div>
-          <span className="flex items-center gap-1 text-sm text-success">
-            {demand ? `${((collected / demand) * 100).toFixed(1)}% collected` : "No records"}
-          </span>
+          <div className="flex flex-col items-end gap-1">
+            <span className="flex items-center gap-1 text-sm text-success">
+              {demand ? `${((collected / demand) * 100).toFixed(1)}% collected` : "No records"}
+            </span>
+            {projectedDemand > 0 && (
+              <span className="text-xs text-muted-foreground">
+                ₹{projectedDemand.toFixed(2)} Cr projected demand ahead
+              </span>
+            )}
+          </div>
         </div>
         <ChartContainer
           className="mt-3 h-44 w-full aspect-auto"
@@ -349,6 +358,10 @@ export function CollectionIntelligence() {
                   stopOpacity={0}
                 />
               </linearGradient>
+              <linearGradient id="projectedFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="var(--violet)" stopOpacity={0.12} />
+                <stop offset="100%" stopColor="var(--violet)" stopOpacity={0} />
+              </linearGradient>
             </defs>
             <CartesianGrid
               vertical={false}
@@ -361,16 +374,22 @@ export function CollectionIntelligence() {
               axisLine={false}
               tickLine={false}
               tickMargin={10}
-              fontSize={14}
+              fontSize={12}
             />
             <YAxis
               tickFormatter={(v) => `${v}`}
               axisLine={false}
               tickLine={false}
               tickCount={4}
-              fontSize={14}
+              fontSize={12}
             />
             <ChartTooltip content={<ChartTooltipContent />} />
+            <ReferenceLine
+              x="October"
+              stroke="var(--border)"
+              strokeDasharray="4 3"
+              label={{ value: "Projected", position: "insideTopRight", fontSize: 10, fill: "var(--muted-foreground)", dy: -4 }}
+            />
             <Area
               type="monotone"
               dataKey="demand"
@@ -379,6 +398,7 @@ export function CollectionIntelligence() {
               strokeDasharray="5 4"
               fill="transparent"
               isAnimationActive={false}
+              connectNulls
             />
             <Area
               type="monotone"
@@ -387,6 +407,7 @@ export function CollectionIntelligence() {
               fill="url(#collectionFill)"
               strokeWidth={2.5}
               isAnimationActive={false}
+              connectNulls
             />
           </AreaChart>
         </ChartContainer>
@@ -398,6 +419,9 @@ export function CollectionIntelligence() {
             </span>
             <span className="flex items-center gap-1.5">
               <i className="chart-legend-dot bg-violet" /> Demand
+            </span>
+            <span className="flex items-center gap-1.5 text-xs opacity-70">
+              <i className="chart-legend-dot" style={{ background: "var(--muted-foreground)" }} /> Projected
             </span>
           </div>
         </div>

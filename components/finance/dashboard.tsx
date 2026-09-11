@@ -7,6 +7,7 @@ import {
   ArrowUpRight,
   Bell,
   BookOpen,
+  CalendarClock,
   CalendarDays,
   ChartNoAxesCombined,
   Check,
@@ -17,6 +18,7 @@ import {
   GraduationCap,
   LayoutDashboard,
   LockKeyhole,
+  LogOut,
   Menu,
   RefreshCw,
   RotateCcw,
@@ -28,6 +30,8 @@ import {
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { FinDeckLogo } from "@/components/ui/findeck-logo";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
   Dialog,
   DialogContent,
@@ -54,7 +58,7 @@ import {
   students,
   transactions,
   initialAudit,
-  downloadCsv,
+  downloadExcel,
   type AuditEntry,
   type Student,
   type Transaction,
@@ -68,16 +72,24 @@ import {
   OutstandingAgeing,
   FinanceIntelligence,
 } from "./overview";
-import { FinanceAssistant } from "./assistant";
+import { FinanceAssistant, FullPageAiAssistant } from "./assistant";
 import { AuditLog, ReconciliationCenter, RefundApproval } from "./operations";
 import { RefundDialog, StudentDrawer, TransactionDialog } from "./details";
 import {
   FeeStructureView,
+  InstalmentView,
   PaymentsView,
   ReportsView,
   StudentsView,
 } from "./views";
+import {
+  SmartRemindersView,
+  ScholarshipRenewalRiskView,
+  BankLoanDeskView,
+  SqlSchemaInspector,
+} from "./organizer-views";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/lib/auth-context";
 
 const navIcons = [
   LayoutDashboard,
@@ -85,6 +97,11 @@ const navIcons = [
   BookOpen,
   CreditCard,
   RefreshCw,
+  CalendarClock,
+  Sparkles,
+  Bell,
+  ShieldCheck,
+  FileText,
   RotateCcw,
   ChartNoAxesCombined,
 ];
@@ -94,12 +111,43 @@ const viewDescriptions: Record<View, string> = {
   "Fee Structure": "Transparent, versioned rules for every programme.",
   Payments: "Track every receipt from gateway to student ledger.",
   Reconciliation: "Bring your gateway and ledger into agreement.",
+  "AI Assistant": "Natural language intelligence for dues, reconciliation, and policy rules.",
   Refunds: "Thoughtful reviews. Human-approved financial decisions.",
+  Instalments: "Manage split-payment plans, track dues and print receipts.",
+  "Smart Reminders": "Policy-governed reminder suppression and student distress prevention.",
+  "Scholarship Risks": "Early-warning academic tracking for CGPA and attendance thresholds.",
+  "Loan Requests": "Bank education loan document issuance and verification code tracking.",
   Reports: "Turn institutional finance data into clear, actionable reports.",
 };
 
+const primaryNavItems: View[] = [
+  "Dashboard",
+  "Students",
+  "Fee Structure",
+  "Payments",
+  "Reconciliation",
+  "AI Assistant",
+  "Instalments",
+];
+
+const moreNavItems: { label: View; desc: string; badge?: string }[] = [
+  { label: "Smart Reminders", desc: "Policy Auto-Suppression", badge: "Policy" },
+  { label: "Scholarship Risks", desc: "CGPA & Attendance Retention", badge: "Warning" },
+  { label: "Loan Requests", desc: "Bank Document Issuance", badge: "Bank Desk" },
+  { label: "Refunds", desc: "Withdrawals & Caution Deposit", badge: "Approval" },
+  { label: "Reports", desc: "Audit Ledger & SQL Dump", badge: "SQL Engine" },
+];
+
 export function FinanceDashboard() {
+  const { user, login, logout } = useAuth();
+  const currentRole = user?.role || "admin";
+  const userName = user?.name || "Finance Admin";
+  const userInitials = user?.avatar || "FA";
+  const roleTitle = currentRole === "admin" ? "CEO Administrator" : "Finance Officer";
+
   const [view, setView] = useState<View>("Dashboard");
+  const [moreOpen, setMoreOpen] = useState(false);
+  const isMoreActive = moreNavItems.some((item) => item.label === view);
   const [menuOpen, setMenuOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [notificationsRead, setNotificationsRead] = useState(false);
@@ -122,7 +170,7 @@ export function FinanceDashboard() {
           hour: "2-digit",
           minute: "2-digit",
         }),
-        user: "Finance Admin (demo)",
+        user: `${userName} (${roleTitle})`,
         action,
         entity,
         status,
@@ -130,7 +178,21 @@ export function FinanceDashboard() {
       ...previous,
     ]);
   }
+  const [pendingAiQuery, setPendingAiQuery] = useState<string | null>(null);
+
+  function handleAskAi(query?: string) {
+    if (query && query.trim()) {
+      setPendingAiQuery(query.trim());
+    } else {
+      setPendingAiQuery(null);
+    }
+    navigate("AI Assistant");
+  }
+
   function navigate(next: View, overdue = false) {
+    if (next !== "AI Assistant") {
+      setPendingAiQuery(null);
+    }
     setView(next);
     setOverdueOnly(overdue);
     setMenuOpen(false);
@@ -150,8 +212,8 @@ export function FinanceDashboard() {
     log("Viewed payment", transaction.id);
   }
   function exportOverview() {
-    downloadCsv("FEEWISE-finance-overview-DEMO.csv", [
-      ["FEEWISE AI — Fictional demo data", "Academic year 2026–27"],
+    downloadExcel("finDeck-finance-overview", [
+      ["finDeck AI — Fictional demo data", "Academic year 2026–27"],
       ["Metric", "Value"],
       ["Total fee demand (INR)", 254000000],
       ["Collected (INR)", 217000000],
@@ -160,10 +222,10 @@ export function FinanceDashboard() {
       ["Pending transactions", 127],
       ["Refund requests awaiting approval", 14],
       ["Students with 90+ days dues", 84],
-    ]);
+    ], "Finance Overview");
     log("Exported overview", "Academic year 2026–27");
-    toast.success("Finance overview downloaded", {
-      description: "Fictional demo snapshot · CSV format",
+    toast.success("Finance overview exported as Excel", {
+      description: "Fictional demo snapshot · .xlsx format",
     });
   }
   function askAgent() {
@@ -178,80 +240,162 @@ export function FinanceDashboard() {
         <div className="app-container flex min-h-20 items-center justify-between gap-5">
           <button
             onClick={() => navigate("Dashboard")}
-            aria-label="FEEWISE AI dashboard"
-            className="flex shrink-0 items-center gap-2.5 text-left"
+            aria-label="finDeck Finance Dashboard"
+            className="flex shrink-0 items-center gap-2.5 text-left cursor-pointer"
           >
-            <span className="flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm shadow-primary/20">
-              <GraduationCap className="size-6" strokeWidth={1.65} />
-            </span>
-            <span>
-              <span className="flex items-baseline gap-1.5 text-lg font-bold tracking-[-0.035em]">
-                FEEWISE <span className="font-medium text-primary">AI</span>
-              </span>
-              <span className="block text-[10px] font-medium tracking-[0.12em] text-muted-foreground">
-                NORTHFIELD UNIVERSITY
-              </span>
-            </span>
+            <FinDeckLogo
+              size={38}
+              subtitle="VFSTR • Vignan's Foundation"
+            />
           </button>
           <nav
             aria-label="Main navigation"
-            className="hidden items-center gap-0.5 xl:flex"
+            className="hidden items-center gap-1 xl:flex"
           >
-            {navigation.map((item, index) => {
+            {primaryNavItems.map((item) => {
+              const index = navigation.indexOf(item);
               const Icon = navIcons[index];
               return (
                 <button
-                  className="nav-link"
+                  className="nav-link text-xs px-2.5 py-1.5 font-medium cursor-pointer"
                   data-active={view === item}
                   aria-current={view === item ? "page" : undefined}
                   key={item}
                   onClick={() => navigate(item)}
                 >
-                  {index === 0 && <Icon className="size-4" />}
+                  {item === "Dashboard" && (
+                    <Icon className="size-3.5 mr-1 inline" />
+                  )}
                   {item}
                 </button>
               );
             })}
+
+            {/* More Modules Dropdown */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setMoreOpen(!moreOpen)}
+                className="nav-link text-xs px-2.5 py-1.5 font-medium flex items-center gap-1 cursor-pointer"
+                data-active={isMoreActive}
+                aria-expanded={moreOpen}
+              >
+                <span>{isMoreActive ? view : "More Modules"}</span>
+                <ChevronDown
+                  className={`size-3 transition-transform duration-200 ${
+                    moreOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {moreOpen && (
+                <>
+                  <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setMoreOpen(false)}
+                  />
+                  <div className="absolute top-full left-0 mt-1.5 w-64 rounded-xl border bg-card/95 backdrop-blur-md p-1.5 shadow-xl z-50 animate-in fade-in-0 zoom-in-95">
+                    {moreNavItems.map((item) => (
+                      <button
+                        key={item.label}
+                        onClick={() => {
+                          navigate(item.label);
+                          setMoreOpen(false);
+                        }}
+                        className={`w-full text-left px-3 py-2 rounded-lg text-xs flex flex-col gap-0.5 transition-colors cursor-pointer ${
+                          view === item.label
+                            ? "bg-primary/10 text-primary font-semibold"
+                            : "hover:bg-muted text-foreground"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium text-xs">
+                            {item.label}
+                          </span>
+                          {item.badge && (
+                            <span className="text-[10px] rounded px-1.5 py-0.5 bg-muted font-mono text-muted-foreground">
+                              {item.badge}
+                            </span>
+                          )}
+                        </div>
+                        <span className="text-[10px] text-muted-foreground">
+                          {item.desc}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
           </nav>
-          <div className="flex items-center gap-3">
+
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <ThemeToggle className="size-8" />
             <Button
               aria-label="Notifications"
               variant="ghost"
               size="icon"
-              className="relative"
+              className="relative size-8"
               onClick={() => setNotificationsOpen(true)}
             >
-              <Bell />
+              <Bell className="size-4" />
               {!notificationsRead && (
-                <span className="absolute right-1.5 top-1 size-1.5 rounded-full bg-destructive ring-2 ring-card" />
+                <span className="absolute right-1 top-1 size-1.5 rounded-full bg-destructive ring-2 ring-card" />
               )}
             </Button>
-            <div className="hidden h-7 w-px bg-border sm:block" />
+            <div className="hidden h-5 w-px bg-border sm:block" />
+            <div className="hidden lg:flex items-center gap-1.5 bg-muted/60 px-2.5 py-1 rounded-full text-xs border">
+              <span className="text-muted-foreground text-[11px]">Role:</span>
+              <span className="font-semibold text-foreground">
+                {roleTitle}
+              </span>
+              <button
+                type="button"
+                onClick={() =>
+                  login(
+                    currentRole === "admin" ? "finance-officer" : "admin"
+                  )
+                }
+                className="ml-1 text-[10px] text-primary hover:underline font-medium cursor-pointer"
+              >
+                (Switch)
+              </button>
+            </div>
             <button
               onClick={() => setProfileOpen(true)}
-              className="flex items-center gap-2.5 text-left"
-              aria-label="Finance Admin profile"
+              className="flex items-center gap-2 text-left cursor-pointer hover:opacity-85 transition-opacity"
+              aria-label={`${userName} profile`}
             >
-              <span className="relative flex size-9 items-center justify-center rounded-full bg-secondary text-sm font-semibold text-primary">
-                FA
-                <span className="absolute bottom-0 right-0 size-2.5 rounded-full border-2 border-card bg-success" />
+              <span className="relative flex size-8 items-center justify-center rounded-full bg-secondary text-xs font-semibold text-primary">
+                {userInitials}
+                <span className="absolute bottom-0 right-0 size-2 rounded-full border-2 border-card bg-success" />
               </span>
-              <span className="hidden sm:block">
-                <span className="block text-sm font-medium">Finance Admin</span>
-                <span className="block text-sm text-muted-foreground">
-                  Administrator
-                </span>
+              <span className="hidden xl:block">
+                <span className="block text-xs font-medium">{userName}</span>
               </span>
-              <ChevronDown className="hidden size-3.5 text-muted-foreground sm:block" />
+              <ChevronDown className="hidden size-3 text-muted-foreground xl:block" />
             </button>
+
+            {/* Direct 1-Click Logout Button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={logout}
+              className="h-8 gap-1.5 text-xs text-muted-foreground hover:text-destructive hover:bg-destructive/10 px-2.5 cursor-pointer"
+              title="Log Out of finDeck"
+            >
+              <LogOut className="size-3.5 text-destructive" />
+              <span className="hidden sm:inline font-medium">Logout</span>
+            </Button>
+
             <Button
               variant="ghost"
               size="icon"
-              className="xl:hidden"
+              className="xl:hidden size-8"
               aria-label="Open navigation"
               onClick={() => setMenuOpen(!menuOpen)}
             >
-              {menuOpen ? <X /> : <Menu />}
+              {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
             </Button>
           </div>
         </div>
@@ -342,6 +486,7 @@ export function FinanceDashboard() {
                   onStudent={() => openStudent(students[0])}
                   onRefund={() => setRefundIntent("review")}
                   onReconcile={() => reviewTransaction(transactions[1])}
+                  onExpandToPage={(query) => handleAskAi(query)}
                 />
                 <FinanceIntelligence
                   onNavigate={(next) => navigate(next, next === "Students")}
@@ -361,6 +506,7 @@ export function FinanceDashboard() {
                 </div>
               </aside>
             </div>
+            <SqlSchemaInspector />
             <AuditLog entries={audit} />
           </div>
         ) : (
@@ -444,14 +590,32 @@ export function FinanceDashboard() {
                 <AuditLog entries={audit} full />
               </>
             )}
-            {view === "Reports" && <ReportsView entries={audit} />}
+            {view === "AI Assistant" && (
+              <FullPageAiAssistant
+                onStudent={() => openStudent(students[0])}
+                onRefund={() => setRefundIntent("review")}
+                onReconcile={() => reviewTransaction(transactions[1])}
+                initialPrompt={pendingAiQuery}
+                onClearInitialPrompt={() => setPendingAiQuery(null)}
+              />
+            )}
+            {view === "Instalments" && <InstalmentView />}
+            {view === "Smart Reminders" && <SmartRemindersView />}
+            {view === "Scholarship Risks" && <ScholarshipRenewalRiskView />}
+            {view === "Loan Requests" && <BankLoanDeskView />}
+            {view === "Reports" && (
+              <>
+                <ReportsView entries={audit} />
+                <SqlSchemaInspector />
+              </>
+            )}
           </div>
         )}
         <footer className="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5 text-sm text-muted-foreground">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="font-medium text-foreground">FEEWISE AI</span>
+            <span className="font-bold text-foreground">fin<span className="text-primary">Deck</span> AI</span>
             <span>·</span>
-            <span>Agent 40 — Fee Management Agent</span>
+            <span>VFSTR University Finance Command Center</span>
           </div>
           <div className="flex flex-wrap items-center gap-4">
             <span className="flex items-center gap-1.5">
@@ -561,29 +725,79 @@ export function FinanceDashboard() {
       <Dialog open={profileOpen} onOpenChange={setProfileOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Finance Admin</DialogTitle>
+            <DialogTitle>{userName}</DialogTitle>
             <DialogDescription>
-              Northfield University · Demo workspace
+              {roleTitle} · Vignan&apos;s University (VFSTR) Treasury
             </DialogDescription>
           </DialogHeader>
           <div className="rounded-xl bg-secondary p-4 text-sm leading-relaxed text-primary">
-            You are exploring an administrator-style demo, not an authenticated
-            account. All records are fictional, actions are kept in memory, and
-            refreshing the page resets this session.
+            Current session role: <strong>{roleTitle}</strong>. 
+            {currentRole === "admin"
+              ? " You have full treasury privileges including refund approvals and fee structures."
+              : " Operational role. Refund approvals require Administrator authorization."}
           </div>
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            Real authentication, live data and financial transactions are
-            intentionally not connected. No real money can move from this
-            interface.
-          </p>
+          <div className="space-y-2 pt-2">
+            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              Switch Persona / Role
+            </div>
+            <div className="grid gap-2">
+              <Button
+                variant={currentRole === "admin" ? "default" : "outline"}
+                size="sm"
+                className="justify-start text-xs"
+                onClick={() => {
+                  login("admin");
+                  setProfileOpen(false);
+                }}
+              >
+                Administrator View (Full Access)
+              </Button>
+              <Button
+                variant={currentRole === "finance-officer" ? "default" : "outline"}
+                size="sm"
+                className="justify-start text-xs"
+                onClick={() => {
+                  login("finance-officer");
+                  setProfileOpen(false);
+                }}
+              >
+                Finance Officer View (Operations)
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="justify-start text-xs text-emerald-700 border-emerald-300 hover:bg-emerald-50"
+                onClick={() => {
+                  login("student", "251FA04E03");
+                  setProfileOpen(false);
+                }}
+              >
+                Student & Parent Portal (Self-Service)
+              </Button>
+            </div>
+          </div>
+          <div className="pt-2 border-t flex justify-between items-center">
+            <span className="text-xs text-muted-foreground">Session ID: {user?.id || "DEMO"}</span>
+            <Button
+              variant="destructive"
+              size="sm"
+              className="text-xs"
+              onClick={() => {
+                logout();
+                setProfileOpen(false);
+              }}
+            >
+              Log Out
+            </Button>
+          </div>
         </DialogContent>
       </Dialog>
       <Dialog open={helpOpen} onOpenChange={setHelpOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Meet FEEWISE AI</DialogTitle>
+            <DialogTitle>Meet finDeck AI</DialogTitle>
             <DialogDescription>
-              Agent 40 — Fee Management Agent
+              finDeck — Autonomous University Fee &amp; Finance Command Center
             </DialogDescription>
           </DialogHeader>
           <p className="text-sm leading-relaxed text-muted-foreground">

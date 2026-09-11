@@ -1,4 +1,5 @@
-import { students, transactions, feeStructures, feeHeads, ageing, inr } from "./finance-data";
+import { students, transactions, feeStructures, feeHeads, ageing, inr, instalmentPlans } from "./finance-data";
+import { recordSqlPayment } from "./sql-store";
 
 export const snapshot = {
   asOf: "2026-09-11T10:21:00+05:30", academicYear: "2026–27",
@@ -119,22 +120,105 @@ export function readFinance(topic: "summary" | "students" | "overdue" | "hostel"
 }
 
 // Each vector is an explicit fictional monthly aggregate in lakh rupees, not a filter multiplier.
+// Months 0–5: Apr–Sep (actual). Months 6–11: Oct–Mar (projected).
 const series = [
-  { year: "2026–27", programme: "B.Tech CSE", category: "General", head: "Tuition", collected: [80,100,90,130,140,160], demand: [100,115,110,150,160,170] },
-  { year: "2026–27", programme: "MBA", category: "General", head: "Tuition", collected: [40,55,50,65,80,110], demand: [55,65,65,80,90,120] },
-  { year: "2026–27", programme: "B.Tech CSE", category: "Scholarship", head: "Tuition", collected: [15,20,24,23,30,28], demand: [20,25,30,30,35,30] },
-  { year: "2026–27", programme: "B.Tech CSE", category: "General", head: "Hostel", collected: [30,40,40,60,60,70], demand: [40,45,50,70,70,75] },
-  { year: "2026–27", programme: "MBA", category: "General", head: "Hostel", collected: [15,20,15,20,20,30], demand: [20,25,20,25,25,35] },
-  { year: "2026–27", programme: "Other programmes", category: "General", head: "Other heads", collected: [60,75,66,97,90,122], demand: [75,90,80,105,110,130] },
-  { year: "2025–26", programme: "B.Tech CSE", category: "General", head: "Tuition", collected: [70,90,85,110,130,145], demand: [90,110,95,140,155,160] },
-  { year: "2025–26", programme: "MBA", category: "General", head: "Tuition", collected: [30,45,45,60,65,90], demand: [40,55,60,75,80,105] },
-  { year: "2025–26", programme: "B.Tech CSE", category: "Scholarship", head: "Tuition", collected: [12,18,18,20,25,28], demand: [15,20,25,25,30,30] },
-  { year: "2025–26", programme: "B.Tech CSE", category: "General", head: "Hostel", collected: [25,35,36,50,55,65], demand: [30,40,45,60,60,70] },
-  { year: "2025–26", programme: "MBA", category: "General", head: "Hostel", collected: [12,15,15,18,20,25], demand: [15,20,20,25,25,30] },
-  { year: "2025–26", programme: "Other programmes", category: "General", head: "Other heads", collected: [50,65,60,85,80,108], demand: [65,80,75,100,100,120] },
+  { year: "2026–27", programme: "B.Tech CSE", category: "General", head: "Tuition", collected: [80,100,90,130,140,160,null,null,null,null,null,null], demand: [100,115,110,150,160,170,170,165,175,180,185,190] },
+  { year: "2026–27", programme: "MBA", category: "General", head: "Tuition", collected: [40,55,50,65,80,110,null,null,null,null,null,null], demand: [55,65,65,80,90,120,118,115,122,125,128,130] },
+  { year: "2026–27", programme: "B.Tech CSE", category: "Scholarship", head: "Tuition", collected: [15,20,24,23,30,28,null,null,null,null,null,null], demand: [20,25,30,30,35,30,30,30,32,33,34,35] },
+  { year: "2026–27", programme: "B.Tech CSE", category: "General", head: "Hostel", collected: [30,40,40,60,60,70,null,null,null,null,null,null], demand: [40,45,50,70,70,75,74,72,76,78,80,82] },
+  { year: "2026–27", programme: "MBA", category: "General", head: "Hostel", collected: [15,20,15,20,20,30,null,null,null,null,null,null], demand: [20,25,20,25,25,35,34,33,36,37,38,40] },
+  { year: "2026–27", programme: "Other programmes", category: "General", head: "Other heads", collected: [60,75,66,97,90,122,null,null,null,null,null,null], demand: [75,90,80,105,110,130,128,125,132,135,138,140] },
+  { year: "2025–26", programme: "B.Tech CSE", category: "General", head: "Tuition", collected: [70,90,85,110,130,145,null,null,null,null,null,null], demand: [90,110,95,140,155,160,158,155,162,165,168,170] },
+  { year: "2025–26", programme: "MBA", category: "General", head: "Tuition", collected: [30,45,45,60,65,90,null,null,null,null,null,null], demand: [40,55,60,75,80,105,103,100,108,110,112,115] },
+  { year: "2025–26", programme: "B.Tech CSE", category: "Scholarship", head: "Tuition", collected: [12,18,18,20,25,28,null,null,null,null,null,null], demand: [15,20,25,25,30,30,30,28,31,32,33,34] },
+  { year: "2025–26", programme: "B.Tech CSE", category: "General", head: "Hostel", collected: [25,35,36,50,55,65,null,null,null,null,null,null], demand: [30,40,45,60,60,70,69,67,72,74,76,78] },
+  { year: "2025–26", programme: "MBA", category: "General", head: "Hostel", collected: [12,15,15,18,20,25,null,null,null,null,null,null], demand: [15,20,20,25,25,30,29,28,31,32,33,34] },
+  { year: "2025–26", programme: "Other programmes", category: "General", head: "Other heads", collected: [50,65,60,85,80,108,null,null,null,null,null,null], demand: [65,80,75,100,100,120,118,115,122,125,128,130] },
 ];
-export const collectionRecords = series.flatMap(s => s.collected.map((collected, month) => ({ year: s.year, programme: s.programme, category: s.category, head: s.head, month, collected: collected * 100000, demand: s.demand[month] * 100000 })));
+const MONTHS = ["April","May","June","July","August","September","October","November","December","January","February","March"];
+export const collectionRecords = series.flatMap(s => s.collected.map((collected, month) => ({ year: s.year, programme: s.programme, category: s.category, head: s.head, month, collected: collected !== null ? collected * 100000 : null, demand: s.demand[month] !== null ? s.demand[month]! * 100000 : null })));
 export function filteredCollections(year = "2026–27", programme = "All programmes", category = "All categories", head = "All fee heads") {
   const rows = collectionRecords.filter(r => r.year === year && (programme === "All programmes" || programme === r.programme) && (category === "All categories" || category === r.category) && (head === "All fee heads" || head === r.head));
-  return ["April", "May", "June", "July", "August", "September"].map((month, index) => ({ month, collected: rows.filter(r => r.month === index).reduce((sum,r) => sum+r.collected,0)/10000000, demand: rows.filter(r => r.month === index).reduce((sum,r) => sum+r.demand,0)/10000000 }));
+  return MONTHS.map((month, index) => ({
+    month,
+    collected: rows.filter(r => r.month === index && r.collected !== null).reduce((sum,r) => sum + (r.collected ?? 0), 0) / 10000000 || null,
+    demand: rows.filter(r => r.month === index && r.demand !== null).reduce((sum,r) => sum + (r.demand ?? 0), 0) / 10000000 || null,
+    projected: index >= 6,
+  }));
+}
+export function getInstalments(studentId: string) {
+  return instalmentPlans.find(p => p.studentId === studentId) ?? null;
+}
+
+export function recordPayment(
+  studentId: string,
+  amount: number,
+  channel: string = "UPI"
+) {
+  const student = students.find((s) => s.id === studentId);
+  if (!student) throw new Error("Student not found: " + studentId);
+
+  const allocs = allocations[studentId];
+  if (allocs) {
+    let remaining = amount;
+    const priorityOrder = ["Tuition", "Examination", "Library", "Laboratory", "Transport", "Hostel"];
+    const sortedAllocs = [...allocs].sort((a, b) => {
+      const idxA = priorityOrder.indexOf(a.head);
+      const idxB = priorityOrder.indexOf(b.head);
+      return (idxA === -1 ? 99 : idxA) - (idxB === -1 ? 99 : idxB);
+    });
+
+    for (const item of sortedAllocs) {
+      const due = item.gross - item.scholarship - item.paid;
+      if (due <= 0) continue;
+      const pay = Math.min(remaining, due);
+      item.paid += pay;
+      remaining -= pay;
+      if (remaining <= 0) break;
+    }
+  }
+
+  student.paid = Math.min(student.demand, student.paid + amount);
+  student.overdue = Math.max(0, student.demand - student.paid);
+
+  const txnId = `TXN-${Math.floor(10000 + Math.random() * 90000)}`;
+  const dateStr = new Date().toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+
+  const txn = {
+    id: txnId,
+    student: studentId,
+    gateway: amount,
+    ledger: amount,
+    date: dateStr,
+    method: channel,
+    status: "Matched",
+  };
+  transactions.unshift(txn as any);
+
+  try {
+    recordSqlPayment({
+      student_id: studentId,
+      amount,
+      payment_mode: channel.toLowerCase().includes("bank") ? "NEFT" : "ONLINE",
+      channel,
+    });
+  } catch (err) {
+    console.error("SQL store payment sync notice:", err);
+  }
+
+  return {
+    receiptNo: `RCPT-${txnId.replace("TXN-", "")}`,
+    studentId: student.id,
+    studentName: student.name,
+    programme: student.programme,
+    date: dateStr,
+    amount,
+    method: channel,
+    txnId,
+    heads: allocs?.map((a) => ({ head: a.head, amount: a.paid })),
+  };
 }

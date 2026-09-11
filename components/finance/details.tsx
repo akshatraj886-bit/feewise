@@ -9,6 +9,7 @@ import {
   FileCheck2,
   GraduationCap,
   LockKeyhole,
+  Printer,
   ShieldCheck,
   TriangleAlert,
 } from "lucide-react";
@@ -30,13 +31,18 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
-  downloadCsv,
   inr,
+  printReceiptPdf,
+  printStatementPdf,
+  students,
   type Student,
   type Transaction,
 } from "@/lib/finance-data";
 import { Status } from "./operations";
-import { getStudentAccount, statementRows, refund } from "@/lib/finance-service";
+import { getStudentAccount, refund } from "@/lib/finance-service";
+import { FeeCertificatesPanel } from "./certificates";
+import { PartialPaymentSimulator } from "./partial-payment-modal";
+import { useAuth, canApprove } from "@/lib/auth-context";
 
 export function StudentDrawer({
   student,
@@ -98,7 +104,7 @@ export function StudentDrawer({
               {!!account?.scholarship && (
                 <>
                   <div className="flex justify-between border-t pt-3 text-sm">
-                    <span>Total</span>
+                    <span>Gross total</span>
                     <span>{inr(account.gross)}</span>
                   </div>
                   <div className="flex justify-between text-sm text-success">
@@ -106,6 +112,12 @@ export function StudentDrawer({
                     <span>−{inr(account.scholarship)}</span>
                   </div>
                 </>
+              )}
+              {!!student.concession && (
+                <div className="flex justify-between text-sm text-primary">
+                  <span>Concession</span>
+                  <span>−{inr(student.concession)}</span>
+                </div>
               )}
               <div className="flex justify-between border-t pt-3 font-medium">
                 <span>Final demand</span>
@@ -140,19 +152,75 @@ export function StudentDrawer({
                 </div>
               ))}
             </div>
-            <Button
-              className="mt-7 w-full"
-              variant="outline"
-              onClick={() => {
-                downloadCsv(`${student.id}-fee-statement-DEMO.csv`, statementRows(student.id));
-                toast.success("Demo fee statement downloaded");
-              }}
-            >
-              <ArrowDownToLine data-icon="inline-start" /> Download fee
-              statement
-            </Button>
-            <p className="mt-3 text-center text-sm text-muted-foreground">
-              Read-only account · No real financial data
+            <div className="mt-7 flex flex-col gap-3">
+              <Button
+                className="w-full"
+                onClick={() => {
+                  if (!account) return;
+                  printStatementPdf({
+                    studentName: student.name,
+                    studentId: student.id,
+                    programme: student.programme,
+                    category: student.category,
+                    academicYear: account.academicYear,
+                    fees: account.fees,
+                    scholarship: account.scholarship,
+                    concession: student.concession,
+                    gross: account.gross,
+                    demand: student.demand,
+                    paid: student.paid,
+                    outstanding: account.outstanding,
+                    payments: account.payments,
+                    priorCycleSettled: account.priorCycleSettled,
+                  });
+                  toast.success("Fee statement PDF opened — print or save as PDF");
+                }}
+              >
+                <ArrowDownToLine data-icon="inline-start" /> Download Fee Statement (PDF)
+              </Button>
+              <Button
+                className="w-full"
+                variant="outline"
+                onClick={() => {
+                  const latest = account?.payments[0];
+                  printReceiptPdf({
+                    receiptNo: latest?.id ?? `RCPT-${student.id}`,
+                    studentId: student.id,
+                    studentName: student.name,
+                    programme: student.programme,
+                    date: latest?.date ?? new Date().toLocaleDateString("en-IN"),
+                    amount: student.paid,
+                    method: latest?.method?.split(" · ")[0] ?? "—",
+                    txnId: latest?.id ?? "—",
+                    heads: account?.fees.map((f) => ({ head: f.head, amount: f.paid })),
+                  });
+                  toast.success("PDF receipt opened — print or save as PDF");
+                }}
+              >
+                <Printer data-icon="inline-start" /> Print PDF receipt
+              </Button>
+            </div>
+
+            {/* Official Fee Certificates */}
+            <div className="mt-8 pt-6 border-t">
+              <FeeCertificatesPanel student={student} />
+            </div>
+
+            {/* Counter Collection & Priority Partial Payment */}
+            <div className="mt-8 pt-6 border-t">
+              <div className="mb-3">
+                <h4 className="text-sm font-semibold text-foreground">
+                  Counter Collection & Priority Allocation
+                </h4>
+                <p className="text-xs text-muted-foreground">
+                  Simulate or record a cashier payment with automated priority head distribution.
+                </p>
+              </div>
+              <PartialPaymentSimulator student={student} />
+            </div>
+
+            <p className="mt-6 text-center text-xs text-muted-foreground">
+              finDeck Finance Engine · Real-time priority allocations & certificates
             </p>
           </div>
         )}
@@ -264,6 +332,9 @@ export function RefundDialog({
     setDecision("approve");
     onClose();
   }
+  const { user } = useAuth();
+  const isAdmin = canApprove(user?.role || "admin");
+
   return (
     <Dialog
       open={!!intent}
@@ -306,16 +377,25 @@ export function RefundDialog({
             withdrawal date must be verified against institutional records.
           </p>
         </div>
-        <div className="rounded-lg bg-warning/8 p-3 text-sm leading-relaxed text-warning">
-          <p className="flex items-center gap-2 font-semibold">
-            <LockKeyhole className="size-4" /> Human approval is required
-          </p>
-          <p className="mt-1">
-            This demo has no authenticated finance session. You can prepare a
-            review recommendation only. No refund is approved, rejected or paid
-            by this action.
-          </p>
-        </div>
+        {!isAdmin ? (
+          <div className="rounded-lg bg-amber-50 border border-amber-200 p-3 text-xs leading-relaxed text-amber-900">
+            <p className="flex items-center gap-2 font-semibold text-amber-800">
+              <LockKeyhole className="size-4" /> Finance Officer Role Restriction
+            </p>
+            <p className="mt-1 text-amber-700">
+              You are signed in as <strong>{user?.name || "Finance Officer"}</strong>. You may prepare and submit a recommendation for review. Final authorization requires <strong>Administrator</strong> credentials.
+            </p>
+          </div>
+        ) : (
+          <div className="rounded-lg bg-emerald-50 border border-emerald-200 p-3 text-xs leading-relaxed text-emerald-900">
+            <p className="flex items-center gap-2 font-semibold text-emerald-800">
+              <ShieldCheck className="size-4" /> Administrator Authorized Session
+            </p>
+            <p className="mt-1 text-emerald-700">
+              You have full institutional authorization to review and prepare recommendations for financial execution.
+            </p>
+          </div>
+        )}
         {intent === "review" && (
           <label className="flex flex-col gap-2 text-sm font-medium">
             Review recommendation

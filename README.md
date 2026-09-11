@@ -1,4 +1,5 @@
-# feewise
+# finDeck — Autonomous University Fee & Finance Command Center
+VFSTR (Vignan's Foundation for Science, Technology & Research)
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
 
