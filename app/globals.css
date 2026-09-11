@@ -51,16 +51,16 @@
   --secondary: #edf0ff;
   --secondary-foreground: var(--primary);
   --muted: #f3f5fa;
-  --muted-foreground: #778094;
+  --muted-foreground: #667085;
   --accent: var(--secondary);
   --accent-foreground: var(--primary);
   --border: #e9ecf3;
   --input: var(--border);
   --ring: var(--primary);
   --violet: #9a7aeb;
-  --success: #27977a;
-  --warning: #c78a29;
-  --destructive: #df6c75;
+  --success: #17775f;
+  --warning: #95611d;
+  --destructive: #be4050;
   --chart-1: var(--primary);
   --chart-2: var(--violet);
   --chart-3: #8698ef;
@@ -93,6 +93,16 @@
   html {
     scroll-behavior: smooth;
   }
+  button:focus-visible,
+  a:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+  }
+  #finance-assistant,
+  #audit-log {
+    scroll-margin-top: 100px;
+  }
 }
 @layer components {
   .app-container {
@@ -101,6 +111,7 @@
     padding-inline: 36px;
   }
   .panel {
+    min-width: 0;
     border: 1px solid var(--border);
     box-shadow: 0 3px 16px color-mix(in srgb, var(--foreground) 2%, transparent);
     border-radius: 16px;
@@ -331,6 +342,8 @@
   .panel {
     --card-spacing: 18px;
   }
+}
+@media (max-width: 1023px) {
   .mobile-cards thead {
     display: none;
   }

@@ -142,6 +142,29 @@ export const students = [
   },
 ];
 export type Student = (typeof students)[number];
+
+export function studentPaymentTimeline(student: Student) {
+  const recent = transactions.filter((transaction) => transaction.student === student.id);
+  const earlierPaid = student.paid - recent.reduce((sum, transaction) => sum + transaction.ledger, 0);
+  return [
+    ...recent.map((transaction) => ({
+      id: transaction.id,
+      date: transaction.date,
+      amount: transaction.ledger,
+      method: transaction.method,
+      status: transaction.status,
+      difference: transaction.gateway - transaction.ledger,
+    })),
+    ...(earlierPaid > 0 ? [{
+      id: `PRIOR-${student.id}`,
+      date: "15 Jul 2026",
+      amount: earlierPaid,
+      method: "Earlier payments (demo summary)",
+      status: "Matched",
+      difference: 0,
+    }] : []),
+  ];
+}
 export type AuditEntry = {
   time: string;
   user: string;

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -65,6 +66,10 @@ export function ReconciliationCenter({
   full?: boolean;
   reviewed?: boolean;
 }) {
+  const [status, setStatus] = useState("All statuses");
+  const rows = transactions
+    .filter((transaction) => !full || status === "All statuses" || transaction.status === status)
+    .slice(0, full ? undefined : 3);
   return (
     <Card className="panel">
       <CardHeader>
@@ -78,6 +83,14 @@ export function ReconciliationCenter({
         </CardAction>
       </CardHeader>
       <CardContent className="px-0">
+        {full && (
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3 px-5">
+            <p className="text-sm text-muted-foreground" aria-live="polite">{rows.length} representative demo transactions</p>
+            <select className="filter-select" aria-label="Reconciliation status" value={status} onChange={(event) => setStatus(event.target.value)}>
+              {["All statuses", "Matched", "Mismatch"].map((option) => <option key={option}>{option}</option>)}
+            </select>
+          </div>
+        )}
         <table className="data-table mobile-cards">
           <thead>
             <tr>
@@ -94,7 +107,7 @@ export function ReconciliationCenter({
             </tr>
           </thead>
           <tbody>
-            {transactions.slice(0, full ? undefined : 3).map((tx) => (
+            {rows.map((tx) => (
               <tr
                 key={tx.id}
                 className={cn(tx.status === "Mismatch" && "mismatch")}
@@ -140,7 +153,7 @@ export function ReconciliationCenter({
           </tbody>
         </table>
       </CardContent>
-      <CardFooter className="justify-between">
+      <CardFooter className="flex-wrap justify-between gap-3">
         <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
           <span className="online-dot" />{" "}
           {reviewed

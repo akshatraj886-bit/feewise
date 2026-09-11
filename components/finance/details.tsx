@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   ArrowDownToLine,
   Check,
@@ -32,6 +32,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   downloadCsv,
   inr,
+  studentPaymentTimeline,
   type Student,
   type Transaction,
 } from "@/lib/finance-data";
@@ -40,10 +41,13 @@ import { Status } from "./operations";
 export function StudentDrawer({
   student,
   onClose,
+  onExport,
 }: {
   student: Student | null;
   onClose: () => void;
+  onExport: (studentId: string) => void;
 }) {
+  const titleRef = useRef<HTMLHeadingElement>(null);
   const isAkshat = student?.id === "251FA04E03";
   const fees = isAkshat
     ? ([
@@ -65,11 +69,12 @@ export function StudentDrawer({
       }}
     >
       <SheetContent
+        initialFocus={titleRef}
         className="w-full overflow-y-auto sm:max-w-[470px]"
         style={{ width: "min(100%, 470px)" }}
       >
         <SheetHeader className="border-b px-6 py-6">
-          <SheetTitle>Student fee account</SheetTitle>
+          <SheetTitle ref={titleRef} tabIndex={-1}>Student fee account</SheetTitle>
           <SheetDescription>
             Academic year 2026–27 · Fictional demo record
           </SheetDescription>
@@ -132,21 +137,10 @@ export function StudentDrawer({
             </div>
             <h3 className="mt-6 font-semibold">Payment timeline</h3>
             <div className="mt-4 flex flex-col gap-5">
-              {[
-                {
-                  date: "11 Sep 2026",
-                  amount: Math.min(30000, student.paid),
-                  method: "UPI · Gateway verified",
-                },
-                {
-                  date: "15 Jul 2026",
-                  amount: student.paid - Math.min(30000, student.paid),
-                  method: "Bank transfer · Reconciled",
-                },
-              ].map((payment) => (
-                <div key={payment.date} className="flex items-start gap-3">
-                  <div className="flex size-8 items-center justify-center rounded-full bg-success/8 text-success">
-                    <Check className="size-4" />
+              {studentPaymentTimeline(student).map((payment) => (
+                <div key={payment.id} className="flex items-start gap-3">
+                  <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-secondary text-primary">
+                    {payment.status === "Mismatch" ? <TriangleAlert className="size-4" /> : <Check className="size-4" />}
                   </div>
                   <div className="flex-1">
                     <div className="flex justify-between text-sm font-medium">
@@ -154,8 +148,13 @@ export function StudentDrawer({
                       <span>{inr(payment.amount)}</span>
                     </div>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      {payment.method}
+                      {payment.method} · Ledger credited
                     </p>
+                    {payment.difference !== 0 && (
+                      <p className="mt-1 text-sm text-destructive">
+                        {payment.id}: {inr(payment.difference)} gateway difference remains under review.
+                      </p>
+                    )}
                   </div>
                 </div>
               ))}
@@ -174,6 +173,7 @@ export function StudentDrawer({
                   ["Paid", student.paid],
                   ["Outstanding", student.demand - student.paid],
                 ]);
+                onExport(student.id);
                 toast.success("Demo fee statement downloaded");
               }}
             >

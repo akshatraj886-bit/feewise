@@ -248,7 +248,9 @@ export function FinanceDashboard() {
               variant="ghost"
               size="icon"
               className="xl:hidden"
-              aria-label="Open navigation"
+              aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
               onClick={() => setMenuOpen(!menuOpen)}
             >
               {menuOpen ? <X /> : <Menu />}
@@ -257,6 +259,7 @@ export function FinanceDashboard() {
         </div>
         {menuOpen && (
           <nav
+            id="mobile-navigation"
             aria-label="Mobile navigation"
             className="app-container flex flex-wrap gap-1 border-t py-3 xl:hidden"
           >
@@ -316,7 +319,7 @@ export function FinanceDashboard() {
             </div>
             <KpiCards onNavigate={navigate} />
             <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1.95fr)_minmax(340px,1fr)]">
-              <div className="flex min-w-0 flex-col gap-5">
+              <div className="order-2 flex min-w-0 flex-col gap-5 xl:order-1">
                 <div className="grid gap-5 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.45fr)]">
                   <FeeHeadOverview />
                   <CollectionIntelligence />
@@ -337,11 +340,12 @@ export function FinanceDashboard() {
                   />
                 </div>
               </div>
-              <aside className="flex min-w-0 flex-col gap-5">
+              <aside className="order-1 flex min-w-0 flex-col gap-5 xl:order-2">
                 <FinanceAssistant
                   onStudent={() => openStudent(students[0])}
                   onRefund={() => setRefundIntent("review")}
                   onReconcile={() => reviewTransaction(transactions[1])}
+                  onExport={(id) => log("Exported fee statement", id)}
                 />
                 <FinanceIntelligence
                   onNavigate={(next) => navigate(next, next === "Students")}
@@ -370,11 +374,12 @@ export function FinanceDashboard() {
                 key={String(overdueOnly)}
                 onStudent={openStudent}
                 initialOverdue={overdueOnly}
+                onExport={(report) => log("Exported report", report)}
               />
             )}
-            {view === "Fee Structure" && <FeeStructureView />}
+            {view === "Fee Structure" && <FeeStructureView onExport={(report) => log("Exported report", report)} />}
             {view === "Payments" && (
-              <PaymentsView onReview={reviewTransaction} />
+              <PaymentsView onReview={reviewTransaction} onExport={(report) => log("Exported report", report)} />
             )}
             {view === "Reconciliation" && (
               <>
@@ -444,7 +449,7 @@ export function FinanceDashboard() {
                 <AuditLog entries={audit} full />
               </>
             )}
-            {view === "Reports" && <ReportsView entries={audit} />}
+            {view === "Reports" && <ReportsView entries={audit} onExport={(report) => log("Exported report", report)} />}
           </div>
         )}
         <footer className="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5 text-sm text-muted-foreground">
@@ -471,6 +476,7 @@ export function FinanceDashboard() {
       <StudentDrawer
         student={selectedStudent}
         onClose={() => setSelectedStudent(null)}
+        onExport={(id) => log("Exported fee statement", id)}
       />
       <TransactionDialog
         transaction={selectedTransaction}

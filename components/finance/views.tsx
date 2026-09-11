@@ -7,7 +7,6 @@ import {
   FileSpreadsheet,
   Search,
   ShieldCheck,
-  Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -38,11 +37,15 @@ import { Status, AuditLog } from "./operations";
 import { CollectionIntelligence, FeeHeadOverview } from "./overview";
 import { toast } from "sonner";
 
+type OnExport = (report: string) => void;
+
 export function StudentsView({
   onStudent,
+  onExport,
   initialOverdue = false,
 }: {
   onStudent: (student: Student) => void;
+  onExport: OnExport;
   initialOverdue?: boolean;
 }) {
   const [search, setSearch] = useState("");
@@ -70,7 +73,16 @@ export function StudentsView({
           records.
         </CardDescription>
         <CardAction>
-          <Users className="size-5 text-primary" />
+          <Button variant="outline" disabled={!rows.length} onClick={() => {
+            downloadCsv("student-accounts-DEMO.csv", [
+              ["Student", "Student ID", "Programme", "Demand", "Paid", "Outstanding", "Days overdue"],
+              ...rows.map((student) => [student.name, student.id, student.programme, student.demand, student.paid, student.demand - student.paid, student.overdue]),
+            ]);
+            onExport("Filtered student accounts");
+            toast.success("Filtered demo accounts exported");
+          }}>
+            <ArrowDownToLine data-icon="inline-start" /> Export
+          </Button>
         </CardAction>
       </CardHeader>
       <CardContent>
@@ -175,12 +187,16 @@ export function StudentsView({
   );
 }
 
-export function FeeStructureView() {
+export function FeeStructureView({ onExport }: { onExport: OnExport }) {
   const [programme, setProgramme] = useState("All programmes");
   const [version, setVersion] = useState("Active versions");
+  const [year, setYear] = useState("All academic years");
+  const [head, setHead] = useState("All fee heads");
   const filtered = feeStructures.filter(
     (row) =>
       (programme === "All programmes" || row.programme === programme) &&
+      (year === "All academic years" || row.year === year) &&
+      (head === "All fee heads" || row.head === head) &&
       (version === "All versions" ||
         (version === "Active versions" ? row.active : !row.active)),
   );
@@ -192,7 +208,16 @@ export function FeeStructureView() {
           Effective-dated rules keep every student fee calculation traceable.
         </CardDescription>
         <CardAction>
-          <Badge variant="secondary">Read only</Badge>
+          <Button variant="outline" disabled={!filtered.length} onClick={() => {
+            downloadCsv("fee-structures-DEMO.csv", [
+              ["Programme", "Academic year", "Category", "Admission route", "Fee head", "Amount", "Effective from", "Version", "Status"],
+              ...filtered.map((row) => [row.programme, row.year, row.category, row.route, row.head, row.amount, row.effective, row.version, row.active ? "Active" : "Archived"]),
+            ]);
+            onExport("Filtered fee structures");
+            toast.success("Filtered demo fee structures exported");
+          }}>
+            <ArrowDownToLine data-icon="inline-start" /> Export
+          </Button>
         </CardAction>
       </CardHeader>
       <CardContent>
@@ -206,6 +231,17 @@ export function FeeStructureView() {
             {["All programmes", "B.Tech CSE", "B.Tech ECE", "MBA"].map((o) => (
               <option key={o}>{o}</option>
             ))}
+          </select>
+          <select
+            className="filter-select"
+            aria-label="Structure academic year"
+            value={year}
+            onChange={(event) => setYear(event.target.value)}
+          >
+            {["All academic years", ...new Set(feeStructures.map((row) => row.year))].map((option) => <option key={option}>{option}</option>)}
+          </select>
+          <select className="filter-select" aria-label="Structure fee head" value={head} onChange={(event) => setHead(event.target.value)}>
+            {["All fee heads", ...new Set(feeStructures.map((row) => row.head))].map((option) => <option key={option}>{option}</option>)}
           </select>
           <select
             className="filter-select"
@@ -279,13 +315,17 @@ export function FeeStructureView() {
 
 export function PaymentsView({
   onReview,
+  onExport,
 }: {
   onReview: (transaction: Transaction) => void;
+  onExport: OnExport;
 }) {
   const [query, setQuery] = useState("");
   const [method, setMethod] = useState("All methods");
+  const [status, setStatus] = useState("All statuses");
   const rows = transactions.filter(
     (t) =>
+      (status === "All statuses" || t.status === status) &&
       (method === "All methods" || t.method === method) &&
       `${t.id} ${t.student}`.toLowerCase().includes(query.toLowerCase()),
   );
@@ -318,6 +358,7 @@ export function PaymentsView({
                   t.status,
                 ]),
               ]);
+              onExport("Filtered payments");
               toast.success("Filtered demo payments exported");
             }}
           >
@@ -338,6 +379,14 @@ export function PaymentsView({
               <Search />
             </InputGroupAddon>
           </InputGroup>
+          <select
+            className="filter-select"
+            aria-label="Payment status"
+            value={status}
+            onChange={(event) => setStatus(event.target.value)}
+          >
+            {["All statuses", "Matched", "Mismatch"].map((option) => <option key={option}>{option}</option>)}
+          </select>
           <select
             className="filter-select"
             aria-label="Payment method"
@@ -404,7 +453,7 @@ export function PaymentsView({
   );
 }
 
-export function ReportsView({ entries }: { entries: AuditEntry[] }) {
+export function ReportsView({ entries, onExport }: { entries: AuditEntry[]; onExport: OnExport }) {
   const reports = [
     {
       title: "Outstanding balances",
@@ -465,6 +514,7 @@ export function ReportsView({ entries }: { entries: AuditEntry[] }) {
                 variant="outline"
                 onClick={() => {
                   report.download();
+                  onExport(report.title);
                   toast.success("Demo report downloaded");
                 }}
               >
