@@ -317,38 +317,38 @@ export function StudentPortal() {
           <div className="space-y-6">
             {/* Quick Action Card if dues pending */}
             {dueAmount > 0 ? (
-              <div className="rounded-xl border border-amber-200 bg-amber-50/60 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <span className="flex size-9 items-center justify-center rounded-lg bg-amber-100 text-amber-800">
+              <div className="rounded-2xl border border-amber-500/35 bg-amber-500/10 dark:bg-amber-500/10 backdrop-blur-xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+                <div className="flex items-center gap-3.5">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30 shadow-xs">
                     <AlertCircle className="size-5" />
                   </span>
                   <div>
-                    <h4 className="text-sm font-semibold text-amber-900">
+                    <h4 className="text-sm sm:text-base font-bold text-amber-950 dark:text-amber-200 tracking-tight">
                       Payment of {inr(dueAmount)} is Due
                     </h4>
-                    <p className="text-xs text-amber-800/80">
+                    <p className="text-xs text-amber-900/80 dark:text-amber-300/85 mt-0.5 leading-relaxed">
                       Pay in full or use our smart partial payment waterfall to clear tuition first.
                     </p>
                   </div>
                 </div>
                 <Button
                   size="sm"
-                  className="bg-amber-700 hover:bg-amber-800 text-white shrink-0"
+                  className="h-9 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 dark:bg-amber-500 dark:hover:bg-amber-600 text-white font-semibold text-xs shadow-md shadow-amber-500/20 shrink-0 cursor-pointer border-0 transition-all hover:scale-[1.02]"
                   onClick={() => setActiveTab("pay")}
                 >
                   Pay Now / Split Payment
                 </Button>
               </div>
             ) : (
-              <div className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-4 flex items-center gap-3">
-                <span className="flex size-9 items-center justify-center rounded-lg bg-emerald-100 text-emerald-800">
+              <div className="rounded-2xl border border-emerald-500/35 bg-emerald-500/10 dark:bg-emerald-500/10 backdrop-blur-xl p-4 sm:p-5 flex items-center gap-3.5 shadow-sm">
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 shadow-xs">
                   <CheckCircle2 className="size-5" />
                 </span>
                 <div>
-                  <h4 className="text-sm font-semibold text-emerald-900">
+                  <h4 className="text-sm sm:text-base font-bold text-emerald-950 dark:text-emerald-200 tracking-tight">
                     All University Dues are Cleared!
                   </h4>
-                  <p className="text-xs text-emerald-800/80">
+                  <p className="text-xs text-emerald-900/80 dark:text-emerald-300/85 mt-0.5 leading-relaxed">
                     Your semester tuition and campus charges are fully paid. You can download fee certificates below.
                   </p>
                 </div>

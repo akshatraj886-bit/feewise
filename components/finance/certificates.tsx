@@ -782,7 +782,10 @@ export function FeeCertificatesPanel({ student }: { student: Student }) {
       title: "Tuition Fee Tax Certificate",
       desc: "Eligible under Section 80C & 80E of Income Tax Act for parents/students filing ITR.",
       icon: FileText,
-      color: "border-sky-200 bg-sky-50/50 hover:border-sky-400 text-sky-700",
+      cardClass: "border-sky-200/80 bg-sky-50/70 dark:bg-sky-950/25 dark:border-sky-500/25 hover:border-sky-400 dark:hover:border-sky-400/50",
+      iconBg: "bg-sky-100 dark:bg-sky-500/20 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-500/30",
+      badgeClass: "bg-sky-100/90 dark:bg-sky-500/15 text-sky-800 dark:text-sky-300 border border-sky-200 dark:border-sky-500/30",
+      btnClass: "bg-sky-600 hover:bg-sky-700 dark:bg-sky-600 dark:hover:bg-sky-500 text-white shadow-sm border-0",
       badge: "ITR / Sec 80C",
       onGenerate: () => printTaxCertificate(student),
     },
@@ -791,7 +794,10 @@ export function FeeCertificatesPanel({ student }: { student: Student }) {
       title: "Bank Loan NOC Certificate",
       desc: "Official No-Objection Certificate for bank education loan sanction & direct disbursement.",
       icon: Building2,
-      color: "border-emerald-200 bg-emerald-50/50 hover:border-emerald-400 text-emerald-700",
+      cardClass: "border-emerald-200/80 bg-emerald-50/70 dark:bg-emerald-950/25 dark:border-emerald-500/25 hover:border-emerald-400 dark:hover:border-emerald-400/50",
+      iconBg: "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30",
+      badgeClass: "bg-emerald-100/90 dark:bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30",
+      btnClass: "bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white shadow-sm border-0",
       badge: "Bank Loan / NOC",
       onGenerate: () => printLoanNocCertificate(student),
     },
@@ -800,7 +806,10 @@ export function FeeCertificatesPanel({ student }: { student: Student }) {
       title: "Fee Reimbursement Certificate",
       desc: "Attestation for parent employer reimbursement, CEA allowance, or scholarship claim.",
       icon: ShieldCheck,
-      color: "border-purple-200 bg-purple-50/50 hover:border-purple-400 text-purple-700",
+      cardClass: "border-purple-200/80 bg-purple-50/70 dark:bg-purple-950/25 dark:border-purple-500/25 hover:border-purple-400 dark:hover:border-purple-400/50",
+      iconBg: "bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-500/30",
+      badgeClass: "bg-purple-100/90 dark:bg-purple-500/15 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-500/30",
+      btnClass: "bg-purple-600 hover:bg-purple-700 dark:bg-purple-600 dark:hover:bg-purple-500 text-white shadow-sm border-0",
       badge: "Employer / Govt Claim",
       onGenerate: () => printReimbursementCertificate(student),
     },
@@ -810,11 +819,13 @@ export function FeeCertificatesPanel({ student }: { student: Student }) {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
-            <Award className="size-4 text-primary" />
+          <h3 className="text-base font-bold text-foreground flex items-center gap-2">
+            <span className="flex size-7 items-center justify-center rounded-lg bg-primary/10 text-primary border border-primary/20">
+              <Award className="size-4" />
+            </span>
             Official VFSTR University Fee Certificates
           </h3>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-muted-foreground mt-0.5">
             Print-ready, digitally verifiable PDF certificates with Vignan&apos;s institutional seal.
           </p>
         </div>
@@ -826,18 +837,18 @@ export function FeeCertificatesPanel({ student }: { student: Student }) {
           return (
             <div
               key={cert.id}
-              className={`flex flex-col justify-between rounded-xl border p-4 transition-all duration-200 ${cert.color}`}
+              className={`flex flex-col justify-between rounded-2xl border p-5 backdrop-blur-xl transition-all duration-200 shadow-sm ${cert.cardClass}`}
             >
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <span className="flex size-9 items-center justify-center rounded-lg bg-white shadow-xs border">
+                  <span className={`flex size-9 items-center justify-center rounded-xl shadow-2xs ${cert.iconBg}`}>
                     <Icon className="size-5" />
                   </span>
-                  <span className="rounded-full bg-white/90 px-2 py-0.5 text-[11px] font-medium shadow-xs border">
+                  <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold shadow-2xs ${cert.badgeClass}`}>
                     {cert.badge}
                   </span>
                 </div>
-                <h4 className="text-sm font-semibold text-foreground pt-1">
+                <h4 className="text-sm font-bold text-foreground pt-1 tracking-tight">
                   {cert.title}
                 </h4>
                 <p className="text-xs text-muted-foreground leading-relaxed">
@@ -848,12 +859,12 @@ export function FeeCertificatesPanel({ student }: { student: Student }) {
               <div className="pt-4">
                 <Button
                   size="sm"
-                  className="w-full gap-1.5 shadow-xs bg-white text-foreground hover:bg-white/90 border cursor-pointer"
+                  className={`w-full gap-1.5 rounded-xl font-semibold text-xs cursor-pointer ${cert.btnClass}`}
                   onClick={cert.onGenerate}
                 >
                   <Printer className="size-3.5" />
                   Print / Save PDF
-                  <ExternalLink className="size-3 ml-auto opacity-50" />
+                  <ExternalLink className="size-3 ml-auto opacity-75" />
                 </Button>
               </div>
             </div>
