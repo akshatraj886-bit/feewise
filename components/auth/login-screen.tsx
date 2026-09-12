@@ -131,9 +131,13 @@ export function LoginScreen() {
     if (role === "student") {
       setEmailInput("251FA04645");
       setPasswordInput("Aaradhya@14032004");
-    } else {
-      setEmailInput(ROLE_CONFIGS[role].defaultEmail);
-      setPasswordInput("VignanAdmin2026@secure");
+    } else if (role === "admin") {
+      setEmailInput(ROLE_CONFIGS.admin.defaultEmail);
+      setPasswordInput("CeoExecutive@2026");
+      setTwoFactorPin("842019");
+    } else if (role === "finance-officer") {
+      setEmailInput(ROLE_CONFIGS["finance-officer"].defaultEmail);
+      setPasswordInput("FinanceOfficer@2026");
       setTwoFactorPin("842019");
     }
   }
@@ -141,7 +145,7 @@ export function LoginScreen() {
   function handleLoginSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!emailInput.trim()) {
-      toast.error(activeLoginRole === "student" ? "Please enter your Student Roll Number" : "Please enter a valid email");
+      toast.error(activeLoginRole === "student" ? "Please enter your Student Roll Number" : "Please enter your official university email");
       return;
     }
     if (!passwordInput.trim()) {
@@ -153,7 +157,15 @@ export function LoginScreen() {
     const targetRole = activeLoginRole || "admin";
 
     setTimeout(() => {
+      // 1. Strict Student Validation
       if (targetRole === "student") {
+        const cleanInput = emailInput.trim().toLowerCase();
+        if (cleanInput.includes("@vignan.ac.in") && (cleanInput.includes("ceo") || cleanInput.includes("sharma") || cleanInput.includes("finance") || cleanInput.includes("ramamurthy"))) {
+          setIsAuthenticating(false);
+          toast.error("Access Denied: Administrative staff cannot log in to the Student Self-Service portal.");
+          return;
+        }
+
         const check = validateStudentCredentials(emailInput, passwordInput);
         if (!check.valid || !check.studentId) {
           setIsAuthenticating(false);
@@ -163,10 +175,77 @@ export function LoginScreen() {
         setIsAuthenticating(false);
         toast.success(`Authenticated student (${check.studentId}) successfully!`);
         login("student", check.studentId);
-      } else {
+        return;
+      }
+
+      // 2. Strict CEO Administrator Validation
+      if (targetRole === "admin") {
+        const cleanEmail = emailInput.trim().toLowerCase();
+        const allowedCeoEmails = ["ramamurthy.ceo@vignan.ac.in", "ceo@vignan.ac.in", "vc@vignan.ac.in"];
+
+        if (cleanEmail.includes("priya") || cleanEmail.includes("finance.officer") || cleanEmail.includes("fo-")) {
+          setIsAuthenticating(false);
+          toast.error("Access Denied: This is a Finance Officer account. You cannot access the CEO Administrator portal.");
+          return;
+        }
+
+        if (/^\d{3}[a-z]{2}\d{5}/i.test(cleanEmail)) {
+          setIsAuthenticating(false);
+          toast.error("Access Denied: Student accounts cannot access the CEO Administrator executive portal.");
+          return;
+        }
+
+        if (!allowedCeoEmails.includes(cleanEmail)) {
+          setIsAuthenticating(false);
+          toast.error("Access Denied: Email not recognized as CEO Administrator. (Authorized: ramamurthy.ceo@vignan.ac.in)");
+          return;
+        }
+
+        if (passwordInput !== "CeoExecutive@2026") {
+          setIsAuthenticating(false);
+          toast.error("Incorrect Password for CEO Administrator! (Use: CeoExecutive@2026)");
+          return;
+        }
+
         setIsAuthenticating(false);
-        toast.success(`Authenticated as ${ROLE_CONFIGS[targetRole].title}!`);
-        login(targetRole);
+        toast.success(`Authenticated as ${ROLE_CONFIGS.admin.title}! Full treasury permissions granted.`);
+        login("admin");
+        return;
+      }
+
+      // 3. Strict Finance Officer Validation
+      if (targetRole === "finance-officer") {
+        const cleanEmail = emailInput.trim().toLowerCase();
+        const allowedFoEmails = ["priya.sharma@vignan.ac.in", "finance.officer@vignan.ac.in", "comptroller@vignan.ac.in"];
+
+        if (cleanEmail.includes("ramamurthy") || cleanEmail.includes("ceo") || cleanEmail.includes("vc@")) {
+          setIsAuthenticating(false);
+          toast.error("Access Denied: Executive CEO accounts must use the CEO Administrator portal.");
+          return;
+        }
+
+        if (/^\d{3}[a-z]{2}\d{5}/i.test(cleanEmail)) {
+          setIsAuthenticating(false);
+          toast.error("Access Denied: Student accounts cannot access the Comptroller Operations desk.");
+          return;
+        }
+
+        if (!allowedFoEmails.includes(cleanEmail)) {
+          setIsAuthenticating(false);
+          toast.error("Access Denied: Email not recognized as Finance Officer. (Authorized: priya.sharma@vignan.ac.in)");
+          return;
+        }
+
+        if (passwordInput !== "FinanceOfficer@2026") {
+          setIsAuthenticating(false);
+          toast.error("Incorrect Password for Finance Officer! (Use: FinanceOfficer@2026)");
+          return;
+        }
+
+        setIsAuthenticating(false);
+        toast.success(`Authenticated as ${ROLE_CONFIGS["finance-officer"].title}!`);
+        login("finance-officer");
+        return;
       }
     }, 500);
   }
@@ -491,7 +570,9 @@ export function LoginScreen() {
                     placeholder={
                       activeLoginRole === "student"
                         ? "Enter Student ID (e.g. 251FA04645)..."
-                        : "Enter your Gmail address..."
+                        : activeLoginRole === "admin"
+                        ? "Enter CEO Email (ramamurthy.ceo@vignan.ac.in)..."
+                        : "Enter Finance Officer Email (priya.sharma@vignan.ac.in)..."
                     }
                     className="w-full h-10 px-3 text-xs rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary/40 outline-none"
                   />
@@ -528,7 +609,9 @@ export function LoginScreen() {
                     placeholder={
                       activeLoginRole === "student"
                         ? "Format: Name@DDMMYYYY (e.g. Aaradhya@14032004)"
-                        : "Enter your password..."
+                        : activeLoginRole === "admin"
+                        ? "Enter CEO Password (CeoExecutive@2026)..."
+                        : "Enter Finance Officer Password (FinanceOfficer@2026)..."
                     }
                     className="w-full h-10 px-3 text-xs rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary/40 outline-none"
                   />
@@ -573,10 +656,14 @@ export function LoginScreen() {
                         setEmailInput("251FA04645");
                         setPasswordInput("Aaradhya@14032004");
                         toast.info("Student credentials auto-filled: 251FA04645 / Aaradhya@14032004");
-                      } else {
-                        setEmailInput(ROLE_CONFIGS[activeLoginRole].defaultEmail);
-                        setPasswordInput("VignanAdmin2026@secure");
-                        toast.info("Credentials auto-filled for testing");
+                      } else if (activeLoginRole === "admin") {
+                        setEmailInput("ramamurthy.ceo@vignan.ac.in");
+                        setPasswordInput("CeoExecutive@2026");
+                        toast.info("CEO Administrator credentials filled: ramamurthy.ceo@vignan.ac.in / CeoExecutive@2026");
+                      } else if (activeLoginRole === "finance-officer") {
+                        setEmailInput("priya.sharma@vignan.ac.in");
+                        setPasswordInput("FinanceOfficer@2026");
+                        toast.info("Finance Officer credentials filled: priya.sharma@vignan.ac.in / FinanceOfficer@2026");
                       }
                     }}
                     className="text-primary hover:underline cursor-pointer font-semibold"

@@ -405,17 +405,6 @@ export function FinanceDashboard() {
               <span className="font-semibold text-foreground">
                 {roleTitle}
               </span>
-              <button
-                type="button"
-                onClick={() =>
-                  login(
-                    currentRole === "admin" ? "finance-officer" : "admin"
-                  )
-                }
-                className="ml-1 text-[10px] text-primary hover:underline font-semibold cursor-pointer"
-              >
-                (Switch)
-              </button>
             </div>
             <button
               onClick={() => setProfileOpen(true)}
@@ -798,45 +787,24 @@ export function FinanceDashboard() {
               ? " You have full treasury privileges including refund approvals and fee structures."
               : " Operational role. Refund approvals require Administrator authorization."}
           </div>
-          <div className="space-y-2 pt-2">
-            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-              Switch Persona / Role
+          <div className="rounded-xl border border-border/80 bg-muted/20 p-3 space-y-2 text-xs">
+            <div className="flex items-center justify-between">
+              <span className="text-muted-foreground">Officer / Staff ID:</span>
+              <span className="font-mono font-bold text-foreground">{user?.id || "STAFF-01"}</span>
             </div>
-            <div className="grid gap-2">
-              <Button
-                variant={currentRole === "admin" ? "default" : "outline"}
-                size="sm"
-                className="justify-start text-xs"
-                onClick={() => {
-                  login("admin");
-                  setProfileOpen(false);
-                }}
-              >
-                Administrator View (Full Access)
-              </Button>
-              <Button
-                variant={currentRole === "finance-officer" ? "default" : "outline"}
-                size="sm"
-                className="justify-start text-xs"
-                onClick={() => {
-                  login("finance-officer");
-                  setProfileOpen(false);
-                }}
-              >
-                Finance Officer View (Operations)
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                className="justify-start text-xs text-emerald-700 border-emerald-300 hover:bg-emerald-50"
-                onClick={() => {
-                  login("student", "251FA04645");
-                  setProfileOpen(false);
-                }}
-              >
-                Student & Parent Portal (Self-Service)
-              </Button>
+            <div className="flex items-center justify-between">
+              <span className="text-muted-foreground">Department:</span>
+              <span className="font-medium text-foreground">University Finance Treasury</span>
             </div>
+            <div className="flex items-center justify-between">
+              <span className="text-muted-foreground">Access Privacy:</span>
+              <span className="text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-1">
+                <Check className="size-3 text-emerald-700" /> Account-Locked Session
+              </span>
+            </div>
+          </div>
+          <div className="text-[11px] text-muted-foreground bg-muted/40 p-2.5 rounded-lg border border-border/60 leading-relaxed">
+            🔒 <strong>Strict RBAC Privacy Enforced:</strong> On-the-fly role switching is strictly disabled to prevent unauthorized account crossover. To access a different portal, please Sign Out and log in with that portal&apos;s verified credentials.
           </div>
           <div className="pt-2 border-t flex justify-between items-center">
             <span className="text-xs text-muted-foreground">Session ID: {user?.id || "DEMO"}</span>
