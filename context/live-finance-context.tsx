@@ -75,7 +75,16 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
         setPaymentReceipts(JSON.parse(savedReceipts));
       }
       if (savedTxns) {
-        setTransactions(JSON.parse(savedTxns));
+        const parsed = JSON.parse(savedTxns);
+        if (Array.isArray(parsed)) {
+          const seen = new Set<string>();
+          const deduplicated = parsed.filter((t) => {
+            if (!t || !t.id || seen.has(t.id)) return false;
+            seen.add(t.id);
+            return true;
+          });
+          setTransactions(deduplicated);
+        }
       }
     } catch (e) {
       console.warn("Live finance local storage restore error:", e);
@@ -187,7 +196,7 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
       method: channel,
       status: "Matched",
     };
-    const updatedTxns = [newTxn, ...transactions];
+    const updatedTxns = [newTxn, ...transactions.filter((t) => t.id !== res.txnId)];
 
     setStudents(updatedStudents);
     setFeeAllocations(updatedAllocs);

@@ -666,8 +666,8 @@ export function StudentPortal() {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-border">
-                        {receipts.map((rcpt) => (
-                          <tr key={rcpt.txnId} className="hover:bg-muted/30">
+                        {receipts.map((rcpt, idx) => (
+                          <tr key={`${rcpt.txnId}-${idx}`} className="hover:bg-muted/30">
                             <td className="py-2.5 px-3 font-mono font-medium text-foreground">
                               {rcpt.txnId}
                             </td>

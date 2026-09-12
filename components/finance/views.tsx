@@ -513,8 +513,8 @@ export function PaymentsView({
             </tr>
           </thead>
           <tbody>
-            {rows.map((t) => (
-              <tr key={t.id}>
+            {rows.map((t, index) => (
+              <tr key={`${t.id}-${index}`}>
                 <td data-label="Transaction" className="font-medium">
                   {t.id}
                 </td>
