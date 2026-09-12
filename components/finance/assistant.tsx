@@ -24,6 +24,10 @@ import {
   Landmark,
   Receipt,
   Scale,
+  X,
+  Minus,
+  MessageCircleQuestion,
+  Volume2,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -40,13 +44,12 @@ import {
   InputGroupAddon,
   InputGroupButton,
 } from "@/components/ui/input-group";
-import { inr, printStatementPdf, students } from "@/lib/finance-data";
-import { getStudentAccount } from "@/lib/finance-service";
-import { queryFinanceAi, type AiChatMessage } from "@/lib/ai-finance-engine";
+import { inr, students } from "@/lib/finance-data";
+import { queryFinanceAi, type AiChatMessage, type NavigationAction, type AgentContext } from "@/lib/ai-finance-engine";
 
 export type ChatMessage = AiChatMessage;
 
-const quickPrompts = [
+export const quickPrompts = [
   {
     icon: GraduationCap,
     label: "Student Balance & Dues",
@@ -100,83 +103,655 @@ type Recognition = {
 };
 
 // =========================================================================
-// 1. DASHBOARD LAUNCHPAD WIDGET
+// 1. FLOATING CORNER POPUP AI ASSISTANT (Lower Corner Widget)
 // =========================================================================
-// When user enters a query or clicks a prompt, it immediately opens the dedicated
-// AI Assistant workspace and processes their query there!
+export function FloatingAiAssistant({
+  isOpen: externalIsOpen,
+  onOpenChange,
+  onStudent,
+  onRefund,
+  onReconcile,
+  onExpandToPage,
+  onNavigate,
+  userRole = "admin",
+  currentStudentId,
+  currentView,
+  initialQuery,
+}: {
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  onStudent?: (studentId?: string) => void;
+  onRefund?: () => void;
+  onReconcile?: () => void;
+  onExpandToPage?: (query?: string) => void;
+  onNavigate?: (nav: NavigationAction) => void;
+  userRole?: "admin" | "finance-officer" | "student";
+  currentStudentId?: string;
+  currentView?: string;
+  initialQuery?: string | null;
+}) {
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
+
+  function setIsOpen(open: boolean) {
+    if (onOpenChange) {
+      onOpenChange(open);
+    } else {
+      setInternalIsOpen(open);
+    }
+  }
+
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [input, setInput] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [actionStatus, setActionStatus] = useState<string | null>(null);
+  const [listening, setListening] = useState(false);
+  const [apiKey, setApiKey] = useState("");
+  const [showSettings, setShowSettings] = useState(false);
+  const [showTeaser, setShowTeaser] = useState(true);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  // Load saved API key from localStorage if present
+  useEffect(() => {
+    try {
+      const savedKey = localStorage.getItem("feewise_gemini_api_key");
+      if (savedKey) setApiKey(savedKey);
+    } catch {
+      // Ignore localStorage errors
+    }
+  }, []);
+
+  // Auto-scroll on message updates
+  useEffect(() => {
+    if (isOpen) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, busy, isOpen]);
+
+  // Handle incoming initial prompt
+  useEffect(() => {
+    if (initialQuery && initialQuery.trim()) {
+      setIsOpen(true);
+      setShowTeaser(false);
+      submit(initialQuery.trim());
+    }
+  }, [initialQuery]);
+
+  async function submit(question = input) {
+    const q = question.trim();
+    if (!q || busy) return;
+
+    setMessages((prev) => [...prev, { role: "user", content: q }]);
+    setInput("");
+    setBusy(true);
+
+    try {
+      const context: AgentContext = {
+        role: userRole,
+        currentStudentId,
+        currentView,
+      };
+      const aiResponse = await queryFinanceAi(q, messages, apiKey, context);
+      setMessages((prev) => [...prev, aiResponse]);
+
+      // Execute autonomous UI navigation if commanded
+      if (aiResponse.navigation) {
+        const target = aiResponse.navigation.view;
+        const sub = aiResponse.navigation.studentId
+          ? ` (${aiResponse.navigation.studentId})`
+          : aiResponse.navigation.transactionId
+          ? ` (${aiResponse.navigation.transactionId})`
+          : "";
+        setActionStatus(`Opening ${target}${sub}…`);
+
+        if (onNavigate) {
+          onNavigate(aiResponse.navigation);
+        } else if (onStudent && aiResponse.navigation.studentId) {
+          onStudent(aiResponse.navigation.studentId);
+        }
+
+        setTimeout(() => {
+          setActionStatus(`Done — ${target} opened.`);
+          setTimeout(() => setActionStatus(null), 3500);
+        }, 600);
+      }
+    } catch (err) {
+      console.error("AI execution error:", err);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content:
+            "I encountered a temporary processing issue. Please try again or rephrase your finance question.",
+        },
+      ]);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  function startVoice() {
+    if (listening) return;
+    const browser = window as unknown as {
+      SpeechRecognition?: new () => Recognition;
+      webkitSpeechRecognition?: new () => Recognition;
+    };
+    const Speech = browser.SpeechRecognition || browser.webkitSpeechRecognition;
+    if (!Speech) {
+      toast.info("Voice input is not supported in this browser.");
+      return;
+    }
+    const speech = new Speech();
+    speech.lang = "en-IN";
+    speech.onresult = (event) => {
+      setInput(event.results[0][0].transcript);
+      setListening(false);
+    };
+    speech.onerror = () => setListening(false);
+    speech.onend = () => setListening(false);
+    try {
+      speech.start();
+      setListening(true);
+    } catch {
+      setListening(false);
+    }
+  }
+
+  function saveApiKey(key: string) {
+    setApiKey(key);
+    try {
+      if (key.trim()) {
+        localStorage.setItem("feewise_gemini_api_key", key.trim());
+        toast.success("Gemini API key saved! Live LLM responses active.");
+      } else {
+        localStorage.removeItem("feewise_gemini_api_key");
+        toast.info("API key removed. Using built-in offline finance reasoning engine.");
+      }
+    } catch {
+      // Ignore localStorage errors
+    }
+    setShowSettings(false);
+  }
+
+  return (
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+      {/* ------------------------------------------------------------- */}
+      {/* 1. EXPANDED RECTANGULAR CHAT WINDOW (Open State)              */}
+      {/* ------------------------------------------------------------- */}
+      {isOpen && (
+        <div
+          id="floating-ai-window"
+          className="w-[calc(100vw-32px)] sm:w-[440px] md:w-[480px] h-[600px] max-h-[85vh] rounded-2xl border border-primary/30 bg-card/95 backdrop-blur-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in-0 zoom-in-95 slide-in-from-bottom-6 duration-200 ring-1 ring-primary/20 text-card-foreground"
+        >
+          {/* Header Bar */}
+          <div className="px-4 py-3.5 border-b bg-gradient-to-r from-primary/15 via-primary/5 to-card flex items-center justify-between gap-2 select-none">
+            <div className="flex items-center gap-2.5">
+              <div className="relative">
+                <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold shadow-md ring-2 ring-primary/30">
+                  <Bot className="size-5" />
+                </span>
+                <span className="absolute -top-0.5 -right-0.5 size-3 bg-emerald-500 rounded-full border-2 border-card animate-pulse" />
+              </div>
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <h3 className="text-sm font-bold tracking-tight text-foreground flex items-center gap-1">
+                    finDeck AI Copilot
+                  </h3>
+                  <span className="text-[10px] font-medium px-1.5 py-0.2 rounded-full bg-primary/10 text-primary border border-primary/20">
+                    VFSTR AI
+                  </span>
+                </div>
+                <p className="text-[11px] text-muted-foreground flex items-center gap-1.5">
+                  <span className="size-1.5 rounded-full bg-emerald-500 inline-block animate-ping" />
+                  Online • Financial Intelligence
+                </p>
+              </div>
+            </div>
+
+            {/* Header Action Buttons */}
+            <div className="flex items-center gap-1">
+              <Button
+                variant="ghost"
+                size="icon-xs"
+                onClick={() => setShowSettings(!showSettings)}
+                className={`size-7 text-muted-foreground hover:text-foreground cursor-pointer ${
+                  apiKey ? "text-primary font-bold" : ""
+                }`}
+                title="AI Settings / API Key"
+              >
+                <Key className="size-3.5" />
+              </Button>
+
+              <Button
+                variant="ghost"
+                size="icon-xs"
+                onClick={() => {
+                  setMessages([]);
+                  toast.info("Conversation cleared.");
+                }}
+                className="size-7 text-muted-foreground hover:text-foreground cursor-pointer"
+                title="Clear Chat"
+              >
+                <RotateCcw className="size-3.5" />
+              </Button>
+
+              {onExpandToPage && (
+                <Button
+                  variant="ghost"
+                  size="icon-xs"
+                  onClick={() => {
+                    setIsOpen(false);
+                    onExpandToPage();
+                  }}
+                  className="size-7 text-muted-foreground hover:text-primary cursor-pointer"
+                  title="Expand to Full Page Workspace"
+                >
+                  <Maximize2 className="size-3.5" />
+                </Button>
+              )}
+
+              {/* Close / Minimize Button */}
+              <Button
+                variant="ghost"
+                size="icon-xs"
+                onClick={() => setIsOpen(false)}
+                className="size-7 text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors cursor-pointer rounded-lg"
+                title="Close / Minimize Assistant"
+              >
+                <X className="size-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Optional API Key Settings Overlay */}
+          {showSettings && (
+            <div className="p-3 bg-muted/60 border-b text-xs space-y-2 animate-in fade-in-0">
+              <div className="flex items-center justify-between">
+                <span className="font-semibold text-foreground flex items-center gap-1.5">
+                  <Key className="size-3.5 text-primary" /> Google Gemini API Key
+                </span>
+                <span className="text-[10px] text-muted-foreground">Optional</span>
+              </div>
+              <p className="text-[11px] text-muted-foreground">
+                Enter API key for live Gemini LLM queries, or leave blank to use the high-speed local VFSTR Finance reasoning engine.
+              </p>
+              <div className="flex items-center gap-2 pt-1">
+                <input
+                  type="password"
+                  placeholder="Paste AIzaSy... key"
+                  defaultValue={apiKey}
+                  id="floating-api-key-input"
+                  className="flex-1 h-8 px-2.5 text-xs rounded-lg border bg-background text-foreground"
+                />
+                <Button
+                  size="sm"
+                  onClick={() => {
+                    const val =
+                      (document.getElementById("floating-api-key-input") as HTMLInputElement)
+                        ?.value || "";
+                    saveApiKey(val);
+                  }}
+                  className="h-8 text-xs cursor-pointer"
+                >
+                  Save
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {/* Messages Scroll Area */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-3.5 scroll-smooth scrollbar-thin bg-card/50">
+            {/* Empty State with Quick Starter Prompts */}
+            {messages.length === 0 && (
+              <div className="h-full flex flex-col items-center justify-center text-center p-2 space-y-4">
+                <div className="size-12 rounded-2xl bg-gradient-to-tr from-primary/20 via-primary/10 to-transparent flex items-center justify-center text-primary shadow-xs ring-1 ring-primary/20">
+                  <Sparkles className="size-6" />
+                </div>
+                <div className="space-y-1 max-w-xs">
+                  <h4 className="text-sm font-bold text-foreground">
+                    Ask VFSTR Finance Copilot
+                  </h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Ask anything in <strong>English, Hindi or Hinglish</strong> about student fees, dues, loan NOCs, 80C tax certificates, and refund policies.
+                  </p>
+                </div>
+
+                {/* Quick 1-Tap Question Chips */}
+                <div className="flex flex-col gap-1.5 w-full text-left pt-1">
+                  <p className="text-[11px] font-semibold text-muted-foreground px-1">
+                    Suggested Inquiries:
+                  </p>
+                  {quickPrompts.slice(0, 4).map((p) => (
+                    <button
+                      key={p.label}
+                      onClick={() => submit(p.query)}
+                      className="p-2 rounded-xl border bg-card/80 hover:bg-primary/10 hover:border-primary/40 transition-all text-xs flex items-center justify-between group cursor-pointer shadow-2xs"
+                    >
+                      <span className="flex items-center gap-2 truncate">
+                        <p.icon className="size-3.5 text-primary shrink-0" />
+                        <span className="font-medium text-foreground truncate">{p.label}</span>
+                      </span>
+                      <ChevronRight className="size-3 text-muted-foreground group-hover:text-primary transition-transform group-hover:translate-x-0.5 shrink-0" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Render Chat Messages */}
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`flex flex-col ${
+                  message.role === "user" ? "items-end" : "items-start"
+                }`}
+              >
+                <div className="flex items-center gap-1.5 mb-1 text-[11px] text-muted-foreground">
+                  {message.role === "user" ? (
+                    <span className="font-medium text-foreground">You</span>
+                  ) : (
+                    <span className="flex items-center gap-1 font-semibold text-primary">
+                      <Sparkles className="size-3" /> finDeck Agent
+                    </span>
+                  )}
+                </div>
+
+                <div
+                  className={`rounded-2xl p-3.5 text-xs leading-relaxed max-w-[90%] shadow-xs ${
+                    message.role === "user"
+                      ? "bg-primary text-primary-foreground font-medium rounded-tr-xs"
+                      : "bg-card text-foreground border border-border/80 rounded-tl-xs shadow-xs"
+                  }`}
+                >
+                  <p className="whitespace-pre-line leading-relaxed">{message.content}</p>
+
+                  {/* Navigation Action Result Badge */}
+                  {message.navigation && (
+                    <div className="mt-2.5 flex items-center gap-1.5 text-[11px] font-medium text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-lg w-fit">
+                      <CheckCircle2 className="size-3 text-emerald-500 shrink-0" />
+                      <span>
+                        Navigated to <strong>{message.navigation.view}</strong>
+                        {message.navigation.studentId ? ` · ID: ${message.navigation.studentId}` : ""}
+                        {message.navigation.transactionId ? ` · Txn: ${message.navigation.transactionId}` : ""}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Actions Bar for assistant responses */}
+                  {message.role === "assistant" && (
+                    <div className="mt-2.5 pt-2 border-t border-border/50 flex flex-wrap items-center gap-1.5">
+                      {(message.kind === "breakdown" || message.kind === "student") &&
+                        onStudent && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => onStudent(message.navigation?.studentId)}
+                            className="h-6 text-[11px] px-2 gap-1 text-primary cursor-pointer hover:bg-primary/10"
+                          >
+                            View Student <ArrowUpRight className="size-3" />
+                          </Button>
+                        )}
+                      {message.kind === "reconcile" && onReconcile && (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={onReconcile}
+                          className="h-6 text-[11px] px-2 gap-1 text-primary cursor-pointer hover:bg-primary/10"
+                        >
+                          Review Mismatch <ArrowUpRight className="size-3" />
+                        </Button>
+                      )}
+                      {message.kind === "refund" && onRefund && (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={onRefund}
+                          className="h-6 text-[11px] px-2 gap-1 text-primary cursor-pointer hover:bg-primary/10"
+                        >
+                          Review Refund <ArrowUpRight className="size-3" />
+                        </Button>
+                      )}
+                      <Button
+                        size="icon-xs"
+                        variant="ghost"
+                        onClick={() => {
+                          navigator.clipboard.writeText(message.content);
+                          toast.success("Copied to clipboard");
+                        }}
+                        title="Copy text"
+                        className="size-6 text-muted-foreground hover:text-foreground cursor-pointer ml-auto"
+                      >
+                        <Copy className="size-3" />
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+
+            {busy && (
+              <div className="flex items-center gap-2 text-xs text-primary font-medium p-2.5 bg-primary/10 rounded-xl border border-primary/20 w-fit animate-pulse">
+                <LoaderCircle className="size-3.5 animate-spin" />
+                Thinking &amp; analyzing records…
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Bottom Chat Input Bar */}
+          <div className="p-3 border-t bg-card/90">
+            {actionStatus && (
+              <div className="mb-2 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-medium flex items-center gap-1.5 animate-in fade-in">
+                <span className="size-1.5 rounded-full bg-emerald-500 animate-ping shrink-0" />
+                {actionStatus}
+              </div>
+            )}
+            <InputGroup className="h-10">
+              <InputGroupInput
+                placeholder="Ask finance, dues, loans, 80C, refund..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    submit();
+                  }
+                }}
+                className="text-xs"
+                autoFocus
+              />
+              <InputGroupAddon align="inline-end">
+                <InputGroupButton
+                  aria-label="Voice input"
+                  onClick={startVoice}
+                  variant={listening ? "secondary" : "ghost"}
+                  size="icon-xs"
+                  className="cursor-pointer"
+                  title="Voice input (English / Hindi)"
+                >
+                  <Mic className={`size-3.5 ${listening ? "text-destructive animate-pulse" : ""}`} />
+                </InputGroupButton>
+                <InputGroupButton
+                  aria-label="Send prompt"
+                  variant="default"
+                  size="icon-xs"
+                  disabled={!input.trim() || busy}
+                  onClick={() => submit()}
+                  className="cursor-pointer"
+                >
+                  <ArrowUp className="size-3.5" />
+                </InputGroupButton>
+              </InputGroupAddon>
+            </InputGroup>
+            <div className="flex items-center justify-between text-[10px] text-muted-foreground px-1 pt-1.5">
+              <span className="flex items-center gap-1">
+                <ShieldCheck className="size-3 text-emerald-500" /> Secure University Engine
+              </span>
+              <span>English • हिन्दी • Hinglish</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ------------------------------------------------------------- */}
+      {/* 2. COLLAPSED FLOATING CORNER TRIGGER (Always Eye-Catching)   */}
+      {/* ------------------------------------------------------------- */}
+      {!isOpen && (
+        <div className="flex flex-col items-end gap-2.5">
+          {/* Welcome Teaser Bubble (auto displayed or dismissible) */}
+          {showTeaser && (
+            <div className="flex items-center gap-2 bg-card/95 backdrop-blur-md text-foreground border border-primary/30 shadow-xl px-3.5 py-2 rounded-2xl text-xs animate-in fade-in slide-in-from-bottom-2 duration-300 ring-1 ring-primary/20 max-w-[260px]">
+              <span className="size-2 rounded-full bg-emerald-500 animate-ping shrink-0" />
+              <p className="text-[11px] leading-snug">
+                👋 <strong>Ask AI Assistant</strong> about fee dues, loans &amp; refunds!
+              </p>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowTeaser(false);
+                }}
+                className="text-muted-foreground hover:text-foreground cursor-pointer p-0.5"
+                title="Dismiss"
+              >
+                <X className="size-3" />
+              </button>
+            </div>
+          )}
+
+          {/* Main Floating Trigger Button */}
+          <button
+            id="floating-ai-trigger"
+            onClick={() => {
+              setIsOpen(true);
+              setShowTeaser(false);
+            }}
+            className="group relative flex items-center gap-3 pl-3.5 pr-4 py-2.5 rounded-full bg-gradient-to-r from-primary via-indigo-600 to-violet-600 text-primary-foreground shadow-2xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer ring-4 ring-primary/25 ai-glow-button select-none"
+            aria-label="Open AI Financial Assistant"
+          >
+            {/* Glowing Bot Avatar */}
+            <div className="relative flex items-center justify-center size-8 rounded-full bg-white/20 backdrop-blur-xs text-white">
+              <Bot className="size-5 group-hover:rotate-12 transition-transform duration-300" />
+              {/* Green online dot */}
+              <span className="absolute -top-0.5 -right-0.5 size-2.5 bg-emerald-400 rounded-full border-2 border-primary" />
+            </div>
+
+            {/* Label and Sparkles */}
+            <div className="flex flex-col text-left">
+              <span className="text-xs font-bold tracking-tight flex items-center gap-1.5 leading-none">
+                Ask finDeck AI
+                <Sparkles className="size-3 text-amber-300 animate-spin" style={{ animationDuration: "6s" }} />
+              </span>
+              <span className="text-[10px] text-white/80 font-normal leading-tight mt-0.5">
+                Financial Intelligence
+              </span>
+            </div>
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// =========================================================================
+// 3. DASHBOARD OVERVIEW CHAMBER (Sidebar Launchpad)
+// =========================================================================
+// Embeds seamlessly in the dashboard overview sidebar and connects directly
+// to the floating popup or full page workspace!
 export function FinanceAssistant({
   onStudent,
   onRefund,
   onReconcile,
   onExpandToPage,
+  onOpenFloating,
 }: {
   onStudent: () => void;
   onRefund: () => void;
   onReconcile: () => void;
   onExpandToPage?: (initialQuery?: string) => void;
+  onOpenFloating?: (query?: string) => void;
 }) {
   const [input, setInput] = useState("");
 
   function handleAsk(query = input) {
-    if (!query.trim()) return;
-    if (onExpandToPage) {
-      onExpandToPage(query.trim());
+    const q = query.trim();
+    if (!q) return;
+    if (onOpenFloating) {
+      onOpenFloating(q);
+    } else if (onExpandToPage) {
+      onExpandToPage(q);
     }
   }
 
   return (
     <Card
       id="finance-assistant"
-      className="panel finance-assistant flex flex-col shadow-sm overflow-hidden border-primary/20 bg-gradient-to-b from-primary/5 via-card to-card"
+      className="panel finance-assistant flex flex-col shadow-sm overflow-hidden border-primary/25 bg-gradient-to-b from-primary/10 via-card to-card relative group"
     >
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+
       <CardHeader className="pb-3 border-b">
         <CardTitle className="flex items-center justify-between">
           <span className="flex items-center gap-2.5">
-            <span className="assistant-mark">
-              <Sparkles className="size-4 text-primary" />
+            <span className="flex size-8 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold shadow-xs">
+              <Bot className="size-4" />
             </span>
             <span>
-              finDeck AI Assistant
-              <span className="mt-0.5 flex items-center gap-1.5 text-xs font-normal text-success">
-                <span className="online-dot" /> Online • VFSTR Finance
+              <span className="text-sm font-bold text-foreground">finDeck AI Assistant</span>
+              <span className="mt-0.5 flex items-center gap-1.5 text-[11px] font-normal text-emerald-500">
+                <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
+                Online • VFSTR Copilot
               </span>
             </span>
           </span>
-          {onExpandToPage && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => onExpandToPage()}
-              className="gap-1 text-xs h-7 text-primary hover:bg-primary/10 cursor-pointer"
-              title="Open Dedicated Full Page"
-            >
-              <Maximize2 className="size-3" /> Full Page
-            </Button>
-          )}
+
+          <div className="flex items-center gap-1.5">
+            {onOpenFloating && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onOpenFloating()}
+                className="gap-1 text-xs h-7 text-primary hover:bg-primary/10 cursor-pointer border-primary/30"
+                title="Open floating AI popup"
+              >
+                <Sparkles className="size-3" /> Popup
+              </Button>
+            )}
+            {onExpandToPage && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => onExpandToPage()}
+                className="gap-1 text-xs h-7 text-muted-foreground hover:text-foreground cursor-pointer"
+                title="Open Dedicated Full Page"
+              >
+                <Maximize2 className="size-3" />
+              </Button>
+            )}
+          </div>
         </CardTitle>
         <CardDescription className="text-xs text-muted-foreground mt-1">
-          Ask any finance query to instantly open the full AI intelligence workspace.
+          Instant natural language answers for student dues, fee waterfalls, 80C certificates, and loan NOCs.
         </CardDescription>
       </CardHeader>
 
       <CardContent className="flex flex-col gap-3.5 p-4">
         {/* Quick Suggestion Chips */}
         <div className="space-y-1.5">
-          <p className="text-[11px] font-medium text-muted-foreground">
-            Popular Inquiries (Click to open):
+          <p className="text-[11px] font-semibold text-muted-foreground">
+            Popular Finance Inquiries:
           </p>
           <div className="flex flex-col gap-1.5">
             {quickPrompts.slice(0, 4).map((p) => (
               <button
                 key={p.label}
                 onClick={() => handleAsk(p.query)}
-                className="w-full text-left px-2.5 py-2 rounded-lg border bg-card/80 hover:bg-primary/10 hover:border-primary/40 text-xs text-foreground flex items-center justify-between group transition-colors cursor-pointer"
+                className="w-full text-left px-2.5 py-2 rounded-lg border bg-card/80 hover:bg-primary/10 hover:border-primary/40 text-xs text-foreground flex items-center justify-between group transition-all cursor-pointer"
               >
-                <span className="flex items-center gap-2">
+                <span className="flex items-center gap-2 truncate">
                   <p.icon className="size-3.5 text-primary shrink-0" />
                   <span className="truncate">{p.label}</span>
                 </span>
-                <ChevronRight className="size-3 text-muted-foreground group-hover:text-primary transition-transform group-hover:translate-x-0.5" />
+                <ChevronRight className="size-3 text-muted-foreground group-hover:text-primary transition-transform group-hover:translate-x-0.5 shrink-0" />
               </button>
             ))}
           </div>
@@ -188,7 +763,7 @@ export function FinanceAssistant({
             <InputGroupInput
               id="agent-input"
               aria-label="Ask the Finance Agent"
-              placeholder="Ask anything about fees, dues, loans, GST, refund..."
+              placeholder="Ask anything about fees, dues, loans, refund..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => {
@@ -214,63 +789,69 @@ export function FinanceAssistant({
           </InputGroup>
         </div>
 
-        {/* Direct Workspace Link Button */}
-        {onExpandToPage && (
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={() => onExpandToPage()}
-            className="w-full text-xs font-semibold text-primary gap-1.5 h-8 border border-primary/15 hover:bg-primary/10 cursor-pointer"
-          >
-            <Sparkles className="size-3.5" /> Open Dedicated AI Assistant Page
-          </Button>
-        )}
+        {/* Action Button */}
+        <Button
+          variant="secondary"
+          size="sm"
+          onClick={() => {
+            if (onOpenFloating) onOpenFloating();
+            else if (onExpandToPage) onExpandToPage();
+          }}
+          className="w-full text-xs font-semibold text-primary gap-1.5 h-8 border border-primary/20 hover:bg-primary/10 cursor-pointer"
+        >
+          <Sparkles className="size-3.5" /> Open AI Assistant
+        </Button>
       </CardContent>
     </Card>
   );
 }
 
 // =========================================================================
-// 2. DEDICATED FULL-PAGE AI ASSISTANT (Fresh Clean Slate + Universal Finance Engine)
+// 4. DEDICATED FULL-PAGE AI ASSISTANT (Fresh Slate + Universal Finance)
 // =========================================================================
 export function FullPageAiAssistant({
   onStudent,
   onRefund,
   onReconcile,
+  onNavigate,
+  userRole = "admin",
+  currentStudentId,
+  currentView,
   initialPrompt,
   onClearInitialPrompt,
 }: {
-  onStudent: () => void;
+  onStudent: (studentId?: string) => void;
   onRefund: () => void;
   onReconcile: () => void;
+  onNavigate?: (nav: NavigationAction) => void;
+  userRole?: "admin" | "finance-officer" | "student";
+  currentStudentId?: string;
+  currentView?: string;
   initialPrompt?: string | null;
   onClearInitialPrompt?: () => void;
 }) {
-  // Fresh, empty messages state by default — NO pre-asked mock questions!
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
+  const [actionStatus, setActionStatus] = useState<string | null>(null);
   const [listening, setListening] = useState(false);
   const [apiKey, setApiKey] = useState("");
   const [showSettings, setShowSettings] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-  // Load saved API key from localStorage if present
   useEffect(() => {
     try {
       const savedKey = localStorage.getItem("feewise_gemini_api_key");
       if (savedKey) setApiKey(savedKey);
     } catch {
-      // Ignore localStorage errors
+      // Ignore
     }
   }, []);
 
-  // Auto-scroll on message updates
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, busy]);
 
-  // Handle incoming initial prompt from Dashboard navigation
   useEffect(() => {
     if (initialPrompt && initialPrompt.trim()) {
       submit(initialPrompt.trim());
@@ -287,9 +868,35 @@ export function FullPageAiAssistant({
     setBusy(true);
 
     try {
-      // Query the comprehensive AI Finance Engine
-      const aiResponse = await queryFinanceAi(q, messages, apiKey);
+      const context: AgentContext = {
+        role: userRole,
+        currentStudentId,
+        currentView,
+      };
+      const aiResponse = await queryFinanceAi(q, messages, apiKey, context);
       setMessages((prev) => [...prev, aiResponse]);
+
+      // Execute autonomous navigation if commanded
+      if (aiResponse.navigation) {
+        const target = aiResponse.navigation.view;
+        const sub = aiResponse.navigation.studentId
+          ? ` (${aiResponse.navigation.studentId})`
+          : aiResponse.navigation.transactionId
+          ? ` (${aiResponse.navigation.transactionId})`
+          : "";
+        setActionStatus(`Opening ${target}${sub}…`);
+
+        if (onNavigate) {
+          onNavigate(aiResponse.navigation);
+        } else if (onStudent && aiResponse.navigation.studentId) {
+          onStudent(aiResponse.navigation.studentId);
+        }
+
+        setTimeout(() => {
+          setActionStatus(`Done — ${target} opened.`);
+          setTimeout(() => setActionStatus(null), 3500);
+        }, 600);
+      }
     } catch (err) {
       console.error("AI execution error:", err);
       setMessages((prev) => [
@@ -343,7 +950,7 @@ export function FullPageAiAssistant({
         toast.info("API key removed. Using built-in local finance reasoning engine.");
       }
     } catch {
-      // Ignore localStorage errors
+      // Ignore
     }
     setShowSettings(false);
   }
@@ -351,16 +958,16 @@ export function FullPageAiAssistant({
   return (
     <div className="flex flex-col gap-6 max-w-7xl mx-auto w-full">
       {/* Header Banner */}
-      <div className="rounded-2xl border bg-gradient-to-r from-primary/10 via-primary/5 to-background p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="rounded-2xl border bg-gradient-to-r from-primary/15 via-primary/5 to-background p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold shadow-xs">
               <Bot className="size-5" />
             </span>
             <div>
               <h2 className="text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
                 VFSTR AI Finance Intelligence Workspace
-                <span className="text-[11px] font-normal px-2 py-0.5 rounded-full bg-success/15 text-success border border-success/30">
+                <span className="text-[11px] font-normal px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-500 border border-emerald-500/30">
                   Universal Finance AI
                 </span>
               </h2>
@@ -398,7 +1005,7 @@ export function FullPageAiAssistant({
         </div>
       </div>
 
-      {/* Optional Cloud LLM API Settings Bar */}
+      {/* Cloud LLM API Settings Bar */}
       {showSettings && (
         <Card className="border-primary/30 bg-card p-4 shadow-md animate-in fade-in-0">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -421,7 +1028,8 @@ export function FullPageAiAssistant({
               <Button
                 size="sm"
                 onClick={() => {
-                  const val = (document.getElementById("api-key-input") as HTMLInputElement)?.value || "";
+                  const val =
+                    (document.getElementById("api-key-input") as HTMLInputElement)?.value || "";
                   saveApiKey(val);
                 }}
                 className="h-9 text-xs cursor-pointer"
@@ -502,9 +1110,8 @@ export function FullPageAiAssistant({
             </div>
           </CardHeader>
 
-          {/* Messages Viewport with Bidirectional Smooth Scroll */}
+          {/* Messages Viewport */}
           <div className="flex-1 overflow-y-auto p-5 space-y-4 scroll-smooth scrollbar-thin">
-            {/* Fresh Clean Slate / Empty Welcome State */}
             {messages.length === 0 && (
               <div className="h-full flex flex-col items-center justify-center text-center p-6 space-y-5">
                 <div className="size-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shadow-xs">
@@ -519,7 +1126,6 @@ export function FullPageAiAssistant({
                   </p>
                 </div>
 
-                {/* 4 Interactive Starter Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full max-w-xl text-left pt-2">
                   {quickPrompts.slice(0, 4).map((p) => (
                     <button
@@ -542,7 +1148,6 @@ export function FullPageAiAssistant({
               </div>
             )}
 
-            {/* Conversation Messages */}
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -569,14 +1174,25 @@ export function FullPageAiAssistant({
                 >
                   <p className="whitespace-pre-line">{message.content}</p>
 
-                  {/* Actions Bar for assistant responses */}
+                  {/* Navigation Action Result Badge */}
+                  {message.navigation && (
+                    <div className="mt-3 flex items-center gap-2 text-xs font-medium text-primary bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-lg w-fit">
+                      <CheckCircle2 className="size-4 text-emerald-500 shrink-0" />
+                      <span>
+                        Navigated to <strong>{message.navigation.view}</strong>
+                        {message.navigation.studentId ? ` · Student ID: ${message.navigation.studentId}` : ""}
+                        {message.navigation.transactionId ? ` · Txn Ref: ${message.navigation.transactionId}` : ""}
+                      </span>
+                    </div>
+                  )}
+
                   {message.role === "assistant" && (
                     <div className="mt-3 pt-2.5 border-t border-border/50 flex flex-wrap items-center gap-2.5">
                       {(message.kind === "breakdown" || message.kind === "student") && (
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={onStudent}
+                          onClick={() => onStudent(message.navigation?.studentId)}
                           className="h-7 text-xs gap-1 text-primary cursor-pointer"
                         >
                           View Student Profile <ArrowUpRight className="size-3" />
@@ -631,6 +1247,12 @@ export function FullPageAiAssistant({
 
           {/* Bottom Chat Input */}
           <div className="p-4 border-t bg-card">
+            {actionStatus && (
+              <div className="mb-2.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-medium flex items-center gap-2 animate-in fade-in">
+                <span className="size-2 rounded-full bg-emerald-500 animate-ping shrink-0" />
+                {actionStatus}
+              </div>
+            )}
             <InputGroup className="h-12">
               <InputGroupInput
                 placeholder="Ask about fee collection, student dues, loan NOC, 80C tax certificate, UGC refunds..."

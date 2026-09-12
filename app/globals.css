@@ -344,6 +344,28 @@
     transform: scaleX(1);
   }
 }
+@keyframes ai-glow {
+  0%, 100% {
+    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4), 0 0 20px -2px rgba(168, 85, 247, 0.3);
+  }
+  50% {
+    box-shadow: 0 15px 35px 0px rgba(99, 102, 241, 0.65), 0 0 30px 4px rgba(168, 85, 247, 0.5);
+  }
+}
+.ai-glow-button {
+  animation: ai-glow 3s infinite ease-in-out;
+}
+@keyframes ai-bounce-soft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+.ai-bounce-soft {
+  animation: ai-bounce-soft 4s infinite ease-in-out;
+}
 @media (min-width: 1600px) {
   .app-container {
     padding-inline: 48px;

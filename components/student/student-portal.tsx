@@ -15,6 +15,8 @@ import { getStudentAccount } from "@/lib/finance-service";
 import { useAuth } from "@/lib/auth-context";
 import { FeeCertificatesPanel } from "@/components/finance/certificates";
 import { PartialPaymentSimulator } from "@/components/finance/partial-payment-modal";
+import { FloatingAiAssistant } from "@/components/finance/assistant";
+import { type NavigationAction } from "@/lib/ai-finance-engine";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -86,6 +88,20 @@ export function StudentPortal() {
   function handlePaymentSuccess() {
     setRefreshKey((k) => k + 1);
     setActiveTab("history");
+  }
+
+  function handleStudentNavigation(nav: NavigationAction) {
+    if (nav.view === "Fee Structure") {
+      setActiveTab("breakdown");
+    } else if (nav.view === "Payments") {
+      setActiveTab("history");
+    } else if (nav.view === "Instalments") {
+      setActiveTab("instalments");
+    } else if (nav.view === "Loan Requests") {
+      setActiveTab("loans");
+    } else {
+      setActiveTab("overview");
+    }
   }
 
   return (
@@ -775,6 +791,13 @@ export function StudentPortal() {
           />
         )}
       </main>
+
+      <FloatingAiAssistant
+        userRole="student"
+        currentStudentId={student.id}
+        currentView="Student Portal"
+        onNavigate={handleStudentNavigation}
+      />
     </div>
   );
 }
