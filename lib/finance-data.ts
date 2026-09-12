@@ -4,3 +4,4 @@ export * from "@/backend/database/fee-allocations";
 export * from "@/backend/database/scholarship-status";
 export * from "@/backend/database/payment-receipts";
 export * from "@/backend/database/student-credentials";
+

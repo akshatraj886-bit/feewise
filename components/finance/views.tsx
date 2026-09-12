@@ -935,17 +935,38 @@ function InstalmentStatusBadge({ status }: { status: string }) {
 
 export function InstalmentView() {
   const { students } = useLiveFinance();
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>("251FA04E03");
+  const [search, setSearch] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
+  const [filterPlanType, setFilterPlanType] = useState("All");
+  const [page, setPage] = useState(1);
+  const pageSize = 8;
 
-  const plans = instalmentPlans.filter((p) => {
-    if (filterStatus === "All") return true;
-    return p.instalments.some((i) => i.status === filterStatus);
-  });
+  const filteredPlans = useMemo(() => {
+    return instalmentPlans.filter((p) => {
+      const student = students.find((s) => s.id === p.studentId);
+      if (filterPlanType !== "All" && p.planType !== filterPlanType) return false;
+      if (filterStatus !== "All" && !p.instalments.some((i) => i.status === filterStatus)) return false;
+      if (search.trim()) {
+        const q = search.toLowerCase();
+        const matchesId = p.studentId.toLowerCase().includes(q);
+        const matchesPlan = p.planId.toLowerCase().includes(q);
+        const matchesName = student?.name.toLowerCase().includes(q);
+        if (!matchesId && !matchesPlan && !matchesName) return false;
+      }
+      return true;
+    });
+  }, [students, filterPlanType, filterStatus, search]);
 
-  const selected = selectedId
+  const totalPages = Math.ceil(filteredPlans.length / pageSize) || 1;
+  const paginatedPlans = useMemo(() => {
+    const start = (page - 1) * pageSize;
+    return filteredPlans.slice(start, start + pageSize);
+  }, [filteredPlans, page, pageSize]);
+
+  const selected = (selectedId
     ? instalmentPlans.find((p) => p.studentId === selectedId)
-    : null;
+    : filteredPlans[0]) ?? null;
   const selectedStudent = selected
     ? students.find((s) => s.id === selected.studentId)
     : null;
@@ -966,6 +987,7 @@ export function InstalmentView() {
         .reduce((s, i) => s + (i.amount - i.paid), 0),
     0,
   );
+  const splitPlansCount = instalmentPlans.filter((p) => p.planType !== "Lump-sum").length;
 
   return (
     <div className="flex flex-col gap-5">
@@ -975,7 +997,7 @@ export function InstalmentView() {
           {
             label: "Active plans",
             value: instalmentPlans.length,
-            unit: "students",
+            unit: "institutional students",
             color: "primary",
           },
           {
@@ -992,8 +1014,7 @@ export function InstalmentView() {
           },
           {
             label: "Instalment plans",
-            value: instalmentPlans.filter((p) => p.planType !== "Lump-sum")
-              .length,
+            value: splitPlansCount,
             unit: "split-payment students",
             color: "violet",
           },
@@ -1018,90 +1039,167 @@ export function InstalmentView() {
         {/* Plans list */}
         <Card className="panel">
           <CardHeader>
-            <CardTitle>
-              <span className="flex items-center gap-2">
-                <CalendarClock className="size-4 text-primary" />
-                Instalment plans
-              </span>
-            </CardTitle>
-            <CardDescription>
-              {instalmentPlans.length} active plans · AY 2026–27
-            </CardDescription>
-            <CardAction>
-              <select
-                className="filter-select"
-                aria-label="Filter by instalment status"
-                value={filterStatus}
-                onChange={(e) => setFilterStatus(e.target.value)}
-              >
-                {["All", "Paid", "Pending", "Overdue"].map((s) => (
-                  <option key={s}>{s}</option>
-                ))}
-              </select>
-            </CardAction>
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <CardTitle>
+                  <span className="flex items-center gap-2">
+                    <CalendarClock className="size-4 text-primary" />
+                    Instalment plans
+                  </span>
+                </CardTitle>
+                <CardDescription>
+                  {filteredPlans.length} active plans · AY 2026–27
+                </CardDescription>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <select
+                  className="filter-select text-xs"
+                  aria-label="Filter by plan type"
+                  value={filterPlanType}
+                  onChange={(e) => {
+                    setFilterPlanType(e.target.value);
+                    setPage(1);
+                  }}
+                >
+                  <option value="All">All Types</option>
+                  <option value="3-Instalment Plan">3-Instalment</option>
+                  <option value="2-Instalment Plan">2-Instalment</option>
+                  <option value="Lump-sum">Lump-sum</option>
+                </select>
+                <select
+                  className="filter-select text-xs"
+                  aria-label="Filter by instalment status"
+                  value={filterStatus}
+                  onChange={(e) => {
+                    setFilterStatus(e.target.value);
+                    setPage(1);
+                  }}
+                >
+                  <option value="All">All Statuses</option>
+                  <option value="Paid">Paid</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Overdue">Overdue</option>
+                </select>
+              </div>
+            </div>
+            <div className="mt-2">
+              <InputGroup className="w-full">
+                <InputGroupAddon>
+                  <Search className="size-3.5 text-muted-foreground" />
+                </InputGroupAddon>
+                <InputGroupInput
+                  placeholder="Search by student name, roll number, or plan ID..."
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    setPage(1);
+                  }}
+                />
+              </InputGroup>
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col gap-3">
-              {plans.map((plan) => {
-                const student = students.find(
-                  (s) => s.id === plan.studentId,
-                );
-                const paid = plan.instalments.reduce(
-                  (s, i) => s + i.paid,
-                  0,
-                );
-                const pct = Math.round((paid / plan.totalDemand) * 100);
-                const hasOverdue = plan.instalments.some(
-                  (i) => i.status === "Overdue",
-                );
-                return (
-                  <button
-                    key={plan.planId}
-                    onClick={() =>
-                      setSelectedId(
-                        selectedId === plan.studentId
-                          ? null
-                          : plan.studentId,
-                      )
-                    }
-                    className={cn(
-                      "rounded-xl border p-4 text-left transition-all hover:border-primary/30",
-                      selectedId === plan.studentId
-                        ? "border-primary/40 bg-secondary/50"
-                        : "bg-card",
-                    )}
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <p className="font-medium">{student?.name}</p>
-                        <p className="text-sm text-muted-foreground">
-                          {plan.studentId} · {plan.planType}
-                        </p>
-                      </div>
-                      {hasOverdue ? (
-                        <Badge variant="outline" className="text-destructive border-destructive/30 bg-destructive/5">
-                          Overdue
-                        </Badge>
-                      ) : (
-                        <Badge variant="secondary">{pct}% paid</Badge>
+            <div className="flex flex-col gap-2.5">
+              {paginatedPlans.length === 0 ? (
+                <div className="py-8 text-center text-sm text-muted-foreground">
+                  No instalment plans match your search or filter.
+                </div>
+              ) : (
+                paginatedPlans.map((plan) => {
+                  const student = students.find(
+                    (s) => s.id === plan.studentId,
+                  );
+                  const paid = plan.instalments.reduce(
+                    (s, i) => s + i.paid,
+                    0,
+                  );
+                  const pct = Math.round((paid / plan.totalDemand) * 100);
+                  const hasOverdue = plan.instalments.some(
+                    (i) => i.status === "Overdue",
+                  );
+                  const isSelected = selected?.studentId === plan.studentId;
+                  return (
+                    <button
+                      key={plan.planId}
+                      onClick={() => setSelectedId(plan.studentId)}
+                      className={cn(
+                        "rounded-xl border p-3.5 text-left transition-all hover:border-primary/40",
+                        isSelected
+                          ? "border-primary/50 bg-primary/5 ring-1 ring-primary/20"
+                          : "bg-card hover:bg-muted/30",
                       )}
-                    </div>
-                    <div className="mt-3">
-                      <div className="mb-1.5 flex justify-between text-xs text-muted-foreground">
-                        <span>{inr(paid)} paid</span>
-                        <span>{inr(plan.totalDemand)} total</span>
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <p className="font-medium text-sm leading-snug">{student?.name ?? plan.studentId}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {plan.studentId} · {plan.planType}
+                          </p>
+                        </div>
+                        {hasOverdue ? (
+                          <Badge variant="outline" className="text-destructive border-destructive/30 bg-destructive/5 text-[11px] px-1.5 py-0">
+                            Overdue
+                          </Badge>
+                        ) : pct >= 100 ? (
+                          <Badge variant="outline" className="text-success border-success/30 bg-success/5 text-[11px] px-1.5 py-0">
+                            100% Paid
+                          </Badge>
+                        ) : (
+                          <Badge variant="secondary" className="text-[11px] px-1.5 py-0">{pct}% paid</Badge>
+                        )}
                       </div>
-                      <div className="h-1.5 overflow-hidden rounded-full bg-muted">
-                        <div
-                          className="h-full rounded-full bg-primary transition-all"
-                          style={{ width: `${pct}%` }}
-                        />
+                      <div className="mt-2.5">
+                        <div className="mb-1 flex justify-between text-[11px] text-muted-foreground">
+                          <span>{inr(paid)} paid</span>
+                          <span>{inr(plan.totalDemand)} total</span>
+                        </div>
+                        <div className="h-1.5 overflow-hidden rounded-full bg-muted">
+                          <div
+                            className={cn(
+                              "h-full rounded-full transition-all",
+                              pct >= 100 ? "bg-success" : hasOverdue ? "bg-destructive/80" : "bg-primary",
+                            )}
+                            style={{ width: `${Math.min(100, pct)}%` }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </button>
-                );
-              })}
+                    </button>
+                  );
+                })
+              )}
             </div>
+
+            {/* Pagination footer */}
+            {totalPages > 1 && (
+              <div className="mt-4 flex items-center justify-between border-t pt-3 text-xs text-muted-foreground">
+                <span>
+                  Showing {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, filteredPlans.length)} of {filteredPlans.length}
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="h-7 px-2.5 text-xs"
+                    disabled={page === 1}
+                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                  >
+                    Previous
+                  </Button>
+                  <span className="px-1 font-medium text-foreground">
+                    {page} / {totalPages}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="h-7 px-2.5 text-xs"
+                    disabled={page >= totalPages}
+                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                  >
+                    Next
+                  </Button>
+                </div>
+              </div>
+            )}
           </CardContent>
         </Card>
 
