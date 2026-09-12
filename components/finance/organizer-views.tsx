@@ -35,6 +35,8 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { openPrintDocument, students, inr } from "@/lib/finance-data";
+import { DocumentViewerModal } from "@/components/finance/document-viewer-modal";
+import { type FinanceDocType } from "@/lib/finance-documents";
 
 // =========================================================================
 // 1. SMART REMINDER DISPATCH ENGINE (With Organizer Policy Auto-Suppression)
@@ -661,69 +663,32 @@ export function BankLoanDeskView() {
     }
   }
 
+  const [viewerDoc, setViewerDoc] = useState<{
+    docType: FinanceDocType;
+    studentId: string;
+    options?: any;
+  } | null>(null);
+
   function printOfficialDoc(req: LoanDocumentRequest) {
-    const html = `<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>VFSTR - ${req.document_type} for ${req.bank_name}</title>
-  <style>
-    @page { size: A4; margin: 15mm; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1e293b; line-height: 1.6; margin: 0; padding: 20px; }
-    .header { text-align: center; border-bottom: 2px solid #991b1b; padding-bottom: 12px; margin-bottom: 20px; }
-    .logo { max-height: 70px; margin-bottom: 8px; }
-    .title { font-size: 18px; font-weight: bold; color: #991b1b; margin: 0; }
-    .subtitle { font-size: 12px; color: #64748b; margin: 3px 0 0; }
-    .doc-title { font-size: 16px; font-weight: bold; text-align: center; margin: 25px 0 15px; text-decoration: underline; }
-    .content-box { border: 1px solid #cbd5e1; border-radius: 6px; padding: 18px; background: #f8fafc; margin: 20px 0; }
-    .field-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
-    .field-label { font-weight: 600; color: #475569; }
-    .field-val { color: #0f172a; font-weight: 500; }
-    .stamp-box { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 50px; }
-    .verification-code { font-family: monospace; font-size: 12px; border: 1px dashed #94a3b8; padding: 6px 12px; border-radius: 4px; background: #fff; }
-    .signature { text-align: center; }
-    .signature-line { width: 180px; border-top: 1px solid #334155; margin-bottom: 4px; }
-  </style>
-</head>
-<body>
-  <div class="header">
-    <div class="title">VIGNAN'S FOUNDATION FOR SCIENCE, TECHNOLOGY &amp; RESEARCH</div>
-    <div class="subtitle">(Deemed to be University estd. u/s 3 of UGC Act 1956) &middot; Vadlamudi, Guntur &middot; AP - 522213</div>
-  </div>
+    const docTypeStr = String(req.document_type);
+    let docType: FinanceDocType = "bonafide";
+    if (docTypeStr.includes("NOC") || docTypeStr.includes("CLEARANCE")) {
+      docType = "noc";
+    } else if (docTypeStr.includes("FEE_STRUCTURE") || docTypeStr.includes("ESTIMATE") || docTypeStr.includes("STATEMENT")) {
+      docType = "statement";
+    } else if (docTypeStr.includes("PAID") || docTypeStr.includes("REIMBURSEMENT")) {
+      docType = "reimbursement";
+    }
 
-  <div class="doc-title">OFFICIAL ${req.document_type.replace(/_/g, " ")} FOR EDUCATION LOAN</div>
-
-  <p>To,</p>
-  <p><strong>The Branch Manager</strong><br/>${req.bank_name}</p>
-
-  <p>This is to formally certify that the following student is a bona fide scholar of this University and has requested this documentation for processing of Education Loan assistance:</p>
-
-  <div class="content-box">
-    <div class="field-row"><span class="field-label">Student Name:</span><span class="field-val">${req.student_name}</span></div>
-    <div class="field-row"><span class="field-label">Registration / Roll No:</span><span class="field-val">${req.student_id}</span></div>
-    <div class="field-row"><span class="field-label">Document Purpose:</span><span class="field-val">${req.document_type}</span></div>
-    <div class="field-row"><span class="field-label">Assigned Bank:</span><span class="field-val">${req.bank_name}</span></div>
-    <div class="field-row"><span class="field-label">Date of Request:</span><span class="field-val">${req.requested_on}</span></div>
-    <div class="field-row"><span class="field-label">Date of Issuance:</span><span class="field-val">${req.issued_on || new Date().toISOString().split("T")[0]}</span></div>
-  </div>
-
-  <p style="font-size: 13px; color: #475569;">
-    All academic and financial credentials have been verified against university records. The university acknowledges that fee remittances from the loan account may be directly deposited into the University Registrar account via RTGS/NEFT.
-  </p>
-
-  <div class="stamp-box">
-    <div class="verification-code">
-      <strong>Digital Verification:</strong> ${req.verification_code || "VFSTR-LOAN-PENDING"}
-    </div>
-    <div class="signature">
-      <div class="signature-line"></div>
-      <div style="font-size: 13px; font-weight: bold;">Finance &amp; Accounts Officer</div>
-      <div style="font-size: 11px; color: #64748b;">VFSTR Deemed to be University</div>
-    </div>
-  </div>
-</body>
-</html>`;
-    openPrintDocument(html);
+    setViewerDoc({
+      docType,
+      studentId: req.student_id,
+      options: {
+        certRef: req.verification_code || `VFSTR-LOAN-${req.student_id}`,
+        sealSubtext: `${req.bank_name} Loan Mandate | Code: ${req.verification_code || "VFSTR-LOAN-VERIFIED"}`,
+        purposeNote: `Bank Education Loan Processing for ${req.bank_name}`,
+      },
+    });
   }
 
   const issuedCount = requests.filter((r) => r.status === "ISSUED").length;
@@ -936,6 +901,17 @@ export function BankLoanDeskView() {
           )}
         </CardContent>
       </Card>
+
+      {/* In-App Document Viewer Modal */}
+      {viewerDoc && (
+        <DocumentViewerModal
+          isOpen={!!viewerDoc}
+          onClose={() => setViewerDoc(null)}
+          docType={viewerDoc.docType}
+          student={viewerDoc.studentId}
+          options={viewerDoc.options}
+        />
+      )}
     </div>
   );
 }

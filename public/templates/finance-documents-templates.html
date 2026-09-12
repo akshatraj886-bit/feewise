@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Finance Document Templates — Color-Coded by Type</title>
+<style>
+  /* =====================================================================
+     FINANCE DOCUMENT TEMPLATES — one structure, color-coded by doc type
+     =====================================================================
+     HOW THIS WORKS FOR YOUR SITE:
+     - Every document uses the SAME html skeleton (letterhead / title /
+       info-grid / table / seal / signature / footer).
+     - Only the color + light background changes per document TYPE, set
+       via  <div class="sheet" data-type="noc"> ... </div>
+     - 5 types are wired up below. To add a new type, copy one
+       [data-type="..."] block and pick a new accent + tint pair.
+     - Replace every {{PLACEHOLDER}} with real data from your backend.
+     - Fee-table rows: duplicate the <tr> between ROW_START/ROW_END once
+       per fee head.
+
+     COLOR CODE KEY (used across the whole site so students learn it fast):
+       Bonafide / identity docs   -> BLUE    (trust, identity)
+       NOC / clearance docs       -> GREEN   (approved, cleared)
+       Reimbursement / claims     -> PURPLE  (claim / reimbursement)
+       Fee statement / ledger     -> INDIGO  (official record)
+       Tax certificate            -> TEAL    (compliance)
+     ===================================================================== */
+
+  :root{
+    --ink:        #1a2233;
+    --ink-soft:   #4b5568;
+    --line:       #e1e4ec;
+    --font-head:  'Source Serif Pro', Georgia, 'Times New Roman', serif;
+    --font-body:  'Inter', 'Segoe UI', Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html,body{ margin:0; padding:0; background:#e9ebf1; font-family: var(--font-body); }
+
+  .page-label{
+    max-width:800px; margin:32px auto 6px; padding:0 4px;
+    font-family: var(--font-body); font-size:12px; color:#6b7280;
+    text-transform:uppercase; letter-spacing:.6px;
+  }
+
+  .sheet{
+    width: 800px; max-width:100%; margin: 0 auto 28px;
+    background: var(--bg-page);
+    color: var(--ink-soft);
+    padding: 44px 52px 36px;
+    border: 1px solid var(--line);
+    position: relative;
+    border-top: 6px solid var(--brand);   /* the color-coding cue: top bar */
+  }
+
+  /* ---------- Letterhead ---------- */
+  .letterhead{ display:flex; align-items:flex-start; justify-content:space-between; gap:24px; padding-bottom:16px; border-bottom:1.5px solid var(--line); }
+  .letterhead-left{ display:flex; gap:14px; align-items:flex-start; }
+  .logo-slot{ width:50px; height:50px; flex:none; border-radius:6px; background:#fff; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:10px; color:#9aa2b1; overflow:hidden; }
+  .logo-slot img{ width:100%; height:100%; object-fit:contain; }
+  .org-name{ font-family:var(--font-head); font-size:18px; color:var(--ink); font-weight:600; line-height:1.25; margin:0; }
+  .org-sub{ font-size:11px; color:var(--ink-soft); margin-top:3px; line-height:1.5; }
+  .doc-meta{ text-align:right; font-size:11px; color:var(--ink-soft); white-space:nowrap; }
+  .doc-meta b{ color:var(--ink); }
+
+  /* ---------- Type badge — shows which color-coded category this is ---------- */
+  .type-badge{
+    display:inline-block; margin-top:10px; padding:4px 12px;
+    border-radius:3px; font-size:10.5px; font-weight:700; letter-spacing:.4px;
+    background: var(--tint); color: var(--brand);
+  }
+
+  /* ---------- Title ---------- */
+  .doc-title-wrap{ text-align:center; margin:24px 0 20px; }
+  .doc-title{ font-family:var(--font-head); font-size:21px; color:var(--brand); margin:0; }
+  .doc-subtitle{ font-size:12px; color:var(--ink-soft); margin-top:6px; }
+
+  /* ---------- Info grid — light tint background = the "type color" cue ---------- */
+  .info-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:10px 32px;
+    background: var(--tint); border:1px solid var(--tint-border);
+    border-radius:4px; padding:15px 20px; margin-bottom:20px; font-size:12.5px;
+  }
+  .info-item span.label{ display:block; font-size:10px; color:#7c8291; margin-bottom:2px; }
+  .info-item span.value{ color:var(--ink); font-weight:600; }
+
+  .body-text{ font-size:13px; line-height:1.7; color:var(--ink-soft); margin-bottom:18px; }
+  .body-text b{ color:var(--ink); }
+
+  /* ---------- Table ---------- */
+  table.doc-table{ width:100%; border-collapse:collapse; margin-bottom:16px; font-size:12.5px; }
+  table.doc-table th{ text-align:left; font-size:10px; color:#7c8291; text-transform:uppercase; letter-spacing:.4px; padding:8px 10px; border-bottom:2px solid var(--brand); }
+  table.doc-table td{ padding:8px 10px; border-bottom:1px solid var(--line); color:var(--ink); }
+  table.doc-table tr:last-child td{ border-bottom:none; }
+  table.doc-table td.num, table.doc-table th.num{ text-align:right; font-variant-numeric: tabular-nums; }
+  .status-cleared{ color:#1f7a4d; font-weight:600; }
+  .status-due{ color:#b3541e; font-weight:600; }
+  .row-total td{ border-top:2px solid var(--brand); font-weight:700; color:var(--brand); background:var(--tint); }
+
+  .stat-strip{ display:flex; gap:12px; margin-bottom:20px; }
+  .stat-card{ flex:1; border:1px solid var(--line); background:var(--tint); border-radius:4px; padding:11px 15px; }
+  .stat-card .label{ font-size:10px; color:#7c8291; }
+  .stat-card .amount{ font-family:var(--font-head); font-size:18px; color:var(--brand); margin-top:2px; }
+
+  /* ---------- Seal + signature ---------- */
+  .cert-row{ display:flex; justify-content:space-between; align-items:flex-end; margin-top:30px; gap:24px; }
+  .seal-box{ border:1px dashed var(--brand); background:var(--tint); border-radius:4px; padding:11px 16px; font-size:10.5px; color:var(--brand); text-align:center; line-height:1.6; min-width:210px; }
+  .seal-box .seal-title{ font-weight:700; letter-spacing:.3px; }
+  .signature{ text-align:right; font-size:12px; }
+  .signature .sig-line{ width:180px; border-top:1px solid var(--ink); margin:0 0 6px auto; padding-top:6px; font-weight:600; color:var(--ink); }
+  .signature .sig-role{ color:var(--ink-soft); font-size:11px; }
+
+  .doc-footer{ margin-top:22px; padding-top:10px; border-top:1px solid var(--line); font-size:10px; color:#9aa2b1; text-align:center; line-height:1.6; }
+
+  /* =====================================================================
+     COLOR-CODED TYPES — this is the part your site switches per document
+     ===================================================================== */
+  .sheet[data-type="bonafide"]{      --brand:#1d4ed8; --tint:#eaf1fd; --tint-border:#d3e2fa; --bg-page:#fbfcff; }
+  .sheet[data-type="noc"]{           --brand:#15803d; --tint:#e9f8ee; --tint-border:#cdedd8; --bg-page:#fbfdfc; }
+  .sheet[data-type="reimbursement"]{ --brand:#6d28d9; --tint:#f3edfc; --tint-border:#e2d3f7; --bg-page:#fcfbff; }
+  .sheet[data-type="statement"]{     --brand:#1e3a8a; --tint:#eceff9; --tint-border:#d6dcf2; --bg-page:#fbfbfe; }
+  .sheet[data-type="tax"]{           --brand:#0f766e; --tint:#e6f7f5; --tint-border:#c8ece7; --bg-page:#fafefd; }
+
+  @media print{
+    body{ background:#fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sheet{ border:none; margin:0 0 0; box-shadow:none; page-break-after:always; width:100%; max-width:100%; padding:20px 24px; }
+    .page-label{ display:none; }
+    .no-print{ display:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =================== 1. BONAFIDE CERTIFICATE — BLUE =================== -->
+<div class="page-label">Type: Bonafide Certificate</div>
+<div class="sheet" data-type="bonafide">
+  <div class="letterhead">
+    <div class="letterhead-left">
+      <div class="logo-slot"><img src="{{LOGO_URL}}" alt="logo" onerror="this.parentElement.textContent='LOGO'"></div>
+      <div>
+        <p class="org-name">{{ORG_NAME}}</p>
+        <div class="org-sub">{{ORG_TAGLINE}}<br>{{ORG_DEPARTMENT}}</div>
+      </div>
+    </div>
+    <div class="doc-meta"><div><b>Ref:</b> {{CERT_REF}}</div><div><b>Date:</b> {{DOC_DATE}}</div></div>
+  </div>
+  <div class="doc-title-wrap">
+    <span class="type-badge">BONAFIDE CERTIFICATE</span>
+    <h1 class="doc-title">{{DOC_TITLE}}</h1>
+    <div class="doc-subtitle">{{DOC_SUBTITLE}}</div>
+  </div>
+  <div class="info-grid">
+    <div class="info-item"><span class="label">Student Name</span><span class="value">{{STUDENT_NAME}}</span></div>
+    <div class="info-item"><span class="label">Academic Year</span><span class="value">{{ACADEMIC_YEAR}}</span></div>
+    <div class="info-item"><span class="label">Registration No.</span><span class="value">{{REG_NO}}</span></div>
+    <div class="info-item"><span class="label">Program</span><span class="value">{{PROGRAM}}</span></div>
+  </div>
+  <p class="body-text">{{BODY_PARAGRAPH}}</p>
+  <div class="cert-row">
+    <div class="seal-box"><div class="seal-title">{{ORG_SHORT_NAME}} — VERIFIED</div>{{SEAL_SUBTEXT}}</div>
+    <div class="signature"><div class="sig-line">{{SIGNATORY_NAME}}</div><div class="sig-role">{{SIGNATORY_ROLE}}</div></div>
+  </div>
+  <div class="doc-footer">{{FOOTER_NOTE}}</div>
+</div>
+
+<!-- =================== 2. NOC CERTIFICATE — GREEN =================== -->
+<div class="page-label">Type: No Objection Certificate (NOC)</div>
+<div class="sheet" data-type="noc">
+  <div class="letterhead">
+    <div class="letterhead-left">
+      <div class="logo-slot"><img src="{{LOGO_URL}}" alt="logo" onerror="this.parentElement.textContent='LOGO'"></div>
+      <div>
+        <p class="org-name">{{ORG_NAME}}</p>
+        <div class="org-sub">{{ORG_TAGLINE}}<br>{{ORG_DEPARTMENT}}</div>
+      </div>
+    </div>
+    <div class="doc-meta"><div><b>Ref:</b> {{CERT_REF}}</div><div><b>Date:</b> {{DOC_DATE}}</div></div>
+  </div>
+  <div class="doc-title-wrap">
+    <span class="type-badge">NO OBJECTION CERTIFICATE</span>
+    <h1 class="doc-title">{{DOC_TITLE}}</h1>
+    <div class="doc-subtitle">{{DOC_SUBTITLE}}</div>
+  </div>
+  <div class="info-grid">
+    <div class="info-item"><span class="label">Student Name</span><span class="value">{{STUDENT_NAME}}</span></div>
+    <div class="info-item"><span class="label">Batch / Cohort</span><span class="value">{{ACADEMIC_YEAR}}</span></div>
+    <div class="info-item"><span class="label">Registration No.</span><span class="value">{{REG_NO}}</span></div>
+    <div class="info-item"><span class="label">Current Dues</span><span class="value">{{TOTAL_DUE}}</span></div>
+  </div>
+  <p class="body-text">{{BODY_PARAGRAPH}}</p>
+  <table class="doc-table">
+    <thead><tr><th>Fee Head</th><th class="num">Demand</th><th class="num">Paid</th><th class="num">Balance</th></tr></thead>
+    <tbody>
+      <!-- ROW_START — repeat once per fee head -->
+      <tr><td>{{FEE_HEAD}}</td><td class="num">{{DEMAND_AMOUNT}}</td><td class="num">{{PAID_AMOUNT}}</td><td class="num">{{BALANCE_AMOUNT}}</td></tr>
+      <!-- ROW_END -->
+      <tr class="row-total"><td>Total</td><td class="num">{{TOTAL_DEMAND}}</td><td class="num">{{TOTAL_PAID}}</td><td class="num">{{TOTAL_DUE}}</td></tr>
+    </tbody>
+  </table>
+  <div class="cert-row">
+    <div class="seal-box"><div class="seal-title">CLEAR TO DISBURSE</div>{{SEAL_SUBTEXT}}</div>
+    <div class="signature"><div class="sig-line">{{SIGNATORY_NAME}}</div><div class="sig-role">{{SIGNATORY_ROLE}}</div></div>
+  </div>
+  <div class="doc-footer">{{FOOTER_NOTE}}</div>
+</div>
+
+<!-- =================== 3. FEE REIMBURSEMENT CERTIFICATE — PURPLE =================== -->
+<div class="page-label">Type: Fee Reimbursement Certificate</div>
+<div class="sheet" data-type="reimbursement">
+  <div class="letterhead">
+    <div class="letterhead-left">
+      <div class="logo-slot"><img src="{{LOGO_URL}}" alt="logo" onerror="this.parentElement.textContent='LOGO'"></div>
+      <div>
+        <p class="org-name">{{ORG_NAME}}</p>
+        <div class="org-sub">{{ORG_TAGLINE}}<br>{{ORG_DEPARTMENT}}</div>
+      </div>
+    </div>
+    <div class="doc-meta"><div><b>Ref:</b> {{CERT_REF}}</div><div><b>Date:</b> {{DOC_DATE}}</div></div>
+  </div>
+  <div class="doc-title-wrap">
+    <span class="type-badge">FEE REIMBURSEMENT CERTIFICATE</span>
+    <h1 class="doc-title">{{DOC_TITLE}}</h1>
+    <div class="doc-subtitle">{{DOC_SUBTITLE}}</div>
+  </div>
+  <div class="info-grid">
+    <div class="info-item"><span class="label">Student Name</span><span class="value">{{STUDENT_NAME}}</span></div>
+    <div class="info-item"><span class="label">Academic Period</span><span class="value">{{ACADEMIC_YEAR}}</span></div>
+    <div class="info-item"><span class="label">Registration No.</span><span class="value">{{REG_NO}}</span></div>
+    <div class="info-item"><span class="label">Total Paid to Date</span><span class="value">{{TOTAL_PAID}}</span></div>
+  </div>
+  <p class="body-text">{{BODY_PARAGRAPH}}</p>
+  <table class="doc-table">
+    <thead><tr><th>Fee Component</th><th>Status</th><th class="num">Demand</th><th class="num">Amount Paid</th></tr></thead>
+    <tbody>
+      <!-- ROW_START — repeat once per fee head -->
+      <tr><td>{{FEE_HEAD}}</td><td class="{{STATUS_CLASS}}">{{STATUS_LABEL}}</td><td class="num">{{DEMAND_AMOUNT}}</td><td class="num">{{PAID_AMOUNT}}</td></tr>
+      <!-- ROW_END -->
+      <tr class="row-total"><td colspan="3">Total Claimable</td><td class="num">{{TOTAL_PAID}}</td></tr>
+    </tbody>
+  </table>
+  <div class="cert-row">
+    <div class="seal-box"><div class="seal-title">CERTIFIED &amp; AUTHENTICATED</div>{{SEAL_SUBTEXT}}</div>
+    <div class="signature"><div class="sig-line">{{SIGNATORY_NAME}}</div><div class="sig-role">{{SIGNATORY_ROLE}}</div></div>
+  </div>
+  <div class="doc-footer">{{FOOTER_NOTE}}</div>
+</div>
+
+<!-- =================== 4. FEE STATEMENT — INDIGO =================== -->
+<div class="page-label">Type: Official Fee Statement</div>
+<div class="sheet" data-type="statement">
+  <div class="letterhead">
+    <div class="letterhead-left">
+      <div class="logo-slot"><img src="{{LOGO_URL}}" alt="logo" onerror="this.parentElement.textContent='LOGO'"></div>
+      <div>
+        <p class="org-name">{{ORG_NAME}}</p>
+        <div class="org-sub">{{ORG_TAGLINE}}<br>{{ORG_DEPARTMENT}}</div>
+      </div>
+    </div>
+    <div class="doc-meta"><div><b>Ref:</b> {{CERT_REF}}</div><div><b>Date:</b> {{DOC_DATE}}</div></div>
+  </div>
+  <div class="doc-title-wrap">
+    <span class="type-badge">OFFICIAL FEE STATEMENT</span>
+    <h1 class="doc-title">{{DOC_TITLE}}</h1>
+    <div class="doc-subtitle">{{DOC_SUBTITLE}}</div>
+  </div>
+  <div class="info-grid">
+    <div class="info-item"><span class="label">Student Name</span><span class="value">{{STUDENT_NAME}}</span></div>
+    <div class="info-item"><span class="label">Programme</span><span class="value">{{PROGRAM}}</span></div>
+    <div class="info-item"><span class="label">Student ID</span><span class="value">{{REG_NO}}</span></div>
+    <div class="info-item"><span class="label">Academic Year</span><span class="value">{{ACADEMIC_YEAR}}</span></div>
+  </div>
+  <div class="stat-strip">
+    <div class="stat-card"><div class="label">Final Demand</div><div class="amount">{{TOTAL_DEMAND}}</div></div>
+    <div class="stat-card"><div class="label">Total Paid</div><div class="amount">{{TOTAL_PAID}}</div></div>
+    <div class="stat-card"><div class="label">Outstanding</div><div class="amount">{{TOTAL_DUE}}</div></div>
+  </div>
+  <table class="doc-table">
+    <thead><tr><th>Fee Head</th><th class="num">Gross</th><th class="num">Demand</th><th class="num">Paid</th><th class="num">Outstanding</th></tr></thead>
+    <tbody>
+      <!-- ROW_START — repeat once per fee head -->
+      <tr><td>{{FEE_HEAD}}</td><td class="num">{{GROSS_AMOUNT}}</td><td class="num">{{DEMAND_AMOUNT}}</td><td class="num">{{PAID_AMOUNT}}</td><td class="num">{{BALANCE_AMOUNT}}</td></tr>
+      <!-- ROW_END -->
+      <tr class="row-total"><td>Total</td><td class="num">{{TOTAL_GROSS}}</td><td class="num">{{TOTAL_DEMAND}}</td><td class="num">{{TOTAL_PAID}}</td><td class="num">{{TOTAL_DUE}}</td></tr>
+    </tbody>
+  </table>
+  <div class="doc-footer">{{FOOTER_NOTE}}</div>
+</div>
+
+<!-- =================== 5. TUITION FEE TAX CERTIFICATE — TEAL =================== -->
+<div class="page-label">Type: Tuition Fee Tax Certificate</div>
+<div class="sheet" data-type="tax">
+  <div class="letterhead">
+    <div class="letterhead-left">
+      <div class="logo-slot"><img src="{{LOGO_URL}}" alt="logo" onerror="this.parentElement.textContent='LOGO'"></div>
+      <div>
+        <p class="org-name">{{ORG_NAME}}</p>
+        <div class="org-sub">{{ORG_TAGLINE}}<br>{{ORG_DEPARTMENT}}</div>
+      </div>
+    </div>
+    <div class="doc-meta"><div><b>Ref:</b> {{CERT_REF}}</div><div><b>Date Issued:</b> {{DOC_DATE}}</div></div>
+  </div>
+  <div class="doc-title-wrap">
+    <span class="type-badge">TAX CERTIFICATE</span>
+    <h1 class="doc-title">{{DOC_TITLE}}</h1>
+    <div class="doc-subtitle">{{DOC_SUBTITLE}}</div>
+  </div>
+  <div class="info-grid">
+    <div class="info-item"><span class="label">Student Name</span><span class="value">{{STUDENT_NAME}}</span></div>
+    <div class="info-item"><span class="label">Academic Year</span><span class="value">{{ACADEMIC_YEAR}}</span></div>
+    <div class="info-item"><span class="label">Registration No.</span><span class="value">{{REG_NO}}</span></div>
+    <div class="info-item"><span class="label">Fee Status</span><span class="value">{{FEE_STATUS}}</span></div>
+  </div>
+  <p class="body-text">{{BODY_PARAGRAPH}}</p>
+  <table class="doc-table">
+    <thead><tr><th>Fee Category</th><th>Applicable Provision</th><th class="num">Amount Paid</th></tr></thead>
+    <tbody>
+      <!-- ROW_START — repeat once per fee category -->
+      <tr><td>{{FEE_HEAD}}</td><td>{{PROVISION}}</td><td class="num">{{PAID_AMOUNT}}</td></tr>
+      <!-- ROW_END -->
+      <tr class="row-total"><td colspan="2">Total Institutional Fees Deposited</td><td class="num">{{TOTAL_PAID}}</td></tr>
+    </tbody>
+  </table>
+  <div class="cert-row">
+    <div class="seal-box"><div class="seal-title">DIGITAL TREASURY SEAL</div>{{SEAL_SUBTEXT}}</div>
+    <div class="signature"><div class="sig-line">{{SIGNATORY_NAME}}</div><div class="sig-role">{{SIGNATORY_ROLE}}</div></div>
+  </div>
+  <div class="doc-footer">{{FOOTER_NOTE}}</div>
+</div>
+
+</body>
+</html>

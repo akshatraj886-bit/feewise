@@ -2119,13 +2119,6 @@ export function printStatementPdf(opts: any) {
       Office of the Comptroller of Finance & Accounts · Vadlamudi Campus, Guntur
     </div>
   </div>
-  <script>
-    window.addEventListener("load", function() {
-      setTimeout(function() {
-        try { window.print(); } catch (e) {}
-      }, 350);
-    });
-  </script>
 </body>
 </html>`;
 
@@ -2288,13 +2281,6 @@ export function printReceiptPdf(opts: any) {
       Comptroller of Finance & Accounts · Vadlamudi, Guntur
     </div>
   </div>
-  <script>
-    window.addEventListener("load", function() {
-      setTimeout(function() {
-        try { window.print(); } catch (e) {}
-      }, 350);
-    });
-  </script>
 </body>
 </html>`;
 
