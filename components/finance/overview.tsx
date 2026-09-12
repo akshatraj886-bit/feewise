@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 import { Area, AreaChart, CartesianGrid, ReferenceLine, XAxis, YAxis } from "recharts";
 import {
@@ -8,6 +8,8 @@ import {
   ArrowDownRight,
   ArrowUpRight,
   ArrowRight,
+  Building2,
+  CalendarClock,
   CircleCheck,
   Coins,
   CreditCard,
@@ -18,6 +20,7 @@ import {
   Sparkles,
   TrendingUp,
   Wallet,
+  Bell,
 } from "lucide-react";
 import {
   Card,
@@ -33,8 +36,10 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Button } from "@/components/ui/button";
-import { ageing, feeHeads } from "@/lib/finance-data";
+import { ageing as initialAgeing, feeHeads as initialFeeHeads, type View } from "@/lib/finance-data";
 import { filteredCollections } from "@/lib/finance-service";
+import { useLiveFinance } from "@/context/live-finance-context";
+import { getSqlDatabaseState, type SqlDatabaseState } from "@/lib/sql-store";
 
 export function Hero({ onAsk }: { onAsk: () => void }) {
   return (
@@ -84,7 +89,7 @@ export function Hero({ onAsk }: { onAsk: () => void }) {
 
 function Counter({
   value,
-  decimals = 2,
+  decimals = 1,
 }: {
   value: number;
   decimals?: number;
@@ -105,50 +110,6 @@ function Counter({
   return <span>{shown.toFixed(decimals)}</span>;
 }
 
-const kpis = [
-  {
-    label: "Total fee demand",
-    value: 485.6,
-    icon: Wallet,
-    trend: "+7.4%",
-    note: "AY 2026–27 target",
-    tone: "primary",
-    bars: [14, 22, 19, 28, 25, 33, 38, 35, 44, 49],
-    direction: ArrowUpRight,
-  },
-  {
-    label: "Collected",
-    value: 412.4,
-    icon: CreditCard,
-    trend: "84.92%",
-    note: "collection rate",
-    tone: "success",
-    bars: [12, 17, 24, 20, 30, 27, 36, 34, 41, 48],
-    direction: ArrowUpRight,
-  },
-  {
-    label: "Outstanding",
-    value: 73.2,
-    icon: Coins,
-    trend: "15.08%",
-    note: "unrealized dues",
-    tone: "warning",
-    bars: [42, 38, 35, 31, 28, 26, 22, 25, 18, 14],
-    direction: ArrowDownRight,
-  },
-  {
-    label: "Reconciliation",
-    value: 99.2,
-    icon: RefreshCw,
-    trend: "127",
-    note: "gateway queue",
-    tone: "violet",
-    bars: [15, 20, 23, 29, 26, 35, 32, 40, 38, 48],
-    direction: ArrowUpRight,
-  },
-];
-import { useLiveFinance } from "@/context/live-finance-context";
-
 export function KpiCards({
   onNavigate,
 }: {
@@ -156,7 +117,7 @@ export function KpiCards({
     view: "Payments" | "Reconciliation" | "Students" | "Fee Structure",
   ) => void;
 }) {
-  const { totalDemand, totalCollected, totalOutstanding, collectionRate, students } = useLiveFinance();
+  const { totalDemand, totalCollected, totalOutstanding, collectionRate, students, transactions } = useLiveFinance();
 
   const demandCr = totalDemand / 10000000;
   const collectedCr = totalCollected / 10000000;
@@ -170,6 +131,7 @@ export function KpiCards({
       trend: "+8.4%",
       note: `${students.length} students`,
       tone: "primary",
+      unit: " Cr",
       bars: [12, 20, 18, 28, 23, 31, 36, 33, 43, 48],
       direction: ArrowUpRight,
     },
@@ -180,6 +142,7 @@ export function KpiCards({
       trend: `${collectionRate.toFixed(1)}%`,
       note: "collection rate",
       tone: "success",
+      unit: " Cr",
       bars: [10, 15, 23, 18, 29, 25, 35, 32, 39, 47],
       direction: ArrowUpRight,
     },
@@ -190,6 +153,7 @@ export function KpiCards({
       trend: `${(100 - collectionRate).toFixed(1)}%`,
       note: "due balance",
       tone: "warning",
+      unit: " Cr",
       bars: [45, 40, 43, 33, 35, 29, 24, 29, 19, 16],
       direction: ArrowDownRight,
     },
@@ -197,9 +161,10 @@ export function KpiCards({
       label: "Reconciliation",
       value: 97.8,
       icon: RefreshCw,
-      trend: "127",
-      note: "transactions pending",
+      trend: `${transactions.filter((t) => t.status === "Mismatch").length || 1}`,
+      note: "mismatch pending",
       tone: "violet",
+      unit: "%",
       bars: [13, 18, 21, 27, 24, 33, 30, 39, 36, 46],
       direction: ArrowUpRight,
     },
@@ -241,8 +206,8 @@ export function KpiCards({
           </div>
           <div className="mt-2 text-[31px] font-semibold tracking-[-0.045em] tabular-nums">
             {index !== 3 && "₹"}
-            <Counter value={item.value} decimals={index === 3 ? 1 : 1} />
-            <span className="text-[25px]">{index === 3 ? "%" : " L"}</span>
+            <Counter value={item.value} decimals={index === 3 ? 1 : 2} />
+            <span className="text-[25px]">{item.unit}</span>
           </div>
           <div className="mt-2 flex items-center gap-1.5 text-sm">
             <span
@@ -262,24 +227,76 @@ export function KpiCards({
   );
 }
 
+export function FeeHeadOverview({
+  onNavigate,
+}: {
+  onNavigate?: (view: View) => void;
+}) {
+  const { feeAllocations } = useLiveFinance();
 
-export function FeeHeadOverview() {
+  const dynamicHeads = useMemo(() => {
+    const totals: Record<string, number> = {
+      Tuition: 0,
+      Hostel: 0,
+      Examination: 0,
+      Transport: 0,
+      Laboratory: 0,
+      Library: 0,
+    };
+    if (feeAllocations && Object.keys(feeAllocations).length > 0) {
+      Object.values(feeAllocations).forEach((allocList) => {
+        allocList.forEach((item) => {
+          if (totals[item.head] !== undefined) {
+            totals[item.head] += item.paid;
+          }
+        });
+      });
+    }
+
+    const hasLive = Object.values(totals).some((v) => v > 0);
+    if (!hasLive) {
+      return initialFeeHeads;
+    }
+
+    return [
+      { name: "Tuition", amount: totals.Tuition / 100000, color: "var(--primary)" },
+      { name: "Hostel", amount: totals.Hostel / 100000, color: "var(--violet)" },
+      { name: "Examination", amount: totals.Examination / 100000, color: "var(--chart-3)" },
+      { name: "Transport", amount: totals.Transport / 100000, color: "var(--chart-4)" },
+      { name: "Laboratory", amount: totals.Laboratory / 100000, color: "var(--chart-5)" },
+      { name: "Library", amount: totals.Library / 100000, color: "var(--chart-2)" },
+    ];
+  }, [feeAllocations]);
+
+  const maxAmount = Math.max(...dynamicHeads.map((h) => h.amount), 1);
+
   return (
-    <Card className="panel h-full">
+    <Card className="panel h-full flex flex-col justify-between">
       <CardHeader>
-        <CardTitle>Fee Head Overview</CardTitle>
-        <CardDescription>Collection across fee categories</CardDescription>
-        <CardAction>
-          <GraduationCap className="size-4 text-muted-foreground" />
-        </CardAction>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle>Fee Head Overview</CardTitle>
+            <CardDescription>Live collection across fee categories</CardDescription>
+          </div>
+          {onNavigate && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => onNavigate("Fee Structure")}
+              className="text-xs text-primary gap-1 cursor-pointer h-7 px-2 hover:bg-primary/10"
+            >
+              See details <ArrowRight className="size-3" />
+            </Button>
+          )}
+        </div>
       </CardHeader>
-      <CardContent>
-        <div className="flex flex-col gap-[17px]">
-          {feeHeads.map((fee, index) => (
+      <CardContent className="flex flex-col justify-between flex-1">
+        <div className="flex flex-col gap-[15px]">
+          {dynamicHeads.map((fee, index) => (
             <div key={fee.name}>
-              <div className="mb-2 flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">{fee.name}</span>
-                <span className="font-medium tabular-nums">
+              <div className="mb-1.5 flex items-center justify-between text-sm">
+                <span className="text-muted-foreground text-xs">{fee.name}</span>
+                <span className="font-medium text-xs tabular-nums">
                   ₹{fee.amount.toFixed(1)} L
                 </span>
               </div>
@@ -287,7 +304,7 @@ export function FeeHeadOverview() {
                 <div
                   className="bar-grow h-full rounded-full"
                   style={{
-                    width: `${(fee.amount / 285.5) * 100}%`,
+                    width: `${Math.min(100, (fee.amount / maxAmount) * 100)}%`,
                     background: fee.color,
                     animationDelay: `${index * 70}ms`,
                   }}
@@ -296,9 +313,19 @@ export function FeeHeadOverview() {
             </div>
           ))}
         </div>
-        <p className="mt-5 flex items-center gap-1.5 text-sm text-muted-foreground">
-          <Info className="size-3.5" /> ₹5.0 L in other fee heads (Registration, Caution Deposit &amp; Alumni)
-        </p>
+        <div className="mt-4 pt-3 border-t flex items-center justify-between text-xs text-muted-foreground">
+          <span className="flex items-center gap-1.5">
+            <Info className="size-3.5 text-primary" /> Across all 11 programmes
+          </span>
+          {onNavigate && (
+            <button
+              onClick={() => onNavigate("Fee Structure")}
+              className="font-medium text-primary hover:underline cursor-pointer"
+            >
+              11 Programmes →
+            </button>
+          )}
+        </div>
       </CardContent>
     </Card>
   );
@@ -314,6 +341,7 @@ export function CollectionIntelligence() {
   const collected = actualData.reduce((sum, row) => sum + (row.collected ?? 0), 0);
   const demand = actualData.reduce((sum, row) => sum + (row.demand ?? 0), 0);
   const projectedDemand = data.filter((d) => d.projected).reduce((sum, row) => sum + (row.demand ?? 0), 0);
+
   return (
     <Card className="panel h-full">
       <CardHeader>
@@ -350,6 +378,9 @@ export function CollectionIntelligence() {
             <option>B.Tech Civil</option>
             <option>B.Tech IT</option>
             <option>MBA</option>
+            <option>MCA</option>
+            <option>BBA</option>
+            <option>BCA</option>
             <option>Biotechnology</option>
           </select>
           <select
@@ -372,6 +403,7 @@ export function CollectionIntelligence() {
             <option>All fee heads</option>
             <option>Tuition</option>
             <option>Hostel</option>
+            <option>Examination</option>
           </select>
         </div>
         <div className="mt-5 flex items-center justify-between">
@@ -448,14 +480,15 @@ export function CollectionIntelligence() {
               stroke="var(--border)"
               strokeDasharray="4 3"
               label={{ value: "Projected", position: "insideTopRight", fontSize: 10, fill: "var(--muted-foreground)", dy: -4 }}
+              ifOverflow="visible"
             />
             <Area
               type="monotone"
               dataKey="demand"
               stroke="var(--color-demand)"
-              strokeWidth={1.8}
-              strokeDasharray="5 4"
-              fill="transparent"
+              strokeDasharray="4 4"
+              fill="url(#projectedFill)"
+              strokeWidth={2}
               isAnimationActive={false}
               connectNulls
             />
@@ -490,6 +523,13 @@ export function CollectionIntelligence() {
 }
 
 export function OutstandingAgeing({ onOverdue }: { onOverdue: () => void }) {
+  const { students, totalOutstanding } = useLiveFinance();
+
+  const totalOutstandingLakhs = (totalOutstanding || 7320000) / 100000;
+  const overdueStudents = useMemo(() => {
+    return students.filter((s) => (s.overdue || 0) > 0);
+  }, [students]);
+
   return (
     <Card className="panel">
       <CardHeader>
@@ -501,8 +541,8 @@ export function OutstandingAgeing({ onOverdue }: { onOverdue: () => void }) {
       </CardHeader>
       <CardContent>
         <div className="flex items-baseline gap-2">
-          <span className="text-[28px] font-semibold tracking-tight">
-            ₹73.20 L
+          <span className="text-[28px] font-semibold tracking-tight tabular-nums">
+            ₹{totalOutstandingLakhs.toFixed(2)} L
           </span>
           <span className="text-sm text-muted-foreground">
             total outstanding
@@ -511,9 +551,9 @@ export function OutstandingAgeing({ onOverdue }: { onOverdue: () => void }) {
         <div
           className="mt-4 flex h-3 overflow-hidden rounded-full gap-1"
           role="img"
-          aria-label="Outstanding ageing: 0–30 days 31.50 lakh; 31–60 days 19.80 lakh; 61–90 days 13.40 lakh; 90+ days 8.50 lakh"
+          aria-label="Outstanding ageing distribution"
         >
-          {ageing.map((item) => (
+          {initialAgeing.map((item) => (
             <div
               key={item.label}
               className="bar-grow rounded-sm"
@@ -525,7 +565,7 @@ export function OutstandingAgeing({ onOverdue }: { onOverdue: () => void }) {
           ))}
         </div>
         <div className="mt-5 grid grid-cols-2 gap-x-5 gap-y-4">
-          {ageing.map((item) => (
+          {initialAgeing.map((item) => (
             <div key={item.label}>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <i
@@ -534,7 +574,7 @@ export function OutstandingAgeing({ onOverdue }: { onOverdue: () => void }) {
                 />
                 {item.label}
               </div>
-              <p className="mt-1 pl-4 text-base font-medium">
+              <p className="mt-1 pl-4 text-base font-medium tabular-nums">
                 ₹{item.amount.toFixed(1)} L
               </p>
             </div>
@@ -542,9 +582,9 @@ export function OutstandingAgeing({ onOverdue }: { onOverdue: () => void }) {
         </div>
         <button
           onClick={onOverdue}
-          className="mt-5 flex w-full items-center justify-between rounded-lg bg-warning/8 px-3 py-2.5 text-left text-sm text-warning"
+          className="mt-5 flex w-full items-center justify-between rounded-lg bg-warning/10 border border-warning/20 px-3 py-2.5 text-left text-xs font-medium text-warning hover:bg-warning/15 transition-colors cursor-pointer"
         >
-          <span>84 students have dues over 90 days</span>
+          <span>{overdueStudents.length || 84} students have dues over 90 days</span>
           <ArrowRight className="size-4 shrink-0" />
         </button>
       </CardContent>
@@ -556,39 +596,56 @@ export function FinanceIntelligence({
   onNavigate,
   onMismatch,
 }: {
-  onNavigate: (view: "Students" | "Refunds" | "Reconciliation") => void;
+  onNavigate: (view: "Students" | "Refunds" | "Reconciliation" | "Payments") => void;
   onMismatch: () => void;
 }) {
+  const { students, transactions } = useLiveFinance();
+  const [refundsCount, setRefundsCount] = useState(5);
+
+  useEffect(() => {
+    try {
+      const db = getSqlDatabaseState();
+      if (db && db.refunds) {
+        setRefundsCount(db.refunds.filter((r) => r.status === "REQUESTED").length);
+      }
+    } catch {}
+  }, []);
+
+  const mismatchCount = transactions.filter((t) => t.status === "Mismatch").length;
+  const overdueCount = students.filter((s) => (s.overdue || 0) > 0).length;
+  const matchedCount = transactions.filter((t) => t.status === "Matched").length;
+
   const alerts = [
     {
       icon: RefreshCw,
-      count: "23 payment mismatches",
-      detail: "require your review",
+      count: `${mismatchCount || 1} payment mismatch`,
+      detail: "requires reconciliation audit",
       tone: "warning",
       action: onMismatch,
     },
     {
       icon: Wallet,
-      count: "84 students",
-      detail: "have dues older than 90 days",
+      count: `${overdueCount || 84} students`,
+      detail: "have outstanding fee balances",
       tone: "destructive",
       action: () => onNavigate("Students"),
     },
     {
       icon: CircleCheck,
-      count: "1,284 payments",
-      detail: "reconciled today",
+      count: `${matchedCount || 1156} payments`,
+      detail: "reconciled & verified in ledger",
       tone: "success",
-      action: () => onNavigate("Reconciliation"),
+      action: () => onNavigate("Payments"),
     },
     {
       icon: ShieldCheck,
-      count: "14 refund requests",
-      detail: "awaiting approval",
+      count: `${refundsCount || 5} refund requests`,
+      detail: "awaiting authorized officer approval",
       tone: "primary",
       action: () => onNavigate("Refunds"),
     },
   ];
+
   return (
     <Card className="panel">
       <CardHeader>
@@ -605,7 +662,7 @@ export function FinanceIntelligence({
             <button
               onClick={alert.action}
               key={alert.count}
-              className="group flex items-center gap-3 text-left"
+              className="group flex items-center gap-3 text-left cursor-pointer hover:opacity-85 transition-opacity"
             >
               <span
                 className="flex size-9 shrink-0 items-center justify-center rounded-lg"
@@ -619,7 +676,7 @@ export function FinanceIntelligence({
               <span className="flex-1 text-sm leading-relaxed">
                 <span className="font-medium">{alert.count}</span>
                 <br />
-                <span className="text-muted-foreground">{alert.detail}</span>
+                <span className="text-muted-foreground text-xs">{alert.detail}</span>
               </span>
               <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </button>
@@ -627,5 +684,123 @@ export function FinanceIntelligence({
         </div>
       </CardContent>
     </Card>
+  );
+}
+
+export function LiveModuleHub({
+  onNavigate,
+}: {
+  onNavigate: (view: View) => void;
+}) {
+  const [sqlState, setSqlState] = useState<SqlDatabaseState | null>(null);
+
+  useEffect(() => {
+    try {
+      setSqlState(getSqlDatabaseState());
+    } catch {}
+    const handleUpdate = () => {
+      try {
+        setSqlState(getSqlDatabaseState());
+      } catch {}
+    };
+    window.addEventListener("feewise_sql_store_updated", handleUpdate);
+    return () => window.removeEventListener("feewise_sql_store_updated", handleUpdate);
+  }, []);
+
+  const reminders = sqlState?.reminder_dispatches || [];
+  const suppressedReminders = reminders.filter((r) => r.suppressed).length;
+  const scholarshipRisks = sqlState?.scholarship_risks || [];
+  const highRisks = scholarshipRisks.filter((s) => s.risk_level === "AT_RISK" || s.risk_level === "LIKELY_LOSS").length;
+  const loanRequests = sqlState?.loan_requests || [];
+  const pendingLoans = loanRequests.filter((l) => l.status === "REQUESTED" || l.status === "IN_PROGRESS").length;
+
+  const modules = [
+    {
+      id: "Instalments" as View,
+      title: "Instalments Plan Desk",
+      desc: "Split payments, milestone schedules & auto grace periods",
+      badge: "3-Tranche Active",
+      badgeTone: "bg-emerald-500/10 text-emerald-500 border-emerald-500/20",
+      stat: "504 Students",
+      substat: "0 penalty under 7-day grace",
+      icon: CalendarClock,
+    },
+    {
+      id: "Smart Reminders" as View,
+      title: "Smart Reminders Engine",
+      desc: "Policy-governed auto-suppression & student distress prevention",
+      badge: `${suppressedReminders || 4} Suppressed`,
+      badgeTone: "bg-amber-500/10 text-amber-500 border-amber-500/20",
+      stat: `${reminders.length || 12} Dispatches`,
+      substat: "Suppressed against exams & aid",
+      icon: Bell,
+    },
+    {
+      id: "Scholarship Risks" as View,
+      title: "Scholarship Retention Risks",
+      desc: "Early-warning academic tracking for CGPA & attendance thresholds",
+      badge: `${highRisks || 3} High Risk`,
+      badgeTone: "bg-destructive/10 text-destructive border-destructive/20",
+      stat: `${scholarshipRisks.length || 8} Tracked`,
+      substat: "CGPA < 7.50 / Attendance < 75%",
+      icon: GraduationCap,
+    },
+    {
+      id: "Loan Requests" as View,
+      title: "Bank Education Loan Desk",
+      desc: "Official bank estimation, bonafide & NOC issuance desk",
+      badge: `${pendingLoans || 3} Pending`,
+      badgeTone: "bg-violet-500/10 text-violet-500 border-violet-500/20",
+      stat: `${loanRequests.length || 6} Requests`,
+      substat: "SBI, PNB & Canara verification",
+      icon: Building2,
+    },
+  ];
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Sparkles className="size-4 text-primary" />
+          <h3 className="text-sm font-semibold tracking-tight text-foreground">
+            Quick Module Hub &amp; Live Oversight
+          </h3>
+        </div>
+        <span className="text-xs text-muted-foreground hidden sm:inline">
+          Click any card to open full module
+        </span>
+      </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {modules.map((m) => (
+          <button
+            key={m.id}
+            onClick={() => onNavigate(m.id)}
+            className="group relative flex flex-col justify-between rounded-xl border border-border bg-card p-4 text-left transition-all hover:border-primary/50 hover:bg-muted/20 cursor-pointer shadow-2xs"
+          >
+            <div>
+              <div className="flex items-center justify-between gap-2">
+                <span className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <m.icon className="size-4" />
+                </span>
+                <span className={`text-[10px] font-mono rounded px-1.5 py-0.5 border ${m.badgeTone}`}>
+                  {m.badge}
+                </span>
+              </div>
+              <h4 className="mt-3 font-semibold text-xs text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
+                <span>{m.title}</span>
+                <ArrowRight className="size-3 text-muted-foreground group-hover:translate-x-0.5 group-hover:text-primary transition-all" />
+              </h4>
+              <p className="mt-1 text-[11px] text-muted-foreground line-clamp-2 leading-relaxed">
+                {m.desc}
+              </p>
+            </div>
+            <div className="mt-4 border-t pt-2.5 flex items-center justify-between text-xs">
+              <span className="font-semibold text-foreground text-xs">{m.stat}</span>
+              <span className="text-[10px] text-muted-foreground">{m.substat}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }

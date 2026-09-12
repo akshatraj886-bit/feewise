@@ -70,6 +70,7 @@ import {
   CollectionIntelligence,
   OutstandingAgeing,
   FinanceIntelligence,
+  LiveModuleHub,
 } from "./overview";
 import { FinanceAssistant, FullPageAiAssistant, FloatingAiAssistant } from "./assistant";
 import { AuditLog, ReconciliationCenter, RefundApproval } from "./operations";
@@ -509,7 +510,7 @@ export function FinanceDashboard() {
             <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1.95fr)_minmax(340px,1fr)]">
               <div className="flex min-w-0 flex-col gap-5">
                 <div className="grid gap-5 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.45fr)]">
-                  <FeeHeadOverview />
+                  <FeeHeadOverview onNavigate={navigate} />
                   <CollectionIntelligence />
                 </div>
                 <ReconciliationCenter
@@ -518,23 +519,10 @@ export function FinanceDashboard() {
                   onViewAll={() => navigate("Reconciliation")}
                   reviewed={investigationPrepared}
                 />
-                <div className="grid items-stretch gap-5 md:grid-cols-2">
-                  <OutstandingAgeing
-                    onOverdue={() => navigate("Students", true)}
-                  />
-                  <RefundApproval
-                    onReview={(intent = "review") => setRefundIntent(intent)}
-                    status={refundStatus}
-                  />
-                </div>
               </div>
               <aside className="flex min-w-0 flex-col gap-5">
-                <FinanceAssistant
-                  onStudent={() => openStudent(students[0])}
-                  onRefund={() => setRefundIntent("review")}
-                  onReconcile={() => reviewTransaction(transactions[1])}
-                  onExpandToPage={(query) => handleAskAi(query)}
-                  onOpenFloating={(query) => handleOpenFloatingAi(query)}
+                <OutstandingAgeing
+                  onOverdue={() => navigate("Students", true)}
                 />
                 <FinanceIntelligence
                   onNavigate={(next) => navigate(next, next === "Students")}
@@ -554,6 +542,11 @@ export function FinanceDashboard() {
                 </div>
               </aside>
             </div>
+            <LiveModuleHub onNavigate={navigate} />
+            <RefundApproval
+              onReview={(intent = "review") => setRefundIntent(intent)}
+              status={refundStatus}
+            />
             <SqlSchemaInspector />
             <AuditLog entries={audit} />
           </div>
