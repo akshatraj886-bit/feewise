@@ -137,41 +137,26 @@ export async function queryFinanceAi(
     }
   }
 
-  // If user provided a custom API key, or if GEMINI_API_KEY is configured in env
-  const effectiveKey = (
-    (apiKey && apiKey.trim().length > 10 ? apiKey.trim() : "") ||
-    (typeof process !== "undefined" ? (process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.GEMINI_API_KEY || "") : "") ||
-    (typeof window !== "undefined" ? (localStorage.getItem("feewise_gemini_api_key") || "") : "")
-  ).trim();
-
-  if (effectiveKey && effectiveKey.length > 10) {
-    try {
-      const response = await callLiveGeminiApi(query, history, effectiveKey, context);
-      if (response) return response;
-    } catch (err) {
-      console.warn("Live Gemini API call error, falling back to local autonomous engine:", err);
-    }
-  }
-
   // =========================================================================
-  // 1. RBAC SECURITY ENFORCEMENT
+  // 1. RBAC SECURITY ENFORCEMENT (Role Gatekeeper)
   // =========================================================================
   if (isStudentRole) {
     // Prohibit student from asking for other students or institutional macro audit logs
     const requestedOtherStudent = findMentionedStudents(query).some(s => s.id !== currentStudentId);
-    const askedForMacroReport = /all students|saare students|university report|macro treasury|audit log|schema inspector|other students|unauthorized/i.test(lower);
+    const asksAboutPeers = /other student|dusre bache|dusre student|classmate|sabka|all student|total student|everyone|peers|any other|kisi aur/i.test(lower);
+    const asksMacroTreasury = /macro|treasury|total collection|total revenue|kitna paisa|kitna revenue|kitna kamaya|university report|audit log|schema inspector|reconciliation mismatch|all refund|admin|officer/i.test(lower);
 
-    if (requestedOtherStudent || askedForMacroReport) {
+    if (requestedOtherStudent || asksAboutPeers || asksMacroTreasury) {
       if (inHindi) {
         return {
           role: "assistant",
-          content: "🔒 **Access Restricted (RBAC Policy):**\nAap Student Portal me authenticated hain. Data privacy aur security regulations ke tahat aap keval apna student fee record aur certificates dekh sakte hain. Anya students ya university-level audit reports ka access restricted hai.",
+          content: `🔒 **Access Restricted (Student Privacy Policy):**\n\nAap **Student Portal** me authenticated hain (${currentStudentId}). University bylaws aur Data Privacy Act ke tahat aap sirf aur sirf **apna individual fee account, payment history, instalment schedule aur certificates** dekh sakte hain.\n\n❌ Anya students ya university-level administrative/treasury data ka access sirf **CEO Administrator** aur **Finance Officer** ke paas hota hai.`,
           kind: "denied",
         };
       }
       return {
         role: "assistant",
-        content: "🔒 **Access Restricted (RBAC Policy):**\nYou are currently logged in as a student. Under institutional data privacy policy, students are authorized to access only their own individual fee schedule, dues, and certificates. University-wide audit logs and peer accounts are restricted.",
+        content: `🔒 **Access Restricted (Student Data Privacy Policy):**\n\nYou are currently authenticated in the **Student Portal** (${currentStudentId}). Under university regulations and institutional privacy policy, students are strictly authorized to view only their **own individual fee demand, payment receipts, instalments, and certificates**.\n\n❌ Access to peer records, university-wide collections, or administrative financial logs is restricted to the **CEO Administrator** and **Finance Officer**.`,
         kind: "denied",
       };
     }
@@ -218,9 +203,27 @@ export async function queryFinanceAi(
     }
     return {
       role: "assistant",
-      content: "⚠️ **Security & Audit Guardrail Active:**\nI am a read-only Autonomous Finance Copilot. While I can calculate, analyze, verify policy criteria, and navigate the application, executing actual fund transfers, payments, balance adjustments, or refund approvals strictly requires authenticated authorization from a designated Finance Officer with 2FA.",
+      content: "⚠️ **Security & Audit Guardrail Active:**\nI operate strictly as finDeck's read-only AI Assistant. I can assist with calculations, reconciliation audits, and automated UI navigation, but I am prohibited from executing financial transactions (such as payments, refunds, transfers, or balance alterations). Financial mutations require an authorized Finance Officer with 2FA verification.",
       kind: "denied",
     };
+  }
+
+  // =========================================================================
+  // 3. LIVE GEMINI LLM INTEGRATION (Role-Aware Context)
+  // =========================================================================
+  const effectiveKey = (
+    (apiKey && apiKey.trim().length > 10 ? apiKey.trim() : "") ||
+    (typeof process !== "undefined" ? (process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.GEMINI_API_KEY || "") : "") ||
+    (typeof window !== "undefined" ? (localStorage.getItem("feewise_gemini_api_key") || "") : "")
+  ).trim();
+
+  if (effectiveKey && effectiveKey.length > 10) {
+    try {
+      const response = await callLiveGeminiApi(query, history, effectiveKey, context);
+      if (response) return response;
+    } catch (err) {
+      console.warn("Live Gemini API call error, falling back to local autonomous engine:", err);
+    }
   }
 
   // =========================================================================
@@ -1036,14 +1039,46 @@ export async function queryFinanceAi(
 
 // Live Gemini API caller with elevated institutional system prompt & dynamic data grounding
 async function callLiveGeminiApi(prompt: string, history: AiChatMessage[], apiKey: string, context: AgentContext): Promise<AiChatMessage | null> {
-  const matchedStudents = findMentionedStudents(prompt);
-  let liveDataSnippet = "";
+  const isStudent = context.role === "student";
+  const studentId = context.currentStudentId || "251FA04E03";
 
-  if (matchedStudents.length > 0) {
-    const student = matchedStudents[0];
+  let systemPrompt = "";
+
+  if (isStudent) {
+    const student = students.find(s => s.id === studentId) || students[0];
     const unified = getUnifiedStudentContext(student.id);
-    if (unified.status === "matched") {
-      liveDataSnippet += `\n\nAUTHORITATIVE LIVE DATABASE RECORD FOR ${student.name} (${student.id}):
+
+    systemPrompt = `You are finDeck's Dedicated Personal Student Fee & Document Copilot for student ${student.name} (ID: ${student.id}).
+
+STUDENT IDENTITY & AUTHORITATIVE PERSONAL FINANCIAL RECORD:
+- Student Name: ${student.name}
+- Roll No / ID: ${student.id}
+- Enrolled Programme: ${student.programme} (${student.category})
+- Net Annual Demand: ${inr(unified.currentYearDemand)}
+- Merit Scholarship Credit: ${inr(unified.scholarshipDeduction)}
+- Total Amount Paid to Date: ${inr(unified.currentYearPaid)}
+- Current Outstanding Balance Due: ${inr(unified.currentYearOutstanding)}
+- Overdue Days: ${student.overdue || 0} days
+- Active Instalment Plan: ${unified.instalmentPlan ? `${unified.instalmentPlan.planType} (Status: ${unified.instalmentPlan.status})` : "Standard lump-sum"}
+- Bank Education Loan Application: ${unified.loanRequest ? `${unified.loanRequest.bank} (${unified.loanRequest.status})` : "No active loan application"}
+- Attendance: ${student.attendance || 0}%, CGPA: ${student.cgpa || "N/A"}
+
+STRICT ROLE-BASED ACCESS CONTROL (RBAC) & PRIVACY POLICY:
+1. You are interacting with a STUDENT (${student.name}, ${student.id}).
+2. Under university bylaws and data privacy regulations, this student is AUTHORIZED to view ONLY their OWN fee details, payment receipts, instalment schedules, and certificates (Bonafide, NOC, Reimbursement, Statement of Fees, Section 80C Tax Exemption).
+3. You DO NOT have access to, and MUST NEVER discuss or mention any other student's fee details, attendance, scores, or loan status.
+4. You DO NOT have access to university-wide macro figures, total revenue, audit trails, reconciliation mismatches, or administrator controls.
+5. If the user asks about other students or administrative financial matters, politely refuse: "As a student, you can only access your own individual fee account. Access to other student profiles and administrative finance logs is restricted to the CEO Administrator and Finance Officer."
+6. Tone & Language: Highly empathetic, helpful, clear, and polite. Respond in the language or blend (Hindi, Hinglish, English) used by the student.`;
+  } else {
+    const matchedStudents = findMentionedStudents(prompt);
+    let liveDataSnippet = "";
+
+    if (matchedStudents.length > 0) {
+      const student = matchedStudents[0];
+      const unified = getUnifiedStudentContext(student.id);
+      if (unified.status === "matched") {
+        liveDataSnippet += `\n\nAUTHORITATIVE LIVE DATABASE RECORD FOR ${student.name} (${student.id}):
 - Name: ${student.name}
 - Roll / Student ID: ${student.id}
 - Programme: ${student.programme}
@@ -1054,12 +1089,12 @@ async function callLiveGeminiApi(prompt: string, history: AiChatMessage[], apiKe
 - Total Outstanding Balance Due: ${inr(unified.currentYearOutstanding)}
 - Overdue Days: ${student.overdue || 0} days
 - Active Instalment Schedule: ${unified.instalmentPlan ? `${unified.instalmentPlan.planType} (Status: ${unified.instalmentPlan.status})` : "Standard lump-sum (No active split plan)"}
-- Bank Education Loan Desk: ${unified.loanRequest ? `${unified.loanRequest.bank} — ${unified.loanRequest.status} (${inr(unified.loanRequest.amount)})` : "No active loan application"}
+- Bank Education Loan Desk: ${unified.loanRequest ? `${unified.loanRequest.bank} — ${unified.loanRequest.status} (${inr(unified.loanRequest.amount ?? 0)})` : "No active loan application"}
 - Scholarship Renewal Risk: ${unified.scholarshipRisk ? `FLAGGED: ${unified.scholarshipRisk.reason} (CGPA: ${student.cgpa || "N/A"}, Attendance: ${student.attendance || 0}%)` : "Good standing (Above threshold)"}`;
+      }
     }
-  }
 
-  const systemPrompt = `You are finDeck's Chief Autonomous AI Financial Advisor & Universal Application Operator for Vignan's Foundation for Science, Technology & Research (VFSTR Deemed to be University), Andhra Pradesh.
+    systemPrompt = `You are finDeck's Chief Autonomous AI Financial Advisor & Universal Application Operator for Vignan's Foundation for Science, Technology & Research (VFSTR Deemed to be University), Andhra Pradesh.
 
 COMMUNICATION PERSONA & LANGUAGE:
 - You are an all-knowing, executive, highly intelligent 24/7 financial copilot and interactive guide for the entire finDeck platform.
@@ -1082,6 +1117,7 @@ SECURITY & GUARDRAILS:
 - You operate strictly in READ-ONLY mode. If the user asks to execute a payment, waive dues, transfer funds, or approve a refund/loan, explain that financial mutations require authenticated Finance Officer authorization with 2-Factor Authentication (2FA).
 - Navigation: If the user asks to go to, open, or view a section (e.g., "reconciliation dikhao", "loan desk kholo", "students section me chalo"), you helpfully explain and navigate them there.
 ${liveDataSnippet}`;
+  }
 
   const contents = [
     { role: "user", parts: [{ text: systemPrompt }] },
