@@ -6,16 +6,14 @@ import { resolve } from "path";
 dotenv.config({ path: resolve(process.cwd(), ".env.local") });
 dotenv.config({ path: resolve(process.cwd(), ".env") });
 
-import { students, transactions, programmes } from "../backend/database/finance-data";
+import { students, transactions, feeStructures } from "../backend/database/finance-data";
 import { studentCredentials } from "../backend/database/student-credentials";
 import { feeAllocations } from "../backend/database/fee-allocations";
-import { paymentReceipts } from "../backend/database/payment-receipts";
-import { scholarshipStatus } from "../backend/database/scholarship-status";
 import {
-  extendedScholarshipRisks,
-  extendedLoanRequests,
-  extendedReminders,
-  extendedRefunds,
+  EXTENDED_SCHOLARSHIP_RISKS,
+  EXTENDED_LOAN_REQUESTS,
+  EXTENDED_REMINDER_DISPATCHES,
+  EXTENDED_REFUNDS,
 } from "../backend/database/extended-sql-data";
 
 async function seedDatabase() {
@@ -66,15 +64,15 @@ async function seedDatabase() {
     }
     console.log(`   ✅ ${transactions.length} transactions seeded with index on 'studentId'`);
 
-    // 3. Programmes & Fee Structure (11 programmes)
-    console.log(`📦 3. Seeding Programmes (${programmes.length} programmes)...`);
-    const progCol = db.collection("programmes");
+    // 3. Programmes & Fee Structures (79 items)
+    console.log(`📦 3. Seeding Programmes Fee Structures (${feeStructures.length} items)...`);
+    const progCol = db.collection("fee_structures");
     await progCol.deleteMany({});
-    if (programmes.length > 0) {
-      await progCol.insertMany(programmes);
-      await progCol.createIndex({ code: 1 }, { unique: true });
+    if (feeStructures.length > 0) {
+      await progCol.insertMany(feeStructures);
+      await progCol.createIndex({ programme: 1, head: 1, year: 1 });
     }
-    console.log(`   ✅ ${programmes.length} academic programmes fee structures seeded`);
+    console.log(`   ✅ ${feeStructures.length} fee structures across all programmes seeded`);
 
     // 4. Student Credentials (DOB & Authentication)
     const credCount = Object.keys(studentCredentials).length;
@@ -92,51 +90,51 @@ async function seedDatabase() {
     console.log(`   ✅ ${credArray.length} student credentials seeded`);
 
     // 5. Bank Loan Requests (130 records)
-    console.log(`📦 5. Seeding Bank Loan Requests (${extendedLoanRequests.length} records)...`);
+    console.log(`📦 5. Seeding Bank Loan Requests (${EXTENDED_LOAN_REQUESTS.length} records)...`);
     const loanCol = db.collection("loan_requests");
     await loanCol.deleteMany({});
-    if (extendedLoanRequests.length > 0) {
-      await loanCol.insertMany(extendedLoanRequests);
+    if (EXTENDED_LOAN_REQUESTS.length > 0) {
+      await loanCol.insertMany(EXTENDED_LOAN_REQUESTS);
       await loanCol.createIndex({ loan_document_request_id: 1 }, { unique: true });
       await loanCol.createIndex({ student_id: 1 });
       await loanCol.createIndex({ status: 1 });
     }
-    console.log(`   ✅ ${extendedLoanRequests.length} bank loan requests seeded`);
+    console.log(`   ✅ ${EXTENDED_LOAN_REQUESTS.length} bank loan requests seeded`);
 
     // 6. Scholarship Renewal Risks (115 records)
-    console.log(`📦 6. Seeding Scholarship Renewal Risks (${extendedScholarshipRisks.length} records)...`);
+    console.log(`📦 6. Seeding Scholarship Renewal Risks (${EXTENDED_SCHOLARSHIP_RISKS.length} records)...`);
     const riskCol = db.collection("scholarship_risks");
     await riskCol.deleteMany({});
-    if (extendedScholarshipRisks.length > 0) {
-      await riskCol.insertMany(extendedScholarshipRisks);
-      await riskCol.createIndex({ risk_id: 1 }, { unique: true });
+    if (EXTENDED_SCHOLARSHIP_RISKS.length > 0) {
+      await riskCol.insertMany(EXTENDED_SCHOLARSHIP_RISKS);
+      await riskCol.createIndex({ scholarship_renewal_risk_id: 1 }, { unique: true });
       await riskCol.createIndex({ student_id: 1 });
       await riskCol.createIndex({ risk_level: 1 });
     }
-    console.log(`   ✅ ${extendedScholarshipRisks.length} scholarship renewal risks seeded`);
+    console.log(`   ✅ ${EXTENDED_SCHOLARSHIP_RISKS.length} scholarship renewal risks seeded`);
 
     // 7. Smart Automated Reminders (72 records)
-    console.log(`📦 7. Seeding Smart Reminders (${extendedReminders.length} records)...`);
+    console.log(`📦 7. Seeding Smart Reminders (${EXTENDED_REMINDER_DISPATCHES.length} records)...`);
     const remCol = db.collection("reminder_dispatches");
     await remCol.deleteMany({});
-    if (extendedReminders.length > 0) {
-      await remCol.insertMany(extendedReminders);
-      await remCol.createIndex({ reminder_id: 1 }, { unique: true });
+    if (EXTENDED_REMINDER_DISPATCHES.length > 0) {
+      await remCol.insertMany(EXTENDED_REMINDER_DISPATCHES);
+      await remCol.createIndex({ reminder_dispatch_id: 1 }, { unique: true });
       await remCol.createIndex({ student_id: 1 });
     }
-    console.log(`   ✅ ${extendedReminders.length} smart reminder dispatch logs seeded`);
+    console.log(`   ✅ ${EXTENDED_REMINDER_DISPATCHES.length} smart reminder dispatch logs seeded`);
 
     // 8. Refunds Queue & Policy Records (20 records)
-    console.log(`📦 8. Seeding Refunds Queue (${extendedRefunds.length} records)...`);
+    console.log(`📦 8. Seeding Refunds Queue (${EXTENDED_REFUNDS.length} records)...`);
     const refCol = db.collection("refunds");
     await refCol.deleteMany({});
-    if (extendedRefunds.length > 0) {
-      await refCol.insertMany(extendedRefunds);
+    if (EXTENDED_REFUNDS.length > 0) {
+      await refCol.insertMany(EXTENDED_REFUNDS);
       await refCol.createIndex({ refund_id: 1 }, { unique: true });
       await refCol.createIndex({ student_id: 1 });
       await refCol.createIndex({ status: 1 });
     }
-    console.log(`   ✅ ${extendedRefunds.length} institutional refund records seeded`);
+    console.log(`   ✅ ${EXTENDED_REFUNDS.length} institutional refund records seeded`);
 
     // 9. Itemized Fee Allocations
     const allocKeys = Object.keys(feeAllocations);

@@ -24,12 +24,20 @@ export async function POST(req: NextRequest) {
       if (db) {
         const studentDoc = await db.collection("students").findOne({ id: cleanId });
         if (studentDoc) {
-          const credDoc = await db.collection("credentials").findOne({ id: cleanId });
-          if (credDoc && credDoc.password === cleanPassword) {
+          const credDoc =
+            (await db.collection("student_credentials").findOne({ studentId: cleanId })) ||
+            (await db.collection("credentials").findOne({ id: cleanId }));
+          if (
+            credDoc &&
+            (credDoc.studentPassword === cleanPassword ||
+              credDoc.password === cleanPassword ||
+              validateStudentCredentials(cleanId, cleanPassword).valid)
+          ) {
             return NextResponse.json({
               success: true,
               source: "mongodb",
               student: studentDoc,
+              dob: credDoc.dob,
             });
           }
         }
