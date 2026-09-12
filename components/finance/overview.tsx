@@ -108,42 +108,42 @@ function Counter({
 const kpis = [
   {
     label: "Total fee demand",
-    value: 25.4,
+    value: 485.6,
     icon: Wallet,
-    trend: "+8.4%",
-    note: "this cycle",
+    trend: "+7.4%",
+    note: "AY 2026–27 target",
     tone: "primary",
-    bars: [12, 20, 18, 28, 23, 31, 36, 33, 43, 48],
+    bars: [14, 22, 19, 28, 25, 33, 38, 35, 44, 49],
     direction: ArrowUpRight,
   },
   {
     label: "Collected",
-    value: 21.7,
+    value: 412.4,
     icon: CreditCard,
-    trend: "85.4%",
+    trend: "84.92%",
     note: "collection rate",
     tone: "success",
-    bars: [10, 15, 23, 18, 29, 25, 35, 32, 39, 47],
+    bars: [12, 17, 24, 20, 30, 27, 36, 34, 41, 48],
     direction: ArrowUpRight,
   },
   {
     label: "Outstanding",
-    value: 3.7,
+    value: 73.2,
     icon: Coins,
-    trend: "4.2%",
-    note: "from last cycle",
+    trend: "15.08%",
+    note: "unrealized dues",
     tone: "warning",
-    bars: [45, 40, 43, 33, 35, 29, 24, 29, 19, 16],
+    bars: [42, 38, 35, 31, 28, 26, 22, 25, 18, 14],
     direction: ArrowDownRight,
   },
   {
     label: "Reconciliation",
-    value: 97.8,
+    value: 99.2,
     icon: RefreshCw,
     trend: "127",
-    note: "transactions pending",
+    note: "gateway queue",
     tone: "violet",
-    bars: [13, 18, 21, 27, 24, 33, 30, 39, 36, 46],
+    bars: [15, 20, 23, 29, 26, 35, 32, 40, 38, 48],
     direction: ArrowUpRight,
   },
 ];
@@ -241,8 +241,8 @@ export function KpiCards({
           </div>
           <div className="mt-2 text-[31px] font-semibold tracking-[-0.045em] tabular-nums">
             {index !== 3 && "₹"}
-            <Counter value={item.value} decimals={index === 3 ? 1 : 2} />
-            <span className="text-[25px]">{index === 3 ? "%" : " Cr"}</span>
+            <Counter value={item.value} decimals={index === 3 ? 1 : 1} />
+            <span className="text-[25px]">{index === 3 ? "%" : " L"}</span>
           </div>
           <div className="mt-2 flex items-center gap-1.5 text-sm">
             <span
@@ -280,14 +280,14 @@ export function FeeHeadOverview() {
               <div className="mb-2 flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">{fee.name}</span>
                 <span className="font-medium tabular-nums">
-                  ₹{fee.amount.toFixed(1)} Cr
+                  ₹{fee.amount.toFixed(1)} L
                 </span>
               </div>
               <div className="h-1.5 overflow-hidden rounded-full bg-muted">
                 <div
                   className="bar-grow h-full rounded-full"
                   style={{
-                    width: `${(fee.amount / 12.4) * 100}%`,
+                    width: `${(fee.amount / 285.5) * 100}%`,
                     background: fee.color,
                     animationDelay: `${index * 70}ms`,
                   }}
@@ -297,7 +297,7 @@ export function FeeHeadOverview() {
           ))}
         </div>
         <p className="mt-5 flex items-center gap-1.5 text-sm text-muted-foreground">
-          <Info className="size-3.5" /> ₹1.0 Cr in other fee heads
+          <Info className="size-3.5" /> ₹5.0 L in other fee heads (Registration, Caution Deposit &amp; Alumni)
         </p>
       </CardContent>
     </Card>
@@ -377,7 +377,7 @@ export function CollectionIntelligence() {
         <div className="mt-5 flex items-center justify-between">
           <div className="flex items-baseline gap-2">
             <span className="text-2xl font-semibold tracking-tight tabular-nums">
-              ₹{collected.toFixed(2)} Cr
+              ₹{collected.toFixed(1)} L
             </span>
             <span className="text-sm text-muted-foreground">collected</span>
           </div>
@@ -387,7 +387,7 @@ export function CollectionIntelligence() {
             </span>
             {projectedDemand > 0 && (
               <span className="text-xs text-muted-foreground">
-                ₹{projectedDemand.toFixed(2)} Cr projected demand ahead
+                ₹{projectedDemand.toFixed(1)} L projected demand ahead
               </span>
             )}
           </div>
@@ -395,8 +395,8 @@ export function CollectionIntelligence() {
         <ChartContainer
           className="mt-3 h-44 w-full aspect-auto"
           config={{
-            collected: { label: "Collected (₹ Cr)", color: "var(--chart-1)" },
-            demand: { label: "Demand (₹ Cr)", color: "var(--chart-2)" },
+            collected: { label: "Collected (₹ Lakhs)", color: "var(--chart-1)" },
+            demand: { label: "Demand (₹ Lakhs)", color: "var(--chart-2)" },
           }}
         >
           <AreaChart
@@ -471,7 +471,7 @@ export function CollectionIntelligence() {
           </AreaChart>
         </ChartContainer>
         <div className="mt-4 flex items-center justify-between text-sm text-muted-foreground">
-          <span>Amount in ₹ Crores</span>
+          <span>Amount in ₹ Lakhs</span>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5">
               <i className="chart-legend-dot bg-primary" /> Collected
@@ -502,7 +502,7 @@ export function OutstandingAgeing({ onOverdue }: { onOverdue: () => void }) {
       <CardContent>
         <div className="flex items-baseline gap-2">
           <span className="text-[28px] font-semibold tracking-tight">
-            ₹3.70 Cr
+            ₹73.20 L
           </span>
           <span className="text-sm text-muted-foreground">
             total outstanding
@@ -511,14 +511,14 @@ export function OutstandingAgeing({ onOverdue }: { onOverdue: () => void }) {
         <div
           className="mt-4 flex h-3 overflow-hidden rounded-full gap-1"
           role="img"
-          aria-label="Outstanding ageing: 0–30 days 1.42 crore; 31–60 days 0.91 crore; 61–90 days 0.63 crore; 90+ days 0.74 crore"
+          aria-label="Outstanding ageing: 0–30 days 31.50 lakh; 31–60 days 19.80 lakh; 61–90 days 13.40 lakh; 90+ days 8.50 lakh"
         >
           {ageing.map((item) => (
             <div
               key={item.label}
               className="bar-grow rounded-sm"
               style={{
-                width: `${(item.amount / 3.7) * 100}%`,
+                width: `${(item.amount / 73.2) * 100}%`,
                 background: item.color,
               }}
             />
@@ -535,7 +535,7 @@ export function OutstandingAgeing({ onOverdue }: { onOverdue: () => void }) {
                 {item.label}
               </div>
               <p className="mt-1 pl-4 text-base font-medium">
-                ₹{item.amount.toFixed(2)} Cr
+                ₹{item.amount.toFixed(1)} L
               </p>
             </div>
           ))}

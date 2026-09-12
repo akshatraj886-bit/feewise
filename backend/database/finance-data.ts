@@ -15,26 +15,26 @@ export const navigation = [
 export type View = (typeof navigation)[number];
 export const inr = (amount: number) => "₹" + amount.toLocaleString("en-IN");
 export const feeHeads = [
-  { name: "Tuition", amount: 12.4, color: "var(--primary)" },
-  { name: "Hostel", amount: 4.2, color: "var(--violet)" },
-  { name: "Examination", amount: 1.8, color: "var(--chart-3)" },
-  { name: "Transport", amount: 1.1, color: "var(--chart-4)" },
-  { name: "Laboratory", amount: 0.8, color: "var(--chart-5)" },
-  { name: "Library", amount: 0.4, color: "var(--muted-foreground)" },
+  { name: "Tuition", amount: 285.5, color: "var(--primary)" },
+  { name: "Hostel", amount: 94.2, color: "var(--violet)" },
+  { name: "Examination", amount: 38.6, color: "var(--chart-3)" },
+  { name: "Transport", amount: 32.4, color: "var(--chart-4)" },
+  { name: "Laboratory", amount: 21.5, color: "var(--chart-5)" },
+  { name: "Library", amount: 8.4, color: "var(--muted-foreground)" },
 ];
 export const collectionTrend = [
-  { month: "April", collected: 2.4, demand: 3.1 },
-  { month: "May", collected: 3.1, demand: 3.65 },
-  { month: "June", collected: 2.85, demand: 3.55 },
-  { month: "July", collected: 3.95, demand: 4.6 },
-  { month: "August", collected: 4.2, demand: 4.9 },
-  { month: "September", collected: 5.2, demand: 5.6 },
+  { month: "April", collected: 46.5, demand: 58.2 },
+  { month: "May", collected: 59.1, demand: 68.4 },
+  { month: "June", collected: 74.3, demand: 85.6 },
+  { month: "July", collected: 102.8, demand: 112.5 },
+  { month: "August", collected: 71.2, demand: 88.4 },
+  { month: "September", collected: 58.5, demand: 72.5 },
 ];
 export const ageing = [
-  { label: "0–30 days", amount: 1.42, color: "var(--primary)" },
-  { label: "31–60 days", amount: 0.91, color: "var(--violet)" },
-  { label: "61–90 days", amount: 0.63, color: "var(--warning)" },
-  { label: "90+ days", amount: 0.74, color: "var(--destructive)" },
+  { label: "0–30 days", amount: 31.5, color: "var(--primary)" },
+  { label: "31–60 days", amount: 19.8, color: "var(--violet)" },
+  { label: "61–90 days", amount: 13.4, color: "var(--warning)" },
+  { label: "90+ days", amount: 8.5, color: "var(--destructive)" },
 ];
 export const transactions = [
   {
@@ -124,6 +124,45 @@ export type Transaction = (typeof transactions)[number];
 // Auto-generated demo dataset for finDeck — Multi-branch, Year 1, 25 sections
 // Total students: 492
 export const students = [
+  {
+    id: "251FA04E03",
+    name: "Akshat Raj",
+    programme: "B.Tech CSE",
+    category: "General",
+    demand: 120000,
+    paid: 92000,
+    overdue: 28000,
+    initials: "AR",
+    scholarship: 20000,
+    concession: 0,
+    instalmentPlan: "3-instalment",
+  },
+  {
+    id: "251FA04E17",
+    name: "Ananya Sharma",
+    programme: "B.Tech CSE",
+    category: "General",
+    demand: 120000,
+    paid: 120000,
+    overdue: 0,
+    initials: "AS",
+    scholarship: 0,
+    concession: 0,
+    instalmentPlan: "Lump-sum",
+  },
+  {
+    id: "251FA04E21",
+    name: "Rohan Mehta",
+    programme: "MBA",
+    category: "Scholarship",
+    demand: 160000,
+    paid: 115000,
+    overdue: 45000,
+    initials: "RM",
+    scholarship: 20000,
+    concession: 5000,
+    instalmentPlan: "2-instalment",
+  },
   {
     id: "251FA04645",
     name: "Dharanikota Aaradhya",

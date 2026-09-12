@@ -71,7 +71,7 @@ import {
   OutstandingAgeing,
   FinanceIntelligence,
 } from "./overview";
-import { FinanceAssistant, FullPageAiAssistant } from "./assistant";
+import { FinanceAssistant, FullPageAiAssistant, FloatingAiAssistant } from "./assistant";
 import { AuditLog, ReconciliationCenter, RefundApproval } from "./operations";
 import { RefundDialog, StudentDrawer, TransactionDialog } from "./details";
 import {
@@ -89,6 +89,7 @@ import {
 } from "./organizer-views";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-context";
+import { type NavigationAction } from "@/lib/ai-finance-engine";
 
 const navIcons = [
   LayoutDashboard,
@@ -125,7 +126,6 @@ const primaryNavItems: View[] = [
   "Fee Structure",
   "Payments",
   "Reconciliation",
-  "AI Assistant",
   "Instalments",
 ];
 
@@ -179,14 +179,21 @@ export function FinanceDashboard() {
     ]);
   }
   const [pendingAiQuery, setPendingAiQuery] = useState<string | null>(null);
+  const [floatingAiOpen, setFloatingAiOpen] = useState(false);
+  const [floatingAiQuery, setFloatingAiQuery] = useState<string | null>(null);
+
+  function handleOpenFloatingAi(query?: string) {
+    if (query && query.trim()) {
+      setFloatingAiQuery(query.trim());
+    }
+    setFloatingAiOpen(true);
+  }
 
   function handleAskAi(query?: string) {
     if (query && query.trim()) {
-      setPendingAiQuery(query.trim());
-    } else {
-      setPendingAiQuery(null);
+      setFloatingAiQuery(query.trim());
     }
-    navigate("AI Assistant");
+    setFloatingAiOpen(true);
   }
 
   function navigate(next: View, overdue = false) {
@@ -211,14 +218,58 @@ export function FinanceDashboard() {
     setSelectedTransaction(transaction);
     log("Viewed payment", transaction.id);
   }
+  function handleAutonomousNavigation(nav: NavigationAction) {
+    if (!nav || typeof nav !== "object") return;
+
+    // 1. View Navigation with boundary validation
+    if (nav.view && navigation.includes(nav.view)) {
+      navigate(nav.view);
+    } else if (nav.view) {
+      console.warn(`[finDeck AI] Unknown navigation target view: "${nav.view}".`);
+    }
+
+    // 2. Focused Student Drawer Resolution
+    if (nav.studentId) {
+      const student = students.find(
+        (s) => s.id.toLowerCase() === nav.studentId?.toLowerCase()
+      );
+      if (student) {
+        openStudent(student);
+      } else {
+        console.warn(`[finDeck AI] Student ID "${nav.studentId}" not found in local records.`);
+      }
+    }
+
+    // 3. Focused Payment Transaction Dialog Resolution
+    if (nav.transactionId) {
+      const txn = transactions.find(
+        (t) => t.id.toLowerCase() === nav.transactionId?.toLowerCase()
+      );
+      if (txn) {
+        reviewTransaction(txn);
+      } else {
+        console.warn(`[finDeck AI] Transaction "${nav.transactionId}" not found in gateway queue.`);
+      }
+    }
+
+    // 4. Record in Audit Log
+    const logDetails = [
+      nav.view,
+      nav.studentId ? `Student ${nav.studentId}` : null,
+      nav.transactionId ? `Txn ${nav.transactionId}` : null,
+    ]
+      .filter(Boolean)
+      .join(" · ");
+    log("AI Agent Navigated", logDetails || "Switched View");
+  }
   function exportOverview() {
     downloadExcel("finDeck-finance-overview", [
       ["finDeck AI — Fictional demo data", "Academic year 2026–27"],
       ["Metric", "Value"],
-      ["Total fee demand (INR)", 254000000],
-      ["Collected (INR)", 217000000],
-      ["Outstanding (INR)", 37000000],
-      ["Reconciliation percentage", 97.8],
+      ["Total fee demand (INR)", 48560000],
+      ["Collected (INR)", 41240000],
+      ["Outstanding (INR)", 7320000],
+      ["Reconciliation percentage", 99.2],
       ["Pending transactions", 127],
       ["Refund requests awaiting approval", 14],
       ["Students with 90+ days dues", 84],
@@ -229,10 +280,7 @@ export function FinanceDashboard() {
     });
   }
   function askAgent() {
-    document
-      .getElementById("finance-assistant")
-      ?.scrollIntoView({ behavior: "smooth", block: "center" });
-    document.getElementById("agent-input")?.focus({ preventScroll: true });
+    setFloatingAiOpen(true);
   }
   return (
     <div className="min-h-screen bg-background text-foreground relative selection:bg-primary/20 selection:text-primary">
@@ -412,16 +460,18 @@ export function FinanceDashboard() {
             aria-label="Mobile navigation"
             className="app-container flex flex-wrap gap-1 border-t py-3 xl:hidden"
           >
-            {navigation.map((item) => (
-              <button
-                key={item}
-                className="nav-link"
-                data-active={view === item}
-                onClick={() => navigate(item)}
-              >
-                {item}
-              </button>
-            ))}
+            {navigation
+              .filter((item) => item !== "AI Assistant")
+              .map((item) => (
+                <button
+                  key={item}
+                  className="nav-link"
+                  data-active={view === item}
+                  onClick={() => navigate(item)}
+                >
+                  {item}
+                </button>
+              ))}
           </nav>
         )}
       </header>
@@ -495,6 +545,7 @@ export function FinanceDashboard() {
                   onRefund={() => setRefundIntent("review")}
                   onReconcile={() => reviewTransaction(transactions[1])}
                   onExpandToPage={(query) => handleAskAi(query)}
+                  onOpenFloating={(query) => handleOpenFloatingAi(query)}
                 />
                 <FinanceIntelligence
                   onNavigate={(next) => navigate(next, next === "Students")}
@@ -600,11 +651,14 @@ export function FinanceDashboard() {
             )}
             {view === "AI Assistant" && (
               <FullPageAiAssistant
-                onStudent={() => openStudent(students[0])}
+                onStudent={(id) => (id ? openStudentId(id) : openStudent(students[0]))}
                 onRefund={() => setRefundIntent("review")}
                 onReconcile={() => reviewTransaction(transactions[1])}
                 initialPrompt={pendingAiQuery}
                 onClearInitialPrompt={() => setPendingAiQuery(null)}
+                onNavigate={handleAutonomousNavigation}
+                userRole={currentRole}
+                currentView={view}
               />
             )}
             {view === "Instalments" && <InstalmentView />}
@@ -825,6 +879,18 @@ export function FinanceDashboard() {
           </Badge>
         </DialogContent>
       </Dialog>
+      <FloatingAiAssistant
+        isOpen={floatingAiOpen}
+        onOpenChange={setFloatingAiOpen}
+        initialQuery={floatingAiQuery}
+        onStudent={(id) => (id ? openStudentId(id) : openStudent(students[0]))}
+        onRefund={() => setRefundIntent("review")}
+        onReconcile={() => reviewTransaction(transactions[1])}
+        onExpandToPage={(query) => handleAskAi(query)}
+        onNavigate={handleAutonomousNavigation}
+        userRole={currentRole}
+        currentView={view}
+      />
     </div>
   );
 }

@@ -8,6 +8,24 @@ export type StudentCredential = {
 };
 
 export const studentCredentials: Record<string, StudentCredential> = {
+  "251FA04E03": {
+    "dob": "15/08/2004",
+    "password": "Akshat@15082004",
+    "altPassword": "Raj@15082004",
+    "email": "251fa04e03@vignan.ac.in"
+  },
+  "251FA04E17": {
+    "dob": "20/05/2004",
+    "password": "Ananya@20052004",
+    "altPassword": "Sharma@20052004",
+    "email": "251fa04e17@vignan.ac.in"
+  },
+  "251FA04E21": {
+    "dob": "10/11/2004",
+    "password": "Rohan@10112004",
+    "altPassword": "Mehta@10112004",
+    "email": "251fa04e21@vignan.ac.in"
+  },
   "251FA04645": {
     "dob": "14/03/2004",
     "password": "Aaradhya@14032004",

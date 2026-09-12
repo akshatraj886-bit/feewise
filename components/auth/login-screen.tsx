@@ -61,7 +61,7 @@ const ROLE_CONFIGS: Record<UserRole, RoleConfig> = {
       borderHighlight: "border-amber-300 hover:border-amber-400",
     },
     features: [
-      "Macro Treasury (₹25.4 Cr)",
+      "Macro Treasury (₹485.60 L)",
       "CEO AI Strategy Agent",
       "Refund & Waiver Authority",
       "Institutional Board Audits",
