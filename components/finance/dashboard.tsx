@@ -589,52 +589,49 @@ export function FinanceDashboard() {
             )}
             {view === "Refunds" && (
               <>
-                <div className="grid gap-5 lg:grid-cols-[1fr_1.3fr]">
-                  <RefundApproval
-                    onReview={(intent = "review") => setRefundIntent(intent)}
-                    status={refundStatus}
-                  />
-                  <Card className="panel">
-                    <CardHeader>
-                      <CardTitle>Designed for human oversight</CardTitle>
-                      <CardDescription>
-                        14 requests in the institutional summary · 1
-                        representative demo request
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex flex-col gap-5">
-                        {[
-                          {
-                            title: "Calculate & explain",
-                            text: "The agent checks policy rules and prepares a traceable calculation.",
-                          },
-                          {
-                            title: "Review & recommend",
-                            text: "A finance officer verifies the supporting documents and records a recommendation.",
-                          },
-                          {
-                            title: "Authenticate & authorize",
-                            text: "A real authenticated approval is required before any financial change. Payouts are not enabled in this demo.",
-                          },
-                        ].map((step) => (
-                          <div
-                            key={step.title}
-                            className="flex items-start gap-3"
-                          >
-                            <ShieldCheck className="mt-0.5 size-5 shrink-0 text-primary" />
-                            <div>
-                              <h3 className="font-medium">{step.title}</h3>
-                              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                                {step.text}
-                              </p>
-                            </div>
+                <RefundApproval
+                  onReview={(intent = "review") => setRefundIntent(intent)}
+                  status={refundStatus}
+                />
+                <Card className="panel">
+                  <CardHeader>
+                    <CardTitle>Designed for human oversight</CardTitle>
+                    <CardDescription>
+                      20 requests in the institutional summary · Full traceable calculation engine
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid gap-4 sm:grid-cols-3">
+                      {[
+                        {
+                          title: "Calculate & explain",
+                          text: "The agent checks policy rules and prepares a traceable calculation.",
+                        },
+                        {
+                          title: "Review & recommend",
+                          text: "A finance officer verifies the supporting documents and records a recommendation.",
+                        },
+                        {
+                          title: "Authenticate & authorize",
+                          text: "A real authenticated approval is required before any financial change. Payouts are not enabled in this demo.",
+                        },
+                      ].map((step) => (
+                        <div
+                          key={step.title}
+                          className="flex items-start gap-3 rounded-xl border p-4 bg-card"
+                        >
+                          <ShieldCheck className="mt-0.5 size-5 shrink-0 text-primary" />
+                          <div>
+                            <h3 className="font-medium text-sm">{step.title}</h3>
+                            <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                              {step.text}
+                            </p>
                           </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
                 <AuditLog entries={audit} full />
               </>
             )}

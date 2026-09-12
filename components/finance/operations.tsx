@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -33,6 +33,12 @@ import {
   type Transaction,
 } from "@/lib/finance-data";
 import { cn } from "@/lib/utils";
+import {
+  getSqlDatabaseState,
+  updateRefundStatus,
+  type RefundRecord,
+} from "@/lib/sql-store";
+import { toast } from "sonner";
 
 export function Status({ status }: { status: string }) {
   const critical = ["Mismatch", "Flagged", "Overdue"].includes(status);
@@ -311,71 +317,353 @@ export function RefundApproval({
   onReview: (intent?: "review" | "approve" | "reject") => void;
   status?: string;
 }) {
+  const [refunds, setRefunds] = useState<RefundRecord[]>([]);
+  const [selectedId, setSelectedId] = useState<string>("rf-2081");
+  const [search, setSearch] = useState("");
+  const [filterStatus, setFilterStatus] = useState("All");
+  const [filterReason, setFilterReason] = useState("All");
+  const [page, setPage] = useState(1);
+  const pageSize = 6;
+
+  function reload() {
+    setRefunds(getSqlDatabaseState().refunds);
+  }
+
+  useEffect(() => {
+    reload();
+    window.addEventListener("feewise_sql_store_updated", reload);
+    return () => window.removeEventListener("feewise_sql_store_updated", reload);
+  }, []);
+
+  const filtered = useMemo(() => {
+    return refunds.filter((r) => {
+      if (filterStatus !== "All" && r.status !== filterStatus) return false;
+      if (filterReason !== "All" && r.reason !== filterReason) return false;
+      if (search.trim()) {
+        const q = search.toLowerCase();
+        const matchesName = r.student_name.toLowerCase().includes(q);
+        const matchesId = r.student_id.toLowerCase().includes(q);
+        const matchesRef = r.refund_id.toLowerCase().includes(q);
+        if (!matchesName && !matchesId && !matchesRef) return false;
+      }
+      return true;
+    });
+  }, [refunds, filterStatus, filterReason, search]);
+
+  const totalPages = Math.ceil(filtered.length / pageSize) || 1;
+  const paginated = useMemo(() => {
+    const start = (page - 1) * pageSize;
+    return filtered.slice(start, start + pageSize);
+  }, [filtered, page, pageSize]);
+
+  const activeRefund = (refunds.find((r) => r.refund_id === selectedId) || filtered[0] || refunds[0]) ?? null;
+
+  function handleAction(action: "approve" | "reject" | "review") {
+    if (!activeRefund) return;
+    if (action === "approve") {
+      updateRefundStatus(activeRefund.refund_id, "APPROVED");
+      toast.success(`Refund #${activeRefund.refund_id.toUpperCase()} Approved!`, {
+        description: `Approved amount ₹${activeRefund.approved_amount.toLocaleString("en-IN")} authorized for ${activeRefund.student_name}.`,
+      });
+      reload();
+    } else if (action === "reject") {
+      updateRefundStatus(activeRefund.refund_id, "REJECTED");
+      toast.error(`Refund #${activeRefund.refund_id.toUpperCase()} Rejected`, {
+        description: `Rejection recorded under university policy rules.`,
+      });
+      reload();
+    }
+    onReview(action);
+  }
+
   return (
-    <Card className="panel">
-      <CardHeader>
-        <CardTitle>
-          <span className="flex items-center gap-2">
-            <ShieldCheck className="size-4 text-warning" /> Human Approval
-            Required
-          </span>
-        </CardTitle>
-        <CardDescription>
-          AI prepares. An authorized human approves.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="flex items-center justify-between">
-          <span className="font-medium">
-            Refund Request <span className="text-primary">#RF-2081</span>
-          </span>
-          <span className="status-badge status-attention">
-            <Clock3 className="size-3" /> Pending
-          </span>
+    <div className="flex flex-col gap-4">
+      {/* Top summary cards */}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="rounded-xl border bg-card p-3">
+          <p className="text-xs text-muted-foreground">Total Requests</p>
+          <p className="mt-1 text-xl font-semibold tracking-tight text-primary">{refunds.length}</p>
         </div>
-        <div className="mt-4 flex flex-col gap-3">
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">Student</span>
-            <span>251FA04E17</span>
-          </div>
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">Reason</span>
-            <span>Withdrawal</span>
-          </div>
-          <div className="flex items-center justify-between border-y border-border py-3 text-sm">
-            <span className="text-muted-foreground">Calculated refund</span>
-            <span className="text-xl font-semibold tracking-tight">
-              ₹18,500
-            </span>
-          </div>
-          <div className="flex flex-col gap-1 text-sm">
-            <span className="text-muted-foreground">Policy</span>
-            <span>Withdrawal before semester start</span>
-          </div>
+        <div className="rounded-xl border bg-card p-3">
+          <p className="text-xs text-muted-foreground">Pending Approval</p>
+          <p className="mt-1 text-xl font-semibold tracking-tight text-amber-600">
+            {refunds.filter((r) => r.status === "REQUESTED").length}
+          </p>
         </div>
-        <div className="mt-4 flex items-start gap-2 rounded-lg bg-warning/7 p-3 text-sm text-warning">
-          <LockKeyhole className="mt-0.5 size-3.5 shrink-0" />
-          <span>
-            {status === "Awaiting approval"
-              ? "Awaiting authenticated finance approval"
-              : status}
-          </span>
+        <div className="rounded-xl border bg-card p-3">
+          <p className="text-xs text-muted-foreground">Approved</p>
+          <p className="mt-1 text-xl font-semibold tracking-tight text-emerald-600">
+            {refunds.filter((r) => r.status === "APPROVED").length}
+          </p>
         </div>
-        <div className="mt-4 flex flex-wrap gap-2">
-          <Button
-            variant="outline"
-            onClick={() => onReview("review")}
-            className="flex-1"
-          >
-            Review calculation
-          </Button>
-          <Button onClick={() => onReview("approve")}>Approve</Button>
-          <Button variant="outline" onClick={() => onReview("reject")}>
-            Reject
-          </Button>
+        <div className="rounded-xl border bg-card p-3">
+          <p className="text-xs text-muted-foreground">Disbursed / Paid</p>
+          <p className="mt-1 text-xl font-semibold tracking-tight text-violet-600">
+            {refunds.filter((r) => r.status === "PAID").length}
+          </p>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-[1.1fr_1fr]">
+        {/* Left: Queue List */}
+        <Card className="panel">
+          <CardHeader>
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <CardTitle className="text-base flex items-center gap-2">
+                  <Clock3 className="size-4 text-warning" />
+                  Refund Applications Queue
+                </CardTitle>
+                <CardDescription>
+                  {filtered.length} applications in ledger
+                </CardDescription>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <select
+                  className="filter-select text-xs"
+                  aria-label="Filter by refund status"
+                  value={filterStatus}
+                  onChange={(e) => {
+                    setFilterStatus(e.target.value);
+                    setPage(1);
+                  }}
+                >
+                  <option value="All">All Statuses</option>
+                  <option value="REQUESTED">Requested</option>
+                  <option value="APPROVED">Approved</option>
+                  <option value="PAID">Paid</option>
+                  <option value="REJECTED">Rejected</option>
+                </select>
+                <select
+                  className="filter-select text-xs"
+                  aria-label="Filter by refund reason"
+                  value={filterReason}
+                  onChange={(e) => {
+                    setFilterReason(e.target.value);
+                    setPage(1);
+                  }}
+                >
+                  <option value="All">All Reasons</option>
+                  <option value="WITHDRAWAL">Withdrawal</option>
+                  <option value="CAUTION_DEPOSIT">Caution Deposit</option>
+                  <option value="EXCESS">Excess</option>
+                  <option value="CANCELLATION">Cancellation</option>
+                </select>
+              </div>
+            </div>
+            <div className="mt-2">
+              <InputGroup className="w-full">
+                <InputGroupAddon>
+                  <Search className="size-3.5 text-muted-foreground" />
+                </InputGroupAddon>
+                <InputGroupInput
+                  placeholder="Search student, roll number, or #RF ID..."
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    setPage(1);
+                  }}
+                />
+              </InputGroup>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col gap-2">
+              {paginated.length === 0 ? (
+                <div className="py-8 text-center text-xs text-muted-foreground">
+                  No refund requests match your search or filter.
+                </div>
+              ) : (
+                paginated.map((r) => {
+                  const isSelected = activeRefund?.refund_id === r.refund_id;
+                  return (
+                    <button
+                      key={r.refund_id}
+                      onClick={() => setSelectedId(r.refund_id)}
+                      className={cn(
+                        "rounded-xl border p-3 text-left transition-all hover:border-primary/40",
+                        isSelected
+                          ? "border-primary/50 bg-primary/5 ring-1 ring-primary/20"
+                          : "bg-card hover:bg-muted/30"
+                      )}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium text-xs text-foreground">
+                              {r.student_name}
+                            </span>
+                            <span className="font-mono text-[10px] text-muted-foreground">
+                              ({r.student_id})
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-muted-foreground mt-0.5">
+                            <span className="font-mono text-primary font-semibold">#{r.refund_id.toUpperCase()}</span> &middot; {r.reason.replace(/_/g, " ")}
+                          </p>
+                        </div>
+                        <Badge
+                          variant={r.status === "APPROVED" ? "default" : "outline"}
+                          className={`text-[10px] px-1.5 py-0 ${
+                            r.status === "APPROVED"
+                              ? "bg-emerald-600 text-white"
+                              : r.status === "REQUESTED"
+                                ? "text-amber-600 border-amber-500/30 bg-amber-500/5"
+                                : r.status === "PAID"
+                                  ? "text-violet-600 border-violet-500/30 bg-violet-500/5"
+                                  : "text-destructive border-destructive/30"
+                          }`}
+                        >
+                          {r.status}
+                        </Badge>
+                      </div>
+                      <div className="mt-2 flex items-center justify-between text-xs border-t pt-2">
+                        <span className="text-muted-foreground text-[11px]">Eligible: {inr(r.eligible_amount)}</span>
+                        <span className="font-bold text-foreground">{inr(r.approved_amount)}</span>
+                      </div>
+                    </button>
+                  );
+                })
+              )}
+            </div>
+
+            {/* Pagination footer */}
+            {totalPages > 1 && (
+              <div className="mt-3 flex items-center justify-between border-t pt-2.5 text-xs text-muted-foreground">
+                <span>
+                  Showing {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, filtered.length)} of {filtered.length}
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="h-6 px-2 text-[11px]"
+                    disabled={page === 1}
+                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                  >
+                    Prev
+                  </Button>
+                  <span className="px-1 text-[11px] font-medium text-foreground">
+                    {page} / {totalPages}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="h-6 px-2 text-[11px]"
+                    disabled={page >= totalPages}
+                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                  >
+                    Next
+                  </Button>
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Right: Selected Refund Review & Calculation */}
+        {activeRefund ? (
+          <Card className="panel">
+            <CardHeader>
+              <CardTitle>
+                <span className="flex items-center gap-2">
+                  <ShieldCheck className="size-4 text-warning" /> Human Approval Required
+                </span>
+              </CardTitle>
+              <CardDescription>
+                AI prepares traceable policy calculation. Authorized officer approves.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between">
+                <span className="font-medium text-sm">
+                  Refund Request <span className="text-primary font-mono">#{activeRefund.refund_id.toUpperCase()}</span>
+                </span>
+                <Badge
+                  variant={activeRefund.status === "APPROVED" ? "default" : "outline"}
+                  className={activeRefund.status === "APPROVED" ? "bg-emerald-600 text-white text-xs" : "text-xs"}
+                >
+                  {activeRefund.status}
+                </Badge>
+              </div>
+
+              <div className="mt-4 flex flex-col gap-3">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-muted-foreground">Student Name</span>
+                  <span className="font-medium">{activeRefund.student_name}</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-muted-foreground">Roll Number</span>
+                  <span className="font-mono text-xs">{activeRefund.student_id}</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-muted-foreground">Reason Category</span>
+                  <span>{activeRefund.reason.replace(/_/g, " ")}</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-muted-foreground">Original Eligible Fee</span>
+                  <span>{inr(activeRefund.eligible_amount)}</span>
+                </div>
+                <div className="flex items-center justify-between border-y border-border py-3 text-sm">
+                  <span className="text-muted-foreground font-medium">Calculated Net Refund</span>
+                  <span className="text-xl font-bold tracking-tight text-primary">
+                    {inr(activeRefund.approved_amount)}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1 text-xs">
+                  <span className="text-muted-foreground font-medium">Regulatory Policy Applied:</span>
+                  <span className="rounded-md bg-muted p-2 text-foreground font-mono text-[11px] leading-relaxed">
+                    {activeRefund.policy_applied}
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-4 flex items-start gap-2 rounded-lg bg-warning/7 p-3 text-xs text-warning">
+                <LockKeyhole className="mt-0.5 size-3.5 shrink-0" />
+                <span>
+                  {activeRefund.status === "REQUESTED"
+                    ? "Awaiting authenticated finance officer sign-off before ledger entry."
+                    : `Action completed: ${activeRefund.status}`}
+                </span>
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleAction("review")}
+                  className="flex-1 text-xs"
+                >
+                  Review calculation
+                </Button>
+                {activeRefund.status === "REQUESTED" && (
+                  <>
+                    <Button
+                      size="sm"
+                      onClick={() => handleAction("approve")}
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs"
+                    >
+                      Approve
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleAction("reject")}
+                      className="text-destructive border-destructive/30 hover:bg-destructive/10 text-xs"
+                    >
+                      Reject
+                    </Button>
+                  </>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        ) : (
+          <div className="flex items-center justify-center p-8 text-center text-xs text-muted-foreground">
+            Select a refund request from the queue to view policy calculation.
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 

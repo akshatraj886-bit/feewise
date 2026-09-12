@@ -565,185 +565,20 @@ const INITIAL_PAYMENTS: Payment[] = [
   },
 ];
 
-const INITIAL_REFUNDS: RefundRecord[] = [
-  {
-    refund_id: "rf-2081",
-    student_id: "251FA04E17",
-    student_name: "Ananya Sharma",
-    reason: "CAUTION_DEPOSIT",
-    eligible_amount: 20000,
-    approved_amount: 18500,
-    policy_applied: "Policy WD-2026 (Sec 4.2: Processing deduction ₹1,500)",
-    status: "REQUESTED",
-  },
-];
+import {
+  EXTENDED_SCHOLARSHIP_RISKS,
+  EXTENDED_LOAN_REQUESTS,
+  EXTENDED_REMINDER_DISPATCHES,
+  EXTENDED_REFUNDS,
+} from "./extended-sql-data";
+import { students, instalmentPlans } from "./finance-data";
 
-// CRITICAL ORGANIZER RULE: Reminders MUST be suppressed where a sanctioned scholarship or approved installment covers dues!
-const INITIAL_REMINDER_DISPATCHES: ReminderDispatch[] = [
-  {
-    reminder_dispatch_id: "rem-901",
-    student_id: "251FA04E03",
-    student_name: "Akshat Raj",
-    fee_demand_id: "fd-101",
-    segment: "ON_PLAN",
-    escalation_level: 1,
-    channel: "SMS / WhatsApp",
-    message_ref: "MSG-ONPLAN-401",
-    suppressed: true,
-    suppression_reason:
-      "Suppressed by Policy: Active 3-instalment plan (Instalment #3 due 15 Oct 2026) covers remaining balance.",
-    sent_at: "2026-09-10 10:00:00",
-  },
-  {
-    reminder_dispatch_id: "rem-902",
-    student_id: "251FA04E58",
-    student_name: "Meera Iyer",
-    fee_demand_id: "fd-106",
-    segment: "AWAITING_SCHOLARSHIP",
-    escalation_level: 1,
-    channel: "Email",
-    message_ref: "MSG-SCHOLAR-402",
-    suppressed: true,
-    suppression_reason:
-      "Suppressed by Policy: Sanctioned VFSTR Merit Scholarship (₹20,000) awaiting government disbursement window.",
-    sent_at: "2026-09-09 11:30:00",
-  },
-  {
-    reminder_dispatch_id: "rem-903",
-    student_id: "251FA04E21",
-    student_name: "Rohan Mehta",
-    fee_demand_id: "fd-103",
-    segment: "PERSISTENT",
-    escalation_level: 2,
-    channel: "SMS + Email",
-    message_ref: "MSG-OVERDUE-403",
-    suppressed: false,
-    suppression_reason: undefined,
-    sent_at: "2026-09-08 09:15:00",
-    delivered_at: "2026-09-08 09:16:00",
-    responded: true,
-  },
-  {
-    reminder_dispatch_id: "rem-904",
-    student_id: "251FA04E42",
-    student_name: "Aarav Desai",
-    fee_demand_id: "fd-105",
-    segment: "HARDSHIP",
-    escalation_level: 1,
-    channel: "WhatsApp",
-    message_ref: "MSG-HARDSHIP-404",
-    suppressed: false,
-    suppression_reason: undefined,
-    sent_at: "2026-09-05 14:20:00",
-    delivered_at: "2026-09-05 14:21:00",
-    responded: false,
-  },
-];
+const INITIAL_REFUNDS: RefundRecord[] = EXTENDED_REFUNDS;
+const INITIAL_REMINDER_DISPATCHES: ReminderDispatch[] = EXTENDED_REMINDER_DISPATCHES;
+const INITIAL_SCHOLARSHIP_RISKS: ScholarshipRenewalRisk[] = EXTENDED_SCHOLARSHIP_RISKS;
+const INITIAL_LOAN_REQUESTS: LoanDocumentRequest[] = EXTENDED_LOAN_REQUESTS;
 
-// CRITICAL ORGANIZER MODULE: finance.scholarship_renewal_risk
-const INITIAL_SCHOLARSHIP_RISKS: ScholarshipRenewalRisk[] = [
-  {
-    scholarship_renewal_risk_id: "risk-501",
-    scholarship_application_id: "sa-merit-01",
-    student_id: "251FA04E03",
-    student_name: "Akshat Raj",
-    programme: "B.Tech CSE",
-    assessed_on: "2026-09-01",
-    attendance_pct: 86.4,
-    cgpa: 8.72,
-    criteria_at_risk: {
-      min_cgpa: 7.5,
-      min_attendance: 75.0,
-      notes: "Safe: Exceeds renewal criteria by +1.22 CGPA and +11.4% attendance.",
-    },
-    risk_level: "NONE",
-  },
-  {
-    scholarship_renewal_risk_id: "risk-502",
-    scholarship_application_id: "sa-merit-02",
-    student_id: "251FA04E58",
-    student_name: "Meera Iyer",
-    programme: "B.Tech CSE",
-    assessed_on: "2026-09-01",
-    attendance_pct: 76.2,
-    cgpa: 7.65,
-    criteria_at_risk: {
-      min_cgpa: 7.5,
-      min_attendance: 75.0,
-      notes: "Watchlist: Attendance is 76.2%, very close to minimum 75% threshold.",
-    },
-    risk_level: "WATCH",
-    alerted_at: "2026-09-02 11:00:00",
-  },
-  {
-    scholarship_renewal_risk_id: "risk-503",
-    scholarship_application_id: "sa-merit-03",
-    student_id: "251FA04E21",
-    student_name: "Rohan Mehta",
-    programme: "MBA",
-    assessed_on: "2026-09-01",
-    attendance_pct: 71.0,
-    cgpa: 7.18,
-    criteria_at_risk: {
-      min_cgpa: 7.5,
-      min_attendance: 75.0,
-      notes: "Alert: Both CGPA (7.18) and attendance (71.0%) below required limits.",
-    },
-    risk_level: "AT_RISK",
-    alerted_at: "2026-09-03 14:00:00",
-  },
-];
-
-// CRITICAL ORGANIZER MODULE: finance.loan_document_request
-const INITIAL_LOAN_REQUESTS: LoanDocumentRequest[] = [
-  {
-    loan_document_request_id: "ldr-301",
-    student_id: "251FA04E03",
-    student_name: "Akshat Raj",
-    bank_name: "State Bank of India (SBI), Vadlamudi Branch",
-    document_type: "BONAFIDE",
-    requested_on: "2026-09-08",
-    status: "ISSUED",
-    issued_on: "2026-09-09",
-    issued_by: "VFSTR Finance Desk",
-    verification_code: "VFSTR-LOAN-849201",
-    turnaround_hours: 18.5,
-  },
-  {
-    loan_document_request_id: "ldr-302",
-    student_id: "251FA04E03",
-    student_name: "Akshat Raj",
-    bank_name: "State Bank of India (SBI), Vadlamudi Branch",
-    document_type: "FEE_STRUCTURE",
-    requested_on: "2026-09-08",
-    status: "ISSUED",
-    issued_on: "2026-09-09",
-    issued_by: "VFSTR Finance Desk",
-    verification_code: "VFSTR-LOAN-849202",
-    turnaround_hours: 18.5,
-  },
-  {
-    loan_document_request_id: "ldr-303",
-    student_id: "251FA04E42",
-    student_name: "Aarav Desai",
-    bank_name: "HDFC Bank Education Loan Division",
-    document_type: "FEE_PAID_STATEMENT",
-    requested_on: "2026-09-10",
-    status: "IN_PROGRESS",
-    turnaround_hours: 8.0,
-  },
-  {
-    loan_document_request_id: "ldr-304",
-    student_id: "251FA04E21",
-    student_name: "Rohan Mehta",
-    bank_name: "Canara Bank, Vidyanagar Branch",
-    document_type: "ADMISSION_CONFIRMATION",
-    requested_on: "2026-09-11",
-    status: "REQUESTED",
-  },
-];
-
-const LOCAL_STORAGE_KEY = "feewise_sql_store_v1";
+const LOCAL_STORAGE_KEY = "feewise_sql_store_v4";
 
 // ==========================================
 // 3. STORAGE & CRUD METHODS
@@ -937,47 +772,76 @@ export function issueLoanDocument(
   return req;
 }
 
+export function updateRefundStatus(
+  refundId: string,
+  newStatus: RefundStatus
+): RefundRecord | null {
+  const state = getSqlDatabaseState();
+  const ref = state.refunds.find((r) => r.refund_id === refundId);
+  if (!ref) return null;
+  ref.status = newStatus;
+  saveSqlDatabaseState(state);
+  return ref;
+}
+
 // ----------------------------------------------------
 // Business Action 3: Reminder Dispatch & Policy Suppression
 // ----------------------------------------------------
 export function dispatchFeeReminder(student_id: string): ReminderDispatch {
   const state = getSqlDatabaseState();
+  const student = students.find((s) => s.id === student_id);
   const demand = state.fee_demands.find((fd) => fd.student_id === student_id);
-  const activePlan = state.installment_plans.find(
+  const plan = instalmentPlans.find((p) => p.studentId === student_id);
+  const activeSqlPlan = state.installment_plans.find(
     (p) => p.student_id === student_id && p.status === "PENDING"
   );
+  const scholarshipAmount = student?.scholarship || demand?.scholarship_expected || 0;
+  const overdueAmount = student?.overdue ?? demand?.outstanding ?? 0;
   const hasSanctionedScholarship =
-    (demand?.scholarship_expected || 0) > 0 &&
-    (demand?.outstanding || 0) <= (demand?.scholarship_expected || 0);
+    scholarshipAmount > 0 && overdueAmount <= scholarshipAmount;
 
   let suppressed = false;
   let suppressionReason: string | undefined;
   let segment: ReminderSegment = "PERSISTENT";
 
-  // COMMENT ON COLUMN finance.reminder_dispatch.suppressed IS
-  // 'Reminders MUST be suppressed where a sanctioned scholarship or approved installment plan covers the dues.'
-  if (activePlan) {
+  const hasUpcomingInstalment = plan && plan.instalments.some((i) => i.status === "Pending");
+  if (activeSqlPlan) {
     suppressed = true;
     segment = "ON_PLAN";
-    suppressionReason = `Auto-suppressed: Active ${activePlan.installment_no}-instalment plan covers dues until ${activePlan.due_date}.`;
+    suppressionReason = `Auto-suppressed: Active ${activeSqlPlan.installment_no}-instalment plan covers dues until ${activeSqlPlan.due_date}.`;
+  } else if (hasUpcomingInstalment) {
+    suppressed = true;
+    segment = "ON_PLAN";
+    const nextInst = plan.instalments.find((i) => i.status === "Pending");
+    suppressionReason = `Auto-suppressed: Active ${plan.planType} covers remaining balance until ${nextInst?.due || "next cycle"}.`;
   } else if (hasSanctionedScholarship) {
     suppressed = true;
     segment = "AWAITING_SCHOLARSHIP";
-    suppressionReason = `Auto-suppressed: Sanctioned Scholarship (₹${demand?.scholarship_expected}) covers outstanding dues.`;
+    suppressionReason = `Auto-suppressed: Sanctioned Scholarship (₹${scholarshipAmount.toLocaleString("en-IN")}) covers outstanding balance.`;
+  } else {
+    const loanReq = state.loan_requests.find(
+      (l) => l.student_id === student_id && l.status !== "REJECTED"
+    );
+    if (loanReq) {
+      suppressed = true;
+      segment = "ON_PLAN";
+      suppressionReason = `Auto-suppressed: Bank education loan certificate verification in progress (${loanReq.bank_name}).`;
+    }
   }
 
   const newReminder: ReminderDispatch = {
-    reminder_dispatch_id: "rem-" + Math.floor(900 + Math.random() * 900),
+    reminder_dispatch_id: "rem-" + Math.floor(9000 + Math.random() * 9000),
     student_id,
-    student_name: demand?.student_name || "Student",
-    fee_demand_id: demand?.fee_demand_id || "fd-00",
+    student_name: student?.name || demand?.student_name || "Student",
+    fee_demand_id: demand?.fee_demand_id || `fd-${student_id}`,
     segment,
-    escalation_level: 1,
+    escalation_level: suppressed ? 1 : 2,
     channel: "WhatsApp & SMS",
     message_ref: "MSG-" + Math.floor(1000 + Math.random() * 9000),
     suppressed,
     suppression_reason: suppressionReason,
     sent_at: new Date().toLocaleString("en-IN"),
+    ...(!suppressed ? { delivered_at: new Date().toLocaleString("en-IN"), responded: false } : {}),
   };
 
   state.reminder_dispatches.unshift(newReminder);
