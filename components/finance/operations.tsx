@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -8,6 +9,7 @@ import {
   Clock3,
   FileCheck2,
   LockKeyhole,
+  Search,
   ShieldCheck,
   TriangleAlert,
 } from "lucide-react";
@@ -22,6 +24,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
+import { useLiveFinance } from "@/context/live-finance-context";
 import {
   inr,
   transactions,
@@ -65,11 +69,49 @@ export function ReconciliationCenter({
   full?: boolean;
   reviewed?: boolean;
 }) {
+  const { students, transactions: liveTransactions } = useLiveFinance();
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("All");
+  const [page, setPage] = useState(1);
+  const pageSize = 20;
+
+  const studentMap = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const s of students) map.set(s.id, s.name);
+    return map;
+  }, [students]);
+
+  const filtered = useMemo(() => {
+    if (!full) return liveTransactions.slice(0, 3);
+    const q = search.trim().toLowerCase();
+    return liveTransactions.filter((tx) => {
+      if (statusFilter === "Mismatches" && tx.status !== "Mismatch") return false;
+      if (statusFilter === "Matched" && tx.status !== "Matched") return false;
+      if (!q) return true;
+      const sName = studentMap.get(tx.student) || "";
+      return `${tx.id} ${tx.student} ${sName} ${tx.method} ${tx.status} ${tx.gateway} ${tx.ledger}`
+        .toLowerCase()
+        .includes(q);
+    });
+  }, [liveTransactions, full, search, statusFilter, studentMap]);
+
+  const totalPages = full ? Math.ceil(filtered.length / pageSize) || 1 : 1;
+  const displayedRows = full
+    ? filtered.slice((page - 1) * pageSize, page * pageSize)
+    : filtered;
+
+  const mismatchCount = liveTransactions.filter((t) => t.status === "Mismatch").length;
+  const matchedCount = liveTransactions.filter((t) => t.status === "Matched").length;
+
   return (
     <Card className="panel">
       <CardHeader>
         <CardTitle>Reconciliation Center</CardTitle>
-        <CardDescription>Every transaction, accounted for.</CardDescription>
+        <CardDescription>
+          {full
+            ? `Audit and resolve payment variances across ${liveTransactions.length} recorded gateway transactions.`
+            : "Every transaction, accounted for."}
+        </CardDescription>
         <CardAction>
           <Button variant="link" onClick={onViewAll}>
             {full ? "View audit log" : "View all"}{" "}
@@ -77,7 +119,109 @@ export function ReconciliationCenter({
           </Button>
         </CardAction>
       </CardHeader>
+
       <CardContent className="px-0">
+        {full && (
+          <div className="px-6 mb-4 flex flex-wrap items-center justify-between gap-3">
+            <InputGroup className="h-9 max-w-sm w-full">
+              <InputGroupInput
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setPage(1);
+                }}
+                aria-label="Search reconciliation transactions"
+                placeholder="Search Txn ID, student ID or name..."
+                className="text-xs"
+              />
+              <InputGroupAddon>
+                <Search className="size-3.5 text-muted-foreground" />
+              </InputGroupAddon>
+            </InputGroup>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setStatusFilter("All");
+                  setPage(1);
+                }}
+                className={cn(
+                  "px-2.5 py-1 rounded-md text-xs font-medium border transition-colors cursor-pointer",
+                  statusFilter === "All"
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-background text-muted-foreground hover:text-foreground",
+                )}
+              >
+                All ({liveTransactions.length})
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setStatusFilter("Mismatches");
+                  setPage(1);
+                }}
+                className={cn(
+                  "px-2.5 py-1 rounded-md text-xs font-medium border transition-colors cursor-pointer",
+                  statusFilter === "Mismatches"
+                    ? "bg-destructive text-destructive-foreground border-destructive"
+                    : "bg-destructive/10 text-destructive border-destructive/30 hover:bg-destructive/20",
+                )}
+              >
+                Mismatches ({mismatchCount})
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setStatusFilter("Matched");
+                  setPage(1);
+                }}
+                className={cn(
+                  "px-2.5 py-1 rounded-md text-xs font-medium border transition-colors cursor-pointer",
+                  statusFilter === "Matched"
+                    ? "bg-emerald-600 text-white border-emerald-600"
+                    : "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/20",
+                )}
+              >
+                Matched ({matchedCount})
+              </button>
+            </div>
+          </div>
+        )}
+
+        {full && (
+          <div className="px-6 mb-2 flex items-center justify-between text-xs text-muted-foreground">
+            <span>
+              Showing {displayedRows.length} of {filtered.length} transactions
+            </span>
+            {totalPages > 1 && (
+              <div className="flex items-center gap-1.5">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-6 text-xs px-2"
+                  disabled={page <= 1}
+                  onClick={() => setPage((p) => Math.max(1, p - 1))}
+                >
+                  Prev
+                </Button>
+                <span>
+                  {page} / {totalPages}
+                </span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-6 text-xs px-2"
+                  disabled={page >= totalPages}
+                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                >
+                  Next
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
+
         <table className="data-table mobile-cards">
           <thead>
             <tr>
@@ -94,7 +238,7 @@ export function ReconciliationCenter({
             </tr>
           </thead>
           <tbody>
-            {transactions.slice(0, full ? undefined : 3).map((tx) => (
+            {displayedRows.map((tx) => (
               <tr
                 key={tx.id}
                 className={cn(tx.status === "Mismatch" && "mismatch")}
@@ -102,17 +246,22 @@ export function ReconciliationCenter({
                 <td data-label="Transaction">
                   <button
                     onClick={() => onReview(tx)}
-                    className="font-medium hover:text-primary"
+                    className="font-medium hover:text-primary font-mono text-xs"
                   >
                     {tx.id}
                   </button>
                 </td>
                 <td data-label="Student">
                   <button
-                    className="text-muted-foreground hover:text-primary"
+                    className="text-left text-muted-foreground hover:text-primary group"
                     onClick={() => onStudent(tx.student)}
                   >
-                    {tx.student}
+                    <span className="font-medium text-foreground group-hover:text-primary text-xs block">
+                      {studentMap.get(tx.student) || tx.student}
+                    </span>
+                    <span className="font-mono text-[10px] text-muted-foreground block">
+                      {tx.student}
+                    </span>
                   </button>
                 </td>
                 <td data-label="Gateway" className="tabular-nums">
@@ -147,7 +296,7 @@ export function ReconciliationCenter({
             ? "TXN-10483 investigation prepared"
             : "Last reconciled today, 10:21 AM"}
         </span>
-        <Button variant="outline" onClick={() => onReview(transactions[1])}>
+        <Button variant="outline" onClick={() => onReview(liveTransactions.find(t => t.id === "TXN-10483") || liveTransactions[1])}>
           Review mismatch <ArrowRight data-icon="inline-end" />
         </Button>
       </CardFooter>

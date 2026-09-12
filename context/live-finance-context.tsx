@@ -39,10 +39,10 @@ interface LiveFinanceContextType {
   lastUpdated: number;
 }
 
-const STORAGE_KEY_STUDENTS = "findeck_live_students_v2";
-const STORAGE_KEY_ALLOCATIONS = "findeck_live_allocations_v2";
-const STORAGE_KEY_RECEIPTS = "findeck_live_receipts_v2";
-const STORAGE_KEY_TRANSACTIONS = "findeck_live_transactions_v2";
+const STORAGE_KEY_STUDENTS = "findeck_live_students_v4";
+const STORAGE_KEY_ALLOCATIONS = "findeck_live_allocations_v4";
+const STORAGE_KEY_RECEIPTS = "findeck_live_receipts_v4";
+const STORAGE_KEY_TRANSACTIONS = "findeck_live_transactions_v4";
 
 const LiveFinanceContext = createContext<LiveFinanceContextType | null>(null);
 
@@ -54,9 +54,24 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
   const [lastUpdated, setLastUpdated] = useState<number>(Date.now());
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Load persisted state from localStorage on mount
+  // Load persisted state from localStorage on mount with cache invalidation
   useEffect(() => {
     try {
+      // Purge old stale caches from previous demo versions
+      const staleKeys = [
+        "findeck_live_students",
+        "findeck_live_transactions",
+        "findeck_live_students_v2",
+        "findeck_live_allocations_v2",
+        "findeck_live_receipts_v2",
+        "findeck_live_transactions_v2",
+        "findeck_live_students_v3",
+        "findeck_live_transactions_v3",
+      ];
+      for (const k of staleKeys) {
+        localStorage.removeItem(k);
+      }
+
       const savedStudents = localStorage.getItem(STORAGE_KEY_STUDENTS);
       const savedAllocs = localStorage.getItem(STORAGE_KEY_ALLOCATIONS);
       const savedReceipts = localStorage.getItem(STORAGE_KEY_RECEIPTS);
@@ -64,19 +79,30 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
 
       if (savedStudents) {
         const parsed = JSON.parse(savedStudents);
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed) && parsed.length >= initialStudents.length) {
           setStudents(parsed);
+        } else {
+          setStudents(initialStudents);
         }
+      } else {
+        setStudents(initialStudents);
       }
+
       if (savedAllocs) {
         setFeeAllocations(JSON.parse(savedAllocs));
+      } else {
+        setFeeAllocations(initialFeeAllocations);
       }
+
       if (savedReceipts) {
         setPaymentReceipts(JSON.parse(savedReceipts));
+      } else {
+        setPaymentReceipts(initialPaymentReceipts);
       }
+
       if (savedTxns) {
         const parsed = JSON.parse(savedTxns);
-        if (Array.isArray(parsed)) {
+        if (Array.isArray(parsed) && parsed.length >= initialTransactions.length) {
           const seen = new Set<string>();
           const deduplicated = parsed.filter((t) => {
             if (!t || !t.id || seen.has(t.id)) return false;
@@ -84,10 +110,18 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
             return true;
           });
           setTransactions(deduplicated);
+        } else {
+          setTransactions(initialTransactions);
         }
+      } else {
+        setTransactions(initialTransactions);
       }
     } catch (e) {
       console.warn("Live finance local storage restore error:", e);
+      setStudents(initialStudents);
+      setTransactions(initialTransactions);
+      setFeeAllocations(initialFeeAllocations);
+      setPaymentReceipts(initialPaymentReceipts);
     } finally {
       setIsLoaded(true);
     }

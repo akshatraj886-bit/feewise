@@ -8,6 +8,60 @@ export type StudentCredential = {
 };
 
 export const studentCredentials: Record<string, StudentCredential> = {
+  "251FA11001": {
+    "dob": "12/04/2005",
+    "password": "Kavita@12042005",
+    "altPassword": "Reddy@12042005",
+    "email": "251fa11001@vignan.ac.in"
+  },
+  "251FA11002": {
+    "dob": "18/09/2004",
+    "password": "Sai@18092004",
+    "altPassword": "Varma@18092004",
+    "email": "251fa11002@vignan.ac.in"
+  },
+  "251FA11003": {
+    "dob": "24/01/2005",
+    "password": "Pooja@24012005",
+    "altPassword": "Nair@24012005",
+    "email": "251fa11003@vignan.ac.in"
+  },
+  "251FA12001": {
+    "dob": "05/06/2003",
+    "password": "Vikram@05062003",
+    "altPassword": "Aditya@05062003",
+    "email": "251fa12001@vignan.ac.in"
+  },
+  "251FA12002": {
+    "dob": "15/11/2003",
+    "password": "Deepika@15112003",
+    "altPassword": "Rao@15112003",
+    "email": "251fa12002@vignan.ac.in"
+  },
+  "251FA12003": {
+    "dob": "29/03/2003",
+    "password": "Siddharth@29032003",
+    "altPassword": "Sen@29032003",
+    "email": "251fa12003@vignan.ac.in"
+  },
+  "251FA13001": {
+    "dob": "07/07/2005",
+    "password": "Aarav@07072005",
+    "altPassword": "Singhania@07072005",
+    "email": "251fa13001@vignan.ac.in"
+  },
+  "251FA13002": {
+    "dob": "14/02/2005",
+    "password": "Meera@14022005",
+    "altPassword": "Nambiar@14022005",
+    "email": "251fa13002@vignan.ac.in"
+  },
+  "251FA13003": {
+    "dob": "21/10/2005",
+    "password": "Rohan@21102005",
+    "altPassword": "Deshmukh@21102005",
+    "email": "251fa13003@vignan.ac.in"
+  },
   "251FA04E03": {
     "dob": "15/08/2004",
     "password": "Akshat@15082004",
