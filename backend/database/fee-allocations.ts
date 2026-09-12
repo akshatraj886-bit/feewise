@@ -1,3450 +1,22140 @@
-// Auto-generated: per-student fee head breakdown (Tuition/Hostel/Examination/Library/Laboratory)
-// Waterfall-allocated: Tuition -> Examination -> Library -> Laboratory -> Hostel
+// Auto-generated: per-student fee head breakdown for all university programmes
+// Waterfall-allocated: Tuition -> Examination -> Library -> Laboratory -> Transport -> Hostel
 export const feeAllocations: Record<string, {
   head: string; gross: number; paid: number; outstanding: number; status: string;
 }[]> = {
+  "251FA04E03": [
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 7000,
+      "outstanding": 33000,
+      "status": "Partially Paid"
+    }
+  ],
+  "251FA04E17": [
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 15000,
+      "outstanding": 25000,
+      "status": "Partially Paid"
+    }
+  ],
+  "251FA04E21": [
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 105000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 10000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
+  ],
   "251FA04645": [
-    { head: "Tuition", gross: 74290, paid: 72006, outstanding: 2284, status: "Partially Paid" },
-    { head: "Hostel", gross: 42290, paid: 0, outstanding: 42290, status: "Unpaid" },
-    { head: "Examination", gross: 5080, paid: 0, outstanding: 5080, status: "Unpaid" },
-    { head: "Library", gross: 2160, paid: 0, outstanding: 2160, status: "Unpaid" },
-    { head: "Laboratory", gross: 3180, paid: 0, outstanding: 3180, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 60000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04852": [
-    { head: "Tuition", gross: 71370, paid: 71370, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40630, paid: 29482, outstanding: 11148, status: "Partially Paid" },
-    { head: "Examination", gross: 4880, paid: 4880, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2070, paid: 2070, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3050, paid: 3050, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 27000,
+      "outstanding": 13000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04863": [
-    { head: "Tuition", gross: 75470, paid: 58354, outstanding: 17116, status: "Partially Paid" },
-    { head: "Hostel", gross: 42960, paid: 0, outstanding: 42960, status: "Unpaid" },
-    { head: "Examination", gross: 5160, paid: 0, outstanding: 5160, status: "Unpaid" },
-    { head: "Library", gross: 2190, paid: 0, outstanding: 2190, status: "Unpaid" },
-    { head: "Laboratory", gross: 3220, paid: 0, outstanding: 3220, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65500,
+      "outstanding": 24500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04261": [
-    { head: "Tuition", gross: 76050, paid: 76050, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 43290, paid: 18290, outstanding: 25000, status: "Partially Paid" },
-    { head: "Examination", gross: 5200, paid: 5200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2210, paid: 2210, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3250, paid: 3250, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 17000,
+      "outstanding": 23000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04001": [
-    { head: "Tuition", gross: 66110, paid: 66110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37630, paid: 11199, outstanding: 26431, status: "Partially Paid" },
-    { head: "Examination", gross: 4520, paid: 4520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1920, paid: 1920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2820, paid: 2820, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 12000,
+      "outstanding": 28000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04777": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 37300, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4480, paid: 4480, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1900, paid: 1900, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2800, paid: 2800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA04430": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 0, outstanding: 38300, status: "Unpaid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 887, outstanding: 1073, status: "Partially Paid" },
-    { head: "Laboratory", gross: 2880, paid: 0, outstanding: 2880, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 2000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04219": [
-    { head: "Tuition", gross: 71370, paid: 71370, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40630, paid: 24302, outstanding: 16328, status: "Partially Paid" },
-    { head: "Examination", gross: 4880, paid: 4880, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2070, paid: 2070, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3050, paid: 3050, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 22500,
+      "outstanding": 17500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04381": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 7863, outstanding: 29437, status: "Partially Paid" },
-    { head: "Examination", gross: 4480, paid: 4480, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1900, paid: 1900, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2800, paid: 2800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 2000,
+      "outstanding": 38000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04163": [
-    { head: "Tuition", gross: 69610, paid: 69610, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39630, paid: 9851, outstanding: 29779, status: "Partially Paid" },
-    { head: "Examination", gross: 4760, paid: 4760, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2020, paid: 2020, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2980, paid: 2980, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 88000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 4000,
+      "outstanding": 36000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04952": [
-    { head: "Tuition", gross: 71370, paid: 0, outstanding: 71370, status: "Unpaid" },
-    { head: "Hostel", gross: 40630, paid: 0, outstanding: 40630, status: "Unpaid" },
-    { head: "Examination", gross: 4880, paid: 0, outstanding: 4880, status: "Unpaid" },
-    { head: "Library", gross: 2070, paid: 0, outstanding: 2070, status: "Unpaid" },
-    { head: "Laboratory", gross: 3050, paid: 0, outstanding: 3050, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 90000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04940": [
-    { head: "Tuition", gross: 68450, paid: 68450, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38960, paid: 31607, outstanding: 7353, status: "Partially Paid" },
-    { head: "Examination", gross: 4680, paid: 4680, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1990, paid: 1990, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2920, paid: 2920, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 31500,
+      "outstanding": 8500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04378": [
-    { head: "Tuition", gross: 72540, paid: 72540, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41290, paid: 20511, outstanding: 20779, status: "Partially Paid" },
-    { head: "Examination", gross: 4960, paid: 4960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2110, paid: 2110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3100, paid: 3100, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 19000,
+      "outstanding": 21000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04069": [
-    { head: "Tuition", gross: 69610, paid: 69610, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39630, paid: 39630, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4760, paid: 4760, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2020, paid: 2020, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2980, paid: 2980, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA04485": [
-    { head: "Tuition", gross: 66690, paid: 66690, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37960, paid: 37960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4560, paid: 4560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1940, paid: 1940, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2850, paid: 2850, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA04119": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 37300, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4480, paid: 4480, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1900, paid: 1900, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2800, paid: 2800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA04493": [
-    { head: "Tuition", gross: 73710, paid: 73710, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41960, paid: 0, outstanding: 41960, status: "Unpaid" },
-    { head: "Examination", gross: 5040, paid: 2852, outstanding: 2188, status: "Partially Paid" },
-    { head: "Library", gross: 2140, paid: 0, outstanding: 2140, status: "Unpaid" },
-    { head: "Laboratory", gross: 3150, paid: 0, outstanding: 3150, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 88000,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04208": [
-    { head: "Tuition", gross: 64350, paid: 64350, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36630, paid: 26907, outstanding: 9723, status: "Partially Paid" },
-    { head: "Examination", gross: 4400, paid: 4400, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1870, paid: 1870, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2750, paid: 2750, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 27000,
+      "outstanding": 13000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04394": [
-    { head: "Tuition", gross: 69030, paid: 27220, outstanding: 41810, status: "Partially Paid" },
-    { head: "Hostel", gross: 39290, paid: 0, outstanding: 39290, status: "Unpaid" },
-    { head: "Examination", gross: 4720, paid: 0, outstanding: 4720, status: "Unpaid" },
-    { head: "Library", gross: 2010, paid: 0, outstanding: 2010, status: "Unpaid" },
-    { head: "Laboratory", gross: 2950, paid: 0, outstanding: 2950, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 27500,
+      "outstanding": 37500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04851": [
-    { head: "Tuition", gross: 67260, paid: 0, outstanding: 67260, status: "Unpaid" },
-    { head: "Hostel", gross: 38300, paid: 0, outstanding: 38300, status: "Unpaid" },
-    { head: "Examination", gross: 4600, paid: 0, outstanding: 4600, status: "Unpaid" },
-    { head: "Library", gross: 1960, paid: 0, outstanding: 1960, status: "Unpaid" },
-    { head: "Laboratory", gross: 2880, paid: 0, outstanding: 2880, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 90000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04464": [
-    { head: "Tuition", gross: 76050, paid: 44183, outstanding: 31867, status: "Partially Paid" },
-    { head: "Hostel", gross: 43290, paid: 0, outstanding: 43290, status: "Unpaid" },
-    { head: "Examination", gross: 5200, paid: 0, outstanding: 5200, status: "Unpaid" },
-    { head: "Library", gross: 2210, paid: 0, outstanding: 2210, status: "Unpaid" },
-    { head: "Laboratory", gross: 3250, paid: 0, outstanding: 3250, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 37500,
+      "outstanding": 17500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04140": [
-    { head: "Tuition", gross: 70790, paid: 70790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40290, paid: 40290, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4840, paid: 4840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2060, paid: 2060, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3020, paid: 3020, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA04263": [
-    { head: "Tuition", gross: 66110, paid: 65316, outstanding: 794, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 4500,
+      "outstanding": 500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04928": [
-    { head: "Tuition", gross: 70790, paid: 70790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40290, paid: 14801, outstanding: 25489, status: "Partially Paid" },
-    { head: "Examination", gross: 4840, paid: 4840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2060, paid: 2060, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3020, paid: 3020, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 12500,
+      "outstanding": 27500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04564": [
-    { head: "Tuition", gross: 72540, paid: 72540, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41290, paid: 36290, outstanding: 5000, status: "Partially Paid" },
-    { head: "Examination", gross: 4960, paid: 4960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2110, paid: 2110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3100, paid: 3100, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 34500,
+      "outstanding": 5500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04085": [
-    { head: "Tuition", gross: 74290, paid: 74290, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 42290, paid: 42217, outstanding: 73, status: "Partially Paid" },
-    { head: "Examination", gross: 5080, paid: 5080, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2160, paid: 2160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3180, paid: 3180, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA04529": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 18227, outstanding: 20073, status: "Partially Paid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 16500,
+      "outstanding": 23500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04978": [
-    { head: "Tuition", gross: 73710, paid: 73710, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41960, paid: 0, outstanding: 41960, status: "Unpaid" },
-    { head: "Examination", gross: 5040, paid: 466, outstanding: 4574, status: "Partially Paid" },
-    { head: "Library", gross: 2140, paid: 0, outstanding: 2140, status: "Unpaid" },
-    { head: "Laboratory", gross: 3150, paid: 0, outstanding: 3150, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 84000,
+      "outstanding": 4000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04387": [
-    { head: "Tuition", gross: 71950, paid: 71950, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40960, paid: 30960, outstanding: 10000, status: "Partially Paid" },
-    { head: "Examination", gross: 4920, paid: 4920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2090, paid: 2090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3080, paid: 3080, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 29000,
+      "outstanding": 11000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04068": [
-    { head: "Tuition", gross: 74880, paid: 0, outstanding: 74880, status: "Unpaid" },
-    { head: "Hostel", gross: 42620, paid: 0, outstanding: 42620, status: "Unpaid" },
-    { head: "Examination", gross: 5120, paid: 0, outstanding: 5120, status: "Unpaid" },
-    { head: "Library", gross: 2180, paid: 0, outstanding: 2180, status: "Unpaid" },
-    { head: "Laboratory", gross: 3200, paid: 0, outstanding: 3200, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 90000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04348": [
-    { head: "Tuition", gross: 71370, paid: 519, outstanding: 70851, status: "Partially Paid" },
-    { head: "Hostel", gross: 40630, paid: 0, outstanding: 40630, status: "Unpaid" },
-    { head: "Examination", gross: 4880, paid: 0, outstanding: 4880, status: "Unpaid" },
-    { head: "Library", gross: 2070, paid: 0, outstanding: 2070, status: "Unpaid" },
-    { head: "Laboratory", gross: 3050, paid: 0, outstanding: 3050, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 500,
+      "outstanding": 64500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04719": [
-    { head: "Tuition", gross: 67860, paid: 67860, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38630, paid: 31195, outstanding: 7435, status: "Partially Paid" },
-    { head: "Examination", gross: 4640, paid: 4640, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1970, paid: 1970, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2900, paid: 2900, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 31000,
+      "outstanding": 9000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04511": [
-    { head: "Tuition", gross: 64350, paid: 49001, outstanding: 15349, status: "Partially Paid" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 0, outstanding: 4400, status: "Unpaid" },
-    { head: "Library", gross: 1870, paid: 0, outstanding: 1870, status: "Unpaid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 64500,
+      "outstanding": 25500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04885": [
-    { head: "Tuition", gross: 71370, paid: 71370, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40630, paid: 22834, outstanding: 17796, status: "Partially Paid" },
-    { head: "Examination", gross: 4880, paid: 4880, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2070, paid: 2070, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3050, paid: 3050, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 20000,
+      "outstanding": 20000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04909": [
-    { head: "Tuition", gross: 70200, paid: 70200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39960, paid: 1853, outstanding: 38107, status: "Partially Paid" },
-    { head: "Examination", gross: 4800, paid: 4800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2040, paid: 2040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3000, paid: 3000, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 2000,
+      "outstanding": 3000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04644": [
-    { head: "Tuition", gross: 71950, paid: 71950, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40960, paid: 21681, outstanding: 19279, status: "Partially Paid" },
-    { head: "Examination", gross: 4920, paid: 4920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2090, paid: 2090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3080, paid: 3080, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 18500,
+      "outstanding": 21500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04853": [
-    { head: "Tuition", gross: 66110, paid: 44659, outstanding: 21451, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 51500,
+      "outstanding": 23500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04189": [
-    { head: "Tuition", gross: 64930, paid: 0, outstanding: 64930, status: "Unpaid" },
-    { head: "Hostel", gross: 36960, paid: 0, outstanding: 36960, status: "Unpaid" },
-    { head: "Examination", gross: 4440, paid: 0, outstanding: 4440, status: "Unpaid" },
-    { head: "Library", gross: 1890, paid: 0, outstanding: 1890, status: "Unpaid" },
-    { head: "Laboratory", gross: 2780, paid: 0, outstanding: 2780, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 78000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04064": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 38300, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA04418": [
-    { head: "Tuition", gross: 70790, paid: 70790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40290, paid: 39610, outstanding: 680, status: "Partially Paid" },
-    { head: "Examination", gross: 4840, paid: 4840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2060, paid: 2060, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3020, paid: 3020, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 39000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04897": [
-    { head: "Tuition", gross: 73710, paid: 73710, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41960, paid: 41960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 5040, paid: 5040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2140, paid: 2140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3150, paid: 3150, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA04416": [
-    { head: "Tuition", gross: 71370, paid: 55168, outstanding: 16202, status: "Partially Paid" },
-    { head: "Hostel", gross: 40630, paid: 0, outstanding: 40630, status: "Unpaid" },
-    { head: "Examination", gross: 4880, paid: 0, outstanding: 4880, status: "Unpaid" },
-    { head: "Library", gross: 2070, paid: 0, outstanding: 2070, status: "Unpaid" },
-    { head: "Laboratory", gross: 3050, paid: 0, outstanding: 3050, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65500,
+      "outstanding": 24500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04346": [
-    { head: "Tuition", gross: 70790, paid: 70790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40290, paid: 2158, outstanding: 38132, status: "Partially Paid" },
-    { head: "Examination", gross: 4840, paid: 4840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2060, paid: 2060, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3020, paid: 3020, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 2500,
+      "outstanding": 2500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04455": [
-    { head: "Tuition", gross: 74880, paid: 74880, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 42620, paid: 27090, outstanding: 15530, status: "Partially Paid" },
-    { head: "Examination", gross: 5120, paid: 5120, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2180, paid: 2180, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3200, paid: 3200, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 24000,
+      "outstanding": 16000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04953": [
-    { head: "Tuition", gross: 76050, paid: 76050, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 43290, paid: 26290, outstanding: 17000, status: "Partially Paid" },
-    { head: "Examination", gross: 5200, paid: 5200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2210, paid: 2210, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3250, paid: 3250, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 73000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 23500,
+      "outstanding": 16500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04575": [
-    { head: "Tuition", gross: 69610, paid: 69610, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39630, paid: 0, outstanding: 39630, status: "Unpaid" },
-    { head: "Examination", gross: 4760, paid: 2269, outstanding: 2491, status: "Partially Paid" },
-    { head: "Library", gross: 2020, paid: 0, outstanding: 2020, status: "Unpaid" },
-    { head: "Laboratory", gross: 2980, paid: 0, outstanding: 2980, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 87500,
+      "outstanding": 2500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04741": [
-    { head: "Tuition", gross: 71370, paid: 30805, outstanding: 40565, status: "Partially Paid" },
-    { head: "Hostel", gross: 40630, paid: 0, outstanding: 40630, status: "Unpaid" },
-    { head: "Examination", gross: 4880, paid: 0, outstanding: 4880, status: "Unpaid" },
-    { head: "Library", gross: 2070, paid: 0, outstanding: 2070, status: "Unpaid" },
-    { head: "Laboratory", gross: 3050, paid: 0, outstanding: 3050, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 33000,
+      "outstanding": 42000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04428": [
-    { head: "Tuition", gross: 68450, paid: 68450, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38960, paid: 22666, outstanding: 16294, status: "Partially Paid" },
-    { head: "Examination", gross: 4680, paid: 4680, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1990, paid: 1990, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2920, paid: 2920, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 22000,
+      "outstanding": 18000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04684": [
-    { head: "Tuition", gross: 73710, paid: 57013, outstanding: 16697, status: "Partially Paid" },
-    { head: "Hostel", gross: 41960, paid: 0, outstanding: 41960, status: "Unpaid" },
-    { head: "Examination", gross: 5040, paid: 0, outstanding: 5040, status: "Unpaid" },
-    { head: "Library", gross: 2140, paid: 0, outstanding: 2140, status: "Unpaid" },
-    { head: "Laboratory", gross: 3150, paid: 0, outstanding: 3150, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65500,
+      "outstanding": 24500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04282": [
-    { head: "Tuition", gross: 73140, paid: 73140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41620, paid: 0, outstanding: 41620, status: "Unpaid" },
-    { head: "Examination", gross: 5000, paid: 1238, outstanding: 3762, status: "Partially Paid" },
-    { head: "Library", gross: 2120, paid: 0, outstanding: 2120, status: "Unpaid" },
-    { head: "Laboratory", gross: 3120, paid: 0, outstanding: 3120, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 3000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04028": [
-    { head: "Tuition", gross: 76050, paid: 76050, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 43290, paid: 0, outstanding: 43290, status: "Unpaid" },
-    { head: "Examination", gross: 5200, paid: 1512, outstanding: 3688, status: "Partially Paid" },
-    { head: "Library", gross: 2210, paid: 0, outstanding: 2210, status: "Unpaid" },
-    { head: "Laboratory", gross: 3250, paid: 0, outstanding: 3250, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 86500,
+      "outstanding": 3500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04496": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 8885, outstanding: 28415, status: "Partially Paid" },
-    { head: "Examination", gross: 4480, paid: 4480, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1900, paid: 1900, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2800, paid: 2800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 88000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 3500,
+      "outstanding": 36500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04400": [
-    { head: "Tuition", gross: 72540, paid: 238, outstanding: 72302, status: "Partially Paid" },
-    { head: "Hostel", gross: 41290, paid: 0, outstanding: 41290, status: "Unpaid" },
-    { head: "Examination", gross: 4960, paid: 0, outstanding: 4960, status: "Unpaid" },
-    { head: "Library", gross: 2110, paid: 0, outstanding: 2110, status: "Unpaid" },
-    { head: "Laboratory", gross: 3100, paid: 0, outstanding: 3100, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 500,
+      "outstanding": 79500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04379": [
-    { head: "Tuition", gross: 70200, paid: 70200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39960, paid: 28211, outstanding: 11749, status: "Partially Paid" },
-    { head: "Examination", gross: 4800, paid: 4800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2040, paid: 2040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3000, paid: 3000, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 26000,
+      "outstanding": 14000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04712": [
-    { head: "Tuition", gross: 64350, paid: 64350, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36630, paid: 10341, outstanding: 26289, status: "Partially Paid" },
-    { head: "Examination", gross: 4400, paid: 4400, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1870, paid: 1870, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2750, paid: 2750, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 5500,
+      "outstanding": 34500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04449": [
-    { head: "Tuition", gross: 66110, paid: 831, outstanding: 65279, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 1000,
+      "outstanding": 84000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04025": [
-    { head: "Tuition", gross: 71370, paid: 71370, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40630, paid: 30611, outstanding: 10019, status: "Partially Paid" },
-    { head: "Examination", gross: 4880, paid: 4880, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2070, paid: 2070, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3050, paid: 3050, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 29000,
+      "outstanding": 11000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04060": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 31706, outstanding: 5594, status: "Partially Paid" },
-    { head: "Examination", gross: 4480, paid: 4480, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1900, paid: 1900, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2800, paid: 2800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 33000,
+      "outstanding": 7000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04108": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 36920, outstanding: 380, status: "Partially Paid" },
-    { head: "Examination", gross: 4480, paid: 4480, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1900, paid: 1900, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2800, paid: 2800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 39500,
+      "outstanding": 500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04784": [
-    { head: "Tuition", gross: 76050, paid: 76050, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 43290, paid: 7542, outstanding: 35748, status: "Partially Paid" },
-    { head: "Examination", gross: 5200, paid: 5200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2210, paid: 2210, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3250, paid: 3250, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 1500,
+      "outstanding": 38500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04854": [
-    { head: "Tuition", gross: 64930, paid: 48465, outstanding: 16465, status: "Partially Paid" },
-    { head: "Hostel", gross: 36960, paid: 0, outstanding: 36960, status: "Unpaid" },
-    { head: "Examination", gross: 4440, paid: 0, outstanding: 4440, status: "Unpaid" },
-    { head: "Library", gross: 1890, paid: 0, outstanding: 1890, status: "Unpaid" },
-    { head: "Laboratory", gross: 2780, paid: 0, outstanding: 2780, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 63500,
+      "outstanding": 26500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04701": [
-    { head: "Tuition", gross: 66690, paid: 66690, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37960, paid: 5161, outstanding: 32799, status: "Partially Paid" },
-    { head: "Examination", gross: 4560, paid: 4560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1940, paid: 1940, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2850, paid: 2850, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 5500,
+      "outstanding": 34500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04018": [
-    { head: "Tuition", gross: 76050, paid: 76050, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 43290, paid: 43290, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 5200, paid: 5200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2210, paid: 2210, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3250, paid: 3250, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA04610": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 10507, outstanding: 27793, status: "Partially Paid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 5000,
+      "outstanding": 35000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04223": [
-    { head: "Tuition", gross: 70200, paid: 70200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39960, paid: 0, outstanding: 39960, status: "Unpaid" },
-    { head: "Examination", gross: 4800, paid: 4800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2040, paid: 2040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3000, paid: 1846, outstanding: 1154, status: "Partially Paid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 500,
+      "outstanding": 4500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04426": [
-    { head: "Tuition", gross: 72540, paid: 36682, outstanding: 35858, status: "Partially Paid" },
-    { head: "Hostel", gross: 41290, paid: 0, outstanding: 41290, status: "Unpaid" },
-    { head: "Examination", gross: 4960, paid: 0, outstanding: 4960, status: "Unpaid" },
-    { head: "Library", gross: 2110, paid: 0, outstanding: 2110, status: "Unpaid" },
-    { head: "Laboratory", gross: 3100, paid: 0, outstanding: 3100, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 41500,
+      "outstanding": 43500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04002": [
-    { head: "Tuition", gross: 74290, paid: 74290, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 42290, paid: 30432, outstanding: 11858, status: "Partially Paid" },
-    { head: "Examination", gross: 5080, paid: 5080, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2160, paid: 2160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3180, paid: 3180, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 26500,
+      "outstanding": 13500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04427": [
-    { head: "Tuition", gross: 72540, paid: 60977, outstanding: 11563, status: "Partially Paid" },
-    { head: "Hostel", gross: 41290, paid: 0, outstanding: 41290, status: "Unpaid" },
-    { head: "Examination", gross: 4960, paid: 0, outstanding: 4960, status: "Unpaid" },
-    { head: "Library", gross: 2110, paid: 0, outstanding: 2110, status: "Unpaid" },
-    { head: "Laboratory", gross: 3100, paid: 0, outstanding: 3100, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 61500,
+      "outstanding": 8500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04704": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 12273, outstanding: 25027, status: "Partially Paid" },
-    { head: "Examination", gross: 4480, paid: 4480, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1900, paid: 1900, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2800, paid: 2800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 13000,
+      "outstanding": 27000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04924": [
-    { head: "Tuition", gross: 69610, paid: 0, outstanding: 69610, status: "Unpaid" },
-    { head: "Hostel", gross: 39630, paid: 0, outstanding: 39630, status: "Unpaid" },
-    { head: "Examination", gross: 4760, paid: 0, outstanding: 4760, status: "Unpaid" },
-    { head: "Library", gross: 2020, paid: 0, outstanding: 2020, status: "Unpaid" },
-    { head: "Laboratory", gross: 2980, paid: 0, outstanding: 2980, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 80000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04569": [
-    { head: "Tuition", gross: 76050, paid: 73681, outstanding: 2369, status: "Partially Paid" },
-    { head: "Hostel", gross: 43290, paid: 0, outstanding: 43290, status: "Unpaid" },
-    { head: "Examination", gross: 5200, paid: 0, outstanding: 5200, status: "Unpaid" },
-    { head: "Library", gross: 2210, paid: 0, outstanding: 2210, status: "Unpaid" },
-    { head: "Laboratory", gross: 3250, paid: 0, outstanding: 3250, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 78000,
+      "outstanding": 5000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04095": [
-    { head: "Tuition", gross: 74880, paid: 53430, outstanding: 21450, status: "Partially Paid" },
-    { head: "Hostel", gross: 42620, paid: 0, outstanding: 42620, status: "Unpaid" },
-    { head: "Examination", gross: 5120, paid: 0, outstanding: 5120, status: "Unpaid" },
-    { head: "Library", gross: 2180, paid: 0, outstanding: 2180, status: "Unpaid" },
-    { head: "Laboratory", gross: 3200, paid: 0, outstanding: 3200, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 56500,
+      "outstanding": 23500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04034": [
-    { head: "Tuition", gross: 64930, paid: 64930, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36960, paid: 3871, outstanding: 33089, status: "Partially Paid" },
-    { head: "Examination", gross: 4440, paid: 4440, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1890, paid: 1890, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2780, paid: 2780, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 58000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 6500,
+      "outstanding": 8500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04495": [
-    { head: "Tuition", gross: 66690, paid: 66690, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37960, paid: 4816, outstanding: 33144, status: "Partially Paid" },
-    { head: "Examination", gross: 4560, paid: 4560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1940, paid: 1940, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2850, paid: 2850, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 4500,
+      "outstanding": 500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04210": [
-    { head: "Tuition", gross: 70200, paid: 0, outstanding: 70200, status: "Unpaid" },
-    { head: "Hostel", gross: 39960, paid: 0, outstanding: 39960, status: "Unpaid" },
-    { head: "Examination", gross: 4800, paid: 0, outstanding: 4800, status: "Unpaid" },
-    { head: "Library", gross: 2040, paid: 0, outstanding: 2040, status: "Unpaid" },
-    { head: "Laboratory", gross: 3000, paid: 0, outstanding: 3000, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 85000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04925": [
-    { head: "Tuition", gross: 66110, paid: 66110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37630, paid: 12369, outstanding: 25261, status: "Partially Paid" },
-    { head: "Examination", gross: 4520, paid: 4520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1920, paid: 1920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2820, paid: 2820, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 11000,
+      "outstanding": 29000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04676": [
-    { head: "Tuition", gross: 67860, paid: 67860, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38630, paid: 36630, outstanding: 2000, status: "Partially Paid" },
-    { head: "Examination", gross: 4640, paid: 4640, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1970, paid: 1970, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2900, paid: 2900, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 88000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 37500,
+      "outstanding": 2500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04894": [
-    { head: "Tuition", gross: 74880, paid: 41698, outstanding: 33182, status: "Partially Paid" },
-    { head: "Hostel", gross: 42620, paid: 0, outstanding: 42620, status: "Unpaid" },
-    { head: "Examination", gross: 5120, paid: 0, outstanding: 5120, status: "Unpaid" },
-    { head: "Library", gross: 2180, paid: 0, outstanding: 2180, status: "Unpaid" },
-    { head: "Laboratory", gross: 3200, paid: 0, outstanding: 3200, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 36000,
+      "outstanding": 19000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04919": [
-    { head: "Tuition", gross: 66690, paid: 66690, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37960, paid: 37642, outstanding: 318, status: "Partially Paid" },
-    { head: "Examination", gross: 4560, paid: 4560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1940, paid: 1940, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2850, paid: 2850, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 39500,
+      "outstanding": 500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04868": [
-    { head: "Tuition", gross: 64930, paid: 64930, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36960, paid: 0, outstanding: 36960, status: "Unpaid" },
-    { head: "Examination", gross: 4440, paid: 4440, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1890, paid: 1890, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2780, paid: 1400, outstanding: 1380, status: "Partially Paid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 60000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 500,
+      "outstanding": 14500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04178": [
-    { head: "Tuition", gross: 72540, paid: 31684, outstanding: 40856, status: "Partially Paid" },
-    { head: "Hostel", gross: 41290, paid: 0, outstanding: 41290, status: "Unpaid" },
-    { head: "Examination", gross: 4960, paid: 0, outstanding: 4960, status: "Unpaid" },
-    { head: "Library", gross: 2110, paid: 0, outstanding: 2110, status: "Unpaid" },
-    { head: "Laboratory", gross: 3100, paid: 0, outstanding: 3100, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 33000,
+      "outstanding": 42000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04935": [
-    { head: "Tuition", gross: 66110, paid: 51035, outstanding: 15075, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65500,
+      "outstanding": 24500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04443": [
-    { head: "Tuition", gross: 66110, paid: 50600, outstanding: 15510, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 64000,
+      "outstanding": 24000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04770": [
-    { head: "Tuition", gross: 75470, paid: 36647, outstanding: 38823, status: "Partially Paid" },
-    { head: "Hostel", gross: 42960, paid: 0, outstanding: 42960, status: "Unpaid" },
-    { head: "Examination", gross: 5160, paid: 0, outstanding: 5160, status: "Unpaid" },
-    { head: "Library", gross: 2190, paid: 0, outstanding: 2190, status: "Unpaid" },
-    { head: "Laboratory", gross: 3220, paid: 0, outstanding: 3220, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 38500,
+      "outstanding": 41500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04539": [
-    { head: "Tuition", gross: 68450, paid: 1346, outstanding: 67104, status: "Partially Paid" },
-    { head: "Hostel", gross: 38960, paid: 0, outstanding: 38960, status: "Unpaid" },
-    { head: "Examination", gross: 4680, paid: 0, outstanding: 4680, status: "Unpaid" },
-    { head: "Library", gross: 1990, paid: 0, outstanding: 1990, status: "Unpaid" },
-    { head: "Laboratory", gross: 2920, paid: 0, outstanding: 2920, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 1500,
+      "outstanding": 58500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04765": [
-    { head: "Tuition", gross: 74290, paid: 74290, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 42290, paid: 22698, outstanding: 19592, status: "Partially Paid" },
-    { head: "Examination", gross: 5080, paid: 5080, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2160, paid: 2160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3180, paid: 3180, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 18500,
+      "outstanding": 21500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04250": [
-    { head: "Tuition", gross: 66690, paid: 0, outstanding: 66690, status: "Unpaid" },
-    { head: "Hostel", gross: 37960, paid: 0, outstanding: 37960, status: "Unpaid" },
-    { head: "Examination", gross: 4560, paid: 0, outstanding: 4560, status: "Unpaid" },
-    { head: "Library", gross: 1940, paid: 0, outstanding: 1940, status: "Unpaid" },
-    { head: "Laboratory", gross: 2850, paid: 0, outstanding: 2850, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 90000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04145": [
-    { head: "Tuition", gross: 70200, paid: 343, outstanding: 69857, status: "Partially Paid" },
-    { head: "Hostel", gross: 39960, paid: 0, outstanding: 39960, status: "Unpaid" },
-    { head: "Examination", gross: 4800, paid: 0, outstanding: 4800, status: "Unpaid" },
-    { head: "Library", gross: 2040, paid: 0, outstanding: 2040, status: "Unpaid" },
-    { head: "Laboratory", gross: 3000, paid: 0, outstanding: 3000, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 500,
+      "outstanding": 89500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04147": [
-    { head: "Tuition", gross: 69610, paid: 53310, outstanding: 16300, status: "Partially Paid" },
-    { head: "Hostel", gross: 39630, paid: 0, outstanding: 39630, status: "Unpaid" },
-    { head: "Examination", gross: 4760, paid: 0, outstanding: 4760, status: "Unpaid" },
-    { head: "Library", gross: 2020, paid: 0, outstanding: 2020, status: "Unpaid" },
-    { head: "Laboratory", gross: 2980, paid: 0, outstanding: 2980, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65000,
+      "outstanding": 25000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04197": [
-    { head: "Tuition", gross: 73140, paid: 73140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41620, paid: 11053, outstanding: 30567, status: "Partially Paid" },
-    { head: "Examination", gross: 5000, paid: 5000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2120, paid: 2120, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3120, paid: 3120, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 4500,
+      "outstanding": 35500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04174": [
-    { head: "Tuition", gross: 71950, paid: 200, outstanding: 71750, status: "Partially Paid" },
-    { head: "Hostel", gross: 40960, paid: 0, outstanding: 40960, status: "Unpaid" },
-    { head: "Examination", gross: 4920, paid: 0, outstanding: 4920, status: "Unpaid" },
-    { head: "Library", gross: 2090, paid: 0, outstanding: 2090, status: "Unpaid" },
-    { head: "Laboratory", gross: 3080, paid: 0, outstanding: 3080, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 90000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04810": [
-    { head: "Tuition", gross: 69030, paid: 69030, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39290, paid: 6593, outstanding: 32697, status: "Partially Paid" },
-    { head: "Examination", gross: 4720, paid: 4720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2010, paid: 2010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2950, paid: 2950, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 1000,
+      "outstanding": 39000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04093": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 27921, outstanding: 10379, status: "Partially Paid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 27000,
+      "outstanding": 13000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04434": [
-    { head: "Tuition", gross: 64930, paid: 64930, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36960, paid: 0, outstanding: 36960, status: "Unpaid" },
-    { head: "Examination", gross: 4440, paid: 2370, outstanding: 2070, status: "Partially Paid" },
-    { head: "Library", gross: 1890, paid: 0, outstanding: 1890, status: "Unpaid" },
-    { head: "Laboratory", gross: 2780, paid: 0, outstanding: 2780, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 88000,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04473": [
-    { head: "Tuition", gross: 64350, paid: 64350, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36630, paid: 24267, outstanding: 12363, status: "Partially Paid" },
-    { head: "Examination", gross: 4400, paid: 4400, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1870, paid: 1870, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2750, paid: 2750, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 23500,
+      "outstanding": 16500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04802": [
-    { head: "Tuition", gross: 65520, paid: 43464, outstanding: 22056, status: "Partially Paid" },
-    { head: "Hostel", gross: 37300, paid: 0, outstanding: 37300, status: "Unpaid" },
-    { head: "Examination", gross: 4480, paid: 0, outstanding: 4480, status: "Unpaid" },
-    { head: "Library", gross: 1900, paid: 0, outstanding: 1900, status: "Unpaid" },
-    { head: "Laboratory", gross: 2800, paid: 0, outstanding: 2800, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 50500,
+      "outstanding": 24500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04806": [
-    { head: "Tuition", gross: 75470, paid: 743, outstanding: 74727, status: "Partially Paid" },
-    { head: "Hostel", gross: 42960, paid: 0, outstanding: 42960, status: "Unpaid" },
-    { head: "Examination", gross: 5160, paid: 0, outstanding: 5160, status: "Unpaid" },
-    { head: "Library", gross: 2190, paid: 0, outstanding: 2190, status: "Unpaid" },
-    { head: "Laboratory", gross: 3220, paid: 0, outstanding: 3220, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 1000,
+      "outstanding": 84000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04612": [
-    { head: "Tuition", gross: 68450, paid: 0, outstanding: 68450, status: "Unpaid" },
-    { head: "Hostel", gross: 38960, paid: 0, outstanding: 38960, status: "Unpaid" },
-    { head: "Examination", gross: 4680, paid: 0, outstanding: 4680, status: "Unpaid" },
-    { head: "Library", gross: 1990, paid: 0, outstanding: 1990, status: "Unpaid" },
-    { head: "Laboratory", gross: 2920, paid: 0, outstanding: 2920, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 88000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04019": [
-    { head: "Tuition", gross: 72540, paid: 54921, outstanding: 17619, status: "Partially Paid" },
-    { head: "Hostel", gross: 41290, paid: 0, outstanding: 41290, status: "Unpaid" },
-    { head: "Examination", gross: 4960, paid: 0, outstanding: 4960, status: "Unpaid" },
-    { head: "Library", gross: 2110, paid: 0, outstanding: 2110, status: "Unpaid" },
-    { head: "Laboratory", gross: 3100, paid: 0, outstanding: 3100, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 64000,
+      "outstanding": 26000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04713": [
-    { head: "Tuition", gross: 66690, paid: 66690, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37960, paid: 0, outstanding: 37960, status: "Unpaid" },
-    { head: "Examination", gross: 4560, paid: 1952, outstanding: 2608, status: "Partially Paid" },
-    { head: "Library", gross: 1940, paid: 0, outstanding: 1940, status: "Unpaid" },
-    { head: "Laboratory", gross: 2850, paid: 0, outstanding: 2850, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 87500,
+      "outstanding": 2500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04063": [
-    { head: "Tuition", gross: 69030, paid: 1328, outstanding: 67702, status: "Partially Paid" },
-    { head: "Hostel", gross: 39290, paid: 0, outstanding: 39290, status: "Unpaid" },
-    { head: "Examination", gross: 4720, paid: 0, outstanding: 4720, status: "Unpaid" },
-    { head: "Library", gross: 2010, paid: 0, outstanding: 2010, status: "Unpaid" },
-    { head: "Laboratory", gross: 2950, paid: 0, outstanding: 2950, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 1500,
+      "outstanding": 68500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04763": [
-    { head: "Tuition", gross: 73140, paid: 73140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41620, paid: 20484, outstanding: 21136, status: "Partially Paid" },
-    { head: "Examination", gross: 5000, paid: 5000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2120, paid: 2120, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3120, paid: 3120, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 17000,
+      "outstanding": 23000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04484": [
-    { head: "Tuition", gross: 66690, paid: 34977, outstanding: 31713, status: "Partially Paid" },
-    { head: "Hostel", gross: 37960, paid: 0, outstanding: 37960, status: "Unpaid" },
-    { head: "Examination", gross: 4560, paid: 0, outstanding: 4560, status: "Unpaid" },
-    { head: "Library", gross: 1940, paid: 0, outstanding: 1940, status: "Unpaid" },
-    { head: "Laboratory", gross: 2850, paid: 0, outstanding: 2850, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 44500,
+      "outstanding": 45500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04089": [
-    { head: "Tuition", gross: 69030, paid: 69030, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39290, paid: 8503, outstanding: 30787, status: "Partially Paid" },
-    { head: "Examination", gross: 4720, paid: 4720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2010, paid: 2010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2950, paid: 2950, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 88000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 2500,
+      "outstanding": 37500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04934": [
-    { head: "Tuition", gross: 74880, paid: 49424, outstanding: 25456, status: "Partially Paid" },
-    { head: "Hostel", gross: 42620, paid: 0, outstanding: 42620, status: "Unpaid" },
-    { head: "Examination", gross: 5120, paid: 0, outstanding: 5120, status: "Unpaid" },
-    { head: "Library", gross: 2180, paid: 0, outstanding: 2180, status: "Unpaid" },
-    { head: "Laboratory", gross: 3200, paid: 0, outstanding: 3200, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 48500,
+      "outstanding": 21500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04220": [
-    { head: "Tuition", gross: 67260, paid: 0, outstanding: 67260, status: "Unpaid" },
-    { head: "Hostel", gross: 38300, paid: 0, outstanding: 38300, status: "Unpaid" },
-    { head: "Examination", gross: 4600, paid: 0, outstanding: 4600, status: "Unpaid" },
-    { head: "Library", gross: 1960, paid: 0, outstanding: 1960, status: "Unpaid" },
-    { head: "Laboratory", gross: 2880, paid: 0, outstanding: 2880, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 80000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04554": [
-    { head: "Tuition", gross: 73140, paid: 73140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41620, paid: 25115, outstanding: 16505, status: "Partially Paid" },
-    { head: "Examination", gross: 5000, paid: 5000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2120, paid: 2120, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3120, paid: 3120, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 21500,
+      "outstanding": 18500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04370": [
-    { head: "Tuition", gross: 73710, paid: 73710, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41960, paid: 4810, outstanding: 37150, status: "Partially Paid" },
-    { head: "Examination", gross: 5040, paid: 5040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2140, paid: 2140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3150, paid: 3150, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 4500,
+      "outstanding": 500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04334": [
-    { head: "Tuition", gross: 70200, paid: 70200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39960, paid: 34960, outstanding: 5000, status: "Partially Paid" },
-    { head: "Examination", gross: 4800, paid: 4800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2040, paid: 2040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3000, paid: 3000, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 34000,
+      "outstanding": 6000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04527": [
-    { head: "Tuition", gross: 68450, paid: 68450, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38960, paid: 38228, outstanding: 732, status: "Partially Paid" },
-    { head: "Examination", gross: 4680, paid: 4680, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1990, paid: 1990, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2920, paid: 2920, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 39000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04562": [
-    { head: "Tuition", gross: 71950, paid: 71950, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40960, paid: 477, outstanding: 40483, status: "Partially Paid" },
-    { head: "Examination", gross: 4920, paid: 4920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2090, paid: 2090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3080, paid: 3080, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 58000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 3000,
+      "outstanding": 12000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04144": [
-    { head: "Tuition", gross: 66110, paid: 51853, outstanding: 14257, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 66500,
+      "outstanding": 23500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04942": [
-    { head: "Tuition", gross: 64350, paid: 64205, outstanding: 145, status: "Partially Paid" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 0, outstanding: 4400, status: "Unpaid" },
-    { head: "Library", gross: 1870, paid: 0, outstanding: 1870, status: "Unpaid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 81500,
+      "outstanding": 3500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04393": [
-    { head: "Tuition", gross: 71950, paid: 0, outstanding: 71950, status: "Unpaid" },
-    { head: "Hostel", gross: 40960, paid: 0, outstanding: 40960, status: "Unpaid" },
-    { head: "Examination", gross: 4920, paid: 0, outstanding: 4920, status: "Unpaid" },
-    { head: "Library", gross: 2090, paid: 0, outstanding: 2090, status: "Unpaid" },
-    { head: "Laboratory", gross: 3080, paid: 0, outstanding: 3080, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 90000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04487": [
-    { head: "Tuition", gross: 73140, paid: 73140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41620, paid: 29268, outstanding: 12352, status: "Partially Paid" },
-    { head: "Examination", gross: 5000, paid: 5000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2120, paid: 2120, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3120, paid: 3120, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 25500,
+      "outstanding": 14500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04401": [
-    { head: "Tuition", gross: 73140, paid: 70367, outstanding: 2773, status: "Partially Paid" },
-    { head: "Hostel", gross: 41620, paid: 0, outstanding: 41620, status: "Unpaid" },
-    { head: "Examination", gross: 5000, paid: 0, outstanding: 5000, status: "Unpaid" },
-    { head: "Library", gross: 2120, paid: 0, outstanding: 2120, status: "Unpaid" },
-    { head: "Laboratory", gross: 3120, paid: 0, outstanding: 3120, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 76000,
+      "outstanding": 4000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04037": [
-    { head: "Tuition", gross: 74880, paid: 45887, outstanding: 28993, status: "Partially Paid" },
-    { head: "Hostel", gross: 42620, paid: 0, outstanding: 42620, status: "Unpaid" },
-    { head: "Examination", gross: 5120, paid: 0, outstanding: 5120, status: "Unpaid" },
-    { head: "Library", gross: 2180, paid: 0, outstanding: 2180, status: "Unpaid" },
-    { head: "Laboratory", gross: 3200, paid: 0, outstanding: 3200, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 43000,
+      "outstanding": 22000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04725": [
-    { head: "Tuition", gross: 75470, paid: 75470, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 42960, paid: 17960, outstanding: 25000, status: "Partially Paid" },
-    { head: "Examination", gross: 5160, paid: 5160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2190, paid: 2190, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3220, paid: 3220, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 16500,
+      "outstanding": 23500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04022": [
-    { head: "Tuition", gross: 73710, paid: 0, outstanding: 73710, status: "Unpaid" },
-    { head: "Hostel", gross: 41960, paid: 0, outstanding: 41960, status: "Unpaid" },
-    { head: "Examination", gross: 5040, paid: 0, outstanding: 5040, status: "Unpaid" },
-    { head: "Library", gross: 2140, paid: 0, outstanding: 2140, status: "Unpaid" },
-    { head: "Laboratory", gross: 3150, paid: 0, outstanding: 3150, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 90000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04241": [
-    { head: "Tuition", gross: 67860, paid: 67860, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38630, paid: 9187, outstanding: 29443, status: "Partially Paid" },
-    { head: "Examination", gross: 4640, paid: 4640, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1970, paid: 1970, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2900, paid: 2900, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 3000,
+      "outstanding": 37000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04161": [
-    { head: "Tuition", gross: 64350, paid: 64350, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36630, paid: 6728, outstanding: 29902, status: "Partially Paid" },
-    { head: "Examination", gross: 4400, paid: 4400, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1870, paid: 1870, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2750, paid: 2750, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 2000,
+      "outstanding": 38000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04371": [
-    { head: "Tuition", gross: 71950, paid: 0, outstanding: 71950, status: "Unpaid" },
-    { head: "Hostel", gross: 40960, paid: 0, outstanding: 40960, status: "Unpaid" },
-    { head: "Examination", gross: 4920, paid: 0, outstanding: 4920, status: "Unpaid" },
-    { head: "Library", gross: 2090, paid: 0, outstanding: 2090, status: "Unpaid" },
-    { head: "Laboratory", gross: 3080, paid: 0, outstanding: 3080, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 90000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04318": [
-    { head: "Tuition", gross: 73710, paid: 73710, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41960, paid: 40878, outstanding: 1082, status: "Partially Paid" },
-    { head: "Examination", gross: 5040, paid: 5040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2140, paid: 2140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3150, paid: 3150, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 39000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04651": [
-    { head: "Tuition", gross: 69030, paid: 32836, outstanding: 36194, status: "Partially Paid" },
-    { head: "Hostel", gross: 39290, paid: 0, outstanding: 39290, status: "Unpaid" },
-    { head: "Examination", gross: 4720, paid: 0, outstanding: 4720, status: "Unpaid" },
-    { head: "Library", gross: 2010, paid: 0, outstanding: 2010, status: "Unpaid" },
-    { head: "Laboratory", gross: 2950, paid: 0, outstanding: 2950, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 38500,
+      "outstanding": 44500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04129": [
-    { head: "Tuition", gross: 66690, paid: 34726, outstanding: 31964, status: "Partially Paid" },
-    { head: "Hostel", gross: 37960, paid: 0, outstanding: 37960, status: "Unpaid" },
-    { head: "Examination", gross: 4560, paid: 0, outstanding: 4560, status: "Unpaid" },
-    { head: "Library", gross: 1940, paid: 0, outstanding: 1940, status: "Unpaid" },
-    { head: "Laboratory", gross: 2850, paid: 0, outstanding: 2850, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 43500,
+      "outstanding": 44500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04278": [
-    { head: "Tuition", gross: 73140, paid: 73140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41620, paid: 15217, outstanding: 26403, status: "Partially Paid" },
-    { head: "Examination", gross: 5000, paid: 5000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2120, paid: 2120, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3120, paid: 3120, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 12500,
+      "outstanding": 27500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04749": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 9221, outstanding: 29079, status: "Partially Paid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 3500,
+      "outstanding": 36500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA04146": [
-    { head: "Tuition", gross: 76050, paid: 32956, outstanding: 43094, status: "Partially Paid" },
-    { head: "Hostel", gross: 43290, paid: 0, outstanding: 43290, status: "Unpaid" },
-    { head: "Examination", gross: 5200, paid: 0, outstanding: 5200, status: "Unpaid" },
-    { head: "Library", gross: 2210, paid: 0, outstanding: 2210, status: "Unpaid" },
-    { head: "Laboratory", gross: 3250, paid: 0, outstanding: 3250, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 30500,
+      "outstanding": 34500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04332": [
-    { head: "Tuition", gross: 69030, paid: 34393, outstanding: 34637, status: "Partially Paid" },
-    { head: "Hostel", gross: 39290, paid: 0, outstanding: 39290, status: "Unpaid" },
-    { head: "Examination", gross: 4720, paid: 0, outstanding: 4720, status: "Unpaid" },
-    { head: "Library", gross: 2010, paid: 0, outstanding: 2010, status: "Unpaid" },
-    { head: "Laboratory", gross: 2950, paid: 0, outstanding: 2950, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 42500,
+      "outstanding": 47500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04565": [
-    { head: "Tuition", gross: 70200, paid: 0, outstanding: 70200, status: "Unpaid" },
-    { head: "Hostel", gross: 39960, paid: 0, outstanding: 39960, status: "Unpaid" },
-    { head: "Examination", gross: 4800, paid: 0, outstanding: 4800, status: "Unpaid" },
-    { head: "Library", gross: 2040, paid: 0, outstanding: 2040, status: "Unpaid" },
-    { head: "Laboratory", gross: 3000, paid: 0, outstanding: 3000, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 90000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 0,
+      "outstanding": 3000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA04687": [
-    { head: "Tuition", gross: 64930, paid: 64930, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36960, paid: 35489, outstanding: 1471, status: "Partially Paid" },
-    { head: "Examination", gross: 4440, paid: 4440, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1890, paid: 1890, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2780, paid: 2780, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 38000,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03360": [
-    { head: "Tuition", gross: 63770, paid: 0, outstanding: 63770, status: "Unpaid" },
-    { head: "Hostel", gross: 36300, paid: 0, outstanding: 36300, status: "Unpaid" },
-    { head: "Examination", gross: 4360, paid: 0, outstanding: 4360, status: "Unpaid" },
-    { head: "Library", gross: 1850, paid: 0, outstanding: 1850, status: "Unpaid" },
-    { head: "Laboratory", gross: 2720, paid: 0, outstanding: 2720, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 70000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03886": [
-    { head: "Tuition", gross: 72540, paid: 72540, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41290, paid: 0, outstanding: 41290, status: "Unpaid" },
-    { head: "Examination", gross: 4960, paid: 1132, outstanding: 3828, status: "Partially Paid" },
-    { head: "Library", gross: 2110, paid: 0, outstanding: 2110, status: "Unpaid" },
-    { head: "Laboratory", gross: 3100, paid: 0, outstanding: 3100, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 86500,
+      "outstanding": 3500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03011": [
-    { head: "Tuition", gross: 66110, paid: 66110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 447, outstanding: 4073, status: "Partially Paid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 86000,
+      "outstanding": 4000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03823": [
-    { head: "Tuition", gross: 66110, paid: 135, outstanding: 65975, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 90000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03398": [
-    { head: "Tuition", gross: 66110, paid: 66110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37630, paid: 12260, outstanding: 25370, status: "Partially Paid" },
-    { head: "Examination", gross: 4520, paid: 4520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1920, paid: 1920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2820, paid: 2820, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 10500,
+      "outstanding": 29500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03219": [
-    { head: "Tuition", gross: 73140, paid: 73140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41620, paid: 39203, outstanding: 2417, status: "Partially Paid" },
-    { head: "Examination", gross: 5000, paid: 5000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2120, paid: 2120, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3120, paid: 3120, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 88000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 37000,
+      "outstanding": 3000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03187": [
-    { head: "Tuition", gross: 67860, paid: 67860, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38630, paid: 27056, outstanding: 11574, status: "Partially Paid" },
-    { head: "Examination", gross: 4640, paid: 4640, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1970, paid: 1970, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2900, paid: 2900, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 25500,
+      "outstanding": 14500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03861": [
-    { head: "Tuition", gross: 62010, paid: 62010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35300, paid: 35116, outstanding: 184, status: "Partially Paid" },
-    { head: "Examination", gross: 4240, paid: 4240, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1800, paid: 1800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2650, paid: 2650, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 39500,
+      "outstanding": 500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03986": [
-    { head: "Tuition", gross: 71950, paid: 54711, outstanding: 17239, status: "Partially Paid" },
-    { head: "Hostel", gross: 40960, paid: 0, outstanding: 40960, status: "Unpaid" },
-    { head: "Examination", gross: 4920, paid: 0, outstanding: 4920, status: "Unpaid" },
-    { head: "Library", gross: 2090, paid: 0, outstanding: 2090, status: "Unpaid" },
-    { head: "Laboratory", gross: 3080, paid: 0, outstanding: 3080, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 64000,
+      "outstanding": 24000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03218": [
-    { head: "Tuition", gross: 70790, paid: 37437, outstanding: 33353, status: "Partially Paid" },
-    { head: "Hostel", gross: 40290, paid: 0, outstanding: 40290, status: "Unpaid" },
-    { head: "Examination", gross: 4840, paid: 0, outstanding: 4840, status: "Unpaid" },
-    { head: "Library", gross: 2060, paid: 0, outstanding: 2060, status: "Unpaid" },
-    { head: "Laboratory", gross: 3020, paid: 0, outstanding: 3020, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 45000,
+      "outstanding": 45000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03943": [
-    { head: "Tuition", gross: 68450, paid: 68450, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38960, paid: 18960, outstanding: 20000, status: "Partially Paid" },
-    { head: "Examination", gross: 4680, paid: 4680, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1990, paid: 1990, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2920, paid: 2920, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 18500,
+      "outstanding": 21500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03193": [
-    { head: "Tuition", gross: 69610, paid: 69610, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39630, paid: 0, outstanding: 39630, status: "Unpaid" },
-    { head: "Examination", gross: 4760, paid: 2841, outstanding: 1919, status: "Partially Paid" },
-    { head: "Library", gross: 2020, paid: 0, outstanding: 2020, status: "Unpaid" },
-    { head: "Laboratory", gross: 2980, paid: 0, outstanding: 2980, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 89000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03891": [
-    { head: "Tuition", gross: 63180, paid: 57565, outstanding: 5615, status: "Partially Paid" },
-    { head: "Hostel", gross: 35960, paid: 0, outstanding: 35960, status: "Unpaid" },
-    { head: "Examination", gross: 4320, paid: 0, outstanding: 4320, status: "Unpaid" },
-    { head: "Library", gross: 1840, paid: 0, outstanding: 1840, status: "Unpaid" },
-    { head: "Laboratory", gross: 2700, paid: 0, outstanding: 2700, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 72500,
+      "outstanding": 7500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03569": [
-    { head: "Tuition", gross: 64930, paid: 59551, outstanding: 5379, status: "Partially Paid" },
-    { head: "Hostel", gross: 36960, paid: 0, outstanding: 36960, status: "Unpaid" },
-    { head: "Examination", gross: 4440, paid: 0, outstanding: 4440, status: "Unpaid" },
-    { head: "Library", gross: 1890, paid: 0, outstanding: 1890, status: "Unpaid" },
-    { head: "Laboratory", gross: 2780, paid: 0, outstanding: 2780, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 60000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 2000,
+      "outstanding": 3000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03979": [
-    { head: "Tuition", gross: 67860, paid: 50850, outstanding: 17010, status: "Partially Paid" },
-    { head: "Hostel", gross: 38630, paid: 0, outstanding: 38630, status: "Unpaid" },
-    { head: "Examination", gross: 4640, paid: 0, outstanding: 4640, status: "Unpaid" },
-    { head: "Library", gross: 1970, paid: 0, outstanding: 1970, status: "Unpaid" },
-    { head: "Laboratory", gross: 2900, paid: 0, outstanding: 2900, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 64000,
+      "outstanding": 26000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03898": [
-    { head: "Tuition", gross: 62590, paid: 62590, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35630, paid: 0, outstanding: 35630, status: "Unpaid" },
-    { head: "Examination", gross: 4280, paid: 3340, outstanding: 940, status: "Partially Paid" },
-    { head: "Library", gross: 1820, paid: 0, outstanding: 1820, status: "Unpaid" },
-    { head: "Laboratory", gross: 2680, paid: 0, outstanding: 2680, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 500,
+      "outstanding": 3500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03285": [
-    { head: "Tuition", gross: 63770, paid: 0, outstanding: 63770, status: "Unpaid" },
-    { head: "Hostel", gross: 36300, paid: 0, outstanding: 36300, status: "Unpaid" },
-    { head: "Examination", gross: 4360, paid: 0, outstanding: 4360, status: "Unpaid" },
-    { head: "Library", gross: 1850, paid: 0, outstanding: 1850, status: "Unpaid" },
-    { head: "Laboratory", gross: 2720, paid: 0, outstanding: 2720, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 85000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03009": [
-    { head: "Tuition", gross: 67860, paid: 46558, outstanding: 21302, status: "Partially Paid" },
-    { head: "Hostel", gross: 38630, paid: 0, outstanding: 38630, status: "Unpaid" },
-    { head: "Examination", gross: 4640, paid: 0, outstanding: 4640, status: "Unpaid" },
-    { head: "Library", gross: 1970, paid: 0, outstanding: 1970, status: "Unpaid" },
-    { head: "Laboratory", gross: 2900, paid: 0, outstanding: 2900, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 54000,
+      "outstanding": 24000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03286": [
-    { head: "Tuition", gross: 62590, paid: 49159, outstanding: 13431, status: "Partially Paid" },
-    { head: "Hostel", gross: 35630, paid: 0, outstanding: 35630, status: "Unpaid" },
-    { head: "Examination", gross: 4280, paid: 0, outstanding: 4280, status: "Unpaid" },
-    { head: "Library", gross: 1820, paid: 0, outstanding: 1820, status: "Unpaid" },
-    { head: "Laboratory", gross: 2680, paid: 0, outstanding: 2680, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 67000,
+      "outstanding": 23000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03975": [
-    { head: "Tuition", gross: 70200, paid: 65004, outstanding: 5196, status: "Partially Paid" },
-    { head: "Hostel", gross: 39960, paid: 0, outstanding: 39960, status: "Unpaid" },
-    { head: "Examination", gross: 4800, paid: 0, outstanding: 4800, status: "Unpaid" },
-    { head: "Library", gross: 2040, paid: 0, outstanding: 2040, status: "Unpaid" },
-    { head: "Laboratory", gross: 3000, paid: 0, outstanding: 3000, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 73500,
+      "outstanding": 6500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03300": [
-    { head: "Tuition", gross: 69030, paid: 1197, outstanding: 67833, status: "Partially Paid" },
-    { head: "Hostel", gross: 39290, paid: 0, outstanding: 39290, status: "Unpaid" },
-    { head: "Examination", gross: 4720, paid: 0, outstanding: 4720, status: "Unpaid" },
-    { head: "Library", gross: 2010, paid: 0, outstanding: 2010, status: "Unpaid" },
-    { head: "Laboratory", gross: 2950, paid: 0, outstanding: 2950, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 1500,
+      "outstanding": 88500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03350": [
-    { head: "Tuition", gross: 69030, paid: 69030, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39290, paid: 0, outstanding: 39290, status: "Unpaid" },
-    { head: "Examination", gross: 4720, paid: 1859, outstanding: 2861, status: "Partially Paid" },
-    { head: "Library", gross: 2010, paid: 0, outstanding: 2010, status: "Unpaid" },
-    { head: "Laboratory", gross: 2950, paid: 0, outstanding: 2950, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 87500,
+      "outstanding": 2500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03031": [
-    { head: "Tuition", gross: 64930, paid: 64930, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36960, paid: 21960, outstanding: 15000, status: "Partially Paid" },
-    { head: "Examination", gross: 4440, paid: 4440, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1890, paid: 1890, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2780, paid: 2780, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 22500,
+      "outstanding": 17500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03492": [
-    { head: "Tuition", gross: 62590, paid: 571, outstanding: 62019, status: "Partially Paid" },
-    { head: "Hostel", gross: 35630, paid: 0, outstanding: 35630, status: "Unpaid" },
-    { head: "Examination", gross: 4280, paid: 0, outstanding: 4280, status: "Unpaid" },
-    { head: "Library", gross: 1820, paid: 0, outstanding: 1820, status: "Unpaid" },
-    { head: "Laboratory", gross: 2680, paid: 0, outstanding: 2680, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 500,
+      "outstanding": 64500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03474": [
-    { head: "Tuition", gross: 73140, paid: 73140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41620, paid: 25355, outstanding: 16265, status: "Partially Paid" },
-    { head: "Examination", gross: 5000, paid: 5000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2120, paid: 2120, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3120, paid: 3120, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 23000,
+      "outstanding": 17000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03982": [
-    { head: "Tuition", gross: 70790, paid: 70790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40290, paid: 33804, outstanding: 6486, status: "Partially Paid" },
-    { head: "Examination", gross: 4840, paid: 4840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2060, paid: 2060, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3020, paid: 3020, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 32500,
+      "outstanding": 7500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03520": [
-    { head: "Tuition", gross: 67860, paid: 67860, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38630, paid: 30516, outstanding: 8114, status: "Partially Paid" },
-    { head: "Examination", gross: 4640, paid: 4640, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1970, paid: 1970, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2900, paid: 2900, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 30500,
+      "outstanding": 9500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03797": [
-    { head: "Tuition", gross: 62590, paid: 56704, outstanding: 5886, status: "Partially Paid" },
-    { head: "Hostel", gross: 35630, paid: 0, outstanding: 35630, status: "Unpaid" },
-    { head: "Examination", gross: 4280, paid: 0, outstanding: 4280, status: "Unpaid" },
-    { head: "Library", gross: 1820, paid: 0, outstanding: 1820, status: "Unpaid" },
-    { head: "Laboratory", gross: 2680, paid: 0, outstanding: 2680, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 71000,
+      "outstanding": 7000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03159": [
-    { head: "Tuition", gross: 71370, paid: 71370, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40630, paid: 27357, outstanding: 13273, status: "Partially Paid" },
-    { head: "Examination", gross: 4880, paid: 4880, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2070, paid: 2070, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3050, paid: 3050, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 24000,
+      "outstanding": 16000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03544": [
-    { head: "Tuition", gross: 63770, paid: 30341, outstanding: 33429, status: "Partially Paid" },
-    { head: "Hostel", gross: 36300, paid: 0, outstanding: 36300, status: "Unpaid" },
-    { head: "Examination", gross: 4360, paid: 0, outstanding: 4360, status: "Unpaid" },
-    { head: "Library", gross: 1850, paid: 0, outstanding: 1850, status: "Unpaid" },
-    { head: "Laboratory", gross: 2720, paid: 0, outstanding: 2720, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 39000,
+      "outstanding": 46000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03209": [
-    { head: "Tuition", gross: 66110, paid: 30746, outstanding: 35364, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 37000,
+      "outstanding": 43000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03811": [
-    { head: "Tuition", gross: 72540, paid: 54645, outstanding: 17895, status: "Partially Paid" },
-    { head: "Hostel", gross: 41290, paid: 0, outstanding: 41290, status: "Unpaid" },
-    { head: "Examination", gross: 4960, paid: 0, outstanding: 4960, status: "Unpaid" },
-    { head: "Library", gross: 2110, paid: 0, outstanding: 2110, status: "Unpaid" },
-    { head: "Laboratory", gross: 3100, paid: 0, outstanding: 3100, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 64500,
+      "outstanding": 25500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03692": [
-    { head: "Tuition", gross: 70790, paid: 51437, outstanding: 19353, status: "Partially Paid" },
-    { head: "Hostel", gross: 40290, paid: 0, outstanding: 40290, status: "Unpaid" },
-    { head: "Examination", gross: 4840, paid: 0, outstanding: 4840, status: "Unpaid" },
-    { head: "Library", gross: 2060, paid: 0, outstanding: 2060, status: "Unpaid" },
-    { head: "Laboratory", gross: 3020, paid: 0, outstanding: 3020, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 59000,
+      "outstanding": 24000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03608": [
-    { head: "Tuition", gross: 67860, paid: 67860, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38630, paid: 30158, outstanding: 8472, status: "Partially Paid" },
-    { head: "Examination", gross: 4640, paid: 4640, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1970, paid: 1970, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2900, paid: 2900, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 30000,
+      "outstanding": 10000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03121": [
-    { head: "Tuition", gross: 71950, paid: 54602, outstanding: 17348, status: "Partially Paid" },
-    { head: "Hostel", gross: 40960, paid: 0, outstanding: 40960, status: "Unpaid" },
-    { head: "Examination", gross: 4920, paid: 0, outstanding: 4920, status: "Unpaid" },
-    { head: "Library", gross: 2090, paid: 0, outstanding: 2090, status: "Unpaid" },
-    { head: "Laboratory", gross: 3080, paid: 0, outstanding: 3080, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65000,
+      "outstanding": 25000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03293": [
-    { head: "Tuition", gross: 71950, paid: 55497, outstanding: 16453, status: "Partially Paid" },
-    { head: "Hostel", gross: 40960, paid: 0, outstanding: 40960, status: "Unpaid" },
-    { head: "Examination", gross: 4920, paid: 0, outstanding: 4920, status: "Unpaid" },
-    { head: "Library", gross: 2090, paid: 0, outstanding: 2090, status: "Unpaid" },
-    { head: "Laboratory", gross: 3080, paid: 0, outstanding: 3080, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 66000,
+      "outstanding": 24000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03658": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 25938, outstanding: 12362, status: "Partially Paid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 24500,
+      "outstanding": 15500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03735": [
-    { head: "Tuition", gross: 72540, paid: 72540, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41290, paid: 13482, outstanding: 27808, status: "Partially Paid" },
-    { head: "Examination", gross: 4960, paid: 4960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2110, paid: 2110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3100, paid: 3100, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 73000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 11000,
+      "outstanding": 29000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03694": [
-    { head: "Tuition", gross: 64350, paid: 64350, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36630, paid: 25677, outstanding: 10953, status: "Partially Paid" },
-    { head: "Examination", gross: 4400, paid: 4400, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1870, paid: 1870, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2750, paid: 2750, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 25500,
+      "outstanding": 14500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03122": [
-    { head: "Tuition", gross: 63180, paid: 63180, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35960, paid: 30960, outstanding: 5000, status: "Partially Paid" },
-    { head: "Examination", gross: 4320, paid: 4320, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1840, paid: 1840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2700, paid: 2700, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 33500,
+      "outstanding": 6500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03418": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 8422, outstanding: 29878, status: "Partially Paid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 7500,
+      "outstanding": 32500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03207": [
-    { head: "Tuition", gross: 70200, paid: 70200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39960, paid: 28859, outstanding: 11101, status: "Partially Paid" },
-    { head: "Examination", gross: 4800, paid: 4800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2040, paid: 2040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3000, paid: 3000, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 26500,
+      "outstanding": 13500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03406": [
-    { head: "Tuition", gross: 71950, paid: 71950, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40960, paid: 2128, outstanding: 38832, status: "Partially Paid" },
-    { head: "Examination", gross: 4920, paid: 4920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2090, paid: 2090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3080, paid: 3080, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 60000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 3500,
+      "outstanding": 11500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03573": [
-    { head: "Tuition", gross: 68450, paid: 68450, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38960, paid: 6232, outstanding: 32728, status: "Partially Paid" },
-    { head: "Examination", gross: 4680, paid: 4680, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1990, paid: 1990, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2920, paid: 2920, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 500,
+      "outstanding": 39500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03565": [
-    { head: "Tuition", gross: 70790, paid: 55276, outstanding: 15514, status: "Partially Paid" },
-    { head: "Hostel", gross: 40290, paid: 0, outstanding: 40290, status: "Unpaid" },
-    { head: "Examination", gross: 4840, paid: 0, outstanding: 4840, status: "Unpaid" },
-    { head: "Library", gross: 2060, paid: 0, outstanding: 2060, status: "Unpaid" },
-    { head: "Laboratory", gross: 3020, paid: 0, outstanding: 3020, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 66500,
+      "outstanding": 23500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03784": [
-    { head: "Tuition", gross: 63770, paid: 48044, outstanding: 15726, status: "Partially Paid" },
-    { head: "Hostel", gross: 36300, paid: 0, outstanding: 36300, status: "Unpaid" },
-    { head: "Examination", gross: 4360, paid: 0, outstanding: 4360, status: "Unpaid" },
-    { head: "Library", gross: 1850, paid: 0, outstanding: 1850, status: "Unpaid" },
-    { head: "Laboratory", gross: 2720, paid: 0, outstanding: 2720, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 64500,
+      "outstanding": 25500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03177": [
-    { head: "Tuition", gross: 72540, paid: 72540, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41290, paid: 10256, outstanding: 31034, status: "Partially Paid" },
-    { head: "Examination", gross: 4960, paid: 4960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2110, paid: 2110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3100, paid: 3100, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 3500,
+      "outstanding": 36500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03895": [
-    { head: "Tuition", gross: 66110, paid: 66110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 2275, outstanding: 2245, status: "Partially Paid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 88500,
+      "outstanding": 1500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03438": [
-    { head: "Tuition", gross: 64350, paid: 64350, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 205, outstanding: 4195, status: "Partially Paid" },
-    { head: "Library", gross: 1870, paid: 0, outstanding: 1870, status: "Unpaid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 84500,
+      "outstanding": 3500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03973": [
-    { head: "Tuition", gross: 66110, paid: 49401, outstanding: 16709, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 63000,
+      "outstanding": 25000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03894": [
-    { head: "Tuition", gross: 71950, paid: 55116, outstanding: 16834, status: "Partially Paid" },
-    { head: "Hostel", gross: 40960, paid: 0, outstanding: 40960, status: "Unpaid" },
-    { head: "Examination", gross: 4920, paid: 0, outstanding: 4920, status: "Unpaid" },
-    { head: "Library", gross: 2090, paid: 0, outstanding: 2090, status: "Unpaid" },
-    { head: "Laboratory", gross: 3080, paid: 0, outstanding: 3080, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65500,
+      "outstanding": 24500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03556": [
-    { head: "Tuition", gross: 61430, paid: 61430, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34960, paid: 19466, outstanding: 15494, status: "Partially Paid" },
-    { head: "Examination", gross: 4200, paid: 4200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1790, paid: 1790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2620, paid: 2620, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 19500,
+      "outstanding": 20500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03499": [
-    { head: "Tuition", gross: 63770, paid: 63770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36300, paid: 6300, outstanding: 30000, status: "Partially Paid" },
-    { head: "Examination", gross: 4360, paid: 4360, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1850, paid: 1850, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2720, paid: 2720, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 60000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 8000,
+      "outstanding": 7000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03880": [
-    { head: "Tuition", gross: 67260, paid: 65119, outstanding: 2141, status: "Partially Paid" },
-    { head: "Hostel", gross: 38300, paid: 0, outstanding: 38300, status: "Unpaid" },
-    { head: "Examination", gross: 4600, paid: 0, outstanding: 4600, status: "Unpaid" },
-    { head: "Library", gross: 1960, paid: 0, outstanding: 1960, status: "Unpaid" },
-    { head: "Laboratory", gross: 2880, paid: 0, outstanding: 2880, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 80000,
+      "outstanding": 5000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03788": [
-    { head: "Tuition", gross: 71950, paid: 53644, outstanding: 18306, status: "Partially Paid" },
-    { head: "Hostel", gross: 40960, paid: 0, outstanding: 40960, status: "Unpaid" },
-    { head: "Examination", gross: 4920, paid: 0, outstanding: 4920, status: "Unpaid" },
-    { head: "Library", gross: 2090, paid: 0, outstanding: 2090, status: "Unpaid" },
-    { head: "Laboratory", gross: 3080, paid: 0, outstanding: 3080, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 63000,
+      "outstanding": 25000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03705": [
-    { head: "Tuition", gross: 66690, paid: 66690, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37960, paid: 37070, outstanding: 890, status: "Partially Paid" },
-    { head: "Examination", gross: 4560, paid: 4560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1940, paid: 1940, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2850, paid: 2850, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 39000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03356": [
-    { head: "Tuition", gross: 68450, paid: 52524, outstanding: 15926, status: "Partially Paid" },
-    { head: "Hostel", gross: 38960, paid: 0, outstanding: 38960, status: "Unpaid" },
-    { head: "Examination", gross: 4680, paid: 0, outstanding: 4680, status: "Unpaid" },
-    { head: "Library", gross: 1990, paid: 0, outstanding: 1990, status: "Unpaid" },
-    { head: "Laboratory", gross: 2920, paid: 0, outstanding: 2920, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65500,
+      "outstanding": 24500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03361": [
-    { head: "Tuition", gross: 71950, paid: 55084, outstanding: 16866, status: "Partially Paid" },
-    { head: "Hostel", gross: 40960, paid: 0, outstanding: 40960, status: "Unpaid" },
-    { head: "Examination", gross: 4920, paid: 0, outstanding: 4920, status: "Unpaid" },
-    { head: "Library", gross: 2090, paid: 0, outstanding: 2090, status: "Unpaid" },
-    { head: "Laboratory", gross: 3080, paid: 0, outstanding: 3080, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 64500,
+      "outstanding": 23500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03244": [
-    { head: "Tuition", gross: 66110, paid: 66110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37630, paid: 5493, outstanding: 32137, status: "Partially Paid" },
-    { head: "Examination", gross: 4520, paid: 4520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1920, paid: 1920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2820, paid: 2820, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03810": [
-    { head: "Tuition", gross: 66690, paid: 66690, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37960, paid: 3221, outstanding: 34739, status: "Partially Paid" },
-    { head: "Examination", gross: 4560, paid: 4560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1940, paid: 1940, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2850, paid: 2850, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 3500,
+      "outstanding": 1500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03366": [
-    { head: "Tuition", gross: 64930, paid: 64930, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36960, paid: 12378, outstanding: 24582, status: "Partially Paid" },
-    { head: "Examination", gross: 4440, paid: 4440, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1890, paid: 1890, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2780, paid: 2780, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 11000,
+      "outstanding": 29000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03998": [
-    { head: "Tuition", gross: 71950, paid: 71950, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40960, paid: 35960, outstanding: 5000, status: "Partially Paid" },
-    { head: "Examination", gross: 4920, paid: 4920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2090, paid: 2090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3080, paid: 3080, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 34500,
+      "outstanding": 5500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03164": [
-    { head: "Tuition", gross: 62590, paid: 62590, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35630, paid: 0, outstanding: 35630, status: "Unpaid" },
-    { head: "Examination", gross: 4280, paid: 4280, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1820, paid: 1207, outstanding: 613, status: "Partially Paid" },
-    { head: "Laboratory", gross: 2680, paid: 0, outstanding: 2680, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 60000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 3000,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03377": [
-    { head: "Tuition", gross: 64930, paid: 64930, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36960, paid: 10685, outstanding: 26275, status: "Partially Paid" },
-    { head: "Examination", gross: 4440, paid: 4440, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1890, paid: 1890, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2780, paid: 2780, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 5500,
+      "outstanding": 34500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03329": [
-    { head: "Tuition", gross: 64350, paid: 64350, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36630, paid: 30634, outstanding: 5996, status: "Partially Paid" },
-    { head: "Examination", gross: 4400, paid: 4400, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1870, paid: 1870, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2750, paid: 2750, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 32500,
+      "outstanding": 7500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03229": [
-    { head: "Tuition", gross: 66110, paid: 66110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37630, paid: 37630, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4520, paid: 4520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1920, paid: 1920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2820, paid: 2820, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA03359": [
-    { head: "Tuition", gross: 67260, paid: 63480, outstanding: 3780, status: "Partially Paid" },
-    { head: "Hostel", gross: 38300, paid: 0, outstanding: 38300, status: "Unpaid" },
-    { head: "Examination", gross: 4600, paid: 0, outstanding: 4600, status: "Unpaid" },
-    { head: "Library", gross: 1960, paid: 0, outstanding: 1960, status: "Unpaid" },
-    { head: "Laboratory", gross: 2880, paid: 0, outstanding: 2880, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 75000,
+      "outstanding": 5000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03025": [
-    { head: "Tuition", gross: 64350, paid: 32366, outstanding: 31984, status: "Partially Paid" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 0, outstanding: 4400, status: "Unpaid" },
-    { head: "Library", gross: 1870, paid: 0, outstanding: 1870, status: "Unpaid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 43000,
+      "outstanding": 47000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03576": [
-    { head: "Tuition", gross: 64350, paid: 49067, outstanding: 15283, status: "Partially Paid" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 0, outstanding: 4400, status: "Unpaid" },
-    { head: "Library", gross: 1870, paid: 0, outstanding: 1870, status: "Unpaid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65000,
+      "outstanding": 25000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03575": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 22718, outstanding: 15582, status: "Partially Paid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 21000,
+      "outstanding": 19000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03704": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 33300, outstanding: 5000, status: "Partially Paid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 34000,
+      "outstanding": 6000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03058": [
-    { head: "Tuition", gross: 70200, paid: 851, outstanding: 69349, status: "Partially Paid" },
-    { head: "Hostel", gross: 39960, paid: 0, outstanding: 39960, status: "Unpaid" },
-    { head: "Examination", gross: 4800, paid: 0, outstanding: 4800, status: "Unpaid" },
-    { head: "Library", gross: 2040, paid: 0, outstanding: 2040, status: "Unpaid" },
-    { head: "Laboratory", gross: 3000, paid: 0, outstanding: 3000, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 1000,
+      "outstanding": 84000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03052": [
-    { head: "Tuition", gross: 62010, paid: 52305, outstanding: 9705, status: "Partially Paid" },
-    { head: "Hostel", gross: 35300, paid: 0, outstanding: 35300, status: "Unpaid" },
-    { head: "Examination", gross: 4240, paid: 0, outstanding: 4240, status: "Unpaid" },
-    { head: "Library", gross: 1800, paid: 0, outstanding: 1800, status: "Unpaid" },
-    { head: "Laboratory", gross: 2650, paid: 0, outstanding: 2650, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 62000,
+      "outstanding": 8000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03949": [
-    { head: "Tuition", gross: 70200, paid: 68794, outstanding: 1406, status: "Partially Paid" },
-    { head: "Hostel", gross: 39960, paid: 0, outstanding: 39960, status: "Unpaid" },
-    { head: "Examination", gross: 4800, paid: 0, outstanding: 4800, status: "Unpaid" },
-    { head: "Library", gross: 2040, paid: 0, outstanding: 2040, status: "Unpaid" },
-    { head: "Laboratory", gross: 3000, paid: 0, outstanding: 3000, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 81000,
+      "outstanding": 4000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03311": [
-    { head: "Tuition", gross: 66110, paid: 66110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37630, paid: 37630, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4520, paid: 4520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1920, paid: 1920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2820, paid: 2820, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA03113": [
-    { head: "Tuition", gross: 73140, paid: 73140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41620, paid: 6620, outstanding: 35000, status: "Partially Paid" },
-    { head: "Examination", gross: 5000, paid: 5000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2120, paid: 2120, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3120, paid: 3120, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 55000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 9000,
+      "outstanding": 6000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03271": [
-    { head: "Tuition", gross: 69030, paid: 69030, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39290, paid: 34290, outstanding: 5000, status: "Partially Paid" },
-    { head: "Examination", gross: 4720, paid: 4720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2010, paid: 2010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2950, paid: 2950, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 34000,
+      "outstanding": 6000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03324": [
-    { head: "Tuition", gross: 63180, paid: 63180, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35960, paid: 21272, outstanding: 14688, status: "Partially Paid" },
-    { head: "Examination", gross: 4320, paid: 4320, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1840, paid: 1840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2700, paid: 2700, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 21000,
+      "outstanding": 19000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03476": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 0, outstanding: 38300, status: "Unpaid" },
-    { head: "Examination", gross: 4600, paid: 2422, outstanding: 2178, status: "Partially Paid" },
-    { head: "Library", gross: 1960, paid: 0, outstanding: 1960, status: "Unpaid" },
-    { head: "Laboratory", gross: 2880, paid: 0, outstanding: 2880, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 88500,
+      "outstanding": 1500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03956": [
-    { head: "Tuition", gross: 71370, paid: 71370, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40630, paid: 9810, outstanding: 30820, status: "Partially Paid" },
-    { head: "Examination", gross: 4880, paid: 4880, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2070, paid: 2070, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3050, paid: 3050, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 3000,
+      "outstanding": 37000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03242": [
-    { head: "Tuition", gross: 66690, paid: 29082, outstanding: 37608, status: "Partially Paid" },
-    { head: "Hostel", gross: 37960, paid: 0, outstanding: 37960, status: "Unpaid" },
-    { head: "Examination", gross: 4560, paid: 0, outstanding: 4560, status: "Unpaid" },
-    { head: "Library", gross: 1940, paid: 0, outstanding: 1940, status: "Unpaid" },
-    { head: "Laboratory", gross: 2850, paid: 0, outstanding: 2850, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 33500,
+      "outstanding": 41500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03013": [
-    { head: "Tuition", gross: 70200, paid: 51901, outstanding: 18299, status: "Partially Paid" },
-    { head: "Hostel", gross: 39960, paid: 0, outstanding: 39960, status: "Unpaid" },
-    { head: "Examination", gross: 4800, paid: 0, outstanding: 4800, status: "Unpaid" },
-    { head: "Library", gross: 2040, paid: 0, outstanding: 2040, status: "Unpaid" },
-    { head: "Laboratory", gross: 3000, paid: 0, outstanding: 3000, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 48000,
+      "outstanding": 7000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03043": [
-    { head: "Tuition", gross: 71370, paid: 52248, outstanding: 19122, status: "Partially Paid" },
-    { head: "Hostel", gross: 40630, paid: 0, outstanding: 40630, status: "Unpaid" },
-    { head: "Examination", gross: 4880, paid: 0, outstanding: 4880, status: "Unpaid" },
-    { head: "Library", gross: 2070, paid: 0, outstanding: 2070, status: "Unpaid" },
-    { head: "Laboratory", gross: 3050, paid: 0, outstanding: 3050, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 60500,
+      "outstanding": 24500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03511": [
-    { head: "Tuition", gross: 66110, paid: 0, outstanding: 66110, status: "Unpaid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 80000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03728": [
-    { head: "Tuition", gross: 73140, paid: 28690, outstanding: 44450, status: "Partially Paid" },
-    { head: "Hostel", gross: 41620, paid: 0, outstanding: 41620, status: "Unpaid" },
-    { head: "Examination", gross: 5000, paid: 0, outstanding: 5000, status: "Unpaid" },
-    { head: "Library", gross: 2120, paid: 0, outstanding: 2120, status: "Unpaid" },
-    { head: "Laboratory", gross: 3120, paid: 0, outstanding: 3120, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 28000,
+      "outstanding": 37000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03023": [
-    { head: "Tuition", gross: 71950, paid: 71950, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40960, paid: 10834, outstanding: 30126, status: "Partially Paid" },
-    { head: "Examination", gross: 4920, paid: 4920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2090, paid: 2090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3080, paid: 3080, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 60000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 11500,
+      "outstanding": 3500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03446": [
-    { head: "Tuition", gross: 64930, paid: 23638, outstanding: 41292, status: "Partially Paid" },
-    { head: "Hostel", gross: 36960, paid: 0, outstanding: 36960, status: "Unpaid" },
-    { head: "Examination", gross: 4440, paid: 0, outstanding: 4440, status: "Unpaid" },
-    { head: "Library", gross: 1890, paid: 0, outstanding: 1890, status: "Unpaid" },
-    { head: "Laboratory", gross: 2780, paid: 0, outstanding: 2780, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 24500,
+      "outstanding": 35500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03820": [
-    { head: "Tuition", gross: 69610, paid: 35476, outstanding: 34134, status: "Partially Paid" },
-    { head: "Hostel", gross: 39630, paid: 0, outstanding: 39630, status: "Unpaid" },
-    { head: "Examination", gross: 4760, paid: 0, outstanding: 4760, status: "Unpaid" },
-    { head: "Library", gross: 2020, paid: 0, outstanding: 2020, status: "Unpaid" },
-    { head: "Laboratory", gross: 2980, paid: 0, outstanding: 2980, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 42000,
+      "outstanding": 43000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03670": [
-    { head: "Tuition", gross: 65520, paid: 282, outstanding: 65238, status: "Partially Paid" },
-    { head: "Hostel", gross: 37300, paid: 0, outstanding: 37300, status: "Unpaid" },
-    { head: "Examination", gross: 4480, paid: 0, outstanding: 4480, status: "Unpaid" },
-    { head: "Library", gross: 1900, paid: 0, outstanding: 1900, status: "Unpaid" },
-    { head: "Laboratory", gross: 2800, paid: 0, outstanding: 2800, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 500,
+      "outstanding": 77500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03401": [
-    { head: "Tuition", gross: 71950, paid: 53907, outstanding: 18043, status: "Partially Paid" },
-    { head: "Hostel", gross: 40960, paid: 0, outstanding: 40960, status: "Unpaid" },
-    { head: "Examination", gross: 4920, paid: 0, outstanding: 4920, status: "Unpaid" },
-    { head: "Library", gross: 2090, paid: 0, outstanding: 2090, status: "Unpaid" },
-    { head: "Laboratory", gross: 3080, paid: 0, outstanding: 3080, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 62000,
+      "outstanding": 23000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03069": [
-    { head: "Tuition", gross: 62010, paid: 62010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35300, paid: 2682, outstanding: 32618, status: "Partially Paid" },
-    { head: "Examination", gross: 4240, paid: 4240, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1800, paid: 1800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2650, paid: 2650, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 58000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 5000,
+      "outstanding": 10000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03352": [
-    { head: "Tuition", gross: 63770, paid: 63770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36300, paid: 25924, outstanding: 10376, status: "Partially Paid" },
-    { head: "Examination", gross: 4360, paid: 4360, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1850, paid: 1850, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2720, paid: 2720, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 27000,
+      "outstanding": 13000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03543": [
-    { head: "Tuition", gross: 69030, paid: 69030, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39290, paid: 39290, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4720, paid: 4720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2010, paid: 2010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2950, paid: 2950, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA03707": [
-    { head: "Tuition", gross: 62010, paid: 55336, outstanding: 6674, status: "Partially Paid" },
-    { head: "Hostel", gross: 35300, paid: 0, outstanding: 35300, status: "Unpaid" },
-    { head: "Examination", gross: 4240, paid: 0, outstanding: 4240, status: "Unpaid" },
-    { head: "Library", gross: 1800, paid: 0, outstanding: 1800, status: "Unpaid" },
-    { head: "Laboratory", gross: 2650, paid: 0, outstanding: 2650, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 68500,
+      "outstanding": 6500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03027": [
-    { head: "Tuition", gross: 68450, paid: 68450, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38960, paid: 0, outstanding: 38960, status: "Unpaid" },
-    { head: "Examination", gross: 4680, paid: 3646, outstanding: 1034, status: "Partially Paid" },
-    { head: "Library", gross: 1990, paid: 0, outstanding: 1990, status: "Unpaid" },
-    { head: "Laboratory", gross: 2920, paid: 0, outstanding: 2920, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 500,
+      "outstanding": 3500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03839": [
-    { head: "Tuition", gross: 61430, paid: 61430, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34960, paid: 29960, outstanding: 5000, status: "Partially Paid" },
-    { head: "Examination", gross: 4200, paid: 4200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1790, paid: 1790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2620, paid: 2620, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 33500,
+      "outstanding": 6500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03940": [
-    { head: "Tuition", gross: 64930, paid: 44063, outstanding: 20867, status: "Partially Paid" },
-    { head: "Hostel", gross: 36960, paid: 0, outstanding: 36960, status: "Unpaid" },
-    { head: "Examination", gross: 4440, paid: 0, outstanding: 4440, status: "Unpaid" },
-    { head: "Library", gross: 1890, paid: 0, outstanding: 1890, status: "Unpaid" },
-    { head: "Laboratory", gross: 2780, paid: 0, outstanding: 2780, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 54000,
+      "outstanding": 26000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA03620": [
-    { head: "Tuition", gross: 69030, paid: 69030, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39290, paid: 9927, outstanding: 29363, status: "Partially Paid" },
-    { head: "Examination", gross: 4720, paid: 4720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2010, paid: 2010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2950, paid: 2950, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 8500,
+      "outstanding": 31500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03362": [
-    { head: "Tuition", gross: 71370, paid: 71370, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40630, paid: 30457, outstanding: 10173, status: "Partially Paid" },
-    { head: "Examination", gross: 4880, paid: 4880, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2070, paid: 2070, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3050, paid: 3050, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 28500,
+      "outstanding": 11500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03365": [
-    { head: "Tuition", gross: 62010, paid: 62010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35300, paid: 5849, outstanding: 29451, status: "Partially Paid" },
-    { head: "Examination", gross: 4240, paid: 4240, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1800, paid: 1800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2650, paid: 2650, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 1000,
+      "outstanding": 39000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA03116": [
-    { head: "Tuition", gross: 67860, paid: 67860, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38630, paid: 26630, outstanding: 12000, status: "Partially Paid" },
-    { head: "Examination", gross: 4640, paid: 4640, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1970, paid: 1970, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2900, paid: 2900, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 25000,
+      "outstanding": 15000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02424": [
-    { head: "Tuition", gross: 68450, paid: 1335, outstanding: 67115, status: "Partially Paid" },
-    { head: "Hostel", gross: 38960, paid: 0, outstanding: 38960, status: "Unpaid" },
-    { head: "Examination", gross: 4680, paid: 0, outstanding: 4680, status: "Unpaid" },
-    { head: "Library", gross: 1990, paid: 0, outstanding: 1990, status: "Unpaid" },
-    { head: "Laboratory", gross: 2920, paid: 0, outstanding: 2920, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 1500,
+      "outstanding": 68500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02402": [
-    { head: "Tuition", gross: 66690, paid: 66690, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37960, paid: 17673, outstanding: 20287, status: "Partially Paid" },
-    { head: "Examination", gross: 4560, paid: 4560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1940, paid: 1940, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2850, paid: 2850, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 65000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 18500,
+      "outstanding": 21500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02253": [
-    { head: "Tuition", gross: 67860, paid: 67860, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38630, paid: 0, outstanding: 38630, status: "Unpaid" },
-    { head: "Examination", gross: 4640, paid: 1444, outstanding: 3196, status: "Partially Paid" },
-    { head: "Library", gross: 1970, paid: 0, outstanding: 1970, status: "Unpaid" },
-    { head: "Laboratory", gross: 2900, paid: 0, outstanding: 2900, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 63000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 1500,
+      "outstanding": 3000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02576": [
-    { head: "Tuition", gross: 60840, paid: 60840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34630, paid: 24630, outstanding: 10000, status: "Partially Paid" },
-    { head: "Examination", gross: 4160, paid: 4160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1770, paid: 1770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2600, paid: 2600, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 27500,
+      "outstanding": 12500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02668": [
-    { head: "Tuition", gross: 66690, paid: 0, outstanding: 66690, status: "Unpaid" },
-    { head: "Hostel", gross: 37960, paid: 0, outstanding: 37960, status: "Unpaid" },
-    { head: "Examination", gross: 4560, paid: 0, outstanding: 4560, status: "Unpaid" },
-    { head: "Library", gross: 1940, paid: 0, outstanding: 1940, status: "Unpaid" },
-    { head: "Laboratory", gross: 2850, paid: 0, outstanding: 2850, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 0,
+      "outstanding": 80000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02739": [
-    { head: "Tuition", gross: 70200, paid: 70200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39960, paid: 36510, outstanding: 3450, status: "Partially Paid" },
-    { head: "Examination", gross: 4800, paid: 4800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2040, paid: 2040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3000, paid: 3000, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 36000,
+      "outstanding": 4000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02189": [
-    { head: "Tuition", gross: 61430, paid: 61430, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34960, paid: 22960, outstanding: 12000, status: "Partially Paid" },
-    { head: "Examination", gross: 4200, paid: 4200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1790, paid: 1790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2620, paid: 2620, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 73000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 25000,
+      "outstanding": 15000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02661": [
-    { head: "Tuition", gross: 59090, paid: 59090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33630, paid: 32799, outstanding: 831, status: "Partially Paid" },
-    { head: "Examination", gross: 4040, paid: 4040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1720, paid: 1720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2520, paid: 2520, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 39000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02312": [
-    { head: "Tuition", gross: 58500, paid: 58500, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33300, paid: 28300, outstanding: 5000, status: "Partially Paid" },
-    { head: "Examination", gross: 4000, paid: 4000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1700, paid: 1700, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2500, paid: 2500, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 33000,
+      "outstanding": 7000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02068": [
-    { head: "Tuition", gross: 62590, paid: 57519, outstanding: 5071, status: "Partially Paid" },
-    { head: "Hostel", gross: 35630, paid: 0, outstanding: 35630, status: "Unpaid" },
-    { head: "Examination", gross: 4280, paid: 0, outstanding: 4280, status: "Unpaid" },
-    { head: "Library", gross: 1820, paid: 0, outstanding: 1820, status: "Unpaid" },
-    { head: "Laboratory", gross: 2680, paid: 0, outstanding: 2680, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 70500,
+      "outstanding": 4500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02504": [
-    { head: "Tuition", gross: 64350, paid: 64350, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36630, paid: 6630, outstanding: 30000, status: "Partially Paid" },
-    { head: "Examination", gross: 4400, paid: 4400, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1870, paid: 1870, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2750, paid: 2750, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 55000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 9500,
+      "outstanding": 5500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02966": [
-    { head: "Tuition", gross: 64930, paid: 49144, outstanding: 15786, status: "Partially Paid" },
-    { head: "Hostel", gross: 36960, paid: 0, outstanding: 36960, status: "Unpaid" },
-    { head: "Examination", gross: 4440, paid: 0, outstanding: 4440, status: "Unpaid" },
-    { head: "Library", gross: 1890, paid: 0, outstanding: 1890, status: "Unpaid" },
-    { head: "Laboratory", gross: 2780, paid: 0, outstanding: 2780, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 62000,
+      "outstanding": 21000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02393": [
-    { head: "Tuition", gross: 59090, paid: 59090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33630, paid: 15662, outstanding: 17968, status: "Partially Paid" },
-    { head: "Examination", gross: 4040, paid: 4040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1720, paid: 1720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2520, paid: 2520, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 68000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 18000,
+      "outstanding": 22000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02149": [
-    { head: "Tuition", gross: 69610, paid: 69610, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39630, paid: 11030, outstanding: 28600, status: "Partially Paid" },
-    { head: "Examination", gross: 4760, paid: 4760, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2020, paid: 2020, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2980, paid: 2980, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 6000,
+      "outstanding": 34000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02185": [
-    { head: "Tuition", gross: 59090, paid: 59090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33630, paid: 31071, outstanding: 2559, status: "Partially Paid" },
-    { head: "Examination", gross: 4040, paid: 4040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1720, paid: 1720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2520, paid: 2520, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 36500,
+      "outstanding": 3500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02006": [
-    { head: "Tuition", gross: 60840, paid: 60840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34630, paid: 2630, outstanding: 32000, status: "Partially Paid" },
-    { head: "Examination", gross: 4160, paid: 4160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1770, paid: 1770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2600, paid: 2600, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 53000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 6500,
+      "outstanding": 8500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02963": [
-    { head: "Tuition", gross: 66110, paid: 62519, outstanding: 3591, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 73000,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02717": [
-    { head: "Tuition", gross: 63180, paid: 63180, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35960, paid: 0, outstanding: 35960, status: "Unpaid" },
-    { head: "Examination", gross: 4320, paid: 1121, outstanding: 3199, status: "Partially Paid" },
-    { head: "Library", gross: 1840, paid: 0, outstanding: 1840, status: "Unpaid" },
-    { head: "Laboratory", gross: 2700, paid: 0, outstanding: 2700, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 84000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02672": [
-    { head: "Tuition", gross: 69030, paid: 61259, outstanding: 7771, status: "Partially Paid" },
-    { head: "Hostel", gross: 39290, paid: 0, outstanding: 39290, status: "Unpaid" },
-    { head: "Examination", gross: 4720, paid: 0, outstanding: 4720, status: "Unpaid" },
-    { head: "Library", gross: 2010, paid: 0, outstanding: 2010, status: "Unpaid" },
-    { head: "Laboratory", gross: 2950, paid: 0, outstanding: 2950, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 65500,
+      "outstanding": 4500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02197": [
-    { head: "Tuition", gross: 70200, paid: 43735, outstanding: 26465, status: "Partially Paid" },
-    { head: "Hostel", gross: 39960, paid: 0, outstanding: 39960, status: "Unpaid" },
-    { head: "Examination", gross: 4800, paid: 0, outstanding: 4800, status: "Unpaid" },
-    { head: "Library", gross: 2040, paid: 0, outstanding: 2040, status: "Unpaid" },
-    { head: "Laboratory", gross: 3000, paid: 0, outstanding: 3000, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 42500,
+      "outstanding": 17500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02571": [
-    { head: "Tuition", gross: 67860, paid: 62913, outstanding: 4947, status: "Partially Paid" },
-    { head: "Hostel", gross: 38630, paid: 0, outstanding: 38630, status: "Unpaid" },
-    { head: "Examination", gross: 4640, paid: 0, outstanding: 4640, status: "Unpaid" },
-    { head: "Library", gross: 1970, paid: 0, outstanding: 1970, status: "Unpaid" },
-    { head: "Laboratory", gross: 2900, paid: 0, outstanding: 2900, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 71500,
+      "outstanding": 3500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02067": [
-    { head: "Tuition", gross: 70200, paid: 69421, outstanding: 779, status: "Partially Paid" },
-    { head: "Hostel", gross: 39960, paid: 0, outstanding: 39960, status: "Unpaid" },
-    { head: "Examination", gross: 4800, paid: 0, outstanding: 4800, status: "Unpaid" },
-    { head: "Library", gross: 2040, paid: 0, outstanding: 2040, status: "Unpaid" },
-    { head: "Laboratory", gross: 3000, paid: 0, outstanding: 3000, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 79000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02552": [
-    { head: "Tuition", gross: 64350, paid: 64350, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36630, paid: 1410, outstanding: 35220, status: "Partially Paid" },
-    { head: "Examination", gross: 4400, paid: 4400, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1870, paid: 1870, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2750, paid: 2750, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 3000,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02992": [
-    { head: "Tuition", gross: 66110, paid: 66110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 2984, outstanding: 1536, status: "Partially Paid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 63000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 3000,
+      "outstanding": 1500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02235": [
-    { head: "Tuition", gross: 60250, paid: 60250, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34300, paid: 29300, outstanding: 5000, status: "Partially Paid" },
-    { head: "Examination", gross: 4120, paid: 4120, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1750, paid: 1750, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2580, paid: 2580, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 33500,
+      "outstanding": 6500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02718": [
-    { head: "Tuition", gross: 61430, paid: 61430, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34960, paid: 14341, outstanding: 20619, status: "Partially Paid" },
-    { head: "Examination", gross: 4200, paid: 4200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1790, paid: 1790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2620, paid: 2620, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 14000,
+      "outstanding": 26000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02793": [
-    { head: "Tuition", gross: 68450, paid: 43325, outstanding: 25125, status: "Partially Paid" },
-    { head: "Hostel", gross: 38960, paid: 0, outstanding: 38960, status: "Unpaid" },
-    { head: "Examination", gross: 4680, paid: 0, outstanding: 4680, status: "Unpaid" },
-    { head: "Library", gross: 1990, paid: 0, outstanding: 1990, status: "Unpaid" },
-    { head: "Laboratory", gross: 2920, paid: 0, outstanding: 2920, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 45000,
+      "outstanding": 20000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02061": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 16590, outstanding: 21710, status: "Partially Paid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 73000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 15500,
+      "outstanding": 24500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02984": [
-    { head: "Tuition", gross: 66690, paid: 30244, outstanding: 36446, status: "Partially Paid" },
-    { head: "Hostel", gross: 37960, paid: 0, outstanding: 37960, status: "Unpaid" },
-    { head: "Examination", gross: 4560, paid: 0, outstanding: 4560, status: "Unpaid" },
-    { head: "Library", gross: 1940, paid: 0, outstanding: 1940, status: "Unpaid" },
-    { head: "Laboratory", gross: 2850, paid: 0, outstanding: 2850, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 34500,
+      "outstanding": 38500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02236": [
-    { head: "Tuition", gross: 66690, paid: 32501, outstanding: 34189, status: "Partially Paid" },
-    { head: "Hostel", gross: 37960, paid: 0, outstanding: 37960, status: "Unpaid" },
-    { head: "Examination", gross: 4560, paid: 0, outstanding: 4560, status: "Unpaid" },
-    { head: "Library", gross: 1940, paid: 0, outstanding: 1940, status: "Unpaid" },
-    { head: "Laboratory", gross: 2850, paid: 0, outstanding: 2850, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 40000,
+      "outstanding": 43000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02752": [
-    { head: "Tuition", gross: 60840, paid: 60840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34630, paid: 5194, outstanding: 29436, status: "Partially Paid" },
-    { head: "Examination", gross: 4160, paid: 4160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1770, paid: 1770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2600, paid: 2600, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 65000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 5500,
+      "outstanding": 34500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02039": [
-    { head: "Tuition", gross: 60840, paid: 60840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34630, paid: 29630, outstanding: 5000, status: "Partially Paid" },
-    { head: "Examination", gross: 4160, paid: 4160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1770, paid: 1770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2600, paid: 2600, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 33500,
+      "outstanding": 6500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02946": [
-    { head: "Tuition", gross: 63770, paid: 63770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36300, paid: 31300, outstanding: 5000, status: "Partially Paid" },
-    { head: "Examination", gross: 4360, paid: 4360, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1850, paid: 1850, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2720, paid: 2720, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 33500,
+      "outstanding": 6500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02762": [
-    { head: "Tuition", gross: 61430, paid: 41039, outstanding: 20391, status: "Partially Paid" },
-    { head: "Hostel", gross: 34960, paid: 0, outstanding: 34960, status: "Unpaid" },
-    { head: "Examination", gross: 4200, paid: 0, outstanding: 4200, status: "Unpaid" },
-    { head: "Library", gross: 1790, paid: 0, outstanding: 1790, status: "Unpaid" },
-    { head: "Laboratory", gross: 2620, paid: 0, outstanding: 2620, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 50500,
+      "outstanding": 22500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02509": [
-    { head: "Tuition", gross: 67860, paid: 67860, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38630, paid: 26527, outstanding: 12103, status: "Partially Paid" },
-    { head: "Examination", gross: 4640, paid: 4640, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1970, paid: 1970, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2900, paid: 2900, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 25000,
+      "outstanding": 15000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02664": [
-    { head: "Tuition", gross: 59670, paid: 27165, outstanding: 32505, status: "Partially Paid" },
-    { head: "Hostel", gross: 33970, paid: 0, outstanding: 33970, status: "Unpaid" },
-    { head: "Examination", gross: 4080, paid: 0, outstanding: 4080, status: "Unpaid" },
-    { head: "Library", gross: 1730, paid: 0, outstanding: 1730, status: "Unpaid" },
-    { head: "Laboratory", gross: 2550, paid: 0, outstanding: 2550, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 34500,
+      "outstanding": 38500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02323": [
-    { head: "Tuition", gross: 63770, paid: 63770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36300, paid: 25829, outstanding: 10471, status: "Partially Paid" },
-    { head: "Examination", gross: 4360, paid: 4360, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1850, paid: 1850, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2720, paid: 2720, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 27500,
+      "outstanding": 12500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02261": [
-    { head: "Tuition", gross: 70200, paid: 70200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39960, paid: 24960, outstanding: 15000, status: "Partially Paid" },
-    { head: "Examination", gross: 4800, paid: 4800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2040, paid: 2040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3000, paid: 3000, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 24000,
+      "outstanding": 16000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02031": [
-    { head: "Tuition", gross: 63770, paid: 63770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36300, paid: 0, outstanding: 36300, status: "Unpaid" },
-    { head: "Examination", gross: 4360, paid: 116, outstanding: 4244, status: "Partially Paid" },
-    { head: "Library", gross: 1850, paid: 0, outstanding: 1850, status: "Unpaid" },
-    { head: "Laboratory", gross: 2720, paid: 0, outstanding: 2720, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02614": [
-    { head: "Tuition", gross: 69610, paid: 69610, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39630, paid: 2736, outstanding: 36894, status: "Partially Paid" },
-    { head: "Examination", gross: 4760, paid: 4760, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2020, paid: 2020, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2980, paid: 2980, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 4000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02828": [
-    { head: "Tuition", gross: 60840, paid: 60840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34630, paid: 31645, outstanding: 2985, status: "Partially Paid" },
-    { head: "Examination", gross: 4160, paid: 4160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1770, paid: 1770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2600, paid: 2600, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 36000,
+      "outstanding": 4000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02919": [
-    { head: "Tuition", gross: 61430, paid: 48117, outstanding: 13313, status: "Partially Paid" },
-    { head: "Hostel", gross: 34960, paid: 0, outstanding: 34960, status: "Unpaid" },
-    { head: "Examination", gross: 4200, paid: 0, outstanding: 4200, status: "Unpaid" },
-    { head: "Library", gross: 1790, paid: 0, outstanding: 1790, status: "Unpaid" },
-    { head: "Laboratory", gross: 2620, paid: 0, outstanding: 2620, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 65000,
+      "outstanding": 20000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02543": [
-    { head: "Tuition", gross: 60840, paid: 60840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34630, paid: 3777, outstanding: 30853, status: "Partially Paid" },
-    { head: "Examination", gross: 4160, paid: 4160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1770, paid: 1770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2600, paid: 2600, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 55000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 7000,
+      "outstanding": 8000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02823": [
-    { head: "Tuition", gross: 61430, paid: 32674, outstanding: 28756, status: "Partially Paid" },
-    { head: "Hostel", gross: 34960, paid: 0, outstanding: 34960, status: "Unpaid" },
-    { head: "Examination", gross: 4200, paid: 0, outstanding: 4200, status: "Unpaid" },
-    { head: "Library", gross: 1790, paid: 0, outstanding: 1790, status: "Unpaid" },
-    { head: "Laboratory", gross: 2620, paid: 0, outstanding: 2620, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 34500,
+      "outstanding": 20500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02534": [
-    { head: "Tuition", gross: 63180, paid: 63180, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35960, paid: 11851, outstanding: 24109, status: "Partially Paid" },
-    { head: "Examination", gross: 4320, paid: 4320, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1840, paid: 1840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2700, paid: 2700, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 12000,
+      "outstanding": 28000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02856": [
-    { head: "Tuition", gross: 68450, paid: 0, outstanding: 68450, status: "Unpaid" },
-    { head: "Hostel", gross: 38960, paid: 0, outstanding: 38960, status: "Unpaid" },
-    { head: "Examination", gross: 4680, paid: 0, outstanding: 4680, status: "Unpaid" },
-    { head: "Library", gross: 1990, paid: 0, outstanding: 1990, status: "Unpaid" },
-    { head: "Laboratory", gross: 2920, paid: 0, outstanding: 2920, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 0,
+      "outstanding": 83000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02662": [
-    { head: "Tuition", gross: 67260, paid: 899, outstanding: 66361, status: "Partially Paid" },
-    { head: "Hostel", gross: 38300, paid: 0, outstanding: 38300, status: "Unpaid" },
-    { head: "Examination", gross: 4600, paid: 0, outstanding: 4600, status: "Unpaid" },
-    { head: "Library", gross: 1960, paid: 0, outstanding: 1960, status: "Unpaid" },
-    { head: "Laboratory", gross: 2880, paid: 0, outstanding: 2880, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 1000,
+      "outstanding": 79000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02093": [
-    { head: "Tuition", gross: 62590, paid: 0, outstanding: 62590, status: "Unpaid" },
-    { head: "Hostel", gross: 35630, paid: 0, outstanding: 35630, status: "Unpaid" },
-    { head: "Examination", gross: 4280, paid: 0, outstanding: 4280, status: "Unpaid" },
-    { head: "Library", gross: 1820, paid: 0, outstanding: 1820, status: "Unpaid" },
-    { head: "Laboratory", gross: 2680, paid: 0, outstanding: 2680, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 0,
+      "outstanding": 70000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02796": [
-    { head: "Tuition", gross: 64930, paid: 0, outstanding: 64930, status: "Unpaid" },
-    { head: "Hostel", gross: 36960, paid: 0, outstanding: 36960, status: "Unpaid" },
-    { head: "Examination", gross: 4440, paid: 0, outstanding: 4440, status: "Unpaid" },
-    { head: "Library", gross: 1890, paid: 0, outstanding: 1890, status: "Unpaid" },
-    { head: "Laboratory", gross: 2780, paid: 0, outstanding: 2780, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 0,
+      "outstanding": 85000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02539": [
-    { head: "Tuition", gross: 67860, paid: 67860, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38630, paid: 1861, outstanding: 36769, status: "Partially Paid" },
-    { head: "Examination", gross: 4640, paid: 4640, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1970, paid: 1970, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2900, paid: 2900, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 58000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 3500,
+      "outstanding": 11500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA02319": [
-    { head: "Tuition", gross: 58500, paid: 58500, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33300, paid: 8310, outstanding: 24990, status: "Partially Paid" },
-    { head: "Examination", gross: 4000, paid: 4000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1700, paid: 1700, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2500, paid: 2500, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 2500,
+      "outstanding": 2500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02784": [
-    { head: "Tuition", gross: 61430, paid: 45812, outstanding: 15618, status: "Partially Paid" },
-    { head: "Hostel", gross: 34960, paid: 0, outstanding: 34960, status: "Unpaid" },
-    { head: "Examination", gross: 4200, paid: 0, outstanding: 4200, status: "Unpaid" },
-    { head: "Library", gross: 1790, paid: 0, outstanding: 1790, status: "Unpaid" },
-    { head: "Laboratory", gross: 2620, paid: 0, outstanding: 2620, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 61500,
+      "outstanding": 23500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02501": [
-    { head: "Tuition", gross: 67260, paid: 64680, outstanding: 2580, status: "Partially Paid" },
-    { head: "Hostel", gross: 38300, paid: 0, outstanding: 38300, status: "Unpaid" },
-    { head: "Examination", gross: 4600, paid: 0, outstanding: 4600, status: "Unpaid" },
-    { head: "Library", gross: 1960, paid: 0, outstanding: 1960, status: "Unpaid" },
-    { head: "Laboratory", gross: 2880, paid: 0, outstanding: 2880, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 77000,
+      "outstanding": 3000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02176": [
-    { head: "Tuition", gross: 59670, paid: 45674, outstanding: 13996, status: "Partially Paid" },
-    { head: "Hostel", gross: 33970, paid: 0, outstanding: 33970, status: "Unpaid" },
-    { head: "Examination", gross: 4080, paid: 0, outstanding: 4080, status: "Unpaid" },
-    { head: "Library", gross: 1730, paid: 0, outstanding: 1730, status: "Unpaid" },
-    { head: "Laboratory", gross: 2550, paid: 0, outstanding: 2550, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 62500,
+      "outstanding": 20500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 0,
+      "outstanding": 4500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA02887": [
-    { head: "Tuition", gross: 59670, paid: 59670, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33970, paid: 8970, outstanding: 25000, status: "Partially Paid" },
-    { head: "Examination", gross: 4080, paid: 4080, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1730, paid: 1730, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2550, paid: 2550, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 60000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 4500,
+      "paid": 4500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 11500,
+      "outstanding": 28500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05512": [
-    { head: "Tuition", gross: 63180, paid: 48892, outstanding: 14288, status: "Partially Paid" },
-    { head: "Hostel", gross: 35960, paid: 0, outstanding: 35960, status: "Unpaid" },
-    { head: "Examination", gross: 4320, paid: 0, outstanding: 4320, status: "Unpaid" },
-    { head: "Library", gross: 1840, paid: 0, outstanding: 1840, status: "Unpaid" },
-    { head: "Laboratory", gross: 2700, paid: 0, outstanding: 2700, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 62500,
+      "outstanding": 17500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05468": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 0, outstanding: 37300, status: "Unpaid" },
-    { head: "Examination", gross: 4480, paid: 1691, outstanding: 2789, status: "Partially Paid" },
-    { head: "Library", gross: 1900, paid: 0, outstanding: 1900, status: "Unpaid" },
-    { head: "Laboratory", gross: 2800, paid: 0, outstanding: 2800, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 3000,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05824": [
-    { head: "Tuition", gross: 60840, paid: 60840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34630, paid: 34103, outstanding: 527, status: "Partially Paid" },
-    { head: "Examination", gross: 4160, paid: 4160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1770, paid: 1770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2600, paid: 2600, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 39500,
+      "outstanding": 500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05104": [
-    { head: "Tuition", gross: 55560, paid: 55560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 31640, paid: 14438, outstanding: 17202, status: "Partially Paid" },
-    { head: "Examination", gross: 3800, paid: 3800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1620, paid: 1620, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2380, paid: 2380, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 73000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 16500,
+      "outstanding": 23500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05487": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 20300, outstanding: 17000, status: "Partially Paid" },
-    { head: "Examination", gross: 4480, paid: 4480, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1900, paid: 1900, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2800, paid: 2800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 63000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 21500,
+      "outstanding": 18500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05984": [
-    { head: "Tuition", gross: 63180, paid: 63180, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35960, paid: 9010, outstanding: 26950, status: "Partially Paid" },
-    { head: "Examination", gross: 4320, paid: 4320, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1840, paid: 1840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2700, paid: 2700, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 5500,
+      "outstanding": 34500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05827": [
-    { head: "Tuition", gross: 58500, paid: 29794, outstanding: 28706, status: "Partially Paid" },
-    { head: "Hostel", gross: 33300, paid: 0, outstanding: 33300, status: "Unpaid" },
-    { head: "Examination", gross: 4000, paid: 0, outstanding: 4000, status: "Unpaid" },
-    { head: "Library", gross: 1700, paid: 0, outstanding: 1700, status: "Unpaid" },
-    { head: "Laboratory", gross: 2500, paid: 0, outstanding: 2500, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 33000,
+      "outstanding": 45000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05319": [
-    { head: "Tuition", gross: 63180, paid: 21845, outstanding: 41335, status: "Partially Paid" },
-    { head: "Hostel", gross: 35960, paid: 0, outstanding: 35960, status: "Unpaid" },
-    { head: "Examination", gross: 4320, paid: 0, outstanding: 4320, status: "Unpaid" },
-    { head: "Library", gross: 1840, paid: 0, outstanding: 1840, status: "Unpaid" },
-    { head: "Laboratory", gross: 2700, paid: 0, outstanding: 2700, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 21500,
+      "outstanding": 26500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05133": [
-    { head: "Tuition", gross: 62010, paid: 60379, outstanding: 1631, status: "Partially Paid" },
-    { head: "Hostel", gross: 35300, paid: 0, outstanding: 35300, status: "Unpaid" },
-    { head: "Examination", gross: 4240, paid: 0, outstanding: 4240, status: "Unpaid" },
-    { head: "Library", gross: 1800, paid: 0, outstanding: 1800, status: "Unpaid" },
-    { head: "Laboratory", gross: 2650, paid: 0, outstanding: 2650, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 1000,
+      "outstanding": 4000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05991": [
-    { head: "Tuition", gross: 56750, paid: 56750, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 32300, paid: 30300, outstanding: 2000, status: "Partially Paid" },
-    { head: "Examination", gross: 3880, paid: 3880, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1650, paid: 1650, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2420, paid: 2420, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 78000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 12500,
+      "outstanding": 27500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05948": [
-    { head: "Tuition", gross: 60250, paid: 60250, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34300, paid: 7524, outstanding: 26776, status: "Partially Paid" },
-    { head: "Examination", gross: 4120, paid: 4120, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1750, paid: 1750, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2580, paid: 2580, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 4000,
+      "outstanding": 36000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05682": [
-    { head: "Tuition", gross: 64930, paid: 1266, outstanding: 63664, status: "Partially Paid" },
-    { head: "Hostel", gross: 36960, paid: 0, outstanding: 36960, status: "Unpaid" },
-    { head: "Examination", gross: 4440, paid: 0, outstanding: 4440, status: "Unpaid" },
-    { head: "Library", gross: 1890, paid: 0, outstanding: 1890, status: "Unpaid" },
-    { head: "Laboratory", gross: 2780, paid: 0, outstanding: 2780, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 1500,
+      "outstanding": 73500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05154": [
-    { head: "Tuition", gross: 56160, paid: 29193, outstanding: 26967, status: "Partially Paid" },
-    { head: "Hostel", gross: 31970, paid: 0, outstanding: 31970, status: "Unpaid" },
-    { head: "Examination", gross: 3840, paid: 0, outstanding: 3840, status: "Unpaid" },
-    { head: "Library", gross: 1630, paid: 0, outstanding: 1630, status: "Unpaid" },
-    { head: "Laboratory", gross: 2400, paid: 0, outstanding: 2400, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 42000,
+      "outstanding": 38000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05687": [
-    { head: "Tuition", gross: 59670, paid: 59670, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33970, paid: 16041, outstanding: 17929, status: "Partially Paid" },
-    { head: "Examination", gross: 4080, paid: 4080, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1730, paid: 1730, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2550, paid: 2550, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 17500,
+      "outstanding": 22500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05828": [
-    { head: "Tuition", gross: 56160, paid: 983, outstanding: 55177, status: "Partially Paid" },
-    { head: "Hostel", gross: 31970, paid: 0, outstanding: 31970, status: "Unpaid" },
-    { head: "Examination", gross: 3840, paid: 0, outstanding: 3840, status: "Unpaid" },
-    { head: "Library", gross: 1630, paid: 0, outstanding: 1630, status: "Unpaid" },
-    { head: "Laboratory", gross: 2400, paid: 0, outstanding: 2400, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 1500,
+      "outstanding": 68500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05373": [
-    { head: "Tuition", gross: 66690, paid: 66690, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37960, paid: 16767, outstanding: 21193, status: "Partially Paid" },
-    { head: "Examination", gross: 4560, paid: 4560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1940, paid: 1940, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2850, paid: 2850, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 68000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 16500,
+      "outstanding": 23500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05474": [
-    { head: "Tuition", gross: 64350, paid: 64350, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36630, paid: 7771, outstanding: 28859, status: "Partially Paid" },
-    { head: "Examination", gross: 4400, paid: 4400, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1870, paid: 1870, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2750, paid: 2750, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 4000,
+      "outstanding": 36000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05708": [
-    { head: "Tuition", gross: 56160, paid: 38325, outstanding: 17835, status: "Partially Paid" },
-    { head: "Hostel", gross: 31970, paid: 0, outstanding: 31970, status: "Unpaid" },
-    { head: "Examination", gross: 3840, paid: 0, outstanding: 3840, status: "Unpaid" },
-    { head: "Library", gross: 1630, paid: 0, outstanding: 1630, status: "Unpaid" },
-    { head: "Laboratory", gross: 2400, paid: 0, outstanding: 2400, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 51000,
+      "outstanding": 19000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05232": [
-    { head: "Tuition", gross: 56160, paid: 56160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 31970, paid: 7331, outstanding: 24639, status: "Partially Paid" },
-    { head: "Examination", gross: 3840, paid: 3840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1630, paid: 1630, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2400, paid: 2400, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 78000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 5000,
+      "outstanding": 35000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05067": [
-    { head: "Tuition", gross: 60840, paid: 48757, outstanding: 12083, status: "Partially Paid" },
-    { head: "Hostel", gross: 34630, paid: 0, outstanding: 34630, status: "Unpaid" },
-    { head: "Examination", gross: 4160, paid: 0, outstanding: 4160, status: "Unpaid" },
-    { head: "Library", gross: 1770, paid: 0, outstanding: 1770, status: "Unpaid" },
-    { head: "Laboratory", gross: 2600, paid: 0, outstanding: 2600, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 53000,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05640": [
-    { head: "Tuition", gross: 59670, paid: 59670, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33970, paid: 22793, outstanding: 11177, status: "Partially Paid" },
-    { head: "Examination", gross: 4080, paid: 4080, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1730, paid: 1730, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2550, paid: 2550, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 78000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 25000,
+      "outstanding": 15000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05622": [
-    { head: "Tuition", gross: 60250, paid: 60250, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34300, paid: 23739, outstanding: 10561, status: "Partially Paid" },
-    { head: "Examination", gross: 4120, paid: 4120, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1750, paid: 1750, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2580, paid: 2580, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 26000,
+      "outstanding": 14000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05102": [
-    { head: "Tuition", gross: 56750, paid: 56750, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 32300, paid: 20300, outstanding: 12000, status: "Partially Paid" },
-    { head: "Examination", gross: 3880, paid: 3880, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1650, paid: 1650, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2420, paid: 2420, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 68000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 24500,
+      "outstanding": 15500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05041": [
-    { head: "Tuition", gross: 63770, paid: 1367, outstanding: 62403, status: "Partially Paid" },
-    { head: "Hostel", gross: 36300, paid: 0, outstanding: 36300, status: "Unpaid" },
-    { head: "Examination", gross: 4360, paid: 0, outstanding: 4360, status: "Unpaid" },
-    { head: "Library", gross: 1850, paid: 0, outstanding: 1850, status: "Unpaid" },
-    { head: "Laboratory", gross: 2720, paid: 0, outstanding: 2720, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 1500,
+      "outstanding": 48500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05539": [
-    { head: "Tuition", gross: 63180, paid: 63180, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35960, paid: 20853, outstanding: 15107, status: "Partially Paid" },
-    { head: "Examination", gross: 4320, paid: 4320, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1840, paid: 1840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2700, paid: 2700, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 21500,
+      "outstanding": 18500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05500": [
-    { head: "Tuition", gross: 59090, paid: 59090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33630, paid: 32503, outstanding: 1127, status: "Partially Paid" },
-    { head: "Examination", gross: 4040, paid: 4040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1720, paid: 1720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2520, paid: 2520, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 38500,
+      "outstanding": 1500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05506": [
-    { head: "Tuition", gross: 56750, paid: 56750, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 32300, paid: 21217, outstanding: 11083, status: "Partially Paid" },
-    { head: "Examination", gross: 3880, paid: 3880, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1650, paid: 1650, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2420, paid: 2420, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 24000,
+      "outstanding": 16000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05129": [
-    { head: "Tuition", gross: 62010, paid: 62010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35300, paid: 22798, outstanding: 12502, status: "Partially Paid" },
-    { head: "Examination", gross: 4240, paid: 4240, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1800, paid: 1800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2650, paid: 2650, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 68000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 25000,
+      "outstanding": 15000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05053": [
-    { head: "Tuition", gross: 64930, paid: 64930, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36960, paid: 6176, outstanding: 30784, status: "Partially Paid" },
-    { head: "Examination", gross: 4440, paid: 4440, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1890, paid: 1890, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2780, paid: 2780, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 3000,
+      "outstanding": 37000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05874": [
-    { head: "Tuition", gross: 62010, paid: 31278, outstanding: 30732, status: "Partially Paid" },
-    { head: "Hostel", gross: 35300, paid: 0, outstanding: 35300, status: "Unpaid" },
-    { head: "Examination", gross: 4240, paid: 0, outstanding: 4240, status: "Unpaid" },
-    { head: "Library", gross: 1800, paid: 0, outstanding: 1800, status: "Unpaid" },
-    { head: "Laboratory", gross: 2650, paid: 0, outstanding: 2650, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 40500,
+      "outstanding": 39500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05250": [
-    { head: "Tuition", gross: 57910, paid: 56703, outstanding: 1207, status: "Partially Paid" },
-    { head: "Hostel", gross: 32970, paid: 0, outstanding: 32970, status: "Unpaid" },
-    { head: "Examination", gross: 3960, paid: 0, outstanding: 3960, status: "Unpaid" },
-    { head: "Library", gross: 1680, paid: 0, outstanding: 1680, status: "Unpaid" },
-    { head: "Laboratory", gross: 2480, paid: 0, outstanding: 2480, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 1000,
+      "outstanding": 4000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05871": [
-    { head: "Tuition", gross: 57910, paid: 50761, outstanding: 7149, status: "Partially Paid" },
-    { head: "Hostel", gross: 32970, paid: 0, outstanding: 32970, status: "Unpaid" },
-    { head: "Examination", gross: 3960, paid: 0, outstanding: 3960, status: "Unpaid" },
-    { head: "Library", gross: 1680, paid: 0, outstanding: 1680, status: "Unpaid" },
-    { head: "Laboratory", gross: 2480, paid: 0, outstanding: 2480, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 42500,
+      "outstanding": 7500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05005": [
-    { head: "Tuition", gross: 59670, paid: 798, outstanding: 58872, status: "Partially Paid" },
-    { head: "Hostel", gross: 33970, paid: 0, outstanding: 33970, status: "Unpaid" },
-    { head: "Examination", gross: 4080, paid: 0, outstanding: 4080, status: "Unpaid" },
-    { head: "Library", gross: 1730, paid: 0, outstanding: 1730, status: "Unpaid" },
-    { head: "Laboratory", gross: 2550, paid: 0, outstanding: 2550, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 1000,
+      "outstanding": 59000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05609": [
-    { head: "Tuition", gross: 57330, paid: 48847, outstanding: 8483, status: "Partially Paid" },
-    { head: "Hostel", gross: 32630, paid: 0, outstanding: 32630, status: "Unpaid" },
-    { head: "Examination", gross: 3920, paid: 0, outstanding: 3920, status: "Unpaid" },
-    { head: "Library", gross: 1670, paid: 0, outstanding: 1670, status: "Unpaid" },
-    { head: "Laboratory", gross: 2450, paid: 0, outstanding: 2450, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 49000,
+      "outstanding": 16000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05501": [
-    { head: "Tuition", gross: 55560, paid: 55560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 31640, paid: 18932, outstanding: 12708, status: "Partially Paid" },
-    { head: "Examination", gross: 3800, paid: 3800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1620, paid: 1620, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2380, paid: 2380, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 500,
+      "outstanding": 14500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05788": [
-    { head: "Tuition", gross: 64350, paid: 47621, outstanding: 16729, status: "Partially Paid" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 0, outstanding: 4400, status: "Unpaid" },
-    { head: "Library", gross: 1870, paid: 0, outstanding: 1870, status: "Unpaid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 47000,
+      "outstanding": 3000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05473": [
-    { head: "Tuition", gross: 66110, paid: 66110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37630, paid: 35630, outstanding: 2000, status: "Partially Paid" },
-    { head: "Examination", gross: 4520, paid: 4520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1920, paid: 1920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2820, paid: 2820, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 78000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 37500,
+      "outstanding": 2500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05738": [
-    { head: "Tuition", gross: 66690, paid: 66690, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37960, paid: 27844, outstanding: 10116, status: "Partially Paid" },
-    { head: "Examination", gross: 4560, paid: 4560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1940, paid: 1940, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2850, paid: 2850, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 28000,
+      "outstanding": 12000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05842": [
-    { head: "Tuition", gross: 56750, paid: 767, outstanding: 55983, status: "Partially Paid" },
-    { head: "Hostel", gross: 32300, paid: 0, outstanding: 32300, status: "Unpaid" },
-    { head: "Examination", gross: 3880, paid: 0, outstanding: 3880, status: "Unpaid" },
-    { head: "Library", gross: 1650, paid: 0, outstanding: 1650, status: "Unpaid" },
-    { head: "Laboratory", gross: 2420, paid: 0, outstanding: 2420, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 1000,
+      "outstanding": 69000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05069": [
-    { head: "Tuition", gross: 59090, paid: 59090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33630, paid: 32686, outstanding: 944, status: "Partially Paid" },
-    { head: "Examination", gross: 4040, paid: 4040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1720, paid: 1720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2520, paid: 2520, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 38500,
+      "outstanding": 1500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05848": [
-    { head: "Tuition", gross: 59090, paid: 22917, outstanding: 36173, status: "Partially Paid" },
-    { head: "Hostel", gross: 33630, paid: 0, outstanding: 33630, status: "Unpaid" },
-    { head: "Examination", gross: 4040, paid: 0, outstanding: 4040, status: "Unpaid" },
-    { head: "Library", gross: 1720, paid: 0, outstanding: 1720, status: "Unpaid" },
-    { head: "Laboratory", gross: 2520, paid: 0, outstanding: 2520, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 27000,
+      "outstanding": 33000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05762": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 0, outstanding: 37300, status: "Unpaid" },
-    { head: "Examination", gross: 4480, paid: 988, outstanding: 3492, status: "Partially Paid" },
-    { head: "Library", gross: 1900, paid: 0, outstanding: 1900, status: "Unpaid" },
-    { head: "Laboratory", gross: 2800, paid: 0, outstanding: 2800, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 2000,
+      "outstanding": 3000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05103": [
-    { head: "Tuition", gross: 57330, paid: 57330, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 32630, paid: 6120, outstanding: 26510, status: "Partially Paid" },
-    { head: "Examination", gross: 3920, paid: 3920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1670, paid: 1670, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2450, paid: 2450, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 78000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 3000,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05597": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 9099, outstanding: 29201, status: "Partially Paid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 78000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 5500,
+      "outstanding": 34500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05249": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 7023, outstanding: 31277, status: "Partially Paid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 4000,
+      "outstanding": 36000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05176": [
-    { head: "Tuition", gross: 60840, paid: 60840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34630, paid: 32630, outstanding: 2000, status: "Partially Paid" },
-    { head: "Examination", gross: 4160, paid: 4160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1770, paid: 1770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2600, paid: 2600, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 78000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 37500,
+      "outstanding": 2500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05980": [
-    { head: "Tuition", gross: 66110, paid: 430, outstanding: 65680, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 500,
+      "outstanding": 72500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05734": [
-    { head: "Tuition", gross: 59090, paid: 59090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33630, paid: 32863, outstanding: 767, status: "Partially Paid" },
-    { head: "Examination", gross: 4040, paid: 4040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1720, paid: 1720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2520, paid: 2520, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 39000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05296": [
-    { head: "Tuition", gross: 60840, paid: 60840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34630, paid: 0, outstanding: 34630, status: "Unpaid" },
-    { head: "Examination", gross: 4160, paid: 1108, outstanding: 3052, status: "Partially Paid" },
-    { head: "Library", gross: 1770, paid: 0, outstanding: 1770, status: "Unpaid" },
-    { head: "Laboratory", gross: 2600, paid: 0, outstanding: 2600, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 78000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 3000,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05394": [
-    { head: "Tuition", gross: 64350, paid: 49644, outstanding: 14706, status: "Partially Paid" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 0, outstanding: 4400, status: "Unpaid" },
-    { head: "Library", gross: 1870, paid: 0, outstanding: 1870, status: "Unpaid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 61500,
+      "outstanding": 16500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05858": [
-    { head: "Tuition", gross: 66110, paid: 31391, outstanding: 34719, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 35500,
+      "outstanding": 34500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05028": [
-    { head: "Tuition", gross: 58500, paid: 30321, outstanding: 28179, status: "Partially Paid" },
-    { head: "Hostel", gross: 33300, paid: 0, outstanding: 33300, status: "Unpaid" },
-    { head: "Examination", gross: 4000, paid: 0, outstanding: 4000, status: "Unpaid" },
-    { head: "Library", gross: 1700, paid: 0, outstanding: 1700, status: "Unpaid" },
-    { head: "Laboratory", gross: 2500, paid: 0, outstanding: 2500, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 32000,
+      "outstanding": 16000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05805": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 37300, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4480, paid: 4480, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1900, paid: 1900, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2800, paid: 2800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA05614": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 37300, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4480, paid: 4480, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1900, paid: 1900, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2800, paid: 2800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA05238": [
-    { head: "Tuition", gross: 64350, paid: 0, outstanding: 64350, status: "Unpaid" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 0, outstanding: 4400, status: "Unpaid" },
-    { head: "Library", gross: 1870, paid: 0, outstanding: 1870, status: "Unpaid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 0,
+      "outstanding": 80000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05651": [
-    { head: "Tuition", gross: 59670, paid: 43609, outstanding: 16061, status: "Partially Paid" },
-    { head: "Hostel", gross: 33970, paid: 0, outstanding: 33970, status: "Unpaid" },
-    { head: "Examination", gross: 4080, paid: 0, outstanding: 4080, status: "Unpaid" },
-    { head: "Library", gross: 1730, paid: 0, outstanding: 1730, status: "Unpaid" },
-    { head: "Laboratory", gross: 2550, paid: 0, outstanding: 2550, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 46000,
+      "outstanding": 4000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05411": [
-    { head: "Tuition", gross: 66690, paid: 34495, outstanding: 32195, status: "Partially Paid" },
-    { head: "Hostel", gross: 37960, paid: 0, outstanding: 37960, status: "Unpaid" },
-    { head: "Examination", gross: 4560, paid: 0, outstanding: 4560, status: "Unpaid" },
-    { head: "Library", gross: 1940, paid: 0, outstanding: 1940, status: "Unpaid" },
-    { head: "Laboratory", gross: 2850, paid: 0, outstanding: 2850, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 42000,
+      "outstanding": 38000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05055": [
-    { head: "Tuition", gross: 59090, paid: 59090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33630, paid: 32193, outstanding: 1437, status: "Partially Paid" },
-    { head: "Examination", gross: 4040, paid: 4040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1720, paid: 1720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2520, paid: 2520, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 38000,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05401": [
-    { head: "Tuition", gross: 63770, paid: 47602, outstanding: 16168, status: "Partially Paid" },
-    { head: "Hostel", gross: 36300, paid: 0, outstanding: 36300, status: "Unpaid" },
-    { head: "Examination", gross: 4360, paid: 0, outstanding: 4360, status: "Unpaid" },
-    { head: "Library", gross: 1850, paid: 0, outstanding: 1850, status: "Unpaid" },
-    { head: "Laboratory", gross: 2720, paid: 0, outstanding: 2720, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 60500,
+      "outstanding": 19500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA05947": [
-    { head: "Tuition", gross: 62010, paid: 62010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35300, paid: 10300, outstanding: 25000, status: "Partially Paid" },
-    { head: "Examination", gross: 4240, paid: 4240, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1800, paid: 1800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2650, paid: 2650, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 55000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 13500,
+      "outstanding": 26500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05706": [
-    { head: "Tuition", gross: 64930, paid: 64930, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36960, paid: 26391, outstanding: 10569, status: "Partially Paid" },
-    { head: "Examination", gross: 4440, paid: 4440, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1890, paid: 1890, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2780, paid: 2780, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 28000,
+      "outstanding": 12000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05761": [
-    { head: "Tuition", gross: 63770, paid: 63770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36300, paid: 5129, outstanding: 31171, status: "Partially Paid" },
-    { head: "Examination", gross: 4360, paid: 4360, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1850, paid: 1850, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2720, paid: 2720, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 58000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 7000,
+      "outstanding": 33000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA05696": [
-    { head: "Tuition", gross: 60250, paid: 40953, outstanding: 19297, status: "Partially Paid" },
-    { head: "Hostel", gross: 34300, paid: 0, outstanding: 34300, status: "Unpaid" },
-    { head: "Examination", gross: 4120, paid: 0, outstanding: 4120, status: "Unpaid" },
-    { head: "Library", gross: 1750, paid: 0, outstanding: 1750, status: "Unpaid" },
-    { head: "Laboratory", gross: 2580, paid: 0, outstanding: 2580, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 51000,
+      "outstanding": 19000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06967": [
-    { head: "Tuition", gross: 56750, paid: 56750, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 32300, paid: 0, outstanding: 32300, status: "Unpaid" },
-    { head: "Examination", gross: 3880, paid: 1113, outstanding: 2767, status: "Partially Paid" },
-    { head: "Library", gross: 1650, paid: 0, outstanding: 1650, status: "Unpaid" },
-    { head: "Laboratory", gross: 2420, paid: 0, outstanding: 2420, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 67000,
+      "outstanding": 13000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06325": [
-    { head: "Tuition", gross: 54410, paid: 38667, outstanding: 15743, status: "Partially Paid" },
-    { head: "Hostel", gross: 30970, paid: 0, outstanding: 30970, status: "Unpaid" },
-    { head: "Examination", gross: 3720, paid: 0, outstanding: 3720, status: "Unpaid" },
-    { head: "Library", gross: 1580, paid: 0, outstanding: 1580, status: "Unpaid" },
-    { head: "Laboratory", gross: 2320, paid: 0, outstanding: 2320, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 42500,
+      "outstanding": 27500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06254": [
-    { head: "Tuition", gross: 62010, paid: 62010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35300, paid: 0, outstanding: 35300, status: "Unpaid" },
-    { head: "Examination", gross: 4240, paid: 1742, outstanding: 2498, status: "Partially Paid" },
-    { head: "Library", gross: 1800, paid: 0, outstanding: 1800, status: "Unpaid" },
-    { head: "Laboratory", gross: 2650, paid: 0, outstanding: 2650, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 2500,
+      "outstanding": 2500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06081": [
-    { head: "Tuition", gross: 57330, paid: 30339, outstanding: 26991, status: "Partially Paid" },
-    { head: "Hostel", gross: 32630, paid: 0, outstanding: 32630, status: "Unpaid" },
-    { head: "Examination", gross: 3920, paid: 0, outstanding: 3920, status: "Unpaid" },
-    { head: "Library", gross: 1670, paid: 0, outstanding: 1670, status: "Unpaid" },
-    { head: "Laboratory", gross: 2450, paid: 0, outstanding: 2450, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 35000,
+      "outstanding": 45000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06784": [
-    { head: "Tuition", gross: 54990, paid: 39282, outstanding: 15708, status: "Partially Paid" },
-    { head: "Hostel", gross: 31300, paid: 0, outstanding: 31300, status: "Unpaid" },
-    { head: "Examination", gross: 3760, paid: 0, outstanding: 3760, status: "Unpaid" },
-    { head: "Library", gross: 1600, paid: 0, outstanding: 1600, status: "Unpaid" },
-    { head: "Laboratory", gross: 2350, paid: 0, outstanding: 2350, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 53500,
+      "outstanding": 16500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06619": [
-    { head: "Tuition", gross: 62010, paid: 62010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35300, paid: 35300, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4240, paid: 4240, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1800, paid: 1800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2650, paid: 2650, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA06902": [
-    { head: "Tuition", gross: 60250, paid: 677, outstanding: 59573, status: "Partially Paid" },
-    { head: "Hostel", gross: 34300, paid: 0, outstanding: 34300, status: "Unpaid" },
-    { head: "Examination", gross: 4120, paid: 0, outstanding: 4120, status: "Unpaid" },
-    { head: "Library", gross: 1750, paid: 0, outstanding: 1750, status: "Unpaid" },
-    { head: "Laboratory", gross: 2580, paid: 0, outstanding: 2580, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 500,
+      "outstanding": 49500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06563": [
-    { head: "Tuition", gross: 54410, paid: 54410, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 30970, paid: 0, outstanding: 30970, status: "Unpaid" },
-    { head: "Examination", gross: 3720, paid: 906, outstanding: 2814, status: "Partially Paid" },
-    { head: "Library", gross: 1580, paid: 0, outstanding: 1580, status: "Unpaid" },
-    { head: "Laboratory", gross: 2320, paid: 0, outstanding: 2320, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 67000,
+      "outstanding": 13000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06589": [
-    { head: "Tuition", gross: 58500, paid: 0, outstanding: 58500, status: "Unpaid" },
-    { head: "Hostel", gross: 33300, paid: 0, outstanding: 33300, status: "Unpaid" },
-    { head: "Examination", gross: 4000, paid: 0, outstanding: 4000, status: "Unpaid" },
-    { head: "Library", gross: 1700, paid: 0, outstanding: 1700, status: "Unpaid" },
-    { head: "Laboratory", gross: 2500, paid: 0, outstanding: 2500, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 0,
+      "outstanding": 75000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06529": [
-    { head: "Tuition", gross: 63180, paid: 1275, outstanding: 61905, status: "Partially Paid" },
-    { head: "Hostel", gross: 35960, paid: 0, outstanding: 35960, status: "Unpaid" },
-    { head: "Examination", gross: 4320, paid: 0, outstanding: 4320, status: "Unpaid" },
-    { head: "Library", gross: 1840, paid: 0, outstanding: 1840, status: "Unpaid" },
-    { head: "Laboratory", gross: 2700, paid: 0, outstanding: 2700, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 1500,
+      "outstanding": 78500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06011": [
-    { head: "Tuition", gross: 60250, paid: 30291, outstanding: 29959, status: "Partially Paid" },
-    { head: "Hostel", gross: 34300, paid: 0, outstanding: 34300, status: "Unpaid" },
-    { head: "Examination", gross: 4120, paid: 0, outstanding: 4120, status: "Unpaid" },
-    { head: "Library", gross: 1750, paid: 0, outstanding: 1750, status: "Unpaid" },
-    { head: "Laboratory", gross: 2580, paid: 0, outstanding: 2580, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 40000,
+      "outstanding": 38000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06774": [
-    { head: "Tuition", gross: 57910, paid: 57910, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 32970, paid: 19136, outstanding: 13834, status: "Partially Paid" },
-    { head: "Examination", gross: 3960, paid: 3960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1680, paid: 1680, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2480, paid: 2480, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 21500,
+      "outstanding": 18500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA06740": [
-    { head: "Tuition", gross: 57330, paid: 24764, outstanding: 32566, status: "Partially Paid" },
-    { head: "Hostel", gross: 32630, paid: 0, outstanding: 32630, status: "Unpaid" },
-    { head: "Examination", gross: 3920, paid: 0, outstanding: 3920, status: "Unpaid" },
-    { head: "Library", gross: 1670, paid: 0, outstanding: 1670, status: "Unpaid" },
-    { head: "Laboratory", gross: 2450, paid: 0, outstanding: 2450, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 30500,
+      "outstanding": 32500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06876": [
-    { head: "Tuition", gross: 53230, paid: 48841, outstanding: 4389, status: "Partially Paid" },
-    { head: "Hostel", gross: 30300, paid: 0, outstanding: 30300, status: "Unpaid" },
-    { head: "Examination", gross: 3640, paid: 0, outstanding: 3640, status: "Unpaid" },
-    { head: "Library", gross: 1550, paid: 0, outstanding: 1550, status: "Unpaid" },
-    { head: "Laboratory", gross: 2280, paid: 0, outstanding: 2280, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 55000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 500,
+      "outstanding": 1500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06384": [
-    { head: "Tuition", gross: 64350, paid: 29073, outstanding: 35277, status: "Partially Paid" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 0, outstanding: 4400, status: "Unpaid" },
-    { head: "Library", gross: 1870, paid: 0, outstanding: 1870, status: "Unpaid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 33500,
+      "outstanding": 36500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06395": [
-    { head: "Tuition", gross: 55560, paid: 55560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 31640, paid: 10777, outstanding: 20863, status: "Partially Paid" },
-    { head: "Examination", gross: 3800, paid: 3800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1620, paid: 1620, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2380, paid: 2380, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 60000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5000,
+      "outstanding": 500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06901": [
-    { head: "Tuition", gross: 59090, paid: 59090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33630, paid: 19282, outstanding: 14348, status: "Partially Paid" },
-    { head: "Examination", gross: 4040, paid: 4040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1720, paid: 1720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2520, paid: 2520, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 21000,
+      "outstanding": 19000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA06077": [
-    { head: "Tuition", gross: 63180, paid: 47130, outstanding: 16050, status: "Partially Paid" },
-    { head: "Hostel", gross: 35960, paid: 0, outstanding: 35960, status: "Unpaid" },
-    { head: "Examination", gross: 4320, paid: 0, outstanding: 4320, status: "Unpaid" },
-    { head: "Library", gross: 1840, paid: 0, outstanding: 1840, status: "Unpaid" },
-    { head: "Laboratory", gross: 2700, paid: 0, outstanding: 2700, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 60000,
+      "outstanding": 20000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06979": [
-    { head: "Tuition", gross: 54990, paid: 54990, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 31300, paid: 22093, outstanding: 9207, status: "Partially Paid" },
-    { head: "Examination", gross: 3760, paid: 3760, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1600, paid: 1600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2350, paid: 2350, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 4000,
+      "outstanding": 36000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA06741": [
-    { head: "Tuition", gross: 53230, paid: 53230, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 30300, paid: 15149, outstanding: 15151, status: "Partially Paid" },
-    { head: "Examination", gross: 3640, paid: 3640, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1550, paid: 1550, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2280, paid: 2280, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 65000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 4000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06713": [
-    { head: "Tuition", gross: 59670, paid: 59670, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33970, paid: 23987, outstanding: 9983, status: "Partially Paid" },
-    { head: "Examination", gross: 4080, paid: 4080, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1730, paid: 1730, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2550, paid: 2550, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 26500,
+      "outstanding": 13500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA06447": [
-    { head: "Tuition", gross: 53820, paid: 0, outstanding: 53820, status: "Unpaid" },
-    { head: "Hostel", gross: 30640, paid: 0, outstanding: 30640, status: "Unpaid" },
-    { head: "Examination", gross: 3680, paid: 0, outstanding: 3680, status: "Unpaid" },
-    { head: "Library", gross: 1560, paid: 0, outstanding: 1560, status: "Unpaid" },
-    { head: "Laboratory", gross: 2300, paid: 0, outstanding: 2300, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 0,
+      "outstanding": 55000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06894": [
-    { head: "Tuition", gross: 59670, paid: 31263, outstanding: 28407, status: "Partially Paid" },
-    { head: "Hostel", gross: 33970, paid: 0, outstanding: 33970, status: "Unpaid" },
-    { head: "Examination", gross: 4080, paid: 0, outstanding: 4080, status: "Unpaid" },
-    { head: "Library", gross: 1730, paid: 0, outstanding: 1730, status: "Unpaid" },
-    { head: "Laboratory", gross: 2550, paid: 0, outstanding: 2550, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 42000,
+      "outstanding": 38000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06489": [
-    { head: "Tuition", gross: 62590, paid: 50163, outstanding: 12427, status: "Partially Paid" },
-    { head: "Hostel", gross: 35630, paid: 0, outstanding: 35630, status: "Unpaid" },
-    { head: "Examination", gross: 4280, paid: 0, outstanding: 4280, status: "Unpaid" },
-    { head: "Library", gross: 1820, paid: 0, outstanding: 1820, status: "Unpaid" },
-    { head: "Laboratory", gross: 2680, paid: 0, outstanding: 2680, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 52500,
+      "outstanding": 2500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06479": [
-    { head: "Tuition", gross: 57910, paid: 57910, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 32970, paid: 0, outstanding: 32970, status: "Unpaid" },
-    { head: "Examination", gross: 3960, paid: 1376, outstanding: 2584, status: "Partially Paid" },
-    { head: "Library", gross: 1680, paid: 0, outstanding: 1680, status: "Unpaid" },
-    { head: "Laboratory", gross: 2480, paid: 0, outstanding: 2480, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 67500,
+      "outstanding": 12500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06419": [
-    { head: "Tuition", gross: 54410, paid: 28302, outstanding: 26108, status: "Partially Paid" },
-    { head: "Hostel", gross: 30970, paid: 0, outstanding: 30970, status: "Unpaid" },
-    { head: "Examination", gross: 3720, paid: 0, outstanding: 3720, status: "Unpaid" },
-    { head: "Library", gross: 1580, paid: 0, outstanding: 1580, status: "Unpaid" },
-    { head: "Laboratory", gross: 2320, paid: 0, outstanding: 2320, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 33500,
+      "outstanding": 44500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06999": [
-    { head: "Tuition", gross: 56750, paid: 56750, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 32300, paid: 0, outstanding: 32300, status: "Unpaid" },
-    { head: "Examination", gross: 3880, paid: 2431, outstanding: 1449, status: "Partially Paid" },
-    { head: "Library", gross: 1650, paid: 0, outstanding: 1650, status: "Unpaid" },
-    { head: "Laboratory", gross: 2420, paid: 0, outstanding: 2420, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 56500,
+      "outstanding": 3500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06882": [
-    { head: "Tuition", gross: 52650, paid: 36780, outstanding: 15870, status: "Partially Paid" },
-    { head: "Hostel", gross: 29970, paid: 0, outstanding: 29970, status: "Unpaid" },
-    { head: "Examination", gross: 3600, paid: 0, outstanding: 3600, status: "Unpaid" },
-    { head: "Library", gross: 1530, paid: 0, outstanding: 1530, status: "Unpaid" },
-    { head: "Laboratory", gross: 2250, paid: 0, outstanding: 2250, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 44000,
+      "outstanding": 6000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06918": [
-    { head: "Tuition", gross: 61430, paid: 61430, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34960, paid: 34960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4200, paid: 4200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1790, paid: 1790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2620, paid: 2620, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA06170": [
-    { head: "Tuition", gross: 61430, paid: 61430, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34960, paid: 24844, outstanding: 10116, status: "Partially Paid" },
-    { head: "Examination", gross: 4200, paid: 4200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1790, paid: 1790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2620, paid: 2620, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 27000,
+      "outstanding": 13000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA06556": [
-    { head: "Tuition", gross: 57330, paid: 57330, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 32630, paid: 17318, outstanding: 15312, status: "Partially Paid" },
-    { head: "Examination", gross: 3920, paid: 3920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1670, paid: 1670, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2450, paid: 2450, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 19500,
+      "outstanding": 20500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA06637": [
-    { head: "Tuition", gross: 55560, paid: 55560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 31640, paid: 31640, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 3800, paid: 3800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1620, paid: 1620, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2380, paid: 2380, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 15000,
+      "outstanding": 25000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA06788": [
-    { head: "Tuition", gross: 59670, paid: 59670, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33970, paid: 4276, outstanding: 29694, status: "Partially Paid" },
-    { head: "Examination", gross: 4080, paid: 4080, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1730, paid: 1730, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2550, paid: 2550, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 1500,
+      "outstanding": 38500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA06163": [
-    { head: "Tuition", gross: 55560, paid: 55560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 31640, paid: 684, outstanding: 30956, status: "Partially Paid" },
-    { head: "Examination", gross: 3800, paid: 3800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1620, paid: 1620, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2380, paid: 2380, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 69000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06602": [
-    { head: "Tuition", gross: 60840, paid: 60840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34630, paid: 20840, outstanding: 13790, status: "Partially Paid" },
-    { head: "Examination", gross: 4160, paid: 4160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1770, paid: 1770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2600, paid: 2600, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 22500,
+      "outstanding": 17500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA06980": [
-    { head: "Tuition", gross: 60840, paid: 60840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34630, paid: 6320, outstanding: 28310, status: "Partially Paid" },
-    { head: "Examination", gross: 4160, paid: 4160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1770, paid: 1770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2600, paid: 2600, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 78000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 3000,
+      "outstanding": 37000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA06305": [
-    { head: "Tuition", gross: 53230, paid: 53230, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 30300, paid: 0, outstanding: 30300, status: "Unpaid" },
-    { head: "Examination", gross: 3640, paid: 1765, outstanding: 1875, status: "Partially Paid" },
-    { head: "Library", gross: 1550, paid: 0, outstanding: 1550, status: "Unpaid" },
-    { head: "Laboratory", gross: 2280, paid: 0, outstanding: 2280, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 68000,
+      "outstanding": 12000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06575": [
-    { head: "Tuition", gross: 52650, paid: 52650, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 29970, paid: 17970, outstanding: 12000, status: "Partially Paid" },
-    { head: "Examination", gross: 3600, paid: 3600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1530, paid: 1530, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2250, paid: 2250, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 68000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 5500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 1500,
+      "outstanding": 13500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA06492": [
-    { head: "Tuition", gross: 62590, paid: 0, outstanding: 62590, status: "Unpaid" },
-    { head: "Hostel", gross: 35630, paid: 0, outstanding: 35630, status: "Unpaid" },
-    { head: "Examination", gross: 4280, paid: 0, outstanding: 4280, status: "Unpaid" },
-    { head: "Library", gross: 1820, paid: 0, outstanding: 1820, status: "Unpaid" },
-    { head: "Laboratory", gross: 2680, paid: 0, outstanding: 2680, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 0,
+      "outstanding": 78000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA06518": [
-    { head: "Tuition", gross: 63770, paid: 46135, outstanding: 17635, status: "Partially Paid" },
-    { head: "Hostel", gross: 36300, paid: 0, outstanding: 36300, status: "Unpaid" },
-    { head: "Examination", gross: 4360, paid: 0, outstanding: 4360, status: "Unpaid" },
-    { head: "Library", gross: 1850, paid: 0, outstanding: 1850, status: "Unpaid" },
-    { head: "Laboratory", gross: 2720, paid: 0, outstanding: 2720, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 80000,
+      "paid": 56000,
+      "outstanding": 19000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5500,
+      "paid": 0,
+      "outstanding": 5500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07504": [
-    { head: "Tuition", gross: 65520, paid: 34274, outstanding: 31246, status: "Partially Paid" },
-    { head: "Hostel", gross: 37300, paid: 0, outstanding: 37300, status: "Unpaid" },
-    { head: "Examination", gross: 4480, paid: 0, outstanding: 4480, status: "Unpaid" },
-    { head: "Library", gross: 1900, paid: 0, outstanding: 1900, status: "Unpaid" },
-    { head: "Laboratory", gross: 2800, paid: 0, outstanding: 2800, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 44500,
+      "outstanding": 45500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07572": [
-    { head: "Tuition", gross: 68450, paid: 31856, outstanding: 36594, status: "Partially Paid" },
-    { head: "Hostel", gross: 38960, paid: 0, outstanding: 38960, status: "Unpaid" },
-    { head: "Examination", gross: 4680, paid: 0, outstanding: 4680, status: "Unpaid" },
-    { head: "Library", gross: 1990, paid: 0, outstanding: 1990, status: "Unpaid" },
-    { head: "Laboratory", gross: 2920, paid: 0, outstanding: 2920, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 37000,
+      "outstanding": 43000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07808": [
-    { head: "Tuition", gross: 74290, paid: 74290, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 42290, paid: 36144, outstanding: 6146, status: "Partially Paid" },
-    { head: "Examination", gross: 5080, paid: 5080, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2160, paid: 2160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3180, paid: 3180, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 33000,
+      "outstanding": 7000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA07402": [
-    { head: "Tuition", gross: 66110, paid: 66110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37630, paid: 25429, outstanding: 12201, status: "Partially Paid" },
-    { head: "Examination", gross: 4520, paid: 4520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1920, paid: 1920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2820, paid: 2820, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 88000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 24500,
+      "outstanding": 15500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA07359": [
-    { head: "Tuition", gross: 70790, paid: 70790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40290, paid: 0, outstanding: 40290, status: "Unpaid" },
-    { head: "Examination", gross: 4840, paid: 4840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2060, paid: 255, outstanding: 1805, status: "Partially Paid" },
-    { head: "Laboratory", gross: 3020, paid: 0, outstanding: 3020, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 1500,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07636": [
-    { head: "Tuition", gross: 64350, paid: 43738, outstanding: 20612, status: "Partially Paid" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 0, outstanding: 4400, status: "Unpaid" },
-    { head: "Library", gross: 1870, paid: 0, outstanding: 1870, status: "Unpaid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 54000,
+      "outstanding": 26000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07403": [
-    { head: "Tuition", gross: 69030, paid: 69030, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39290, paid: 10314, outstanding: 28976, status: "Partially Paid" },
-    { head: "Examination", gross: 4720, paid: 4720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2010, paid: 2010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2950, paid: 2950, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 4500,
+      "outstanding": 35500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA07495": [
-    { head: "Tuition", gross: 70790, paid: 0, outstanding: 70790, status: "Unpaid" },
-    { head: "Hostel", gross: 40290, paid: 0, outstanding: 40290, status: "Unpaid" },
-    { head: "Examination", gross: 4840, paid: 0, outstanding: 4840, status: "Unpaid" },
-    { head: "Library", gross: 2060, paid: 0, outstanding: 2060, status: "Unpaid" },
-    { head: "Laboratory", gross: 3020, paid: 0, outstanding: 3020, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 85000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07002": [
-    { head: "Tuition", gross: 67860, paid: 67860, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38630, paid: 23380, outstanding: 15250, status: "Partially Paid" },
-    { head: "Examination", gross: 4640, paid: 4640, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1970, paid: 1970, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2900, paid: 2900, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 21500,
+      "outstanding": 18500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA07410": [
-    { head: "Tuition", gross: 74290, paid: 69765, outstanding: 4525, status: "Partially Paid" },
-    { head: "Hostel", gross: 42290, paid: 0, outstanding: 42290, status: "Unpaid" },
-    { head: "Examination", gross: 5080, paid: 0, outstanding: 5080, status: "Unpaid" },
-    { head: "Library", gross: 2160, paid: 0, outstanding: 2160, status: "Unpaid" },
-    { head: "Laboratory", gross: 3180, paid: 0, outstanding: 3180, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 73500,
+      "outstanding": 4500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07185": [
-    { head: "Tuition", gross: 72540, paid: 32949, outstanding: 39591, status: "Partially Paid" },
-    { head: "Hostel", gross: 41290, paid: 0, outstanding: 41290, status: "Unpaid" },
-    { head: "Examination", gross: 4960, paid: 0, outstanding: 4960, status: "Unpaid" },
-    { head: "Library", gross: 2110, paid: 0, outstanding: 2110, status: "Unpaid" },
-    { head: "Laboratory", gross: 3100, paid: 0, outstanding: 3100, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 34500,
+      "outstanding": 40500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07132": [
-    { head: "Tuition", gross: 69610, paid: 41378, outstanding: 28232, status: "Partially Paid" },
-    { head: "Hostel", gross: 39630, paid: 0, outstanding: 39630, status: "Unpaid" },
-    { head: "Examination", gross: 4760, paid: 0, outstanding: 4760, status: "Unpaid" },
-    { head: "Library", gross: 2020, paid: 0, outstanding: 2020, status: "Unpaid" },
-    { head: "Laboratory", gross: 2980, paid: 0, outstanding: 2980, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 42000,
+      "outstanding": 23000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07547": [
-    { head: "Tuition", gross: 71950, paid: 935, outstanding: 71015, status: "Partially Paid" },
-    { head: "Hostel", gross: 40960, paid: 0, outstanding: 40960, status: "Unpaid" },
-    { head: "Examination", gross: 4920, paid: 0, outstanding: 4920, status: "Unpaid" },
-    { head: "Library", gross: 2090, paid: 0, outstanding: 2090, status: "Unpaid" },
-    { head: "Laboratory", gross: 3080, paid: 0, outstanding: 3080, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 1000,
+      "outstanding": 84000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07652": [
-    { head: "Tuition", gross: 66690, paid: 66606, outstanding: 84, status: "Partially Paid" },
-    { head: "Hostel", gross: 37960, paid: 0, outstanding: 37960, status: "Unpaid" },
-    { head: "Examination", gross: 4560, paid: 0, outstanding: 4560, status: "Unpaid" },
-    { head: "Library", gross: 1940, paid: 0, outstanding: 1940, status: "Unpaid" },
-    { head: "Laboratory", gross: 2850, paid: 0, outstanding: 2850, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 84000,
+      "outstanding": 4000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07954": [
-    { head: "Tuition", gross: 74290, paid: 0, outstanding: 74290, status: "Unpaid" },
-    { head: "Hostel", gross: 42290, paid: 0, outstanding: 42290, status: "Unpaid" },
-    { head: "Examination", gross: 5080, paid: 0, outstanding: 5080, status: "Unpaid" },
-    { head: "Library", gross: 2160, paid: 0, outstanding: 2160, status: "Unpaid" },
-    { head: "Laboratory", gross: 3180, paid: 0, outstanding: 3180, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 85000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07518": [
-    { head: "Tuition", gross: 64350, paid: 1012, outstanding: 63338, status: "Partially Paid" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 0, outstanding: 4400, status: "Unpaid" },
-    { head: "Library", gross: 1870, paid: 0, outstanding: 1870, status: "Unpaid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 1000,
+      "outstanding": 77000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07839": [
-    { head: "Tuition", gross: 71950, paid: 71950, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40960, paid: 40410, outstanding: 550, status: "Partially Paid" },
-    { head: "Examination", gross: 4920, paid: 4920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2090, paid: 2090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3080, paid: 3080, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 39500,
+      "outstanding": 500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA07313": [
-    { head: "Tuition", gross: 63180, paid: 63180, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35960, paid: 0, outstanding: 35960, status: "Unpaid" },
-    { head: "Examination", gross: 4320, paid: 2182, outstanding: 2138, status: "Partially Paid" },
-    { head: "Library", gross: 1840, paid: 0, outstanding: 1840, status: "Unpaid" },
-    { head: "Laboratory", gross: 2700, paid: 0, outstanding: 2700, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 88000,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07266": [
-    { head: "Tuition", gross: 67860, paid: 67860, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38630, paid: 37839, outstanding: 791, status: "Partially Paid" },
-    { head: "Examination", gross: 4640, paid: 4640, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1970, paid: 1970, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2900, paid: 2900, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 39000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA07548": [
-    { head: "Tuition", gross: 64930, paid: 60578, outstanding: 4352, status: "Partially Paid" },
-    { head: "Hostel", gross: 36960, paid: 0, outstanding: 36960, status: "Unpaid" },
-    { head: "Examination", gross: 4440, paid: 0, outstanding: 4440, status: "Unpaid" },
-    { head: "Library", gross: 1890, paid: 0, outstanding: 1890, status: "Unpaid" },
-    { head: "Laboratory", gross: 2780, paid: 0, outstanding: 2780, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 74000,
+      "outstanding": 6000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07961": [
-    { head: "Tuition", gross: 71950, paid: 71950, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40960, paid: 30960, outstanding: 10000, status: "Partially Paid" },
-    { head: "Examination", gross: 4920, paid: 4920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2090, paid: 2090, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3080, paid: 3080, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 29000,
+      "outstanding": 11000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA07742": [
-    { head: "Tuition", gross: 63770, paid: 63770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36300, paid: 6376, outstanding: 29924, status: "Partially Paid" },
-    { head: "Examination", gross: 4360, paid: 4360, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1850, paid: 1850, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2720, paid: 2720, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 88000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 500,
+      "outstanding": 39500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA07009": [
-    { head: "Tuition", gross: 70790, paid: 70790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40290, paid: 27287, outstanding: 13003, status: "Partially Paid" },
-    { head: "Examination", gross: 4840, paid: 4840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2060, paid: 2060, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3020, paid: 3020, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 88000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 24500,
+      "outstanding": 15500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA07982": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 33300, outstanding: 5000, status: "Partially Paid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 34000,
+      "outstanding": 6000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA07533": [
-    { head: "Tuition", gross: 70790, paid: 70790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40290, paid: 29889, outstanding: 10401, status: "Partially Paid" },
-    { head: "Examination", gross: 4840, paid: 4840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2060, paid: 2060, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3020, paid: 3020, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 28500,
+      "outstanding": 11500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA07541": [
-    { head: "Tuition", gross: 70200, paid: 70200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39960, paid: 39960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4800, paid: 4800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2040, paid: 2040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3000, paid: 3000, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA07515": [
-    { head: "Tuition", gross: 73140, paid: 37373, outstanding: 35767, status: "Partially Paid" },
-    { head: "Hostel", gross: 41620, paid: 0, outstanding: 41620, status: "Unpaid" },
-    { head: "Examination", gross: 5000, paid: 0, outstanding: 5000, status: "Unpaid" },
-    { head: "Library", gross: 2120, paid: 0, outstanding: 2120, status: "Unpaid" },
-    { head: "Laboratory", gross: 3120, paid: 0, outstanding: 3120, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 43500,
+      "outstanding": 46500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07483": [
-    { head: "Tuition", gross: 69610, paid: 1023, outstanding: 68587, status: "Partially Paid" },
-    { head: "Hostel", gross: 39630, paid: 0, outstanding: 39630, status: "Unpaid" },
-    { head: "Examination", gross: 4760, paid: 0, outstanding: 4760, status: "Unpaid" },
-    { head: "Library", gross: 2020, paid: 0, outstanding: 2020, status: "Unpaid" },
-    { head: "Laboratory", gross: 2980, paid: 0, outstanding: 2980, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 1000,
+      "outstanding": 84000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07111": [
-    { head: "Tuition", gross: 71370, paid: 0, outstanding: 71370, status: "Unpaid" },
-    { head: "Hostel", gross: 40630, paid: 0, outstanding: 40630, status: "Unpaid" },
-    { head: "Examination", gross: 4880, paid: 0, outstanding: 4880, status: "Unpaid" },
-    { head: "Library", gross: 2070, paid: 0, outstanding: 2070, status: "Unpaid" },
-    { head: "Laboratory", gross: 3050, paid: 0, outstanding: 3050, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 0,
+      "outstanding": 65000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07696": [
-    { head: "Tuition", gross: 73710, paid: 73710, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41960, paid: 6185, outstanding: 35775, status: "Partially Paid" },
-    { head: "Examination", gross: 5040, paid: 5040, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2140, paid: 2140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3150, paid: 3150, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07018": [
-    { head: "Tuition", gross: 69030, paid: 31029, outstanding: 38001, status: "Partially Paid" },
-    { head: "Hostel", gross: 39290, paid: 0, outstanding: 39290, status: "Unpaid" },
-    { head: "Examination", gross: 4720, paid: 0, outstanding: 4720, status: "Unpaid" },
-    { head: "Library", gross: 2010, paid: 0, outstanding: 2010, status: "Unpaid" },
-    { head: "Laboratory", gross: 2950, paid: 0, outstanding: 2950, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 35000,
+      "outstanding": 43000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07015": [
-    { head: "Tuition", gross: 69030, paid: 47357, outstanding: 21673, status: "Partially Paid" },
-    { head: "Hostel", gross: 39290, paid: 0, outstanding: 39290, status: "Unpaid" },
-    { head: "Examination", gross: 4720, paid: 0, outstanding: 4720, status: "Unpaid" },
-    { head: "Library", gross: 2010, paid: 0, outstanding: 2010, status: "Unpaid" },
-    { head: "Laboratory", gross: 2950, paid: 0, outstanding: 2950, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 52500,
+      "outstanding": 22500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07651": [
-    { head: "Tuition", gross: 65520, paid: 46924, outstanding: 18596, status: "Partially Paid" },
-    { head: "Hostel", gross: 37300, paid: 0, outstanding: 37300, status: "Unpaid" },
-    { head: "Examination", gross: 4480, paid: 0, outstanding: 4480, status: "Unpaid" },
-    { head: "Library", gross: 1900, paid: 0, outstanding: 1900, status: "Unpaid" },
-    { head: "Laboratory", gross: 2800, paid: 0, outstanding: 2800, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 59000,
+      "outstanding": 26000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07628": [
-    { head: "Tuition", gross: 67860, paid: 66910, outstanding: 950, status: "Partially Paid" },
-    { head: "Hostel", gross: 38630, paid: 0, outstanding: 38630, status: "Unpaid" },
-    { head: "Examination", gross: 4640, paid: 0, outstanding: 4640, status: "Unpaid" },
-    { head: "Library", gross: 1970, paid: 0, outstanding: 1970, status: "Unpaid" },
-    { head: "Laboratory", gross: 2900, paid: 0, outstanding: 2900, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 65000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 4500,
+      "outstanding": 500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07746": [
-    { head: "Tuition", gross: 64350, paid: 64350, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 4400, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1870, paid: 1717, outstanding: 153, status: "Partially Paid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 1500,
+      "outstanding": 2000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07438": [
-    { head: "Tuition", gross: 65520, paid: 57087, outstanding: 8433, status: "Partially Paid" },
-    { head: "Hostel", gross: 37300, paid: 0, outstanding: 37300, status: "Unpaid" },
-    { head: "Examination", gross: 4480, paid: 0, outstanding: 4480, status: "Unpaid" },
-    { head: "Library", gross: 1900, paid: 0, outstanding: 1900, status: "Unpaid" },
-    { head: "Laboratory", gross: 2800, paid: 0, outstanding: 2800, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 66500,
+      "outstanding": 8500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07904": [
-    { head: "Tuition", gross: 73140, paid: 73140, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 41620, paid: 9402, outstanding: 32218, status: "Partially Paid" },
-    { head: "Examination", gross: 5000, paid: 5000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2120, paid: 2120, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3120, paid: 3120, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 2500,
+      "outstanding": 37500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA07022": [
-    { head: "Tuition", gross: 64350, paid: 59391, outstanding: 4959, status: "Partially Paid" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 0, outstanding: 4400, status: "Unpaid" },
-    { head: "Library", gross: 1870, paid: 0, outstanding: 1870, status: "Unpaid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 73000,
+      "outstanding": 7000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07647": [
-    { head: "Tuition", gross: 64930, paid: 30696, outstanding: 34234, status: "Partially Paid" },
-    { head: "Hostel", gross: 36960, paid: 0, outstanding: 36960, status: "Unpaid" },
-    { head: "Examination", gross: 4440, paid: 0, outstanding: 4440, status: "Unpaid" },
-    { head: "Library", gross: 1890, paid: 0, outstanding: 1890, status: "Unpaid" },
-    { head: "Laboratory", gross: 2780, paid: 0, outstanding: 2780, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 37500,
+      "outstanding": 42500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 0,
+      "outstanding": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA07098": [
-    { head: "Tuition", gross: 70790, paid: 70790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 40290, paid: 39374, outstanding: 916, status: "Partially Paid" },
-    { head: "Examination", gross: 4840, paid: 4840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2060, paid: 2060, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3020, paid: 3020, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 90000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 39000,
+      "outstanding": 1000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA07454": [
-    { head: "Tuition", gross: 69610, paid: 69610, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39630, paid: 23491, outstanding: 16139, status: "Partially Paid" },
-    { head: "Examination", gross: 4760, paid: 4760, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2020, paid: 2020, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2980, paid: 2980, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 90000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 3500,
+      "paid": 3500,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 21000,
+      "outstanding": 19000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA09421": [
-    { head: "Tuition", gross: 102360, paid: 102360, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 58280, paid: 41353, outstanding: 16927, status: "Partially Paid" },
-    { head: "Examination", gross: 7000, paid: 7000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2980, paid: 2980, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 4380, paid: 4380, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 130000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 10000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 21000,
+      "outstanding": 19000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA09730": [
-    { head: "Tuition", gross: 102360, paid: 102360, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 58280, paid: 33280, outstanding: 25000, status: "Partially Paid" },
-    { head: "Examination", gross: 7000, paid: 7000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2980, paid: 2980, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 4380, paid: 4380, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 105000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 10000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 15500,
+      "outstanding": 24500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA09170": [
-    { head: "Tuition", gross: 101210, paid: 101210, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 57610, paid: 45055, outstanding: 12555, status: "Partially Paid" },
-    { head: "Examination", gross: 6920, paid: 6920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2940, paid: 2940, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 4320, paid: 4320, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 118000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 10000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 26500,
+      "outstanding": 13500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA09631": [
-    { head: "Tuition", gross: 104710, paid: 0, outstanding: 104710, status: "Unpaid" },
-    { head: "Hostel", gross: 59610, paid: 0, outstanding: 59610, status: "Unpaid" },
-    { head: "Examination", gross: 7160, paid: 0, outstanding: 7160, status: "Unpaid" },
-    { head: "Library", gross: 3040, paid: 0, outstanding: 3040, status: "Unpaid" },
-    { head: "Laboratory", gross: 4480, paid: 0, outstanding: 4480, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 0,
+      "outstanding": 115000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 0,
+      "outstanding": 10000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA09911": [
-    { head: "Tuition", gross: 94770, paid: 67230, outstanding: 27540, status: "Partially Paid" },
-    { head: "Hostel", gross: 53950, paid: 0, outstanding: 53950, status: "Unpaid" },
-    { head: "Examination", gross: 6480, paid: 0, outstanding: 6480, status: "Unpaid" },
-    { head: "Library", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
-    { head: "Laboratory", gross: 4050, paid: 0, outstanding: 4050, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 74500,
+      "outstanding": 40500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 0,
+      "outstanding": 10000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA09162": [
-    { head: "Tuition", gross: 88920, paid: 88920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 50620, paid: 47795, outstanding: 2825, status: "Partially Paid" },
-    { head: "Examination", gross: 6080, paid: 6080, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2580, paid: 2580, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3800, paid: 3800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 128000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 10000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 36500,
+      "outstanding": 3500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA09369": [
-    { head: "Tuition", gross: 105300, paid: 105300, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 59940, paid: 53559, outstanding: 6381, status: "Partially Paid" },
-    { head: "Examination", gross: 7200, paid: 7200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 3060, paid: 3060, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 4500, paid: 4500, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 125000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 10000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 33500,
+      "outstanding": 6500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA09120": [
-    { head: "Tuition", gross: 102960, paid: 78059, outstanding: 24901, status: "Partially Paid" },
-    { head: "Hostel", gross: 58610, paid: 0, outstanding: 58610, status: "Unpaid" },
-    { head: "Examination", gross: 7040, paid: 0, outstanding: 7040, status: "Unpaid" },
-    { head: "Library", gross: 2990, paid: 0, outstanding: 2990, status: "Unpaid" },
-    { head: "Laboratory", gross: 4400, paid: 0, outstanding: 4400, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 86500,
+      "outstanding": 43500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 0,
+      "outstanding": 10000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA09080": [
-    { head: "Tuition", gross: 95940, paid: 75299, outstanding: 20641, status: "Partially Paid" },
-    { head: "Hostel", gross: 54610, paid: 0, outstanding: 54610, status: "Unpaid" },
-    { head: "Examination", gross: 6560, paid: 0, outstanding: 6560, status: "Unpaid" },
-    { head: "Library", gross: 2790, paid: 0, outstanding: 2790, status: "Unpaid" },
-    { head: "Laboratory", gross: 4100, paid: 0, outstanding: 4100, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 89500,
+      "outstanding": 40500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 0,
+      "outstanding": 10000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA09004": [
-    { head: "Tuition", gross: 105300, paid: 105300, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 59940, paid: 38201, outstanding: 21739, status: "Partially Paid" },
-    { head: "Examination", gross: 7200, paid: 7200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 3060, paid: 3060, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 4500, paid: 4500, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 125000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 10000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 17000,
+      "outstanding": 23000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA09781": [
-    { head: "Tuition", gross: 105300, paid: 68388, outstanding: 36912, status: "Partially Paid" },
-    { head: "Hostel", gross: 59940, paid: 0, outstanding: 59940, status: "Unpaid" },
-    { head: "Examination", gross: 7200, paid: 0, outstanding: 7200, status: "Unpaid" },
-    { head: "Library", gross: 3060, paid: 0, outstanding: 3060, status: "Unpaid" },
-    { head: "Laboratory", gross: 4500, paid: 0, outstanding: 4500, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 64500,
+      "outstanding": 40500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 0,
+      "outstanding": 10000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA09115": [
-    { head: "Tuition", gross: 95940, paid: 95940, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 54610, paid: 53523, outstanding: 1087, status: "Partially Paid" },
-    { head: "Examination", gross: 6560, paid: 6560, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2790, paid: 2790, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 4100, paid: 4100, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 130000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 10000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 38500,
+      "outstanding": 1500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA09544": [
-    { head: "Tuition", gross: 102360, paid: 51313, outstanding: 51047, status: "Partially Paid" },
-    { head: "Hostel", gross: 58280, paid: 0, outstanding: 58280, status: "Unpaid" },
-    { head: "Examination", gross: 7000, paid: 0, outstanding: 7000, status: "Unpaid" },
-    { head: "Library", gross: 2980, paid: 0, outstanding: 2980, status: "Unpaid" },
-    { head: "Laboratory", gross: 4380, paid: 0, outstanding: 4380, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 57000,
+      "outstanding": 73000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 0,
+      "outstanding": 10000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA09743": [
-    { head: "Tuition", gross: 105300, paid: 105300, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 59940, paid: 41880, outstanding: 18060, status: "Partially Paid" },
-    { head: "Examination", gross: 7200, paid: 7200, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 3060, paid: 3060, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 4500, paid: 4500, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 130000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 10000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 20500,
+      "outstanding": 19500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA09660": [
-    { head: "Tuition", gross: 89510, paid: 41773, outstanding: 47737, status: "Partially Paid" },
-    { head: "Hostel", gross: 50950, paid: 0, outstanding: 50950, status: "Unpaid" },
-    { head: "Examination", gross: 6120, paid: 0, outstanding: 6120, status: "Unpaid" },
-    { head: "Library", gross: 2600, paid: 0, outstanding: 2600, status: "Unpaid" },
-    { head: "Laboratory", gross: 3820, paid: 0, outstanding: 3820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 50500,
+      "outstanding": 69500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 0,
+      "outstanding": 10000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA09606": [
-    { head: "Tuition", gross: 87750, paid: 87750, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 49950, paid: 44766, outstanding: 5184, status: "Partially Paid" },
-    { head: "Examination", gross: 6000, paid: 6000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2550, paid: 2550, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 3750, paid: 3750, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 125000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 10000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 33500,
+      "outstanding": 6500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA09236": [
-    { head: "Tuition", gross: 102360, paid: 0, outstanding: 102360, status: "Unpaid" },
-    { head: "Hostel", gross: 58280, paid: 0, outstanding: 58280, status: "Unpaid" },
-    { head: "Examination", gross: 7000, paid: 0, outstanding: 7000, status: "Unpaid" },
-    { head: "Library", gross: 2980, paid: 0, outstanding: 2980, status: "Unpaid" },
-    { head: "Laboratory", gross: 4380, paid: 0, outstanding: 4380, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 0,
+      "outstanding": 105000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 0,
+      "outstanding": 10000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA09880": [
-    { head: "Tuition", gross: 96540, paid: 49042, outstanding: 47498, status: "Partially Paid" },
-    { head: "Hostel", gross: 54940, paid: 0, outstanding: 54940, status: "Unpaid" },
-    { head: "Examination", gross: 6600, paid: 0, outstanding: 6600, status: "Unpaid" },
-    { head: "Library", gross: 2800, paid: 0, outstanding: 2800, status: "Unpaid" },
-    { head: "Laboratory", gross: 4120, paid: 0, outstanding: 4120, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 56500,
+      "outstanding": 68500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 0,
+      "outstanding": 10000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA09266": [
-    { head: "Tuition", gross: 89510, paid: 45046, outstanding: 44464, status: "Partially Paid" },
-    { head: "Hostel", gross: 50950, paid: 0, outstanding: 50950, status: "Unpaid" },
-    { head: "Examination", gross: 6120, paid: 0, outstanding: 6120, status: "Unpaid" },
-    { head: "Library", gross: 2600, paid: 0, outstanding: 2600, status: "Unpaid" },
-    { head: "Laboratory", gross: 3820, paid: 0, outstanding: 3820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 55500,
+      "outstanding": 67500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 0,
+      "outstanding": 10000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA09619": [
-    { head: "Tuition", gross: 95940, paid: 95940, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 54610, paid: 0, outstanding: 54610, status: "Unpaid" },
-    { head: "Examination", gross: 6560, paid: 1778, outstanding: 4782, status: "Partially Paid" },
-    { head: "Library", gross: 2790, paid: 0, outstanding: 2790, status: "Unpaid" },
-    { head: "Laboratory", gross: 4100, paid: 0, outstanding: 4100, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 116000,
+      "outstanding": 14000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 0,
+      "outstanding": 10000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA09301": [
-    { head: "Tuition", gross: 87750, paid: 0, outstanding: 87750, status: "Unpaid" },
-    { head: "Hostel", gross: 49950, paid: 0, outstanding: 49950, status: "Unpaid" },
-    { head: "Examination", gross: 6000, paid: 0, outstanding: 6000, status: "Unpaid" },
-    { head: "Library", gross: 2550, paid: 0, outstanding: 2550, status: "Unpaid" },
-    { head: "Laboratory", gross: 3750, paid: 0, outstanding: 3750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 130000,
+      "paid": 0,
+      "outstanding": 128000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 10000,
+      "paid": 0,
+      "outstanding": 10000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Placement & Alumni",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08086": [
-    { head: "Tuition", gross: 67860, paid: 24, outstanding: 67836, status: "Partially Paid" },
-    { head: "Hostel", gross: 38630, paid: 0, outstanding: 38630, status: "Unpaid" },
-    { head: "Examination", gross: 4640, paid: 0, outstanding: 4640, status: "Unpaid" },
-    { head: "Library", gross: 1970, paid: 0, outstanding: 1970, status: "Unpaid" },
-    { head: "Laboratory", gross: 2900, paid: 0, outstanding: 2900, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 0,
+      "outstanding": 85000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08184": [
-    { head: "Tuition", gross: 67260, paid: 67260, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38300, paid: 7479, outstanding: 30821, status: "Partially Paid" },
-    { head: "Examination", gross: 4600, paid: 4600, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1960, paid: 1960, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2880, paid: 2880, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 55000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 9000,
+      "outstanding": 31000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08116": [
-    { head: "Tuition", gross: 60840, paid: 47378, outstanding: 13462, status: "Partially Paid" },
-    { head: "Hostel", gross: 34630, paid: 0, outstanding: 34630, status: "Unpaid" },
-    { head: "Examination", gross: 4160, paid: 0, outstanding: 4160, status: "Unpaid" },
-    { head: "Library", gross: 1770, paid: 0, outstanding: 1770, status: "Unpaid" },
-    { head: "Laboratory", gross: 2600, paid: 0, outstanding: 2600, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 66000,
+      "outstanding": 19000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08505": [
-    { head: "Tuition", gross: 68450, paid: 68450, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 38960, paid: 36617, outstanding: 2343, status: "Partially Paid" },
-    { head: "Examination", gross: 4680, paid: 4680, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1990, paid: 1990, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2920, paid: 2920, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 37000,
+      "outstanding": 3000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08352": [
-    { head: "Tuition", gross: 68450, paid: 62414, outstanding: 6036, status: "Partially Paid" },
-    { head: "Hostel", gross: 38960, paid: 0, outstanding: 38960, status: "Unpaid" },
-    { head: "Examination", gross: 4680, paid: 0, outstanding: 4680, status: "Unpaid" },
-    { head: "Library", gross: 1990, paid: 0, outstanding: 1990, status: "Unpaid" },
-    { head: "Laboratory", gross: 2920, paid: 0, outstanding: 2920, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 69500,
+      "outstanding": 500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08606": [
-    { head: "Tuition", gross: 64350, paid: 62976, outstanding: 1374, status: "Partially Paid" },
-    { head: "Hostel", gross: 36630, paid: 0, outstanding: 36630, status: "Unpaid" },
-    { head: "Examination", gross: 4400, paid: 0, outstanding: 4400, status: "Unpaid" },
-    { head: "Library", gross: 1870, paid: 0, outstanding: 1870, status: "Unpaid" },
-    { head: "Laboratory", gross: 2750, paid: 0, outstanding: 2750, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 58000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 2500,
+      "outstanding": 5500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08397": [
-    { head: "Tuition", gross: 66110, paid: 50267, outstanding: 15843, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 51000,
+      "outstanding": 4000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08288": [
-    { head: "Tuition", gross: 70200, paid: 62532, outstanding: 7668, status: "Partially Paid" },
-    { head: "Hostel", gross: 39960, paid: 0, outstanding: 39960, status: "Unpaid" },
-    { head: "Examination", gross: 4800, paid: 0, outstanding: 4800, status: "Unpaid" },
-    { head: "Library", gross: 2040, paid: 0, outstanding: 2040, status: "Unpaid" },
-    { head: "Laboratory", gross: 3000, paid: 0, outstanding: 3000, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 67500,
+      "outstanding": 2500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08772": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 1646, outstanding: 35654, status: "Partially Paid" },
-    { head: "Examination", gross: 4480, paid: 4480, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1900, paid: 1900, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2800, paid: 2800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 50000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 5000,
+      "outstanding": 10000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08632": [
-    { head: "Tuition", gross: 59670, paid: 54698, outstanding: 4972, status: "Partially Paid" },
-    { head: "Hostel", gross: 33970, paid: 0, outstanding: 33970, status: "Unpaid" },
-    { head: "Examination", gross: 4080, paid: 0, outstanding: 4080, status: "Unpaid" },
-    { head: "Library", gross: 1730, paid: 0, outstanding: 1730, status: "Unpaid" },
-    { head: "Laboratory", gross: 2550, paid: 0, outstanding: 2550, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 71500,
+      "outstanding": 1500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08297": [
-    { head: "Tuition", gross: 59670, paid: 59670, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33970, paid: 28431, outstanding: 5539, status: "Partially Paid" },
-    { head: "Examination", gross: 4080, paid: 4080, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1730, paid: 1730, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2550, paid: 2550, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 32500,
+      "outstanding": 7500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08959": [
-    { head: "Tuition", gross: 60840, paid: 60840, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 34630, paid: 4134, outstanding: 30496, status: "Partially Paid" },
-    { head: "Examination", gross: 4160, paid: 4160, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1770, paid: 1770, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2600, paid: 2600, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 55000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 6500,
+      "outstanding": 33500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08399": [
-    { head: "Tuition", gross: 62590, paid: 62590, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35630, paid: 25096, outstanding: 10534, status: "Partially Paid" },
-    { head: "Examination", gross: 4280, paid: 4280, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1820, paid: 1820, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2680, paid: 2680, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 26500,
+      "outstanding": 13500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08359": [
-    { head: "Tuition", gross: 63770, paid: 0, outstanding: 63770, status: "Unpaid" },
-    { head: "Hostel", gross: 36300, paid: 0, outstanding: 36300, status: "Unpaid" },
-    { head: "Examination", gross: 4360, paid: 0, outstanding: 4360, status: "Unpaid" },
-    { head: "Library", gross: 1850, paid: 0, outstanding: 1850, status: "Unpaid" },
-    { head: "Laboratory", gross: 2720, paid: 0, outstanding: 2720, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 0,
+      "outstanding": 85000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08109": [
-    { head: "Tuition", gross: 69030, paid: 69030, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39290, paid: 39290, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4720, paid: 4720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2010, paid: 2010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2950, paid: 2950, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA08624": [
-    { head: "Tuition", gross: 66110, paid: 56540, outstanding: 9570, status: "Partially Paid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 62500,
+      "outstanding": 2500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08858": [
-    { head: "Tuition", gross: 63770, paid: 25052, outstanding: 38718, status: "Partially Paid" },
-    { head: "Hostel", gross: 36300, paid: 0, outstanding: 36300, status: "Unpaid" },
-    { head: "Examination", gross: 4360, paid: 0, outstanding: 4360, status: "Unpaid" },
-    { head: "Library", gross: 1850, paid: 0, outstanding: 1850, status: "Unpaid" },
-    { head: "Laboratory", gross: 2720, paid: 0, outstanding: 2720, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 26500,
+      "outstanding": 28500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08963": [
-    { head: "Tuition", gross: 62590, paid: 62590, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35630, paid: 33232, outstanding: 2398, status: "Partially Paid" },
-    { head: "Examination", gross: 4280, paid: 4280, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1820, paid: 1820, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2680, paid: 2680, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 37000,
+      "outstanding": 3000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08765": [
-    { head: "Tuition", gross: 66110, paid: 66110, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37630, paid: 35630, outstanding: 2000, status: "Partially Paid" },
-    { head: "Examination", gross: 4520, paid: 4520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1920, paid: 1920, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2820, paid: 2820, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 37500,
+      "outstanding": 2500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08143": [
-    { head: "Tuition", gross: 69610, paid: 69610, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39630, paid: 0, outstanding: 39630, status: "Unpaid" },
-    { head: "Examination", gross: 4760, paid: 4760, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2020, paid: 2020, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2980, paid: 1978, outstanding: 1002, status: "Partially Paid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 53000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 1500,
+      "outstanding": 13500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08883": [
-    { head: "Tuition", gross: 64930, paid: 64930, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 36960, paid: 15719, outstanding: 21241, status: "Partially Paid" },
-    { head: "Examination", gross: 4440, paid: 4440, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1890, paid: 1890, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2780, paid: 2780, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 14000,
+      "outstanding": 26000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08261": [
-    { head: "Tuition", gross: 69030, paid: 41475, outstanding: 27555, status: "Partially Paid" },
-    { head: "Hostel", gross: 39290, paid: 0, outstanding: 39290, status: "Unpaid" },
-    { head: "Examination", gross: 4720, paid: 0, outstanding: 4720, status: "Unpaid" },
-    { head: "Library", gross: 2010, paid: 0, outstanding: 2010, status: "Unpaid" },
-    { head: "Laboratory", gross: 2950, paid: 0, outstanding: 2950, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 42000,
+      "outstanding": 18000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08259": [
-    { head: "Tuition", gross: 62010, paid: 62010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35300, paid: 0, outstanding: 35300, status: "Unpaid" },
-    { head: "Examination", gross: 4240, paid: 962, outstanding: 3278, status: "Partially Paid" },
-    { head: "Library", gross: 1800, paid: 0, outstanding: 1800, status: "Unpaid" },
-    { head: "Laboratory", gross: 2650, paid: 0, outstanding: 2650, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 2000,
+      "outstanding": 3000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08927": [
-    { head: "Tuition", gross: 67860, paid: 32960, outstanding: 34900, status: "Partially Paid" },
-    { head: "Hostel", gross: 38630, paid: 0, outstanding: 38630, status: "Unpaid" },
-    { head: "Examination", gross: 4640, paid: 0, outstanding: 4640, status: "Unpaid" },
-    { head: "Library", gross: 1970, paid: 0, outstanding: 1970, status: "Unpaid" },
-    { head: "Laboratory", gross: 2900, paid: 0, outstanding: 2900, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 40000,
+      "outstanding": 40000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08270": [
-    { head: "Tuition", gross: 66690, paid: 0, outstanding: 66690, status: "Unpaid" },
-    { head: "Hostel", gross: 37960, paid: 0, outstanding: 37960, status: "Unpaid" },
-    { head: "Examination", gross: 4560, paid: 0, outstanding: 4560, status: "Unpaid" },
-    { head: "Library", gross: 1940, paid: 0, outstanding: 1940, status: "Unpaid" },
-    { head: "Laboratory", gross: 2850, paid: 0, outstanding: 2850, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 0,
+      "outstanding": 70000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08296": [
-    { head: "Tuition", gross: 60250, paid: 47937, outstanding: 12313, status: "Partially Paid" },
-    { head: "Hostel", gross: 34300, paid: 0, outstanding: 34300, status: "Unpaid" },
-    { head: "Examination", gross: 4120, paid: 0, outstanding: 4120, status: "Unpaid" },
-    { head: "Library", gross: 1750, paid: 0, outstanding: 1750, status: "Unpaid" },
-    { head: "Laboratory", gross: 2580, paid: 0, outstanding: 2580, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 56000,
+      "outstanding": 4000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08124": [
-    { head: "Tuition", gross: 62590, paid: 46500, outstanding: 16090, status: "Partially Paid" },
-    { head: "Hostel", gross: 35630, paid: 0, outstanding: 35630, status: "Unpaid" },
-    { head: "Examination", gross: 4280, paid: 0, outstanding: 4280, status: "Unpaid" },
-    { head: "Library", gross: 1820, paid: 0, outstanding: 1820, status: "Unpaid" },
-    { head: "Laboratory", gross: 2680, paid: 0, outstanding: 2680, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 61000,
+      "outstanding": 19000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08101": [
-    { head: "Tuition", gross: 62590, paid: 984, outstanding: 61606, status: "Partially Paid" },
-    { head: "Hostel", gross: 35630, paid: 0, outstanding: 35630, status: "Unpaid" },
-    { head: "Examination", gross: 4280, paid: 0, outstanding: 4280, status: "Unpaid" },
-    { head: "Library", gross: 1820, paid: 0, outstanding: 1820, status: "Unpaid" },
-    { head: "Laboratory", gross: 2680, paid: 0, outstanding: 2680, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 1500,
+      "outstanding": 83500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08750": [
-    { head: "Tuition", gross: 59670, paid: 59670, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33970, paid: 33970, outstanding: 0, status: "Fully Cleared" },
-    { head: "Examination", gross: 4080, paid: 4080, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1730, paid: 1730, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2550, paid: 2550, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 40000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    }
   ],
   "251FA08031": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 9263, outstanding: 28037, status: "Partially Paid" },
-    { head: "Examination", gross: 4480, paid: 4480, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1900, paid: 1900, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2800, paid: 2800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 83000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 4000,
+      "outstanding": 36000,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08961": [
-    { head: "Tuition", gross: 69030, paid: 69030, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39290, paid: 32799, outstanding: 6491, status: "Partially Paid" },
-    { head: "Examination", gross: 4720, paid: 4720, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2010, paid: 2010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2950, paid: 2950, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 32500,
+      "outstanding": 7500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08640": [
-    { head: "Tuition", gross: 65520, paid: 65520, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 37300, paid: 27005, outstanding: 10295, status: "Partially Paid" },
-    { head: "Examination", gross: 4480, paid: 4480, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1900, paid: 1900, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2800, paid: 2800, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 26500,
+      "outstanding": 13500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08627": [
-    { head: "Tuition", gross: 69610, paid: 69610, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39630, paid: 24530, outstanding: 15100, status: "Partially Paid" },
-    { head: "Examination", gross: 4760, paid: 4760, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 2020, paid: 2020, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2980, paid: 2980, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 23500,
+      "outstanding": 16500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08592": [
-    { head: "Tuition", gross: 62010, paid: 62010, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 35300, paid: 7674, outstanding: 27626, status: "Partially Paid" },
-    { head: "Examination", gross: 4240, paid: 4240, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1800, paid: 1800, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2650, paid: 2650, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 65000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 7500,
+      "outstanding": 32500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08044": [
-    { head: "Tuition", gross: 58500, paid: 58500, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 33300, paid: 3300, outstanding: 30000, status: "Partially Paid" },
-    { head: "Examination", gross: 4000, paid: 4000, outstanding: 0, status: "Fully Cleared" },
-    { head: "Library", gross: 1700, paid: 1700, outstanding: 0, status: "Fully Cleared" },
-    { head: "Laboratory", gross: 2500, paid: 2500, outstanding: 0, status: "Fully Cleared" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 55000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 2000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 5500,
+      "outstanding": 34500,
+      "status": "Partially Paid"
+    }
   ],
   "251FA08844": [
-    { head: "Tuition", gross: 67860, paid: 62, outstanding: 67798, status: "Partially Paid" },
-    { head: "Hostel", gross: 38630, paid: 0, outstanding: 38630, status: "Unpaid" },
-    { head: "Examination", gross: 4640, paid: 0, outstanding: 4640, status: "Unpaid" },
-    { head: "Library", gross: 1970, paid: 0, outstanding: 1970, status: "Unpaid" },
-    { head: "Laboratory", gross: 2900, paid: 0, outstanding: 2900, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 0,
+      "outstanding": 85000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08426": [
-    { head: "Tuition", gross: 66110, paid: 0, outstanding: 66110, status: "Unpaid" },
-    { head: "Hostel", gross: 37630, paid: 0, outstanding: 37630, status: "Unpaid" },
-    { head: "Examination", gross: 4520, paid: 0, outstanding: 4520, status: "Unpaid" },
-    { head: "Library", gross: 1920, paid: 0, outstanding: 1920, status: "Unpaid" },
-    { head: "Laboratory", gross: 2820, paid: 0, outstanding: 2820, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 0,
+      "outstanding": 80000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08767": [
-    { head: "Tuition", gross: 61430, paid: 45440, outstanding: 15990, status: "Partially Paid" },
-    { head: "Hostel", gross: 34960, paid: 0, outstanding: 34960, status: "Unpaid" },
-    { head: "Examination", gross: 4200, paid: 0, outstanding: 4200, status: "Unpaid" },
-    { head: "Library", gross: 1790, paid: 0, outstanding: 1790, status: "Unpaid" },
-    { head: "Laboratory", gross: 2620, paid: 0, outstanding: 2620, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 50000,
+      "outstanding": 5000,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08932": [
-    { head: "Tuition", gross: 60250, paid: 31200, outstanding: 29050, status: "Partially Paid" },
-    { head: "Hostel", gross: 34300, paid: 0, outstanding: 34300, status: "Unpaid" },
-    { head: "Examination", gross: 4120, paid: 0, outstanding: 4120, status: "Unpaid" },
-    { head: "Library", gross: 1750, paid: 0, outstanding: 1750, status: "Unpaid" },
-    { head: "Laboratory", gross: 2580, paid: 0, outstanding: 2580, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 43500,
+      "outstanding": 39500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
   "251FA08917": [
-    { head: "Tuition", gross: 69030, paid: 69030, outstanding: 0, status: "Fully Cleared" },
-    { head: "Hostel", gross: 39290, paid: 0, outstanding: 39290, status: "Unpaid" },
-    { head: "Examination", gross: 4720, paid: 3177, outstanding: 1543, status: "Partially Paid" },
-    { head: "Library", gross: 2010, paid: 0, outstanding: 2010, status: "Unpaid" },
-    { head: "Laboratory", gross: 2950, paid: 0, outstanding: 2950, status: "Unpaid" },
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 3500,
+      "outstanding": 1500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 2000,
+      "paid": 0,
+      "outstanding": 2000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 0,
+      "outstanding": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
   ],
+  "251FA11001": [
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 85000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 10500,
+      "outstanding": 29500,
+      "status": "Partially Paid"
+    }
+  ],
+  "251FA11002": [
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 60000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 15500,
+      "outstanding": 24500,
+      "status": "Partially Paid"
+    }
+  ],
+  "251FA11003": [
+    {
+      "head": "Tuition",
+      "gross": 85000,
+      "paid": 80000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 8000,
+      "paid": 4500,
+      "outstanding": 3500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Registration",
+      "gross": 5000,
+      "paid": 0,
+      "outstanding": 5000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
+  ],
+  "251FA12001": [
+    {
+      "head": "Tuition",
+      "gross": 100000,
+      "paid": 100000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 8500,
+      "outstanding": 31500,
+      "status": "Partially Paid"
+    }
+  ],
+  "251FA12002": [
+    {
+      "head": "Tuition",
+      "gross": 100000,
+      "paid": 70000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 8000,
+      "paid": 8000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 6000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 14500,
+      "outstanding": 500,
+      "status": "Partially Paid"
+    }
+  ],
+  "251FA12003": [
+    {
+      "head": "Tuition",
+      "gross": 100000,
+      "paid": 100000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 8000,
+      "paid": 6500,
+      "outstanding": 1500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Library",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Laboratory",
+      "gross": 6000,
+      "paid": 0,
+      "outstanding": 6000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 0,
+      "outstanding": 40000,
+      "status": "Unpaid"
+    }
+  ],
+  "251FA13001": [
+    {
+      "head": "Tuition",
+      "gross": 75000,
+      "paid": 75000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 14500,
+      "outstanding": 25500,
+      "status": "Partially Paid"
+    }
+  ],
+  "251FA13002": [
+    {
+      "head": "Tuition",
+      "gross": 75000,
+      "paid": 60000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 3000,
+      "paid": 3000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Registration",
+      "gross": 4000,
+      "paid": 4000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Hostel",
+      "gross": 40000,
+      "paid": 17500,
+      "outstanding": 22500,
+      "status": "Partially Paid"
+    }
+  ],
+  "251FA13003": [
+    {
+      "head": "Tuition",
+      "gross": 75000,
+      "paid": 71000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Examination",
+      "gross": 5000,
+      "paid": 5000,
+      "outstanding": 0,
+      "status": "Fully Cleared"
+    },
+    {
+      "head": "Library",
+      "gross": 3000,
+      "paid": 2500,
+      "outstanding": 500,
+      "status": "Partially Paid"
+    },
+    {
+      "head": "Registration",
+      "gross": 4000,
+      "paid": 0,
+      "outstanding": 4000,
+      "status": "Unpaid"
+    },
+    {
+      "head": "Transport",
+      "gross": 15000,
+      "paid": 0,
+      "outstanding": 15000,
+      "status": "Unpaid"
+    }
+  ]
 };

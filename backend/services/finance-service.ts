@@ -95,17 +95,26 @@ export function getStudentAccount(id: string) {
       return { ...f, demand, outstanding, status };
     });
   } else {
-    const userAlloc = [
-      { head: "Tuition", gross: Math.round(student.demand * 0.75), scholarship: student.scholarship || 0, paid: Math.min(student.paid, Math.max(0, Math.round(student.demand * 0.75) - (student.scholarship || 0))) },
-      { head: "Hostel", gross: Math.round(student.demand * 0.15), scholarship: 0, paid: Math.max(0, Math.min(student.paid - Math.round(student.demand * 0.75), Math.round(student.demand * 0.15))) },
-      { head: "Examination", gross: Math.round(student.demand * 0.05), scholarship: 0, paid: Math.max(0, Math.min(student.paid - Math.round(student.demand * 0.9), Math.round(student.demand * 0.05))) },
-      { head: "Library", gross: Math.round(student.demand * 0.05), scholarship: 0, paid: Math.max(0, student.paid - Math.round(student.demand * 0.95)) },
-    ];
-    fees = userAlloc.map(f => {
-      const demand = f.gross - f.scholarship;
-      const outstanding = Math.max(0, demand - f.paid);
-      const status = outstanding === 0 ? "Fully Cleared" : f.paid > 0 ? "Partially Paid" : "Unpaid";
-      return { ...f, demand, outstanding, status };
+    const progHeads = feeStructures.filter(f => f.active && f.programme === student.programme);
+    const activeHeads = progHeads.length > 0 ? progHeads : feeStructures.filter(f => f.active && f.programme === "B.Tech CSE");
+    let remainingPaid = student.paid;
+    fees = activeHeads.map(f => {
+      const scholarship = f.head === "Tuition" ? (student.scholarship || 0) : 0;
+      const concession = f.head === "Tuition" ? (student.concession || 0) : 0;
+      const demand = Math.max(0, f.amount - scholarship - concession);
+      const paid = Math.min(remainingPaid, demand);
+      remainingPaid = Math.max(0, remainingPaid - paid);
+      const outstanding = demand - paid;
+      const status = outstanding === 0 ? "Fully Cleared" : paid > 0 ? "Partially Paid" : "Unpaid";
+      return {
+        head: f.head,
+        gross: f.amount,
+        scholarship,
+        demand: f.amount,
+        paid,
+        outstanding,
+        status,
+      };
     });
   }
 

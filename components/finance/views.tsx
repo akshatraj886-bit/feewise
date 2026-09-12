@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   ArrowDownToLine,
   ArrowUpRight,
@@ -254,8 +254,8 @@ export function StudentsView({
           </div>
         )}
         <p className="mt-5 text-sm text-muted-foreground">
-          Showing {rows.length} of 6 demo accounts · Click a student to view
-          their fee statement.
+          Showing {rows.length} of {students.length} student accounts · Click a student to view
+          their itemized fee statement.
         </p>
       </CardContent>
     </Card>
@@ -266,60 +266,218 @@ export function FeeStructureView() {
   const { students } = useLiveFinance();
   const [programme, setProgramme] = useState("All programmes");
   const [version, setVersion] = useState("Active versions");
-  const filtered = feeStructures.filter(
-    (row) =>
-      (programme === "All programmes" || row.programme === programme) &&
-      (version === "All versions" ||
-        (version === "Active versions" ? row.active : !row.active)),
+  const [searchHead, setSearchHead] = useState("");
+
+  const allAvailableProgrammes = [
+    "All programmes",
+    "MBA",
+    "B.Tech CSE",
+    "B.Tech ECE",
+    "B.Tech IT",
+    "B.Tech EEE",
+    "B.Tech Mechanical",
+    "B.Tech Civil",
+    "Biotechnology",
+    "B.Pharmacy",
+    "M.Tech",
+    "BBA",
+  ];
+
+  const filtered = feeStructures.filter((row) => {
+    const matchesProg = programme === "All programmes" || row.programme === programme;
+    const matchesVer =
+      version === "All versions" ||
+      (version === "Active versions" ? row.active : !row.active);
+    const matchesSearch =
+      !searchHead ||
+      row.head.toLowerCase().includes(searchHead.toLowerCase()) ||
+      row.category.toLowerCase().includes(searchHead.toLowerCase()) ||
+      row.route.toLowerCase().includes(searchHead.toLowerCase());
+    return matchesProg && matchesVer && matchesSearch;
+  });
+
+  // Calculate summary metrics for active selected programme
+  const activeProgrammeRows = feeStructures.filter(
+    (row) => (programme === "All programmes" ? row.active : row.programme === programme && row.active)
   );
+  const totalPackageAmount = activeProgrammeRows.reduce((sum, r) => sum + r.amount, 0);
+  const tuitionAmount = activeProgrammeRows.filter((r) => r.head === "Tuition").reduce((sum, r) => sum + r.amount, 0);
+  const hostelAmount = activeProgrammeRows.filter((r) => r.head === "Hostel").reduce((sum, r) => sum + r.amount, 0);
+  const examAmount = activeProgrammeRows.filter((r) => r.head === "Examination").reduce((sum, r) => sum + r.amount, 0);
+  const labAndLibrary = activeProgrammeRows
+    .filter((r) => r.head === "Laboratory" || r.head === "Library")
+    .reduce((sum, r) => sum + r.amount, 0);
+  const otherHeads = activeProgrammeRows
+    .filter((r) => !["Tuition", "Hostel", "Examination", "Laboratory", "Library"].includes(r.head))
+    .reduce((sum, r) => sum + r.amount, 0);
+
   return (
     <Card className="panel">
       <CardHeader>
-        <CardTitle>Versioned fee structures</CardTitle>
+        <CardTitle className="flex items-center gap-2">
+          <span>🏛️ Approved Institutional Fee Structures & Head Segregation</span>
+        </CardTitle>
         <CardDescription>
-          Effective-dated rules keep every student fee calculation traceable.
+          Comprehensive fee schedules across all degree programmes with head-wise segregation (Tuition, Hostel, Examination, Labs, Library & Logistics).
         </CardDescription>
         <CardAction>
-          <Badge variant="secondary">Read only</Badge>
+          <Badge variant="secondary">AY 2026–27 Verified</Badge>
         </CardAction>
       </CardHeader>
+
       <CardContent>
-        <div className="mb-5 flex flex-wrap gap-3">
-          <select
-            className="filter-select"
-            aria-label="Fee structure programme"
-            value={programme}
-            onChange={(e) => setProgramme(e.target.value)}
-          >
-            {["All programmes", ...Array.from(new Set(students.map((s) => s.programme)))].map((o) => (
-              <option key={o}>{o}</option>
-            ))}
-          </select>
-          <select
-            className="filter-select"
-            aria-label="Structure versions"
-            value={version}
-            onChange={(e) => setVersion(e.target.value)}
-          >
-            {["Active versions", "All versions", "Archived versions"].map(
-              (o) => (
-                <option key={o}>{o}</option>
-              ),
-            )}
-          </select>
+        {/* Quick Programme Selector Tabs/Pills */}
+        <div className="mb-4">
+          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+            Select Degree Programme to View Full Fee Segregation:
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {allAvailableProgrammes.map((p) => {
+              const isSelected = programme === p;
+              return (
+                <button
+                  key={p}
+                  type="button"
+                  onClick={() => setProgramme(p)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 border ${
+                    isSelected
+                      ? "bg-primary text-primary-foreground border-primary shadow-sm font-semibold"
+                      : "bg-secondary/40 text-foreground/80 hover:bg-secondary border-border/60"
+                  }`}
+                >
+                  <span>{p}</span>
+                  {p === "MBA" && (
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded ${isSelected ? "bg-primary-foreground/20 text-white" : "bg-primary/10 text-primary font-bold"}`}>
+                      Postgrad
+                    </span>
+                  )}
+                  {p === "B.Tech CSE" && (
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded ${isSelected ? "bg-primary-foreground/20 text-white" : "bg-emerald-500/10 text-emerald-600 font-bold"}`}>
+                      Popular
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
+
+        {/* Selected Programme Summary KPI Banner (When a specific programme is tapped) */}
+        {programme !== "All programmes" && (
+          <div className="mb-6 rounded-xl border border-primary/20 bg-primary/5 p-4 shadow-sm">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/50 pb-3 mb-3">
+              <div>
+                <h4 className="text-base font-bold text-foreground flex items-center gap-2">
+                  <span>🎓 {programme}</span>
+                  <Badge variant="outline" className="bg-background text-xs">
+                    AY 2026–27 Schedule
+                  </Badge>
+                </h4>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Complete annual fee package with mandatory and residential head segregation.
+                </p>
+              </div>
+              <div className="text-right">
+                <div className="text-xs text-muted-foreground font-medium">Total Annual Package</div>
+                <div className="text-xl font-extrabold text-primary">{inr(totalPackageAmount)}</div>
+              </div>
+            </div>
+
+            {/* Head Breakdown KPI Badges */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 text-center">
+              <div className="rounded-lg bg-background/80 p-2.5 border border-border/50">
+                <div className="text-[11px] text-muted-foreground font-medium">Core Tuition</div>
+                <div className="text-sm font-bold text-foreground mt-0.5">{inr(tuitionAmount)}</div>
+                <div className="text-[10px] text-muted-foreground">
+                  {totalPackageAmount > 0 ? `${Math.round((tuitionAmount / totalPackageAmount) * 100)}% of total` : ""}
+                </div>
+              </div>
+
+              <div className="rounded-lg bg-background/80 p-2.5 border border-border/50">
+                <div className="text-[11px] text-muted-foreground font-medium">Hostel & Boarding</div>
+                <div className="text-sm font-bold text-violet-600 mt-0.5">{inr(hostelAmount)}</div>
+                <div className="text-[10px] text-muted-foreground">Annual AC/Non-AC</div>
+              </div>
+
+              <div className="rounded-lg bg-background/80 p-2.5 border border-border/50">
+                <div className="text-[11px] text-muted-foreground font-medium">Examination Fee</div>
+                <div className="text-sm font-bold text-amber-600 mt-0.5">{inr(examAmount)}</div>
+                <div className="text-[10px] text-muted-foreground">2 Semesters</div>
+              </div>
+
+              <div className="rounded-lg bg-background/80 p-2.5 border border-border/50">
+                <div className="text-[11px] text-muted-foreground font-medium">Lab & Library</div>
+                <div className="text-sm font-bold text-blue-600 mt-0.5">{inr(labAndLibrary)}</div>
+                <div className="text-[10px] text-muted-foreground">E-Journals & Consumables</div>
+              </div>
+
+              <div className="rounded-lg bg-background/80 p-2.5 border border-border/50">
+                <div className="text-[11px] text-muted-foreground font-medium">Transport & Other</div>
+                <div className="text-sm font-bold text-emerald-600 mt-0.5">{inr(otherHeads)}</div>
+                <div className="text-[10px] text-muted-foreground">Campus Transit & Reg.</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Filters and Search Bar */}
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <select
+              className="filter-select text-xs"
+              aria-label="Fee structure programme"
+              value={programme}
+              onChange={(e) => setProgramme(e.target.value)}
+            >
+              {allAvailableProgrammes.map((o) => (
+                <option key={o} value={o}>
+                  {o}
+                </option>
+              ))}
+            </select>
+
+            <select
+              className="filter-select text-xs"
+              aria-label="Structure versions"
+              value={version}
+              onChange={(e) => setVersion(e.target.value)}
+            >
+              {["Active versions", "All versions", "Archived versions"].map((o) => (
+                <option key={o} value={o}>
+                  {o}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="w-full sm:w-64">
+            <InputGroup>
+              <InputGroupAddon>
+                <Search className="size-3.5 text-muted-foreground" />
+              </InputGroupAddon>
+              <InputGroupInput
+                placeholder="Search head (e.g. Tuition, Hostel)..."
+                value={searchHead}
+                onChange={(e) => setSearchHead(e.target.value)}
+                className="text-xs h-8"
+              />
+            </InputGroup>
+          </div>
+        </div>
+
+        {/* Segregated Fee Breakdown Table */}
         <table className="data-table mobile-cards">
           <thead>
             <tr>
               {[
                 "Programme",
-                "Academic year",
+                "Academic Year",
                 "Category",
-                "Admission route",
-                "Fee head",
+                "Admission Route",
+                "Fee Head",
                 "Amount",
-                "Effective from",
-                "Version",
+                "Effective Date",
+                "Status",
               ].map((h) => (
                 <th key={h}>{h}</th>
               ))}
@@ -327,38 +485,91 @@ export function FeeStructureView() {
           </thead>
           <tbody>
             {filtered.map((row, i) => (
-              <tr key={i}>
-                <td data-label="Programme" className="font-medium">
+              <tr key={i} className="hover:bg-muted/30 transition-colors">
+                <td data-label="Programme" className="font-semibold text-foreground">
                   {row.programme}
                 </td>
-                <td data-label="Academic year">{row.year}</td>
-                <td data-label="Category">{row.category}</td>
-                <td data-label="Admission route">{row.route}</td>
-                <td data-label="Fee head">{row.head}</td>
-                <td data-label="Amount">{inr(row.amount)}</td>
-                <td data-label="Effective from">{row.effective}</td>
-                <td data-label="Version">
-                  <span>
-                    <Badge variant={row.active ? "secondary" : "outline"}>
-                      {row.version}
-                      {!row.active && " · Archived"}
-                    </Badge>
+                <td data-label="Academic Year" className="text-muted-foreground">
+                  {row.year}
+                </td>
+                <td data-label="Category">
+                  <Badge variant="outline" className="text-xs font-normal">
+                    {row.category}
+                  </Badge>
+                </td>
+                <td data-label="Admission Route" className="text-xs text-muted-foreground">
+                  {row.route}
+                </td>
+                <td data-label="Fee Head" className="font-medium">
+                  <span className="inline-flex items-center gap-1.5">
+                    {row.head === "Tuition" && "🎓"}
+                    {row.head === "Hostel" && "🏠"}
+                    {row.head === "Examination" && "📝"}
+                    {row.head === "Laboratory" && "🔬"}
+                    {row.head === "Library" && "📚"}
+                    {row.head === "Transport" && "🚌"}
+                    {row.head === "Registration" && "📋"}
+                    {row.head === "Placement & Alumni" && "💼"}
+                    <span className="font-medium">{row.head}</span>
                   </span>
+                </td>
+                <td data-label="Amount" className="font-bold text-foreground">
+                  {inr(row.amount)}
+                </td>
+                <td data-label="Effective Date" className="text-xs text-muted-foreground">
+                  {row.effective}
+                </td>
+                <td data-label="Status">
+                  <Badge variant={row.active ? "secondary" : "outline"} className="text-xs">
+                    {row.version}
+                    {!row.active && " · Archived"}
+                  </Badge>
                 </td>
               </tr>
             ))}
           </tbody>
+          {filtered.length > 0 && programme !== "All programmes" && (
+            <tfoot>
+              <tr className="bg-muted/40 font-bold border-t-2 border-border">
+                <td colSpan={5} className="text-right py-3 pr-4 font-bold text-foreground">
+                  Total {programme} Segregated Fee Package:
+                </td>
+                <td className="py-3 font-extrabold text-primary text-base">
+                  {inr(filtered.reduce((sum, r) => sum + r.amount, 0))}
+                </td>
+                <td colSpan={2} className="py-3 text-xs text-muted-foreground">
+                  ({filtered.length} Segregated Heads)
+                </td>
+              </tr>
+            </tfoot>
+          )}
         </table>
+
         {!filtered.length && (
-          <p className="py-8 text-center text-muted-foreground">
-            No fee structures match these filters.
-          </p>
+          <div className="py-12 text-center">
+            <p className="text-sm font-medium text-muted-foreground">
+              No fee structures match the selected filter criteria.
+            </p>
+            <Button
+              variant="outline"
+              size="sm"
+              className="mt-3 text-xs"
+              onClick={() => {
+                setProgramme("All programmes");
+                setVersion("Active versions");
+                setSearchHead("");
+              }}
+            >
+              Reset Filters
+            </Button>
+          </div>
         )}
-        <div className="mt-5 flex items-start gap-2 rounded-lg bg-secondary p-4 text-sm leading-relaxed text-primary">
-          <ShieldCheck className="mt-0.5 size-4 shrink-0" />
-          Published fee versions are immutable in this demo. New versions and
-          retroactive balance adjustments require authenticated finance
-          approval.
+
+        <div className="mt-5 flex items-start gap-2 rounded-lg bg-secondary/50 p-4 text-xs leading-relaxed text-muted-foreground border border-border/50">
+          <ShieldCheck className="mt-0.5 size-4 shrink-0 text-primary" />
+          <span>
+            <strong>Bylaw Clause 4.2 Notice:</strong> All published fee structures are officially verified by the University Fee Regulatory Committee for AY 2026–27. Partial student payments are automatically apportioned in priority order: Tuition $\rightarrow$ Examination $\rightarrow$ Library $\rightarrow$ Laboratory $\rightarrow$ Transport $\rightarrow$ Hostel & Mess.
+          </span>
         </div>
       </CardContent>
     </Card>
@@ -373,14 +584,38 @@ export function PaymentsView({
   const { students, transactions } = useLiveFinance();
   const [query, setQuery] = useState("");
   const [method, setMethod] = useState("All methods");
-  const rows = transactions.filter(
-    (t) =>
-      (method === "All methods" || t.method === method) &&
-      `${t.id} ${t.student}`.toLowerCase().includes(query.toLowerCase()),
-  );
+  const [statusFilter, setStatusFilter] = useState("All statuses");
+  const [page, setPage] = useState(1);
+  const pageSize = 25;
+
+  const studentMap = useMemo(() => {
+    const map = new Map<string, Student>();
+    for (const s of students) map.set(s.id, s);
+    return map;
+  }, [students]);
+
+  const rows = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return transactions.filter((t) => {
+      if (method !== "All methods" && t.method !== method) return false;
+      if (statusFilter !== "All statuses" && t.status !== statusFilter) return false;
+      if (!q) return true;
+
+      const student = studentMap.get(t.student);
+      const studentName = student?.name || "";
+      const programme = student?.programme || "";
+      const searchBlob = `${t.id} ${t.student} ${studentName} ${programme} ${t.method} ${t.status} ${t.date} ${t.gateway} ${t.ledger}`.toLowerCase();
+      return searchBlob.includes(q);
+    });
+  }, [transactions, query, method, statusFilter, studentMap]);
+
+  const totalPages = Math.ceil(rows.length / pageSize) || 1;
+  const paginatedRows = useMemo(() => {
+    return rows.slice((page - 1) * pageSize, page * pageSize);
+  }, [rows, page, pageSize]);
 
   function handlePrintReceipt(t: Transaction) {
-    const student = students.find((s) => s.id === t.student);
+    const student = studentMap.get(t.student);
     printReceiptPdf({
       receiptNo: `RCPT-${t.id.replace("TXN-", "")}`,
       studentId: t.student,
@@ -398,34 +633,45 @@ export function PaymentsView({
     toast.success("PDF receipt opened in new tab — print or save as PDF");
   }
 
+  const totalCollectedInView = rows.reduce((sum: number, t: Transaction) => sum + t.ledger, 0);
+
   return (
     <Card className="panel">
       <CardHeader>
         <CardTitle>Payment ledger</CardTitle>
         <CardDescription>
-          Gateway receipts and their corresponding ledger allocations
+          Complete transaction gateway records &amp; verified ledger allocations across all {students.length} students ({transactions.length} total entries)
         </CardDescription>
         <CardAction>
           <Button
             variant="outline"
             onClick={() => {
-              downloadExcel("payments-DEMO", [
+              downloadExcel("payments-all-students", [
                 [
                   "Transaction",
-                  "Student",
-                  "Gateway",
-                  "Ledger",
+                  "Student ID",
+                  "Student Name",
+                  "Programme",
+                  "Gateway (INR)",
+                  "Ledger (INR)",
                   "Method",
+                  "Date",
                   "Status",
                 ],
-                ...rows.map((t) => [
-                  t.id,
-                  t.student,
-                  t.gateway,
-                  t.ledger,
-                  t.method,
-                  t.status,
-                ]),
+                ...rows.map((t: Transaction) => {
+                  const s = studentMap.get(t.student);
+                  return [
+                    t.id,
+                    t.student,
+                    s?.name ?? "—",
+                    s?.programme ?? "—",
+                    t.gateway,
+                    t.ledger,
+                    t.method,
+                    t.date,
+                    t.status,
+                  ];
+                }),
               ], "Payments");
               toast.success("Payments exported as Excel (.xlsx)");
             }}
@@ -435,39 +681,63 @@ export function PaymentsView({
         </CardAction>
       </CardHeader>
       <CardContent>
-        <div className="mb-5 flex flex-wrap justify-between gap-3">
-          <InputGroup className="h-10 max-w-sm">
+        {/* Search & Filter Bar */}
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+          <InputGroup className="h-10 max-w-md w-full">
             <InputGroupInput
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setPage(1);
+              }}
               aria-label="Search payments"
-              placeholder="Search transaction or student ID..."
+              placeholder="Search by student name, roll number, TXN ID, date..."
             />
             <InputGroupAddon>
               <Search />
             </InputGroupAddon>
           </InputGroup>
-          <select
-            className="filter-select"
-            aria-label="Payment method"
-            value={method}
-            onChange={(e) => setMethod(e.target.value)}
-          >
-            {[
-              "All methods",
-              "UPI",
-              "Net banking",
-              "Debit card",
-              "Bank transfer",
-              "Counter collection",
-            ].map((o) => (
-              <option key={o}>{o}</option>
-            ))}
-          </select>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <select
+              className="filter-select text-xs"
+              aria-label="Payment method"
+              value={method}
+              onChange={(e) => {
+                setMethod(e.target.value);
+                setPage(1);
+              }}
+            >
+              {[
+                "All methods",
+                "UPI",
+                "Net banking",
+                "Debit card",
+                "Bank transfer",
+                "Counter collection",
+              ].map((o) => (
+                <option key={o}>{o}</option>
+              ))}
+            </select>
+
+            <select
+              className="filter-select text-xs"
+              aria-label="Transaction status"
+              value={statusFilter}
+              onChange={(e) => {
+                setStatusFilter(e.target.value);
+                setPage(1);
+              }}
+            >
+              {["All statuses", "Matched", "Mismatch"].map((o) => (
+                <option key={o}>{o}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Channel summary pills */}
-        <div className="mb-5 flex flex-wrap gap-2">
+        <div className="mb-4 flex flex-wrap gap-2">
           {[
             { label: "UPI", color: "bg-primary/10 text-primary" },
             { label: "Net banking", color: "bg-violet/10 text-violet" },
@@ -482,17 +752,50 @@ export function PaymentsView({
             return (
               <button
                 key={label}
-                onClick={() => setMethod(method === label ? "All methods" : label)}
+                onClick={() => {
+                  setMethod(method === label ? "All methods" : label);
+                  setPage(1);
+                }}
                 className={cn(
-                  "rounded-lg border px-3 py-1.5 text-xs font-medium transition-all",
+                  "rounded-lg border px-3 py-1.5 text-xs font-medium transition-all cursor-pointer",
                   color,
-                  method === label ? "ring-2 ring-primary/30" : "opacity-80 hover:opacity-100",
+                  method === label ? "ring-2 ring-primary/40 shadow-xs" : "opacity-85 hover:opacity-100",
                 )}
               >
-                {label} · {count} txn · {inr(total)}
+                {label} · {count} txns · {inr(total)}
               </button>
             );
           })}
+        </div>
+
+        {/* Pagination & Count Header */}
+        <div className="text-xs text-muted-foreground mb-3 flex flex-wrap items-center justify-between gap-2">
+          <span>
+            Showing <strong>{paginatedRows.length}</strong> of <strong>{rows.length}</strong> transactions · Total Ledger Volume: <strong>{inr(totalCollectedInView)}</strong>
+          </span>
+          {totalPages > 1 && (
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 text-xs px-2"
+                disabled={page <= 1}
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+              >
+                Prev
+              </Button>
+              <span>Page {page} of {totalPages}</span>
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 text-xs px-2"
+                disabled={page >= totalPages}
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              >
+                Next
+              </Button>
+            </div>
+          )}
         </div>
 
         <table className="data-table mobile-cards">
@@ -501,8 +804,10 @@ export function PaymentsView({
               {[
                 "Transaction",
                 "Student",
+                "Programme",
                 "Date",
-                "Amount",
+                "Gateway",
+                "Ledger",
                 "Method",
                 "Status",
                 "Receipt",
@@ -513,52 +818,82 @@ export function PaymentsView({
             </tr>
           </thead>
           <tbody>
-            {rows.map((t, index) => (
-              <tr key={`${t.id}-${index}`}>
-                <td data-label="Transaction" className="font-medium">
-                  {t.id}
-                </td>
-                <td data-label="Student">{t.student}</td>
-                <td data-label="Date">{t.date}</td>
-                <td data-label="Amount">{inr(t.gateway)}</td>
-                <td data-label="Method">
-                  <span className="inline-flex items-center gap-1.5">
-                    {t.method === "Bank transfer" && (
-                      <span className="size-1.5 rounded-full bg-warning" />
-                    )}
-                    {t.method === "Counter collection" && (
-                      <span className="size-1.5 rounded-full bg-destructive" />
-                    )}
-                    {t.method}
-                  </span>
-                </td>
-                <td data-label="Status">
-                  <span>
-                    <Status status={t.status} />
-                  </span>
-                </td>
-                <td data-label="Receipt">
-                  <Button
-                    variant="ghost"
-                    size="icon-sm"
-                    aria-label={`Print receipt for ${t.id}`}
-                    onClick={() => handlePrintReceipt(t)}
-                  >
-                    <Printer />
-                  </Button>
-                </td>
-                <td data-label="Details">
-                  <Button
-                    variant="ghost"
-                    size="icon-sm"
-                    aria-label={`Review ${t.id}`}
-                    onClick={() => onReview(t)}
-                  >
-                    <ArrowUpRight />
-                  </Button>
-                </td>
-              </tr>
-            ))}
+            {paginatedRows.map((t: Transaction, index: number) => {
+              const student = studentMap.get(t.student);
+              return (
+                <tr key={`${t.id}-${index}`} className="hover:bg-muted/30 transition-colors">
+                  <td data-label="Transaction" className="font-mono text-xs font-semibold text-primary">
+                    {t.id}
+                  </td>
+                  <td data-label="Student">
+                    <div className="flex items-center gap-2.5">
+                      <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-secondary text-[11px] font-semibold text-primary">
+                        {student?.initials || t.student.slice(-2)}
+                      </span>
+                      <div>
+                        <div className="font-medium text-foreground text-xs leading-tight">
+                          {student?.name || t.student}
+                        </div>
+                        <div className="font-mono text-[10px] text-muted-foreground">
+                          {t.student}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td data-label="Programme" className="text-xs text-muted-foreground">
+                    {student?.programme || "—"}
+                  </td>
+                  <td data-label="Date" className="text-xs text-muted-foreground whitespace-nowrap">
+                    {t.date}
+                  </td>
+                  <td data-label="Gateway" className="tabular-nums text-xs font-medium">
+                    {inr(t.gateway)}
+                  </td>
+                  <td data-label="Ledger" className="tabular-nums text-xs font-bold text-foreground">
+                    {inr(t.ledger)}
+                  </td>
+                  <td data-label="Method">
+                    <span className="inline-flex items-center gap-1.5 text-xs">
+                      {t.method === "Bank transfer" && (
+                        <span className="size-1.5 rounded-full bg-warning" />
+                      )}
+                      {t.method === "Counter collection" && (
+                        <span className="size-1.5 rounded-full bg-destructive" />
+                      )}
+                      {t.method === "UPI" && (
+                        <span className="size-1.5 rounded-full bg-primary" />
+                      )}
+                      {t.method}
+                    </span>
+                  </td>
+                  <td data-label="Status">
+                    <span>
+                      <Status status={t.status} />
+                    </span>
+                  </td>
+                  <td data-label="Receipt">
+                    <Button
+                      variant="ghost"
+                      size="icon-sm"
+                      aria-label={`Print receipt for ${t.id}`}
+                      onClick={() => handlePrintReceipt(t)}
+                    >
+                      <Printer className="size-3.5 text-muted-foreground hover:text-primary" />
+                    </Button>
+                  </td>
+                  <td data-label="Details">
+                    <Button
+                      variant="ghost"
+                      size="icon-sm"
+                      aria-label={`Review ${t.id}`}
+                      onClick={() => onReview(t)}
+                    >
+                      <ArrowUpRight className="size-3.5 text-muted-foreground hover:text-primary" />
+                    </Button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
         {!rows.length && (
