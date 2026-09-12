@@ -13,7 +13,7 @@ export const navigation = [
   "Reports",
 ] as const;
 export type View = (typeof navigation)[number];
-export const inr = (amount: number) => "₹" + amount.toLocaleString("en-IN");
+export const inr = (amount: number) => "₹" + (amount ?? 0).toLocaleString("en-IN");
 export const feeHeads = [
   { name: "Tuition", amount: 285.5, color: "var(--primary)" },
   { name: "Hostel", amount: 94.2, color: "var(--violet)" },

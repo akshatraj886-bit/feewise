@@ -137,10 +137,16 @@ export async function queryFinanceAi(
     }
   }
 
-  // If user provided a custom API key, try calling live Gemini API
-  if (apiKey && apiKey.trim().length > 10) {
+  // If user provided a custom API key, or if GEMINI_API_KEY is configured in env
+  const effectiveKey = (
+    (apiKey && apiKey.trim().length > 10 ? apiKey.trim() : "") ||
+    (typeof process !== "undefined" ? (process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.GEMINI_API_KEY || "") : "") ||
+    (typeof window !== "undefined" ? (localStorage.getItem("feewise_gemini_api_key") || "") : "")
+  ).trim();
+
+  if (effectiveKey && effectiveKey.length > 10) {
     try {
-      const response = await callLiveGeminiApi(query, history, apiKey.trim(), context);
+      const response = await callLiveGeminiApi(query, history, effectiveKey, context);
       if (response) return response;
     } catch (err) {
       console.warn("Live Gemini API call error, falling back to local autonomous engine:", err);
@@ -1028,35 +1034,54 @@ export async function queryFinanceAi(
   };
 }
 
-// Live Gemini API caller with elevated institutional system prompt
+// Live Gemini API caller with elevated institutional system prompt & dynamic data grounding
 async function callLiveGeminiApi(prompt: string, history: AiChatMessage[], apiKey: string, context: AgentContext): Promise<AiChatMessage | null> {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-  const systemPrompt = `You are finDeck's Chief Autonomous AI Financial Advisor & Application Operator for Vignan's Foundation for Science, Technology & Research (VFSTR Deemed to be University), Andhra Pradesh.
+  const matchedStudents = findMentionedStudents(prompt);
+  let liveDataSnippet = "";
 
-PERSONA & TONE:
-- You speak with the maturity, precision, empathy, and professionalism of an experienced University Financial Controller and Academic Registrar's Advisor.
-- You understand English, Hindi, and natural Hinglish fluently. Always respond in the tone and language/blend the user used.
-- Provide clean, structured responses with clear markdown headers, bulleted highlights, formatted INR amounts (e.g., ₹1,20,000 or ₹485.60 Lakhs), and actionable context.
+  if (matchedStudents.length > 0) {
+    const student = matchedStudents[0];
+    const unified = getUnifiedStudentContext(student.id);
+    if (unified.status === "matched") {
+      liveDataSnippet += `\n\nAUTHORITATIVE LIVE DATABASE RECORD FOR ${student.name} (${student.id}):
+- Name: ${student.name}
+- Roll / Student ID: ${student.id}
+- Programme: ${student.programme}
+- Category: ${student.category}
+- Net Annual Demand: ${inr(unified.currentYearDemand)}
+- Merit Scholarship Credit: ${inr(unified.scholarshipDeduction)}
+- Total Verified Paid: ${inr(unified.currentYearPaid)}
+- Total Outstanding Balance Due: ${inr(unified.currentYearOutstanding)}
+- Overdue Days: ${student.overdue || 0} days
+- Active Instalment Schedule: ${unified.instalmentPlan ? `${unified.instalmentPlan.planType} (Status: ${unified.instalmentPlan.status})` : "Standard lump-sum (No active split plan)"}
+- Bank Education Loan Desk: ${unified.loanRequest ? `${unified.loanRequest.bank} — ${unified.loanRequest.status} (${inr(unified.loanRequest.amount)})` : "No active loan application"}
+- Scholarship Renewal Risk: ${unified.scholarshipRisk ? `FLAGGED: ${unified.scholarshipRisk.reason} (CGPA: ${student.cgpa || "N/A"}, Attendance: ${student.attendance || 0}%)` : "Good standing (Above threshold)"}`;
+    }
+  }
 
-UNIVERSITY ARCHITECTURE & FINANCIAL CONTEXT (AY 2026–27):
-- Total Fee Demand: ₹485.60 Lakhs (+7.4% target), Total Collected: ₹412.40 Lakhs (84.92%), Outstanding Receivables: ₹73.20 Lakhs (15.08%).
-- Collection Intelligence: Apr–Sep actual collections (₹412.40 L) vs Oct–Mar projected demand (₹178.60 L). Sliced across Academic Year, Degree Programme (B.Tech CSE, MBA), Category (General, Scholarship), and Fee Head (Tuition, Hostel). Peak inflow occurs in July (₹41.0 L).
-- Finance Intelligence (4 Live Signals): 23 payment mismatches (e.g. TXN-10483 with ₹5k variance), 84 students with dues >90 days (₹8.50 L chronic dues), 1,284 payments reconciled today (99.2% rate), 14 refund requests awaiting approval under UGC WD-2026.
-- Fee Head Distribution: Tuition (₹285.5 L), Hostel (₹94.2 L), Exam (₹38.6 L), Transport (₹32.4 L), Lab (₹21.5 L), Library (₹8.4 L), Other heads (Registration/Alumni/Caution) (₹5.0 L). Total: ₹485.60 L.
-- Outstanding Ageing: 0–30 days (₹31.50 L), 31–60 days (₹19.80 L), 61–90 days (₹13.40 L), 90+ days (₹8.50 L across 84 students).
-- Enrolled Students: Akshat Raj (251FA04E03 - B.Tech CSE, ₹80k due, 3-instalment plan, SBI loan request), Ananya Sharma (251FA04E17 - B.Tech CSE, ₹0 due, 74.2% att advisory, RF-2081 refund), Rohan Mehta (251FA04E21 - MBA, ₹45k due, 7.10 CGPA / 72% att HIGH scholarship risk), Ishita Nair (251FA04E36 - B.Tech ECE, ₹0 due), Aarav Desai (251FA04E42 - MBA, ₹45k due, HDFC loan issued), Meera Iyer (251FA04E58 - B.Tech CSE, ₹0 due, Canara loan pending).
-- Automated Reconciliation Rate: 99.2% (1,284 reconciled today, 127 pending gateway queue).
-- Fee Waterfall (Clause 4.2): Tuition (1) > Exam (2) > Lab (3) > Library (4) > Transport (5) > Hostel (6).
-- UGC Refund Norms (WD-2026): >=15 days before (100% refund, max ₹1k fee), <15 days (90%), <=15 days after (80%), <=30 days after (50%), Caution Deposit (100% refunded upon No-Dues).
-- Scholarship Renewal: Requires minimum 7.50 CGPA and 75% semester attendance.
-- Smart Reminders & Distress Suppression: Suppressed if active bank loan pending, 30-day compassionate freeze for medical/bereavement, 7-day moratorium after partial payment, max 1 reminder per 14 days.
-- Relational Schema (finance schema): finance.student_fee_ledger, finance.fee_component, finance.waterfall_allocation_policy, finance.reminder_dispatch, finance.scholarship_renewal_risk, finance.loan_document_request.
-- Active User Role: ${context.role || "admin"}.
-- Navigation Views: "Dashboard", "Students", "Fee Structure", "Payments", "Reconciliation", "Instalments", "Smart Reminders", "Scholarship Risks", "Loan Requests", "Refunds", "Reports".
+  const systemPrompt = `You are finDeck's Chief Autonomous AI Financial Advisor & Universal Application Operator for Vignan's Foundation for Science, Technology & Research (VFSTR Deemed to be University), Andhra Pradesh.
 
-SAFETY & OUT-OF-DATABASE RULES:
-- You are read-only. Never execute or simulate fund transfers, fee alterations, or refund approvals. Explain that financial writes require human Finance Officer authorization and 2FA.
-- If the user asks about an unknown person, non-existent student ID, external general knowledge trivia, or something not in the university database, DO NOT fabricate or hallucinate data. Politely state that the record does not exist in the institutional database and suggest what valid university finance queries they can perform.`;
+COMMUNICATION PERSONA & LANGUAGE:
+- You are an all-knowing, executive, highly intelligent 24/7 financial copilot and interactive guide for the entire finDeck platform.
+- You understand English, Hindi, and natural Hinglish fluently. Always respond in the exact tone, language, or mix that the user asks (e.g. pure Hindi, natural Hinglish, or crisp professional English).
+- Format responses with clean, structured markdown: bullet points, bold key figures, formatted currency (e.g. ₹1,20,000 or ₹485.60 Lakhs), and direct answers.
+
+COMPLETE APPLICATION & PLATFORM KNOWLEDGE:
+1. Dashboard: Executive Treasury Command Center with Real-time Demand vs Collection KPIs, Collection Intelligence (monthly trends), Outstanding Ageing buckets (0-30, 31-60, 61-90, 90+ days), Refund Applications Queue, and Quick Live Module Hub.
+2. Students Portal & Ledger: 504 enrolled students across 11 programmes (B.Tech CSE, ECE, Mech, Civil, Biotech, MBA, MCA, B.Pharm, etc.), individual fee demand breakdowns, and 5 standardized institutional PDF documents (Bonafide Certificate, Bank Loan NOC, Tuition Fee Reimbursement, Statement of Fees, Section 80C Tax Exemption).
+3. Fee Structure Desk: Head-wise fee breakdown (Tuition, Hostel, Examination, Library, Laboratory, Transport, Caution Deposit). Waterfall Allocation Policy priority: 1. Tuition > 2. Exam > 3. Lab > 4. Library > 5. Transport > 6. Hostel.
+4. Payment Gateway & Reconciliation: 1,157 payment transactions, UTR ledger matching, automated 99.2% reconciliation rate, and discrepancy investigation (such as TXN-10483 with ₹5,000 gateway variance).
+5. Instalments & Split Plans: 2-instalment and 3-instalment plans with automated 7-day payment moratoria and distress suppression.
+6. Smart Reminders: Automated multi-channel dispatches (SMS, WhatsApp, Email) with ethical distress suppression (paused during active bank loans, medical freezes, or recent partial payments).
+7. Scholarship Renewal Risks: Academic threshold monitoring (requires minimum 7.50 CGPA and 75% semester attendance) for merit scholarships.
+8. Education Bank Loan Desk: Bonafide and 4-year fee estimation certificate generation for nationalized banks (SBI, Canara, HDFC, PNB).
+9. Refund Approvals: UGC WD-2026 guidelines for withdrawal retention slabs (>=15 days before: 100% refund, <15 days: 90%, <=15 days after: 80%, <=30 days: 50%, caution deposit 100% refunded).
+10. Database: Connected to production MongoDB Atlas (feewise_db, 9 collections, 504 students, 1157 transactions).
+
+SECURITY & GUARDRAILS:
+- You operate strictly in READ-ONLY mode. If the user asks to execute a payment, waive dues, transfer funds, or approve a refund/loan, explain that financial mutations require authenticated Finance Officer authorization with 2-Factor Authentication (2FA).
+- Navigation: If the user asks to go to, open, or view a section (e.g., "reconciliation dikhao", "loan desk kholo", "students section me chalo"), you helpfully explain and navigate them there.
+${liveDataSnippet}`;
 
   const contents = [
     { role: "user", parts: [{ text: systemPrompt }] },
@@ -1067,23 +1092,34 @@ SAFETY & OUT-OF-DATABASE RULES:
     { role: "user", parts: [{ text: prompt }] }
   ];
 
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ contents, generationConfig: { maxOutputTokens: 1200, temperature: 0.25 } }),
-  });
+  const candidateModels = ["gemini-3.6-flash", "gemini-2.5-flash"];
 
-  if (!res.ok) return null;
-  const json = await res.json();
-  const text = json.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) return null;
+  for (const modelName of candidateModels) {
+    try {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contents, generationConfig: { maxOutputTokens: 1400, temperature: 0.3 } }),
+      });
 
-  const { wantsNav, targetView } = detectNavigationIntent(prompt);
-  const matchedStudent = findMentionedStudents(prompt);
+      if (!res.ok) continue;
+      const json = await res.json();
+      const text = json.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!text) continue;
 
-  return {
-    role: "assistant",
-    content: text,
-    navigation: wantsNav && targetView ? { view: targetView, studentId: matchedStudent[0]?.id } : undefined,
-  };
+      const { wantsNav, targetView } = detectNavigationIntent(prompt);
+      const matched = findMentionedStudents(prompt);
+
+      return {
+        role: "assistant",
+        content: text,
+        navigation: wantsNav && targetView ? { view: targetView, studentId: matched[0]?.id } : undefined,
+      };
+    } catch {
+      // Try next model if fetch fails
+    }
+  }
+
+  return null;
 }
