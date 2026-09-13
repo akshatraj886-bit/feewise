@@ -21,6 +21,7 @@ import {
   ExternalLink,
   X,
   FileCheck,
+  FileCheck2,
   ShieldCheck,
   Building2,
   FileText,
@@ -29,6 +30,7 @@ import {
   ZoomIn,
   ZoomOut,
   RefreshCw,
+  GraduationCap,
 } from "lucide-react";
 
 interface DocumentViewerModalProps {
@@ -88,6 +90,10 @@ export function DocumentViewerModal({
         return <FileText className="size-4 text-indigo-600 dark:text-indigo-400" />;
       case "tax":
         return <Building2 className="size-4 text-teal-600 dark:text-teal-400" />;
+      case "exam_permission":
+        return <FileCheck2 className="size-4 text-emerald-600 dark:text-emerald-400" />;
+      case "admit_card":
+        return <GraduationCap className="size-4 text-indigo-600 dark:text-indigo-400" />;
     }
   };
 

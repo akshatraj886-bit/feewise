@@ -2,7 +2,15 @@
 
 import { createContext, useContext, useState, type ReactNode } from "react";
 import { students } from "../database/finance-data";
+import { studentCredentials } from "../database/student-credentials";
+import { benchmarkHistoricalStudents } from "../services/finance-service";
 
+/**
+ * Core User Roles for finDeck Authentication.
+ * NOTE (Step 5 Access Model Architecture):
+ * The Counsellor Desk & Exam Permission approval operations are accessible to staff roles
+ * ("admin" and "finance-officer"), preserving the 3-role login structure and leaving the CEO role untouched.
+ */
 export type UserRole = "admin" | "finance-officer" | "student";
 
 export type AuthUser = {
@@ -43,15 +51,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   function login(role: UserRole, studentId?: string) {
     if (role === "student") {
-      const targetId = studentId || students[0]?.id || "251FA04645";
-      const student = students.find((s) => s.id === targetId) || students[0];
+      const targetId = (studentId || students[0]?.id || "251FA04645").trim().toUpperCase();
+      const student =
+        students.find((s) => s.id.toUpperCase() === targetId) ||
+        benchmarkHistoricalStudents.find((s) => s.id.toUpperCase() === targetId);
+
       if (student) {
         setUser({
           role: "student",
           name: student.name,
           id: student.id,
           studentId: student.id,
-          avatar: student.initials,
+          avatar: student.initials || "ST",
+        });
+      } else {
+        const cred = studentCredentials[targetId];
+        const studentName = cred ? cred.password.split("@")[0] : `Student ${targetId}`;
+        setUser({
+          role: "student",
+          name: studentName,
+          id: targetId,
+          studentId: targetId,
+          avatar: studentName.slice(0, 2).toUpperCase(),
         });
       }
     } else {

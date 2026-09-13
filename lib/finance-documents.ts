@@ -1,7 +1,12 @@
-import { inr, type Student, students } from "@/lib/finance-data";
-import { getStudentAccount } from "@/lib/finance-service";
+import { inr, type Student, students, type ExamPermissionRequest } from "@/lib/finance-data";
+import {
+  getStudentAccount,
+  getStudentExamEligibility,
+  getStudentDuesBreakdown,
+  type AdmitCardStatus,
+} from "@/lib/finance-service";
 
-export type FinanceDocType = "bonafide" | "noc" | "reimbursement" | "statement" | "tax";
+export type FinanceDocType = "bonafide" | "noc" | "reimbursement" | "statement" | "tax" | "exam_permission" | "admit_card";
 
 export interface FinanceDocMeta {
   type: FinanceDocType;
@@ -53,6 +58,22 @@ export const FINANCE_DOC_METAS: Record<FinanceDocType, FinanceDocMeta> = {
     themeName: "Teal Theme",
     desc: "Certificate for income tax deduction claims under Section 80C & 80E of the Indian Income Tax Act, 1961.",
   },
+  exam_permission: {
+    type: "exam_permission",
+    title: "Examination Entry Permission Letter & Condonation Order",
+    badge: "EXAM CONDONATION ORDER",
+    themeColor: "#059669",
+    themeName: "Emerald Theme",
+    desc: "Official statutory clearance order and condonation certificate issued by the Dean of Student Affairs for examination entry.",
+  },
+  admit_card: {
+    type: "admit_card",
+    title: "Semester End Examination Hall Ticket & Admit Card",
+    badge: "SEMESTER ADMIT CARD",
+    themeColor: "#4338ca",
+    themeName: "Indigo Theme",
+    desc: "Official hall ticket for Semester End Examinations with candidate credentials, course timetable, and statutory eligibility verification.",
+  },
 };
 
 export interface GenerateDocOptions {
@@ -64,6 +85,11 @@ export interface GenerateDocOptions {
   sealSubtext?: string;
   footerNote?: string;
   purposeNote?: string;
+  permissionRequest?: ExamPermissionRequest;
+  admitCardStatus?: AdmitCardStatus;
+  currentSemDue?: number;
+  carriedForwardDue?: number;
+  examCentre?: string;
 }
 
 interface NormalizedStudentDocData {
@@ -383,6 +409,8 @@ export const FINANCE_DOCUMENTS_CSS = `
   .sheet[data-type="reimbursement"]{ --brand:#6d28d9; --tint:#f3edfc; --tint-border:#e2d3f7; --bg-page:#fcfbff; }
   .sheet[data-type="statement"]{     --brand:#1e3a8a; --tint:#eceff9; --tint-border:#d6dcf2; --bg-page:#fbfbfe; }
   .sheet[data-type="tax"]{           --brand:#0f766e; --tint:#e6f7f5; --tint-border:#c8ece7; --bg-page:#fafefd; }
+  .sheet[data-type="exam_permission"]{ --brand:#059669; --tint:#ecfdf5; --tint-border:#a7f3d0; --bg-page:#fbfdfc; }
+  .sheet[data-type="admit_card"]{     --brand:#4338ca; --tint:#eef2ff; --tint-border:#c7d2fe; --bg-page:#fafbff; }
 
   /* Print and PDF Export Styles: Preserves exact colors, borders, and margins */
   @page {
@@ -671,6 +699,182 @@ function getSheetTemplate(docType: FinanceDocType): string {
   </div>
   <div class="doc-footer">{{FOOTER_NOTE}}</div>
 </div>`;
+
+    case "exam_permission":
+      return `
+<div class="page-label">Type: Examination Entry Permission Letter &amp; Condonation Order</div>
+<div class="sheet" data-type="exam_permission">
+  <div class="letterhead">
+    <div class="letterhead-left">
+      <div class="logo-slot"><img src="{{LOGO_URL}}" alt="logo" onerror="this.parentElement.textContent='VFSTR'"></div>
+      <div>
+        <p class="org-name">{{ORG_NAME}}</p>
+        <div class="org-sub">{{ORG_TAGLINE}}<br>Office of the Dean of Student Affairs &amp; Academic Counselling</div>
+      </div>
+    </div>
+    <div class="doc-meta"><div><b>Order Ref:</b> {{CERT_REF}}</div><div><b>Issued Date:</b> {{DOC_DATE}}</div></div>
+  </div>
+  <div class="doc-title-wrap">
+    <span class="type-badge" style="background:#059669;color:#ffffff;">EXAMINATION CONDONATION ORDER</span>
+    <h1 class="doc-title">{{DOC_TITLE}}</h1>
+    <div class="doc-subtitle">Issued under VFSTR Examination Ordinance 2026–27 Clause 8.2 &middot; Special Executive Condonation</div>
+  </div>
+  <div class="info-grid">
+    <div class="info-item"><span class="label">Candidate Name</span><span class="value">{{STUDENT_NAME}}</span></div>
+    <div class="info-item"><span class="label">Academic Programme</span><span class="value">{{PROGRAM}}</span></div>
+    <div class="info-item"><span class="label">Registration / Roll No.</span><span class="value">{{REG_NO}}</span></div>
+    <div class="info-item"><span class="label">Academic Cycle</span><span class="value">{{ACADEMIC_YEAR}}</span></div>
+  </div>
+  <p class="body-text">{{BODY_PARAGRAPH}}</p>
+  <table class="doc-table">
+    <thead>
+      <tr>
+        <th>Statutory Clearance Parameter</th>
+        <th>Institutional Norm</th>
+        <th>Recorded Status at Review</th>
+        <th class="num">Condonation Finding</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Semester Attendance Threshold</b></td>
+        <td>Min. 75.0% Mandatory</td>
+        <td>{{ATTENDANCE_RECORDED}}</td>
+        <td class="num" style="color:#059669;font-weight:700;">{{ATTENDANCE_STATUS}}</td>
+      </tr>
+      <tr>
+        <td><b>University Tuition &amp; Campus Arrears</b></td>
+        <td>₹0 Balance Rule (Clause 8.2)</td>
+        <td>{{DUES_RECORDED}}</td>
+        <td class="num" style="color:#059669;font-weight:700;">{{DUES_STATUS}}</td>
+      </tr>
+      <tr>
+        <td><b>Student Petition Grounds</b></td>
+        <td colspan="3">{{STUDENT_REASON}}</td>
+      </tr>
+      <tr>
+        <td><b>Executive Directives &amp; Terms</b></td>
+        <td colspan="3" style="font-style:italic;color:#1e293b;background:#f8fafc;">{{COUNSELLOR_TERMS}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="cert-row" style="margin-top:28px;">
+    <div class="seal-box" style="border-color:#059669;color:#059669;background:#ecfdf5;">
+      <div class="seal-title" style="color:#059669;">PROVISIONAL HALL TICKET VALIDATED</div>
+      {{SEAL_SUBTEXT}}
+    </div>
+    <div class="signature">
+      <div style="margin-bottom:6px;">
+        <img src="{{SIGNATURE_IMAGE}}" alt="Digital Signature" style="height:38px;max-width:140px;display:inline-block;" onerror="this.style.display='none'">
+      </div>
+      <div class="sig-line" style="border-color:#059669;">{{SIGNATORY_NAME}}</div>
+      <div class="sig-role">{{SIGNATORY_ROLE}}</div>
+    </div>
+  </div>
+  <div class="doc-footer">{{FOOTER_NOTE}}</div>
+</div>`;
+
+    case "admit_card":
+      return `
+<div class="page-label">Type: Semester End Examination Hall Ticket &amp; Admit Card</div>
+<div class="sheet" data-type="admit_card">
+  <div class="letterhead">
+    <div class="letterhead-left">
+      <div class="logo-slot"><img src="{{LOGO_URL}}" alt="logo" onerror="this.parentElement.textContent='VFSTR'"></div>
+      <div>
+        <p class="org-name">{{ORG_NAME}}</p>
+        <div class="org-sub">{{ORG_TAGLINE}}<br>Office of the Controller of Examinations &amp; Academic Affairs</div>
+      </div>
+    </div>
+    <div class="doc-meta"><div><b>Admit Card Ref:</b> {{CERT_REF}}</div><div><b>Issued Date:</b> {{DOC_DATE}}</div><div><b>Session:</b> Winter 2026–27</div></div>
+  </div>
+  <div class="doc-title-wrap">
+    {{ADMIT_CARD_STATUS_BADGE}}
+    <h1 class="doc-title">{{DOC_TITLE}}</h1>
+    <div class="doc-subtitle">Official Semester End Examination Hall Ticket &middot; Controller of Examinations Authorized</div>
+  </div>
+  <div class="info-grid">
+    <div class="info-item"><span class="label">Candidate Name</span><span class="value">{{STUDENT_NAME}}</span></div>
+    <div class="info-item"><span class="label">Academic Programme</span><span class="value">{{PROGRAM}}</span></div>
+    <div class="info-item"><span class="label">Registration / Roll No.</span><span class="value">{{REG_NO}}</span></div>
+    <div class="info-item"><span class="label">Academic Cycle</span><span class="value">{{ACADEMIC_YEAR}}</span></div>
+    <div class="info-item"><span class="label">Recorded Attendance</span><span class="value">{{ATTENDANCE_RECORDED}}</span></div>
+    <div class="info-item"><span class="label">Examination Centre</span><span class="value">Aryabhata Block (Hall A-201), VFSTR Vadlamudi</span></div>
+  </div>
+
+  <table class="doc-table" style="margin-top:16px;">
+    <thead>
+      <tr>
+        <th style="width:14%;">Course Code</th>
+        <th style="width:38%;">Course Title</th>
+        <th style="width:20%;">Exam Date &amp; Session</th>
+        <th style="width:16%;">Timings</th>
+        <th class="num" style="width:12%;">Invigilator Sign</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>CSE-301</b></td>
+        <td>Design &amp; Analysis of Algorithms</td>
+        <td>24 Nov 2026 (Morning)</td>
+        <td>09:30 AM – 12:30 PM</td>
+        <td class="num" style="color:#94a3b8;font-size:10px;">[ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]</td>
+      </tr>
+      <tr>
+        <td><b>CSE-302</b></td>
+        <td>Operating Systems Architecture</td>
+        <td>27 Nov 2026 (Morning)</td>
+        <td>09:30 AM – 12:30 PM</td>
+        <td class="num" style="color:#94a3b8;font-size:10px;">[ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]</td>
+      </tr>
+      <tr>
+        <td><b>CSE-303</b></td>
+        <td>Database Management Systems &amp; SQL</td>
+        <td>01 Dec 2026 (Morning)</td>
+        <td>09:30 AM – 12:30 PM</td>
+        <td class="num" style="color:#94a3b8;font-size:10px;">[ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]</td>
+      </tr>
+      <tr>
+        <td><b>CSE-304</b></td>
+        <td>Formal Languages &amp; Automata Theory</td>
+        <td>04 Dec 2026 (Morning)</td>
+        <td>09:30 AM – 12:30 PM</td>
+        <td class="num" style="color:#94a3b8;font-size:10px;">[ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]</td>
+      </tr>
+      <tr>
+        <td><b>CSE-305</b></td>
+        <td>Artificial Intelligence &amp; Neural Systems</td>
+        <td>08 Dec 2026 (Morning)</td>
+        <td>09:30 AM – 12:30 PM</td>
+        <td class="num" style="color:#94a3b8;font-size:10px;">[ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]</td>
+      </tr>
+    </tbody>
+  </table>
+
+  {{DUES_UNDERTAKING_BLOCK}}
+
+  <div style="margin-top:14px;padding:8px 12px;background:#f8fafc;border:1px solid var(--line);border-radius:6px;font-size:10px;color:#64748b;line-height:1.5;">
+    <b>STATUTORY CANDIDATE INSTRUCTIONS:</b>
+    1. Candidates must occupy their allotted seats 15 minutes before commencement.
+    2. Electronic gadgets, smart watches, mobile phones, or notes are strictly prohibited in the exam hall.
+    3. Carry this Hall Ticket along with student identity card for mandatory biometric verification.
+  </div>
+
+  <div class="cert-row" style="margin-top:20px;">
+    <div class="seal-box" style="border-color:#4338ca;color:#4338ca;background:#eef2ff;">
+      <div class="seal-title" style="color:#4338ca;">OFFICIAL HALL TICKET VALIDATED</div>
+      {{SEAL_SUBTEXT}}
+    </div>
+    <div class="signature">
+      <div style="margin-bottom:6px;">
+        <img src="{{SIGNATURE_IMAGE}}" alt="Digital Signature" style="height:36px;max-width:130px;display:inline-block;" onerror="this.style.display='none'">
+      </div>
+      <div class="sig-line" style="border-color:#4338ca;">{{SIGNATORY_NAME}}</div>
+      <div class="sig-role">{{SIGNATORY_ROLE}}</div>
+    </div>
+  </div>
+  <div class="doc-footer">{{FOOTER_NOTE}}</div>
+</div>`;
   }
 }
 
@@ -693,6 +897,14 @@ function getBodyParagraph(docType: FinanceDocType, data: NormalizedStudentDocDat
 
     case "tax":
       return `This is to officially certify that <b>${data.name}</b>, enrolled as a bona fide student in <b>${data.program}</b> (Reg No: <b>${data.id}</b>), has deposited the tuition charges detailed below for <b>${data.academicYear}</b>. This certificate is issued to enable the parent, guardian, or student to claim legitimate tax exemption benefits under <b>Section 80C</b> or <b>Section 80E</b> of the Indian Income Tax Act, 1961. Certified that no capitation fee or donation has been collected.`;
+
+    case "exam_permission": {
+      const reasonText = options?.permissionRequest?.reason || "Educational hardship and academic condonation";
+      return `Pursuant to the statutory authority vested under <b>VFSTR Examination Ordinance 2026–27 Clause 8.2</b> and following formal evaluation by the Dean of Student Affairs and Academic Counsellor, provisional permission is hereby granted to <b>${data.name}</b> (Reg No: <b>${data.id}</b>), enrolled in <b>${data.program}</b>, to appear for the <b>Semester End Examinations (${data.academicYear})</b>.<br><br>The candidate submitted a formal condonation request under category <i>"${reasonText}"</i>. Following comprehensive verification of academic standing, conditional examination clearance is hereby ordered.`;
+    }
+
+    case "admit_card":
+      return `Official Examination Hall Ticket for Semester End Examinations (Winter 2026–27) for <b>${data.name}</b> (Reg No: <b>${data.id}</b>), pursuing <b>${data.program}</b> at VFSTR Deemed to be University.`;
   }
 }
 
@@ -714,6 +926,7 @@ export function generateFinanceDocumentHtml(
 
   const currentDate =
     options?.docDate ||
+    options?.permissionRequest?.reviewedAt ||
     new Date().toLocaleDateString("en-IN", {
       day: "2-digit",
       month: "short",
@@ -722,19 +935,96 @@ export function generateFinanceDocumentHtml(
 
   const certRef =
     options?.certRef ||
+    options?.permissionRequest?.letterRef ||
     `VFSTR-${docType.toUpperCase()}-2026-${data.id.replace(/[^0-9]/g, "").padStart(4, "0")}`;
+
+  const examElig = getStudentExamEligibility(data.id);
+  const duesBreak = getStudentDuesBreakdown(data.id);
+  const effectiveAdmitStatus: AdmitCardStatus = options?.admitCardStatus || examElig.admitCardStatus;
+  const currentSemDue = options?.currentSemDue ?? duesBreak.currentSemesterDue;
+  const carriedForwardDue = options?.carriedForwardDue ?? duesBreak.carriedForwardDue;
+  const totalDuesVal = duesBreak.totalOutstandingDue > 0 ? duesBreak.totalOutstandingDue : data.totalDue;
+  const condonationRef = examElig.condonationRef || options?.permissionRequest?.letterRef || options?.permissionRequest?.id || "VFSTR-COND-2026";
 
   const logoUrl = options?.logoUrl || "/vignan-logo.png";
   const orgName = "VIGNAN'S FOUNDATION FOR SCIENCE, TECHNOLOGY & RESEARCH";
   const orgShortName = "VFSTR UNIVERSITY";
   const orgTagline = "(Deemed to be University estd. u/s 3 of UGC Act 1956)";
   const orgDepartment = "Student Financial Aid & University Treasury · Vadlamudi, Guntur · AP 522213";
-  const signatoryName = options?.signatoryName || "Dr. K. Ramaswamy, Ph.D.";
-  const signatoryRole = options?.signatoryRole || "Comptroller of Finance & Accounts";
-  const sealSubtext = options?.sealSubtext || "Vadlamudi Campus | Digital Authentication Seal";
+
+  const signatoryName =
+    options?.signatoryName ||
+    options?.permissionRequest?.digitalSignature?.signatoryName ||
+    options?.permissionRequest?.reviewedBy ||
+    (docType === "admit_card"
+      ? "Dr. P. M. V. Rao"
+      : docType === "exam_permission"
+      ? "Dr. K. V. Raman"
+      : "Dr. K. Ramaswamy, Ph.D.");
+
+  const signatoryRole =
+    options?.signatoryRole ||
+    options?.permissionRequest?.digitalSignature?.signatoryRole ||
+    (docType === "admit_card"
+      ? "Controller of Examinations"
+      : docType === "exam_permission"
+      ? "Dean of Student Affairs & Academic Counsellor"
+      : "Comptroller of Finance & Accounts");
+
+  const sealSubtext =
+    options?.sealSubtext ||
+    options?.permissionRequest?.digitalSignature?.sealText ||
+    (docType === "admit_card"
+      ? `Vadlamudi Campus | Controller of Examinations Official Stamp (Ref: ${certRef})`
+      : docType === "exam_permission"
+      ? `Vadlamudi Campus | Digital Condonation Stamp (Ref: ${certRef})`
+      : "Vadlamudi Campus | Digital Authentication Seal");
+
   const footerNote =
     options?.footerNote ||
     `This is an authentic digitally generated document from VFSTR finDeck Central Financial Core. Verify reference: ${certRef} on vfstr.feewise.edu.in`;
+
+  // Dynamic status badge and undertaking block for admit card
+  let admitCardStatusBadge = "";
+  let duesUndertakingBlock = "";
+
+  if (effectiveAdmitStatus === "PROVISIONAL_DUES") {
+    admitCardStatusBadge = `<span class="type-badge" style="background:#d97706;color:#ffffff;">PROVISIONAL ADMIT CARD (PENDING DUES NOTICE)</span>`;
+    const carryDetail = carriedForwardDue > 0 ? ` (Current Sem: ${inr(currentSemDue)}, Carried Forward Arrears: ${inr(carriedForwardDue)})` : "";
+    duesUndertakingBlock = `
+    <div style="margin-top:14px;padding:12px 14px;border:1.5px dashed #d97706;background:#fffbeb;border-radius:6px;font-size:11px;color:#92400e;line-height:1.5;">
+      <div style="font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:6px;">
+        ⚠️ STATUTORY PENDING DUES NOTICE &amp; MANDATORY UNDERTAKING (CLAUSE 4.2 / 8.2)
+      </div>
+      This candidate has an outstanding fee liability of <b>${inr(totalDuesVal)}</b>${carryDetail}. 
+      In accordance with University policy, this admit card is issued provisionally to safeguard the scholar's academic continuity.<br>
+      <b>Mandatory Undertaking:</b> The scholar undertakes to clear all pending institutional liabilities prior to the publication of semester end examination results. Failure to settle balance will result in provisional withholding of semester grade cards and degree transcripts.
+    </div>`;
+  } else if (effectiveAdmitStatus === "CONDONED_ELIGIBLE") {
+    admitCardStatusBadge = `<span class="type-badge" style="background:#059669;color:#ffffff;">CONDONED ADMIT CARD (DEAN CONDONATION ORDER)</span>`;
+    duesUndertakingBlock = `
+    <div style="margin-top:14px;padding:12px 14px;border:1.5px solid #059669;background:#ecfdf5;border-radius:6px;font-size:11px;color:#065f46;line-height:1.5;">
+      <div style="font-weight:700;margin-bottom:4px;">
+        ✅ DEAN OF STUDENT AFFAIRS CONDONATION ENDORSEMENT (REF: ${condonationRef})
+      </div>
+      Attendance/dues condition formally condoned under Special Executive Ordinance Clause 8.2 with digitally signed Counsellor Approval. Provisional hall ticket cleared. Candidate is fully authorized for examination entry.
+    </div>`;
+  } else if (effectiveAdmitStatus === "BLOCKED_ATTENDANCE") {
+    admitCardStatusBadge = `<span class="type-badge" style="background:#ef4444;color:#ffffff;">BLOCKED ADMIT CARD (ATTENDANCE &lt; 75%)</span>`;
+    duesUndertakingBlock = `
+    <div style="margin-top:14px;padding:14px 16px;border:2px solid #ef4444;background:#fef2f2;border-radius:6px;font-size:11px;color:#991b1b;line-height:1.5;">
+      <div style="font-weight:800;font-size:12px;margin-bottom:4px;">
+        ⛔ ADMIT CARD BLOCKED: STATUTORY ATTENDANCE DEFICIT
+      </div>
+      Candidate attendance (${examElig.currentAttendance.toFixed(1)}%) is below the mandatory 75.0% threshold. Examination entry is prohibited under VFSTR Examination Ordinance Clause 8.1 unless a formal Condonation Petition is approved by the Dean of Student Affairs.
+    </div>`;
+  } else {
+    admitCardStatusBadge = `<span class="type-badge" style="background:#4338ca;color:#ffffff;">REGULAR ADMIT CARD (ALL CLEAR)</span>`;
+    duesUndertakingBlock = `
+    <div style="margin-top:14px;padding:10px 14px;border:1px solid #c7d2fe;background:#eef2ff;border-radius:6px;font-size:11px;color:#3730a3;line-height:1.5;">
+      <b>✅ REGULAR STATUTORY CLEARANCE:</b> Verified zero outstanding dues (₹0) and compliant semester attendance (${examElig.currentAttendance.toFixed(1)}% ≥ 75.0%) under VFSTR Examination Ordinance.
+    </div>`;
+  }
 
   // Get sheet snippet
   let sheetHtml = getSheetTemplate(docType);
@@ -767,14 +1057,23 @@ export function generateFinanceDocumentHtml(
         ? "For Employer Allowance, Government Scholarship & Corporate Sponsorship Claims"
         : docType === "statement"
         ? "Head-wise Academic Demands, Credits & Verified Settlements Ledger"
+        : docType === "exam_permission"
+        ? "Issued under VFSTR Examination Ordinance 2026-27 Clause 8.2 (Condonation Order)"
+        : docType === "admit_card"
+        ? "Authorized Semester End Examination Hall Ticket (Winter 2026–27)"
         : "Official Attestation of Regular Full-Time Enrollment & Good Standing",
-    "{{STUDENT_NAME}}": data.name,
-    "{{REG_NO}}": data.id,
-    "{{PROGRAM}}": data.program,
+    "{{ADMIT_CARD_STATUS_BADGE}}": admitCardStatusBadge,
+    "{{DUES_UNDERTAKING_BLOCK}}": duesUndertakingBlock,
+    "{{CURRENT_SEM_DUE}}": inr(currentSemDue),
+    "{{CARRIED_FORWARD_DUE}}": inr(carriedForwardDue),
+    "{{CONDONATION_REF}}": condonationRef,
+    "{{STUDENT_NAME}}": options?.permissionRequest?.studentName || data.name,
+    "{{REG_NO}}": options?.permissionRequest?.studentId || data.id,
+    "{{PROGRAM}}": options?.permissionRequest?.programme || data.program,
     "{{ACADEMIC_YEAR}}": data.academicYear,
     "{{TOTAL_DEMAND}}": inr(data.totalDemand),
     "{{TOTAL_PAID}}": inr(data.totalPaid),
-    "{{TOTAL_DUE}}": inr(data.totalDue),
+    "{{TOTAL_DUE}}": inr(totalDuesVal),
     "{{TOTAL_GROSS}}": inr(data.totalGross),
     "{{FEE_STATUS}}": data.feeStatus,
     "{{BODY_PARAGRAPH}}": getBodyParagraph(docType, data, options),
@@ -782,6 +1081,30 @@ export function generateFinanceDocumentHtml(
     "{{SIGNATORY_ROLE}}": signatoryRole,
     "{{SEAL_SUBTEXT}}": sealSubtext,
     "{{FOOTER_NOTE}}": footerNote,
+    "{{ATTENDANCE_RECORDED}}": options?.permissionRequest
+      ? `${options.permissionRequest.snapshottedAttendance.toFixed(1)}%`
+      : `${examElig.currentAttendance.toFixed(1)}%`,
+    "{{ATTENDANCE_STATUS}}":
+      effectiveAdmitStatus === "CONDONED_ELIGIBLE"
+        ? "Condoned (Dean Discretion)"
+        : examElig.currentAttendance < 75.0
+        ? "Deficit (< 75%)"
+        : "Satisfied (≥ 75%)",
+    "{{DUES_RECORDED}}": options?.permissionRequest
+      ? inr(options.permissionRequest.snapshottedDues)
+      : inr(totalDuesVal),
+    "{{DUES_STATUS}}":
+      totalDuesVal > 0
+        ? "Provisional Moratorium"
+        : "Fully Cleared",
+    "{{STUDENT_REASON}}": options?.permissionRequest
+      ? `${options.permissionRequest.reason} — "${options.permissionRequest.supportingInfo}"`
+      : "Academic Condonation Petition",
+    "{{COUNSELLOR_TERMS}}":
+      options?.permissionRequest?.counsellorNotes ||
+      "Provisional hall ticket cleared. Candidate permitted to write examinations. Balance must be cleared before the announcement of semester results.",
+    "{{SIGNATURE_IMAGE}}":
+      options?.permissionRequest?.digitalSignature?.signatureImage || "/k-v-raman-signature.png",
   };
 
   for (const [token, val] of Object.entries(tokens)) {

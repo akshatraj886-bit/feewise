@@ -1,10 +1,68 @@
-import { students, transactions, feeStructures, feeHeads, ageing, inr, instalmentPlans } from "../database/finance-data";
+import {
+  students,
+  admittedStudents,
+  prospectiveStudents,
+  allStudentsWithProspective,
+  transactions,
+  feeStructures,
+  feeHeads,
+  ageing,
+  inr,
+  instalmentPlans,
+  scholarshipSlabs,
+  type ScholarshipSlab,
+  type AdmissionMode,
+  type AdmissionStatus,
+  type Student,
+} from "../database/finance-data";
 import { feeAllocations } from "../database/fee-allocations";
 import { scholarshipStatus } from "../database/scholarship-status";
 import { paymentReceipts } from "../database/payment-receipts";
 import { recordSqlPayment, getSqlDatabaseState } from "../database/sql-store";
+import {
+  type SemesterRecord,
+  type CarriedForwardDuesItem,
+  type SemesterCarryForwardResult,
+  benchmarkSemesterHistories,
+  computeSemesterCarryForward,
+} from "../database/semester-academic-history";
+import {
+  type ExamPermissionRequest,
+  type DigitalSignatureInfo,
+  examPermissionRequestsStore,
+  getStudentPermissionRequests,
+  createPermissionRequest,
+  getAllPermissionRequests,
+  updatePermissionRequestStatus,
+  getPermissionRequestById,
+  getPendingPermissionRequestsCount,
+  getPermissionRequestsSummary,
+} from "../database/exam-permission-requests";
 
-export { feeAllocations, scholarshipStatus, paymentReceipts };
+export {
+  feeAllocations,
+  scholarshipStatus,
+  paymentReceipts,
+  admittedStudents,
+  prospectiveStudents,
+  allStudentsWithProspective,
+  scholarshipSlabs,
+  type ScholarshipSlab,
+  feeStructures,
+  type SemesterRecord,
+  type CarriedForwardDuesItem,
+  type SemesterCarryForwardResult,
+  computeSemesterCarryForward,
+  type ExamPermissionRequest,
+  type DigitalSignatureInfo,
+  getStudentPermissionRequests,
+  createPermissionRequest,
+  getAllPermissionRequests,
+  updatePermissionRequestStatus,
+  getPermissionRequestById,
+  getPendingPermissionRequestsCount,
+  getPermissionRequestsSummary,
+};
 
 export const snapshot = {
   asOf: "2026-09-11T10:21:00+05:30", academicYear: "2026–27",
@@ -63,7 +121,7 @@ const historicalReceipts = [
   { student: "251FA04E58", id: "RCPT-6206", date: "20 Jul 2026", ledger: 102000 },
 ];
 export function getStudentAccount(id: string) {
-  const student = students.find(s => s.id === id);
+  const student = students.find(s => s.id === id) || prospectiveStudents.find(s => s.id === id);
   if (!student) return null;
 
   let fees: {
@@ -182,6 +240,48 @@ export type StudentResolutionResult =
   | { status: "ambiguous"; candidates: (typeof students)[number][] }
   | { status: "not_found" };
 
+export const benchmarkHistoricalStudents: Student[] = [
+  {
+    id: "251FA04E58",
+    name: "Chaitanya Varma",
+    programme: "B.Tech CSE",
+    category: "General",
+    demand: 120000,
+    paid: 72000,
+    overdue: 48000,
+    initials: "CV",
+    scholarship: 20000,
+    concession: 0,
+    instalmentPlan: "3-instalment",
+  },
+  {
+    id: "251FA04E42",
+    name: "Aditya Verma",
+    programme: "B.Tech ECE",
+    category: "General",
+    demand: 130000,
+    paid: 75000,
+    overdue: 55000,
+    initials: "AV",
+    scholarship: 0,
+    concession: 0,
+    instalmentPlan: "2-instalment",
+  },
+  {
+    id: "251FA04E36",
+    name: "Siddharth Nair",
+    programme: "B.Tech Mechanical",
+    category: "General",
+    demand: 125000,
+    paid: 80000,
+    overdue: 45000,
+    initials: "SN",
+    scholarship: 0,
+    concession: 0,
+    instalmentPlan: "2-instalment",
+  },
+];
+
 /**
  * Deterministic 5-Tier Student Identity Resolution:
  * Priority:
@@ -191,20 +291,24 @@ export type StudentResolutionResult =
  * 4. Unique name token (First/Last name when unambiguous)
  * 5. Ambiguous match -> Returns candidate list for clarification (DO NOT GUESS)
  */
-export function resolveStudentIdentity(query: string): StudentResolutionResult {
+export function resolveStudentIdentity(query: string, customPool?: Student[]): StudentResolutionResult {
   const raw = query.trim();
   if (!raw) return { status: "not_found" };
   const q = raw.toLowerCase();
 
+  const searchPool = customPool && customPool.length > 0
+    ? customPool
+    : [...allStudentsWithProspective, ...benchmarkHistoricalStudents];
+
   // Tier 1: Exact Student ID match
-  for (const s of students) {
+  for (const s of searchPool) {
     if (q === s.id.toLowerCase() || q.includes(s.id.toLowerCase())) {
       return { status: "matched", student: s, rank: "exact_id" };
     }
   }
 
   // Tier 2: Exact Full Name match
-  for (const s of students) {
+  for (const s of searchPool) {
     if (q === s.name.toLowerCase() || q.includes(s.name.toLowerCase())) {
       return { status: "matched", student: s, rank: "exact_name" };
     }
@@ -213,7 +317,7 @@ export function resolveStudentIdentity(query: string): StudentResolutionResult {
   // Tier 3: Normalized Full Name match (no whitespace/punctuation)
   const normQ = q.replace(/[^a-z0-9]/g, "");
   if (normQ.length >= 4) {
-    for (const s of students) {
+    for (const s of searchPool) {
       const normName = s.name.toLowerCase().replace(/[^a-z0-9]/g, "");
       if (normQ.includes(normName) || normName.includes(normQ)) {
         return { status: "matched", student: s, rank: "normalized_name" };
@@ -224,34 +328,58 @@ export function resolveStudentIdentity(query: string): StudentResolutionResult {
   // Tier 4: Token-based matching (First or Last name)
   const stopWords = new Set([
     "the", "for", "and", "student", "account", "kholo", "dikhao", "open", "show", "check",
-    "batao", "ka", "ki", "ke", "dues", "due", "fees", "fee", "status", "profile", "mera", "meri",
-    "detail", "details", "info", "information", "record", "records", "his", "her", "give", "me"
+    "batao", "ka", "ki", "ke", "dues", "due", "fees", "fee", "status", "profile", "mera", "meri", "mere", "apna", "apni",
+    "detail", "details", "info", "information", "record", "records", "his", "her", "give", "me",
+    "what", "is", "are", "how", "much", "many", "balance", "balances", "outstanding", "paid", "total",
+    "payment", "receipt", "receipts", "about", "tell", "view", "karo", "please",
+    "admission", "admissions", "admitted", "prospective", "intending", "mode", "modes",
+    "scholarship", "scholarships", "concession", "eligibility", "counseling", "intake", "seat",
+    "offer", "package", "rules", "rule", "slabs", "slab",
+    "kitna", "kitni", "kitne", "paise", "paisa", "baki", "hai", "hain", "kiska", "kiski", "kisko", "kaha", "kab", "karein", "hoga", "hogi", "bhai", "kuch", "chahiye"
   ]);
-  const tokens = q.split(/[\s,.'"-]+/).filter(t => t.length >= 3 && !stopWords.has(t));
+  const tokens = q.split(/[^a-z0-9]+/).filter(t => t.length >= 3 && !stopWords.has(t));
 
-  const matchedCandidates: (typeof students)[number][] = [];
-  for (const s of students) {
-    const sTokens = s.name.toLowerCase().split(/\s+/);
-    // Check if any significant token matches student's first/last name
-    if (tokens.some(t => sTokens.some(st => st === t || (st.length > 3 && t.length > 3 && (st.startsWith(t) || t.startsWith(st)))))) {
-      if (!matchedCandidates.some(m => m.id === s.id)) {
-        matchedCandidates.push(s);
+  if (tokens.length >= 2) {
+    // For multi-word queries (e.g. "Akshat Raj", "Rahul Sharma"), candidate must match ALL tokens
+    const allTokenMatches = searchPool.filter(s => {
+      const sLower = s.name.toLowerCase();
+      return tokens.every(t => sLower.includes(t));
+    });
+
+    if (allTokenMatches.length === 1) {
+      return { status: "matched", student: allTokenMatches[0], rank: "unique_token" };
+    }
+    if (allTokenMatches.length > 1) {
+      return { status: "ambiguous", candidates: allTokenMatches };
+    }
+    return { status: "not_found" };
+  }
+
+  if (tokens.length === 1) {
+    const singleToken = tokens[0];
+    const matchedCandidates: Student[] = [];
+    for (const s of searchPool) {
+      const sTokens = s.name.toLowerCase().split(/\s+/);
+      if (sTokens.some(st => st === singleToken)) {
+        if (!matchedCandidates.some(m => m.id === s.id)) {
+          matchedCandidates.push(s);
+        }
       }
     }
-  }
 
-  if (matchedCandidates.length === 1) {
-    return { status: "matched", student: matchedCandidates[0], rank: "unique_token" };
-  }
-  if (matchedCandidates.length > 1) {
-    // Prioritize primary first-name exact match when unambiguous
-    const firstNameMatches = matchedCandidates.filter(s =>
-      tokens.some(t => s.name.toLowerCase().split(/\s+/)[0] === t)
-    );
-    if (firstNameMatches.length === 1) {
-      return { status: "matched", student: firstNameMatches[0], rank: "unique_token" };
+    if (matchedCandidates.length === 1) {
+      return { status: "matched", student: matchedCandidates[0], rank: "unique_token" };
     }
-    return { status: "ambiguous", candidates: matchedCandidates };
+    if (matchedCandidates.length > 1) {
+      // Prioritize exact first name match if unambiguous
+      const firstNameMatches = matchedCandidates.filter(s =>
+        s.name.toLowerCase().split(/\s+/)[0] === singleToken
+      );
+      if (firstNameMatches.length === 1) {
+        return { status: "matched", student: firstNameMatches[0], rank: "unique_token" };
+      }
+      return { status: "ambiguous", candidates: matchedCandidates };
+    }
   }
 
   return { status: "not_found" };
@@ -346,6 +474,474 @@ export function getProactiveInstitutionalSignals() {
   };
 }
 
+export interface ScholarshipTimelineResult {
+  studentId: string;
+  isDiscontinued: boolean;
+  currentStatus: "Active" | "AtRisk" | "Discontinued";
+  discontinuationSemester?: SemesterRecord;
+  discontinuationReason?: string;
+  history: SemesterRecord[];
+  originalScholarshipAmount: number;
+  totalScholarshipRevoked: number;
+  recalculatedDemand: number;
+}
+
+/**
+ * Returns complete semester-by-semester academic and fee records for a student.
+ * Single authoritative source of truth across StudentDrawer, Student Portal, and AI Engine.
+ */
+export function getStudentAcademicHistory(studentId: string): SemesterRecord[] {
+  const normId = (studentId || "").toUpperCase().trim();
+  let records: SemesterRecord[] = [];
+  if (benchmarkSemesterHistories[normId]) {
+    records = JSON.parse(JSON.stringify(benchmarkSemesterHistories[normId]));
+  } else {
+    // Fallback for any other enrolled student: synthesize 2 realistic semesters.
+    // KEY FIX: Sem 1 is treated as the historical (already-paid) semester.
+    // Sem 2 is the active semester. Payment split: Sem 1 fully paid, Sem 2 gets
+    // whatever is left. This ensures totalOutstandingDue == student.demand - student.paid exactly.
+    const student = allStudentsWithProspective.find(s => s.id.toUpperCase() === normId) || students.find(s => s.id.toUpperCase() === normId);
+    if (!student) return [];
+
+    const account = getStudentAccount(student.id);
+    const gross = account ? account.gross : student.demand + (student.scholarship || 0);
+    const scholarship = student.scholarship || 0;
+    const paid = student.paid;
+    const totalDue = Math.max(0, student.demand - student.paid);
+
+    const riskStatus = scholarshipStatus[student.id];
+    const gpa = riskStatus ? riskStatus.cumulativeGPA : 8.2;
+    const att = riskStatus ? riskStatus.attendance : 88.0;
+
+    const explicitClean = new Set(["251FA04E03", "251FA04777", "251FA04E17", "251FA04645", "251FA04001"]);
+    const explicitCarry = new Set(["251FA04E58", "251FA04E36", "251FA04E42"]);
+
+    let _hashVal = 0;
+    for (let i = 0; i < student.id.length; i++) {
+      _hashVal = ((_hashVal << 5) - _hashVal + student.id.charCodeAt(i)) | 0;
+    }
+    const h = Math.abs(_hashVal);
+
+    const isClean = explicitClean.has(normId) || totalDue === 0;
+    const shouldHaveCarry = !isClean && (explicitCarry.has(normId) || (h % 100 < 46));
+
+    const sem1Gross = Math.round(gross / 2);
+    const sem2Gross = gross - sem1Gross;
+    const sem1Scholarship = Math.round(scholarship / 2);
+    const sem2Scholarship = gpa < 7.0 ? 0 : (scholarship - sem1Scholarship);
+
+    // Ensure net demands match student.demand exactly so totalDue = student.demand - student.paid
+    const effectiveDemand = gpa < 7.0 ? (sem1Gross - sem1Scholarship + sem2Gross) : student.demand;
+    const sem1Net = Math.round(effectiveDemand / 2);
+    const sem2Net = effectiveDemand - sem1Net;
+
+    if (!shouldHaveCarry) {
+      // Clean or standard without carry forward:
+      // Sem 1 is historical and fully cleared; active Sem 2 bears the exact total remaining dues.
+      const sem2Net = totalDue;
+
+      records = [
+        {
+          studentId: student.id,
+          academicYear: "2025–26",
+          yearNo: 1,
+          semNo: 1,
+          semLabel: "Sem 1 (Jul–Nov 2025)",
+          cgpa: Math.min(10, gpa + 0.2),
+          cumulativeCgpa: Math.min(10, gpa + 0.2),
+          attendance: Math.min(100, att + 2),
+          grossFee: sem1Gross,
+          scholarshipApplied: sem1Scholarship,
+          scholarshipPercent: student.scholarshipPercent || (scholarship > 0 ? 50 : 0),
+          netDemand: sem1Net,
+          paid: sem1Net,
+          outstanding: 0,
+          scholarshipStatus: (gpa < 7.0) ? "Discontinued" : (gpa < 7.5 ? "AtRisk" : "Active"),
+        },
+        {
+          studentId: student.id,
+          academicYear: "2026–27",
+          yearNo: 2,
+          semNo: 2,
+          semLabel: "Sem 2 (Jan–May 2026)",
+          cgpa: gpa,
+          cumulativeCgpa: gpa,
+          attendance: att,
+          grossFee: sem2Gross,
+          scholarshipApplied: sem2Scholarship,
+          scholarshipPercent: gpa < 7.0 ? 0 : (student.scholarshipPercent || (scholarship > 0 ? 50 : 0)),
+          netDemand: sem2Net,
+          paid: 0,
+          outstanding: totalDue,
+          scholarshipStatus: (gpa < 7.0) ? "Discontinued" : (gpa < 7.5 ? "AtRisk" : "Active"),
+          discontinuationReason: gpa < 7.0 ? `CGPA ${gpa.toFixed(2)} < 7.0 minimum continuation threshold. Scholarship revoked.` : undefined,
+        },
+      ];
+    } else {
+      // Deterministic carry forward assigned (~1002 students):
+      // Split totalDue into carriedDue and currentSemDue
+      const possibleArrearAmounts = [6000, 8000, 10000, 12000, 15000, 18000, 20000, 22000, 25000];
+      let desiredCarry = possibleArrearAmounts[h % possibleArrearAmounts.length];
+      if (totalDue > 8000) {
+        desiredCarry = Math.min(desiredCarry, Math.max(4000, Math.floor((totalDue * 0.4) / 1000) * 1000));
+      } else if (totalDue > 1000) {
+        desiredCarry = Math.max(500, Math.floor(totalDue / 2));
+      } else {
+        desiredCarry = Math.max(1, Math.floor(totalDue / 2));
+      }
+      desiredCarry = Math.min(desiredCarry, totalDue);
+
+      const currentSemDue = totalDue - desiredCarry;
+
+      // Originating prior semester based on student's current year
+      let priorSemNo = 1;
+      let priorSemLabel = "Sem 1 (Jul–Nov 2025)";
+      let priorAcadYear = "2024–25";
+      if (student.yearLabel?.includes("2nd Year") || student.semester === 3) {
+        priorSemNo = 2; priorSemLabel = "Sem 2 (Jan–May 2026)"; priorAcadYear = "2025–26";
+      } else if (student.yearLabel?.includes("3rd Year") || student.semester === 5) {
+        priorSemNo = 4; priorSemLabel = "Sem 4 (Jan–May 2026)"; priorAcadYear = "2025–26";
+      } else if (student.yearLabel?.includes("4th Year") || student.semester === 7) {
+        priorSemNo = 6; priorSemLabel = "Sem 6 (Jan–May 2026)"; priorAcadYear = "2025–26";
+      }
+
+      records = [
+        {
+          studentId: student.id,
+          academicYear: priorAcadYear,
+          yearNo: Math.max(1, Math.ceil(priorSemNo / 2)),
+          semNo: priorSemNo,
+          semLabel: priorSemLabel,
+          cgpa: Math.min(10, gpa + 0.3),
+          cumulativeCgpa: Math.min(10, gpa + 0.3),
+          attendance: Math.min(100, att + 3),
+          grossFee: sem1Gross,
+          scholarshipApplied: sem1Scholarship,
+          scholarshipPercent: student.scholarshipPercent || (scholarship > 0 ? 50 : 0),
+          netDemand: sem1Net,
+          paid: Math.max(0, sem1Net - desiredCarry),
+          outstanding: desiredCarry,
+          scholarshipStatus: "Active" as const,
+        },
+        {
+          studentId: student.id,
+          academicYear: "2026–27",
+          yearNo: 2,
+          semNo: priorSemNo + 1,
+          semLabel: `Sem ${priorSemNo + 1} (Jan–May 2027)`,
+          cgpa: gpa,
+          cumulativeCgpa: gpa,
+          attendance: att,
+          grossFee: sem2Gross,
+          scholarshipApplied: sem2Scholarship,
+          scholarshipPercent: gpa < 7.0 ? 0 : (student.scholarshipPercent || (scholarship > 0 ? 50 : 0)),
+          netDemand: currentSemDue,
+          paid: 0,
+          outstanding: totalDue,
+          scholarshipStatus: (gpa < 7.0) ? "Discontinued" : (gpa < 7.5 ? "AtRisk" : "Active"),
+          discontinuationReason: gpa < 7.0 ? `CGPA ${gpa.toFixed(2)} < 7.0 minimum continuation threshold. Scholarship revoked.` : undefined,
+        },
+      ];
+    }
+  }
+
+  return computeSemesterCarryForward(records).history;
+}
+
+/**
+ * Single source of truth for student dues carry-forward breakdown.
+ * Decomposes current semester dues from historical carried-forward arrears.
+ */
+export function getStudentDuesBreakdown(studentIdOrName: string): SemesterCarryForwardResult {
+  const norm = (studentIdOrName || "").toUpperCase().trim();
+  const res = resolveStudentIdentity(norm);
+  const sId = res.status === "matched" ? res.student.id : norm;
+  const history = getStudentAcademicHistory(sId);
+  return computeSemesterCarryForward(history);
+}
+
+/**
+ * Evaluates academic history and auto-recalculates scholarship eligibility.
+ * Thresholds:
+ * - CGPA >= 7.5: Active (Safe)
+ * - 7.0 <= CGPA < 7.5: AtRisk (Warning, scholarship maintained)
+ * - CGPA < 7.0: Discontinued (Scholarship revoked starting that semester, full fee applied)
+ */
+export function computeScholarshipEligibilityTimeline(studentId: string): ScholarshipTimelineResult {
+  const normId = (studentId || "").toUpperCase().trim();
+  const rawHistory = getStudentAcademicHistory(normId);
+  let isDiscontinued = false;
+  let discontinuationSem: SemesterRecord | undefined = undefined;
+  let discontinuationReason: string | undefined = undefined;
+  let totalRevoked = 0;
+  let originalScholarship = 0;
+
+  const processedHistory = rawHistory.map((sem) => {
+    originalScholarship += sem.scholarshipApplied;
+    
+    // Check if scholarship was discontinued in this semester or an earlier semester
+    if (!isDiscontinued && sem.cumulativeCgpa < 7.0) {
+      isDiscontinued = true;
+      discontinuationSem = sem;
+      discontinuationReason = sem.discontinuationReason || `CGPA ${sem.cumulativeCgpa.toFixed(2)} in ${sem.semLabel} < 7.0 minimum continuation threshold. Scholarship revoked and full gross fee applied.`;
+    }
+
+    if (isDiscontinued) {
+      const revokedAmt = sem.scholarshipApplied > 0 ? sem.scholarshipApplied : 0;
+      totalRevoked += revokedAmt;
+      const revisedNetDemand = sem.grossFee;
+      const revisedOutstanding = Math.max(0, revisedNetDemand - sem.paid);
+
+      return {
+        ...sem,
+        scholarshipApplied: 0,
+        scholarshipPercent: 0,
+        netDemand: revisedNetDemand,
+        outstanding: revisedOutstanding,
+        scholarshipStatus: "Discontinued" as const,
+        discontinuationReason: sem.discontinuationReason || discontinuationReason,
+      };
+    } else if (sem.cumulativeCgpa < 7.5) {
+      return {
+        ...sem,
+        scholarshipStatus: "AtRisk" as const,
+      };
+    } else {
+      return {
+        ...sem,
+        scholarshipStatus: "Active" as const,
+      };
+    }
+  });
+
+  const latestSem = processedHistory[processedHistory.length - 1];
+  const currentStatus: "Active" | "AtRisk" | "Discontinued" = isDiscontinued
+    ? "Discontinued"
+    : (latestSem ? latestSem.scholarshipStatus : "Active");
+
+  const currentDemand = latestSem ? latestSem.netDemand : 0;
+
+  return {
+    studentId,
+    isDiscontinued,
+    currentStatus,
+    discontinuationSemester: discontinuationSem,
+    discontinuationReason,
+    history: processedHistory,
+    originalScholarshipAmount: originalScholarship,
+    totalScholarshipRevoked: totalRevoked,
+    recalculatedDemand: currentDemand,
+  };
+}
+
+export type AdmitCardStatus = "CLEAN_ELIGIBLE" | "PROVISIONAL_DUES" | "CONDONED_ELIGIBLE" | "BLOCKED_ATTENDANCE";
+
+export interface ExamEligibilityResult {
+  studentId: string;
+  studentName: string;
+  programme: string;
+  isEligible: boolean;
+  status: "Eligible" | "Not Eligible";
+  outstandingDues: number;
+  currentAttendance: number;
+  attendance: number;
+  ineligibleCategory: "None" | "DuesOnly" | "AttendanceOnly" | "Both";
+  ineligibilityReason: "None" | "DuesOnly" | "AttendanceOnly" | "Both";
+  reasons: string[];
+  primaryReason: string;
+  statusDescription: string;
+  cfoVerified: boolean;
+  isCondoned?: boolean;
+  condonationRef?: string;
+  latestPermissionRequest?: ExamPermissionRequest;
+  activePermissionRequest?: ExamPermissionRequest;
+  allPermissionRequests: ExamPermissionRequest[];
+  duesBreakdown?: SemesterCarryForwardResult;
+  canGenerateAdmitCard: boolean;
+  admitCardStatus: AdmitCardStatus;
+  admitCardStatusDescription: string;
+}
+
+/**
+ * Single Source of Truth for Student Examination Eligibility & Automated Admit Card Issuance (Steps 4, 5, 6 Core).
+ * Evaluates dual statutory institutional criteria:
+ * 1. Outstanding Dues: Unified across current demand + carried-forward arrears (VFSTR Clause 4.2).
+ * 2. Current Attendance: Must maintain >= 75.0% attendance in current semester.
+ * 
+ * Statutory Admit Card rules:
+ * - Attendance >= 75% and zero dues -> Clean regular admit card (CLEAN_ELIGIBLE)
+ * - Attendance >= 75% and dues > 0 -> Provisional admit card issued with statutory undertaking (PROVISIONAL_DUES)
+ * - Attendance < 75% and Approved Permission Request -> Condoned admit card with Dean ref (CONDONED_ELIGIBLE)
+ * - Attendance < 75% and no Approved Permission Request -> Blocked strictly (BLOCKED_ATTENDANCE)
+ */
+export function getStudentExamEligibility(studentIdOrName: string): ExamEligibilityResult {
+  const norm = (studentIdOrName || "").toUpperCase().trim();
+  const res = resolveStudentIdentity(norm);
+  const student = res.status === "matched"
+    ? res.student
+    : (allStudentsWithProspective.find(s => s.id.toUpperCase() === norm) || students.find(s => s.id.toUpperCase() === norm));
+
+  const sId = student ? student.id : norm;
+  const sName = student ? student.name : "Unknown Student";
+  const programme = student ? student.programme : "B.Tech";
+
+  const history = getStudentAcademicHistory(sId);
+  const latestSem = history[history.length - 1];
+
+  // Single source of truth for dues: check breakdown
+  const duesBreakdown = getStudentDuesBreakdown(sId);
+  const account = getStudentAccount(sId);
+  const dues = duesBreakdown.totalOutstandingDue > 0
+    ? duesBreakdown.totalOutstandingDue
+    : (latestSem ? latestSem.outstanding : (account ? account.outstanding : (student ? Math.max(0, student.demand - student.paid) : 0)));
+
+  // Single source of truth for attendance: latest semester attendance or scholarshipStatus
+  const attendance = latestSem
+    ? latestSem.attendance
+    : (scholarshipStatus[sId]?.attendance ?? 85.0);
+
+  const reasons: string[] = [];
+  let category: "None" | "DuesOnly" | "AttendanceOnly" | "Both" = "None";
+
+  const hasDues = dues > 0;
+  const hasLowAtt = attendance < 75.0;
+
+  if (hasDues && hasLowAtt) {
+    category = "Both";
+    reasons.push(`Outstanding dues of ${inr(dues)}`);
+    reasons.push(`Attendance: ${attendance.toFixed(1)}% (below mandatory 75% requirement)`);
+  } else if (hasDues) {
+    category = "DuesOnly";
+    reasons.push(`Outstanding dues of ${inr(dues)}`);
+  } else if (hasLowAtt) {
+    category = "AttendanceOnly";
+    reasons.push(`Attendance: ${attendance.toFixed(1)}% (below mandatory 75% requirement)`);
+  }
+
+  const allRequests = getStudentPermissionRequests(sId);
+  const latestPermissionRequest = allRequests[0];
+  const hasApprovedPermission = latestPermissionRequest?.status === "Approved";
+
+  const isEligible = reasons.length === 0 || hasApprovedPermission;
+  const status: "Eligible" | "Not Eligible" = isEligible ? "Eligible" : "Not Eligible";
+  const primaryReason = hasApprovedPermission && reasons.length > 0
+    ? `Provisional Examination Entry Cleared via Dean Condonation Order (${latestPermissionRequest?.letterRef || latestPermissionRequest?.id})`
+    : isEligible
+    ? "Eligible for Examination (Dues Cleared & Attendance >= 75%)"
+    : reasons.join(" and ");
+
+  // Step 6: Automated statutory Admit Card status determination
+  let canGenerateAdmitCard = false;
+  let admitCardStatus: AdmitCardStatus = "CLEAN_ELIGIBLE";
+  let admitCardStatusDescription = "";
+
+  if (hasApprovedPermission && (hasLowAtt || hasDues)) {
+    admitCardStatus = "CONDONED_ELIGIBLE";
+    canGenerateAdmitCard = true;
+    admitCardStatusDescription = `Condoned Admit Card Issued via Dean Order (${latestPermissionRequest?.letterRef || latestPermissionRequest?.id})`;
+  } else if (hasLowAtt) {
+    admitCardStatus = "BLOCKED_ATTENDANCE";
+    canGenerateAdmitCard = false;
+    admitCardStatusDescription = `Admit Card Blocked: Statutory Attendance Breach (${attendance.toFixed(1)}% < 75.0%). Permission Condonation Required.`;
+  } else if (hasDues) {
+    admitCardStatus = "PROVISIONAL_DUES";
+    canGenerateAdmitCard = true;
+    admitCardStatusDescription = `Provisional Admit Card Issued (Outstanding Dues: ${inr(dues)} — Mandatory Undertaking Clause Applied)`;
+  } else {
+    admitCardStatus = "CLEAN_ELIGIBLE";
+    canGenerateAdmitCard = true;
+    admitCardStatusDescription = "Clean Regular Admit Card Issued (Attendance >= 75%, Dues Fully Cleared)";
+  }
+
+  return {
+    studentId: sId,
+    studentName: sName,
+    programme,
+    isEligible,
+    status,
+    outstandingDues: dues,
+    currentAttendance: attendance,
+    attendance,
+    ineligibleCategory: category,
+    ineligibilityReason: category,
+    reasons,
+    primaryReason,
+    statusDescription: primaryReason,
+    cfoVerified: isEligible,
+    isCondoned: hasApprovedPermission,
+    condonationRef: hasApprovedPermission ? (latestPermissionRequest?.letterRef || latestPermissionRequest?.id) : undefined,
+    latestPermissionRequest,
+    activePermissionRequest: latestPermissionRequest,
+    allPermissionRequests: allRequests,
+    duesBreakdown,
+    canGenerateAdmitCard,
+    admitCardStatus,
+    admitCardStatusDescription,
+  };
+}
+
+export interface CohortAdmitCardSummary {
+  totalStudents: number;
+  cleanEligibleCount: number;
+  provisionalDuesCount: number;
+  condonedCount: number;
+  blockedCount: number;
+  carriedForwardArrearsCount: number;
+  totalOutstandingCohortDues: number;
+  students: (ExamEligibilityResult & {
+    student: Student;
+  })[];
+}
+
+
+/**
+ * Bulk admit card generation oversight for Finance Department.
+ * Analyzes entire student roster for clean, provisional, condoned, and blocked admit card statuses.
+ * Result is cached at module level so the 2500+ student loop only runs once per session.
+ */
+let _admitCardSummaryCache: CohortAdmitCardSummary | null = null;
+
+export function invalidateAdmitCardCache() {
+  _admitCardSummaryCache = null;
+}
+
+// Invalidate cache whenever exam permission state changes
+if (typeof window !== "undefined") {
+  window.addEventListener("feewise_exam_permission_updated", invalidateAdmitCardCache);
+}
+
+export function getAllStudentsAdmitCardStatus(): CohortAdmitCardSummary {
+  if (_admitCardSummaryCache) return _admitCardSummaryCache;
+
+  const results = students.map((s) => {
+    const elig = getStudentExamEligibility(s.id);
+    return {
+      ...elig,
+      student: s,
+    };
+  });
+
+  const cleanEligibleCount = results.filter((r) => r.admitCardStatus === "CLEAN_ELIGIBLE").length;
+  const provisionalDuesCount = results.filter((r) => r.admitCardStatus === "PROVISIONAL_DUES").length;
+  const condonedCount = results.filter((r) => r.admitCardStatus === "CONDONED_ELIGIBLE").length;
+  const blockedCount = results.filter((r) => r.admitCardStatus === "BLOCKED_ATTENDANCE").length;
+  const carriedForwardArrearsCount = results.filter((r) => (r.duesBreakdown?.carriedForwardDue || 0) > 0).length;
+  const totalOutstandingCohortDues = results.reduce((sum, r) => sum + r.outstandingDues, 0);
+
+  _admitCardSummaryCache = {
+    totalStudents: results.length,
+    cleanEligibleCount,
+    provisionalDuesCount,
+    condonedCount,
+    blockedCount,
+    carriedForwardArrearsCount,
+    totalOutstandingCohortDues,
+    students: results,
+  };
+  return _admitCardSummaryCache;
+}
+
+
 /**
  * Unified 360-Degree Student Financial Context Constructor
  * Strictly preserves academic-year boundaries and distinguishes current-year from prior-cycle balances.
@@ -368,6 +964,8 @@ export function getUnifiedStudentContext(studentIdOrName: string) {
   const refundInfo = refund.student === student.id ? refund : null;
 
   const hostelFee = account.fees.find(f => f.head === "Hostel");
+  const scholarshipTimeline = computeScholarshipEligibilityTimeline(student.id);
+  const examEligibility = getStudentExamEligibility(student.id);
 
   return {
     status: "matched" as const,
@@ -389,6 +987,159 @@ export function getUnifiedStudentContext(studentIdOrName: string) {
     refundInfo,
     reconciliationNote: account.reconciliation,
     payments: account.payments,
+    admissionMode: student.admissionMode,
+    admissionStatus: student.admissionStatus,
+    entranceRank: student.entranceRank,
+    entranceScoreValue: student.entranceScoreValue,
+    entranceQuotaCategory: student.entranceQuotaCategory,
+    scholarshipSlabId: student.scholarshipSlabId,
+    scholarshipPercent: student.scholarshipPercent,
+    scholarshipEligibilityNote: scholarshipTimeline.isDiscontinued
+      ? `⚠️ Scholarship Discontinued: ${scholarshipTimeline.discontinuationReason}`
+      : student.scholarshipEligibilityNote,
+    academicHistory: scholarshipTimeline.history,
+    scholarshipTimeline,
+    isScholarshipDiscontinued: scholarshipTimeline.isDiscontinued,
+    examEligibility,
+    duesBreakdown: examEligibility.duesBreakdown,
+    canGenerateAdmitCard: examEligibility.canGenerateAdmitCard,
+    admitCardStatus: examEligibility.admitCardStatus,
+    admitCardStatusDescription: examEligibility.admitCardStatusDescription,
+  };
+}
+
+/**
+ * Single Source of Truth: Auto-derives applicable fee structure, scholarship amount,
+ * eligibility criteria, and net payable based on Degree Programme + Admission Mode + Entrance Score.
+ * Reads directly from authoritative `feeStructures` and `scholarshipSlabs` tables.
+ */
+export function deriveFeeAndScholarship(
+  programme: string,
+  mode: AdmissionMode,
+  rankOrScore?: number | string,
+  subQuotaOrCategory?: string
+) {
+  // 1. Locate relevant fee structure rows for programme and route
+  const activeRows = feeStructures.filter(
+    (f) => f.programme === programme && f.active
+  );
+  const routeRows = activeRows.filter(
+    (f) => f.route === mode || f.route.toLowerCase().includes(mode.toLowerCase())
+  );
+  const targetRows =
+    routeRows.length > 0
+      ? routeRows
+      : activeRows.length > 0
+      ? activeRows
+      : feeStructures.filter((f) => f.programme === "B.Tech CSE" && f.active);
+
+  const tuitionItem = targetRows.find((f) => f.head === "Tuition");
+  const tuitionAmount = tuitionItem ? tuitionItem.amount : 90000;
+  const grossFee = targetRows.reduce((sum, f) => sum + f.amount, 0);
+
+  // 2. Lookup matching slab from scholarshipSlabs (Single Source of Truth)
+  const modeSlabs = scholarshipSlabs.filter((s) => s.admissionMode === mode);
+
+  let matchedSlab: ScholarshipSlab = modeSlabs[modeSlabs.length - 1] || {
+    id: "default",
+    admissionMode: mode,
+    tierName: "Standard Admission",
+    criteriaLabel: "General",
+    waiverPercent: 0,
+    description: "Standard tuition fee",
+  };
+
+  const rawStr = String(rankOrScore ?? "");
+  const numMatch = rawStr.match(/([0-9]+(\.[0-9]+)?)/);
+  const numVal = numMatch ? parseFloat(numMatch[1]) : undefined;
+  const subStr = (subQuotaOrCategory ? subQuotaOrCategory + " " + rawStr : rawStr).toLowerCase();
+
+  switch (mode) {
+    case "JEE Mains": {
+      const pct = numVal !== undefined ? numVal : 80;
+      for (const slab of modeSlabs) {
+        if (slab.minScore !== undefined && slab.maxScore !== undefined) {
+          if (pct >= slab.minScore && pct <= slab.maxScore) {
+            matchedSlab = slab;
+            break;
+          }
+        }
+      }
+      break;
+    }
+    case "V-SAT":
+    case "EAMCET": {
+      const rank = numVal !== undefined ? numVal : 5000;
+      for (const slab of modeSlabs) {
+        if (slab.minScore !== undefined && slab.maxScore !== undefined) {
+          if (rank >= slab.minScore && rank <= slab.maxScore) {
+            matchedSlab = slab;
+            break;
+          }
+        }
+      }
+      break;
+    }
+    case "Reserved/Lower Caste Category": {
+      if (subStr.includes("bc-a") || subStr.includes("bc-b") || subStr.includes("bca") || subStr.includes("bcb") || subStr.includes("bc a") || subStr.includes("bc b")) {
+        matchedSlab = modeSlabs.find((s) => s.id === "res-bc-ab") || modeSlabs[0];
+      } else if (subStr.includes("bc-c") || subStr.includes("bc-d") || subStr.includes("bc-e") || subStr.includes("bcc") || subStr.includes("bcd") || subStr.includes("bce") || subStr.includes("backward")) {
+        matchedSlab = modeSlabs.find((s) => s.id === "res-bc-cde") || modeSlabs[0];
+      } else if (subStr.includes("ews") || subStr.includes("income") || subStr.includes("economically")) {
+        matchedSlab = modeSlabs.find((s) => s.id === "res-ews") || modeSlabs[0];
+      } else if (subStr.includes("sc") || subStr.includes("st") || subStr.includes("statutory") || subStr.includes("welfare")) {
+        matchedSlab = modeSlabs.find((s) => s.id === "res-sc-st") || modeSlabs[0];
+      } else {
+        matchedSlab = modeSlabs.find((s) => s.id === "res-sc-st") || modeSlabs[0];
+      }
+      break;
+    }
+    case "Special State Status": {
+      if (subStr.includes("ne") || subStr.includes("north") || subStr.includes("assam") || subStr.includes("meghalaya")) {
+        matchedSlab = modeSlabs.find((s) => s.id === "spec-ne") || modeSlabs[0];
+      } else if (subStr.includes("j&k") || subStr.includes("jk") || subStr.includes("kashmir") || subStr.includes("pmsss") || subStr.includes("ladakh")) {
+        matchedSlab = modeSlabs.find((s) => s.id === "spec-jk") || modeSlabs[0];
+      } else if (subStr.includes("island") || subStr.includes("andaman") || subStr.includes("lakshadweep")) {
+        matchedSlab = modeSlabs.find((s) => s.id === "spec-island") || modeSlabs[0];
+      } else {
+        matchedSlab = modeSlabs.find((s) => s.id === "spec-jk") || modeSlabs[0];
+      }
+      break;
+    }
+    case "GATE / PGECET": {
+      const score = numVal !== undefined ? numVal : 550;
+      matchedSlab = score >= 650 ? modeSlabs[0] : modeSlabs[1] || modeSlabs[0];
+      break;
+    }
+    case "ICET": {
+      const rank = numVal !== undefined ? numVal : 1500;
+      matchedSlab = rank <= 1000 ? modeSlabs[0] : modeSlabs[1] || modeSlabs[0];
+      break;
+    }
+    case "Management":
+    default: {
+      matchedSlab = modeSlabs.find((s) => s.id === "mgmt-std") || matchedSlab;
+      break;
+    }
+  }
+
+  const slabPercent = matchedSlab.waiverPercent;
+  const scholarshipAmount = Math.round((tuitionAmount * slabPercent) / 100);
+  const netPayable = Math.max(0, grossFee - scholarshipAmount);
+  const eligibilityRule = `${matchedSlab.tierName} (${matchedSlab.criteriaLabel}): ${slabPercent}% Tuition Waiver (${inr(scholarshipAmount)})`;
+
+  return {
+    programme,
+    admissionMode: mode,
+    grossFee,
+    tuitionAmount,
+    otherHeadsAmount: grossFee - tuitionAmount,
+    scholarshipAmount,
+    slabPercent,
+    matchedSlab,
+    eligibilityRule,
+    netPayable,
+    heads: targetRows.map((f) => ({ head: f.head, amount: f.amount })),
   };
 }
 
@@ -431,7 +1182,23 @@ export type FinanceTopic =
   | "kpi"
   | "kpis"
   | "crossDomain"
-  | "unifiedStudent";
+  | "unifiedStudent"
+  | "admission"
+  | "admissionMode"
+  | "admission_mode"
+  | "admissions"
+  | "prospective"
+  | "prospectiveStudents"
+  | "academicHistory"
+  | "academic_history"
+  | "semesterHistory"
+  | "semester_history"
+  | "examEligibility"
+  | "exam_eligibility"
+  | "examPermission"
+  | "exam_permission"
+  | "permissionRequests"
+  | "permission_requests";
 
 export type FinanceLink = { kind: "student" | "transaction" | "refund"; id: string };
 export type FinanceResult = { scope: string; data: unknown; rows: { label: string; value: string }[]; links: FinanceLink[] };
@@ -489,9 +1256,11 @@ export function readFinance(
 
   // 1. Student Profile & Ledger Accounts
   if (["students", "studentprofile", "dues", "overdue", "hostel"].includes(t)) {
-    const accounts = students
-      .filter(s => !q || `${s.name} ${s.id} ${s.programme} ${s.category}`.toLowerCase().includes(q))
+    const searchSource = allStudentsWithProspective;
+    const accounts = searchSource
+      .filter(s => !q || `${s.name} ${s.id} ${s.programme} ${s.category} ${s.admissionMode || ""}`.toLowerCase().includes(q))
       .map(s => getStudentAccount(s.id)!)
+      .filter(Boolean)
       .filter(s =>
         t === "overdue"
           ? s.overdue > 90 && s.outstanding > 0
@@ -504,12 +1273,82 @@ export function readFinance(
       scope,
       data: accounts.length === 1 ? accounts[0] : accounts,
       rows: accounts.map(s => ({
-        label: `${s.name} · ${s.id}`,
+        label: `${s.name} · ${s.id} (${s.admissionStatus || "Admitted"})`,
         value: t === "hostel"
           ? `${inr(s.fees.find(f => f.head === "Hostel")!.outstanding)} hostel due`
           : `${inr(s.outstanding)} outstanding (Paid: ${inr(s.paid)} / Demand: ${inr(s.demand)})`,
       })),
       links: accounts.map(s => ({ kind: "student", id: s.id })),
+    };
+  }
+
+  // 1.1 Admission Modes & Scholarships
+  if (["admission", "admissionmode", "admission_mode", "admissions"].includes(t)) {
+    if (q) {
+      const res = resolveStudentIdentity(q);
+      if (res.status === "matched") {
+        const s = res.student;
+        const account = getStudentAccount(s.id);
+        const derivation = deriveFeeAndScholarship(s.programme, s.admissionMode || "V-SAT", s.entranceRank);
+        return {
+          scope,
+          data: { student: s, account, derivation },
+          rows: [
+            { label: "Student", value: `${s.name} (${s.id})` },
+            { label: "Admission Mode", value: s.admissionMode || "V-SAT" },
+            { label: "Admission Status", value: s.admissionStatus || "Admitted" },
+            { label: "Entrance Rank / Score", value: String(s.entranceRank || "N/A") },
+            { label: "Applicable Programme Fee", value: inr(derivation.grossFee) },
+            { label: "Sanctioned Scholarship", value: inr(s.scholarship || derivation.scholarshipAmount) },
+            { label: "Scholarship Tier", value: derivation.matchedSlab.tierName },
+            { label: "Tuition Waiver", value: `${derivation.slabPercent}%` },
+            { label: "Eligibility Rule", value: s.scholarshipEligibilityNote || derivation.eligibilityRule },
+            { label: "Net Payable / Demand", value: inr(s.demand) },
+            { label: "Current Balance Due", value: inr(s.demand - s.paid) },
+          ],
+          links: [{ kind: "student", id: s.id }],
+        };
+      }
+    }
+
+    // General summary of Admission Modes and policy rules
+    return {
+      scope,
+      data: {
+        admissionModes: [
+          { mode: "V-SAT", desc: "Vignan's Scholastic Aptitude Test (Multi-tier Slabs: Rank 1–50: 100%, 51–150: 75%, 151–500: 50%, 501–1,500: 25%, 1,501–3,000: 10% tuition waiver)" },
+          { mode: "JEE Mains", desc: "National Entrance (>98%ile: 100%, 95–97.99%ile: 75%, 90–94.99%ile: 50%, 85–89.99%ile: 25%, 80–84.99%ile: 15% tuition waiver)" },
+          { mode: "EAMCET", desc: "State Engineering/Pharmacy Entrance (Rank <2k: 100%, 2k–5k: 75%, 5k–10k: 50%, 10k–20k: 25%, >20k: AP JVD reimbursement)" },
+          { mode: "Reserved/Lower Caste Category", desc: "Statutory Post-Matric Social Welfare Quota (SC/ST: 100% statutory waiver, BC-A/B: 50%, BC-C/D/E: 35%, EWS: 25%)" },
+          { mode: "Special State Status", desc: "North-Eastern States & J&K Domicile (NE: 30%, J&K: 25%, Islands: 20%, Border: 15% regional tuition concession)" },
+        ],
+        admittedCount: admittedStudents.length,
+        prospectiveCount: prospectiveStudents.length,
+        slabs: scholarshipSlabs,
+      },
+      rows: [
+        { label: "Admission Modes Supported", value: "V-SAT, JEE Mains, EAMCET, Reserved/Lower Caste Category, Special State Status" },
+        { label: "Admitted Students (Enrolled)", value: `${admittedStudents.length} students with active fee ledgers` },
+        { label: "Prospective Students (Intending)", value: `${prospectiveStudents.length} applicant leads in counseling pool` },
+        { label: "Source of Truth", value: "VFSTR Approved Multi-Tier Scholarship Slabs (scholarshipSlabs) & Fee Schedules" },
+      ],
+      links: [],
+    };
+  }
+
+  // 1.2 Prospective / Intending Students
+  if (["prospective", "prospectivestudents"].includes(t)) {
+    const list = prospectiveStudents.filter(s =>
+      !q || `${s.name} ${s.id} ${s.programme} ${s.admissionMode}`.toLowerCase().includes(q)
+    );
+    return {
+      scope,
+      data: list,
+      rows: list.map(s => ({
+        label: `${s.name} · ${s.id} (${s.admissionMode})`,
+        value: `${s.programme} · Net Payable: ${inr(s.demand - s.scholarship - s.paid)} (Base: ${inr(s.demand)} | Scholarship: ${inr(s.scholarship)})`,
+      })),
+      links: list.map(s => ({ kind: "student", id: s.id })),
     };
   }
 
@@ -869,6 +1708,70 @@ export function readFinance(
         { label: "Prior Cycle Settled", value: inr(unified.priorCycleSettled) },
       ],
       links: [{ kind: "student" as const, id: unified.student.id }],
+    };
+  }
+
+  // 20. Semester-wise Academic & Scholarship Eligibility History
+  if (["academichistory", "academic_history", "semesterhistory", "semester_history"].includes(t)) {
+    const rawTarget = query.trim() || (role === "student" ? (currentStudentId || "251FA04E03") : "251FA04E03");
+    const resolved = resolveStudentIdentity(rawTarget);
+    const targetId = resolved.status === "matched" ? resolved.student.id : rawTarget.toUpperCase();
+    const studentName = resolved.status === "matched" ? resolved.student.name : targetId;
+    const timeline = computeScholarshipEligibilityTimeline(targetId);
+
+    return {
+      scope,
+      data: timeline,
+      rows: [
+        { label: "Student", value: `${studentName} (${timeline.studentId})` },
+        { label: "Scholarship Status", value: timeline.currentStatus.toUpperCase() },
+        ...(timeline.isDiscontinued ? [
+          { label: "Discontinuation Reason", value: timeline.discontinuationReason || "CGPA fell below 7.0 minimum threshold" },
+          { label: "Discontinuation Semester", value: timeline.discontinuationSemester?.semLabel || "N/A" },
+          { label: "Total Scholarship Revoked", value: inr(timeline.totalScholarshipRevoked) },
+        ] : []),
+        ...timeline.history.map(sem => ({
+          label: `${sem.semLabel} (${sem.academicYear})`,
+          value: `CGPA: ${sem.cumulativeCgpa.toFixed(2)} | Gross: ${inr(sem.grossFee)} | Scholarship: ${inr(sem.scholarshipApplied)} | Net: ${inr(sem.netDemand)} | Paid: ${inr(sem.paid)} | Status: ${sem.scholarshipStatus}`
+        }))
+      ],
+      links: [{ kind: "student" as const, id: timeline.studentId }]
+    };
+  }
+
+  // 21. Exam Eligibility & Attendance / Dues Status
+  if (["exameligibility", "exam_eligibility"].includes(t)) {
+    const rawTarget = query.trim() || (role === "student" ? (currentStudentId || "251FA04E03") : "251FA04E03");
+    const eligibility = getStudentExamEligibility(rawTarget);
+    return {
+      scope,
+      data: eligibility,
+      rows: [
+        { label: "Student", value: `${eligibility.studentName} (${eligibility.studentId})` },
+        { label: "Exam Eligibility", value: eligibility.status.toUpperCase() },
+        { label: "Current Attendance", value: `${eligibility.currentAttendance.toFixed(1)}% ${eligibility.currentAttendance >= 75 ? "(Satisfied >= 75%)" : "(Deficient < 75%)"}` },
+        { label: "Outstanding Dues", value: inr(eligibility.outstandingDues) },
+        { label: "Status Reason", value: eligibility.primaryReason },
+        ...(eligibility.latestPermissionRequest ? [
+          { label: "Permission Request", value: `${eligibility.latestPermissionRequest.id} · Status: ${eligibility.latestPermissionRequest.status}` }
+        ] : []),
+      ],
+      links: [{ kind: "student" as const, id: eligibility.studentId }],
+    };
+  }
+
+  // 22. Exam Permission Requests & Letters
+  if (["exampermission", "exam_permission", "permissionrequests", "permission_requests"].includes(t)) {
+    const rawTarget = query.trim() || (role === "student" ? (currentStudentId || "251FA04E03") : "");
+    const requests = rawTarget ? getStudentPermissionRequests(rawTarget) : getAllPermissionRequests();
+    return {
+      scope,
+      data: requests,
+      rows: requests.slice(0, 10).map((r) => ({
+        label: `${r.id} · ${r.studentName} (${r.studentId})`,
+        value: `Status: ${r.status} | Reason: ${r.reason} | Submitted: ${r.submittedAt}${r.rejectionReason ? ` | Rejection: ${r.rejectionReason}` : ""}`
+      })),
+      links: requests.map((r) => ({ kind: "student" as const, id: r.studentId })),
     };
   }
 

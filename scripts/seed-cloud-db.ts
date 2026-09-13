@@ -9,6 +9,7 @@ dotenv.config({ path: resolve(process.cwd(), ".env") });
 import { students, transactions, feeStructures } from "../backend/database/finance-data";
 import { studentCredentials } from "../backend/database/student-credentials";
 import { feeAllocations } from "../backend/database/fee-allocations";
+import { benchmarkSemesterHistories } from "../backend/database/semester-academic-history";
 import {
   EXTENDED_SCHOLARSHIP_RISKS,
   EXTENDED_LOAN_REQUESTS,
@@ -150,6 +151,20 @@ async function seedDatabase() {
       await allocCol.createIndex({ studentId: 1 }, { unique: true });
     }
     console.log(`   ✅ ${allocArray.length} student head-wise waterfall fee allocations seeded`);
+
+    // 10. Semester Academic & Financial History
+    const historyEntries = Object.entries(benchmarkSemesterHistories).map(([studentId, records]) => ({
+      studentId,
+      records,
+    }));
+    console.log(`📦 10. Seeding Academic & Scholarship Eligibility History (${historyEntries.length} benchmark profiles)...`);
+    const historyCol = db.collection("academic_history");
+    await historyCol.deleteMany({});
+    if (historyEntries.length > 0) {
+      await historyCol.insertMany(historyEntries);
+      await historyCol.createIndex({ studentId: 1 }, { unique: true });
+    }
+    console.log(`   ✅ ${historyEntries.length} student semester academic history profiles seeded`);
 
     console.log("\n==================================================");
     console.log("🎉 ALL INSTITUTIONAL DATA SUCCESSFULLY SEEDED TO MONGODB!");

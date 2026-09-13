@@ -2,7 +2,9 @@
 
 import React, { createContext, useContext, useState, useEffect, useMemo } from "react";
 import {
-  students as initialStudents,
+  allStudentsWithProspective as initialStudents,
+  admittedStudents as defaultAdmittedStudents,
+  prospectiveStudents as defaultProspectiveStudents,
   transactions as initialTransactions,
   type Student,
   type Transaction,
@@ -26,6 +28,8 @@ interface LivePaymentPayload {
 
 interface LiveFinanceContextType {
   students: Student[];
+  admittedStudents: Student[];
+  prospectiveStudents: Student[];
   transactions: Transaction[];
   feeAllocations: typeof initialFeeAllocations;
   paymentReceipts: typeof initialPaymentReceipts;
@@ -39,10 +43,10 @@ interface LiveFinanceContextType {
   lastUpdated: number;
 }
 
-const STORAGE_KEY_STUDENTS = "findeck_live_students_v4";
-const STORAGE_KEY_ALLOCATIONS = "findeck_live_allocations_v4";
-const STORAGE_KEY_RECEIPTS = "findeck_live_receipts_v4";
-const STORAGE_KEY_TRANSACTIONS = "findeck_live_transactions_v4";
+const STORAGE_KEY_STUDENTS = "findeck_live_students_v8";
+const STORAGE_KEY_ALLOCATIONS = "findeck_live_allocations_v8";
+const STORAGE_KEY_RECEIPTS = "findeck_live_receipts_v8";
+const STORAGE_KEY_TRANSACTIONS = "findeck_live_transactions_v8";
 
 const LiveFinanceContext = createContext<LiveFinanceContextType | null>(null);
 
@@ -67,6 +71,18 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
         "findeck_live_transactions_v2",
         "findeck_live_students_v3",
         "findeck_live_transactions_v3",
+        "findeck_live_students_v4",
+        "findeck_live_allocations_v4",
+        "findeck_live_receipts_v4",
+        "findeck_live_transactions_v4",
+        "findeck_live_students_v5",
+        "findeck_live_allocations_v5",
+        "findeck_live_receipts_v5",
+        "findeck_live_transactions_v5",
+        "findeck_live_students_v6",
+        "findeck_live_allocations_v6",
+        "findeck_live_receipts_v6",
+        "findeck_live_transactions_v6",
       ];
       for (const k of staleKeys) {
         localStorage.removeItem(k);
@@ -79,23 +95,39 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
 
       if (savedStudents) {
         const parsed = JSON.parse(savedStudents);
-        if (Array.isArray(parsed) && parsed.length >= initialStudents.length) {
+        const isValid = Array.isArray(parsed) &&
+          parsed.length === initialStudents.length &&
+          parsed.every((s: any) => s && typeof s.id === "string" && s.id.includes("1FA"));
+        if (isValid) {
           setStudents(parsed);
         } else {
           setStudents(initialStudents);
+          localStorage.setItem(STORAGE_KEY_STUDENTS, JSON.stringify(initialStudents));
         }
       } else {
         setStudents(initialStudents);
       }
 
       if (savedAllocs) {
-        setFeeAllocations(JSON.parse(savedAllocs));
+        const parsed = JSON.parse(savedAllocs);
+        if (parsed && typeof parsed === "object" && !parsed["2404518"] && parsed["241FA04518"]) {
+          setFeeAllocations(parsed);
+        } else {
+          setFeeAllocations(initialFeeAllocations);
+          localStorage.setItem(STORAGE_KEY_ALLOCATIONS, JSON.stringify(initialFeeAllocations));
+        }
       } else {
         setFeeAllocations(initialFeeAllocations);
       }
 
       if (savedReceipts) {
-        setPaymentReceipts(JSON.parse(savedReceipts));
+        const parsed = JSON.parse(savedReceipts);
+        if (parsed && typeof parsed === "object" && !parsed["2404518"] && parsed["241FA04518"]) {
+          setPaymentReceipts(parsed);
+        } else {
+          setPaymentReceipts(initialPaymentReceipts);
+          localStorage.setItem(STORAGE_KEY_RECEIPTS, JSON.stringify(initialPaymentReceipts));
+        }
       } else {
         setPaymentReceipts(initialPaymentReceipts);
       }
@@ -140,10 +172,20 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
     }
   }, [students, feeAllocations, paymentReceipts, transactions, isLoaded]);
 
-  // Compute live institutional totals across all 492 students
+  // Segregated subsets for Admitted (enrolled) vs Prospective (intending) students
+  const admittedStudents = useMemo(
+    () => students.filter((s) => s.admissionStatus !== "Prospective"),
+    [students]
+  );
+  const prospectiveStudents = useMemo(
+    () => students.filter((s) => s.admissionStatus === "Prospective"),
+    [students]
+  );
+
+  // Compute live institutional treasury totals strictly across enrolled/admitted students
   const { totalDemand, totalCollected, totalOutstanding, collectionRate } = useMemo(() => {
-    const demand = students.reduce((sum, s) => sum + (s.demand || 0), 0);
-    const collected = students.reduce((sum, s) => sum + (s.paid || 0), 0);
+    const demand = admittedStudents.reduce((sum, s) => sum + (s.demand || 0), 0);
+    const collected = admittedStudents.reduce((sum, s) => sum + (s.paid || 0), 0);
     const outstanding = Math.max(0, demand - collected);
     const rate = demand > 0 ? (collected / demand) * 100 : 0;
     return {
@@ -152,7 +194,7 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
       totalOutstanding: outstanding,
       collectionRate: rate,
     };
-  }, [students]);
+  }, [admittedStudents]);
 
   // Execute a live payment and synchronize across all heads, receipts, and students
   function makeLivePayment({ studentId, amount, channel = "UPI" }: LivePaymentPayload) {
@@ -305,6 +347,8 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
     <LiveFinanceContext.Provider
       value={{
         students,
+        admittedStudents,
+        prospectiveStudents,
         transactions,
         feeAllocations,
         paymentReceipts,

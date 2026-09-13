@@ -112,16 +112,37 @@ function Counter({
 
 export function KpiCards({
   onNavigate,
+  selectedYear = "All Batches",
+  selectedProgramme = "All Programmes",
 }: {
   onNavigate: (
     view: "Payments" | "Reconciliation" | "Students" | "Fee Structure",
   ) => void;
+  selectedYear?: string;
+  selectedProgramme?: string;
 }) {
   const { totalDemand, totalCollected, totalOutstanding, collectionRate, students, transactions } = useLiveFinance();
 
-  const demandCr = totalDemand / 10000000;
-  const collectedCr = totalCollected / 10000000;
-  const outstandingCr = totalOutstanding / 10000000;
+  const filteredStudents = useMemo(() => {
+    return students.filter((s) => {
+      if (selectedYear && selectedYear !== "All Batches" && (s.yearLabel || "1st Year (AY 2026-27)") !== selectedYear) {
+        return false;
+      }
+      if (selectedProgramme && selectedProgramme !== "All Programmes" && s.programme !== selectedProgramme) {
+        return false;
+      }
+      return true;
+    });
+  }, [students, selectedYear, selectedProgramme]);
+
+  const activeDemand = filteredStudents.reduce((sum, s) => sum + (s.demand || 0), 0);
+  const activeCollected = filteredStudents.reduce((sum, s) => sum + (s.paid || 0), 0);
+  const activeOutstanding = Math.max(0, activeDemand - activeCollected);
+  const activeRate = activeDemand > 0 ? (activeCollected / activeDemand) * 100 : 0;
+
+  const demandCr = activeDemand / 10000000;
+  const collectedCr = activeCollected / 10000000;
+  const outstandingCr = activeOutstanding / 10000000;
 
   const dynamicKpis = [
     {
@@ -129,7 +150,7 @@ export function KpiCards({
       value: demandCr,
       icon: Wallet,
       trend: "+8.4%",
-      note: `${students.length} students`,
+      note: `${filteredStudents.length} students`,
       tone: "primary",
       unit: " Cr",
       bars: [12, 20, 18, 28, 23, 31, 36, 33, 43, 48],
@@ -139,7 +160,7 @@ export function KpiCards({
       label: "Collected",
       value: collectedCr,
       icon: CreditCard,
-      trend: `${collectionRate.toFixed(1)}%`,
+      trend: `${activeRate.toFixed(1)}%`,
       note: "collection rate",
       tone: "success",
       unit: " Cr",
@@ -150,7 +171,7 @@ export function KpiCards({
       label: "Outstanding",
       value: outstandingCr,
       icon: Coins,
-      trend: `${(100 - collectionRate).toFixed(1)}%`,
+      trend: `${(100 - activeRate).toFixed(1)}%`,
       note: "due balance",
       tone: "warning",
       unit: " Cr",

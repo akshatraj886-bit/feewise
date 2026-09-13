@@ -36,12 +36,16 @@ import {
   inr,
   instalmentPlans,
   printReceiptPdf,
+  scholarshipSlabs,
+  type ScholarshipSlab,
   type AuditEntry,
   type Student,
   type Transaction,
+  type AdmissionMode,
+  type AdmissionStatus,
 } from "@/lib/finance-data";
 import { useLiveFinance } from "@/context/live-finance-context";
-import { getInstalments } from "@/lib/finance-service";
+import { getInstalments, deriveFeeAndScholarship, getStudentExamEligibility, getStudentDuesBreakdown } from "@/lib/finance-service";
 import { Status, AuditLog } from "./operations";
 import { CollectionIntelligence, FeeHeadOverview } from "./overview";
 import { toast } from "sonner";
@@ -56,49 +60,119 @@ export function StudentsView({
 }) {
   const { students } = useLiveFinance();
   const [search, setSearch] = useState("");
+  const [statusTab, setStatusTab] = useState<"All" | "Admitted" | "Prospective">("All");
+  const [admissionModeFilter, setAdmissionModeFilter] = useState("All Admission Modes");
   const [filter, setFilter] = useState(
     initialOverdue ? "90+ days overdue" : "All students",
   );
   const [branchFilter, setBranchFilter] = useState("All branches");
+  const [yearFilter, setYearFilter] = useState("All Years / Batches");
   const [page, setPage] = useState(1);
   const pageSize = 25;
 
+  const allAdmissionModes = [
+    "All Admission Modes",
+    "V-SAT",
+    "JEE Mains",
+    "EAMCET",
+    "Reserved/Lower Caste Category",
+    "Special State Status",
+    "Management",
+  ];
+
   const allBranches = Array.from(new Set(students.map((s) => s.programme)));
+  const allYears = Array.from(new Set(students.map((s) => s.yearLabel || "1st Year (AY 2026-27)"))).filter(Boolean);
 
   const rows = students.filter(
     (student) =>
-      `${student.name} ${student.id} ${student.programme}`
+      `${student.name} ${student.id} ${student.programme} ${student.admissionMode || ""} ${student.admissionStatus || ""} ${student.yearLabel || ""}`
         .toLowerCase()
         .includes(search.toLowerCase()) &&
+      (statusTab === "All" || (student.admissionStatus || "Admitted") === statusTab) &&
+      (admissionModeFilter === "All Admission Modes" || (student.admissionMode || "V-SAT") === admissionModeFilter) &&
       (branchFilter === "All branches" || student.programme === branchFilter) &&
+      (yearFilter === "All Years / Batches" || (student.yearLabel || "1st Year (AY 2026-27)") === yearFilter) &&
       (filter === "All students" ||
         (filter === "90+ days overdue"
           ? student.overdue > 90
-          : filter === "Outstanding"
-            ? student.demand > student.paid
-            : student.demand === student.paid)),
+          : filter === "Carried-Forward Dues"
+            ? getStudentDuesBreakdown(student.id).hasCarriedForward
+            : filter === "Outstanding"
+              ? student.demand > student.paid
+              : filter === "Exam Ineligible"
+                ? !getStudentExamEligibility(student.id).isEligible
+                : student.demand === student.paid)),
   );
 
   const totalPages = Math.ceil(rows.length / pageSize) || 1;
   const paginatedRows = rows.slice((page - 1) * pageSize, page * pageSize);
 
+  const admittedCount = students.filter((s) => s.admissionStatus !== "Prospective").length;
+  const prospectiveCount = students.filter((s) => s.admissionStatus === "Prospective").length;
+
   return (
     <Card className="panel">
       <CardHeader>
-        <CardTitle>Student accounts</CardTitle>
+        <CardTitle>Student accounts & Admission directory</CardTitle>
         <CardDescription>
-          Search and review {students.length} individual fee accounts across {allBranches.length} academic branches.
+          Review {admittedCount} enrolled fee accounts and {prospectiveCount} prospective counseling applicants across {allBranches.length} academic branches.
         </CardDescription>
         <CardAction>
           <Users className="size-5 text-primary" />
         </CardAction>
       </CardHeader>
       <CardContent>
+        {/* Admission Status Segregation Tabs */}
+        <div className="mb-4 flex flex-wrap items-center gap-2 border-b border-border/60 pb-3">
+          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mr-2">
+            Record Section:
+          </div>
+          <button
+            type="button"
+            onClick={() => { setStatusTab("All"); setPage(1); }}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+              statusTab === "All"
+                ? "bg-primary text-primary-foreground shadow-sm font-semibold"
+                : "bg-secondary/60 hover:bg-secondary text-muted-foreground"
+            }`}
+          >
+            All Records ({students.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => { setStatusTab("Admitted"); setPage(1); }}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
+              statusTab === "Admitted"
+                ? "bg-emerald-600 text-white shadow-sm font-semibold"
+                : "bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400"
+            }`}
+          >
+            <span>🎓 Admitted (Enrolled)</span>
+            <span className="rounded-full bg-emerald-700/30 px-1.5 py-0.2 text-[10px] font-bold">
+              {admittedCount}
+            </span>
+          </button>
+          <button
+            type="button"
+            onClick={() => { setStatusTab("Prospective"); setPage(1); }}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
+              statusTab === "Prospective"
+                ? "bg-purple-600 text-white shadow-sm font-semibold"
+                : "bg-purple-500/10 hover:bg-purple-500/20 text-purple-700 dark:text-purple-400"
+            }`}
+          >
+            <span>📋 Prospective / Intending</span>
+            <span className="rounded-full bg-purple-700/30 px-1.5 py-0.2 text-[10px] font-bold">
+              {prospectiveCount}
+            </span>
+          </button>
+        </div>
+
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <InputGroup className="h-10 max-w-sm">
             <InputGroupInput
               aria-label="Search students"
-              placeholder="Search name, student ID or programme..."
+              placeholder="Search name, student ID, programme or mode..."
               value={search}
               onChange={(e) => {
                 setSearch(e.target.value);
@@ -110,6 +184,32 @@ export function StudentsView({
             </InputGroupAddon>
           </InputGroup>
           <div className="flex flex-wrap items-center gap-2">
+            <select
+              className="filter-select"
+              aria-label="Filter by Admission Mode"
+              value={admissionModeFilter}
+              onChange={(e) => {
+                setAdmissionModeFilter(e.target.value);
+                setPage(1);
+              }}
+            >
+              {allAdmissionModes.map((m) => (
+                <option key={m}>{m}</option>
+              ))}
+            </select>
+            <select
+              className="filter-select"
+              aria-label="Filter by Year / Batch"
+              value={yearFilter}
+              onChange={(e) => {
+                setYearFilter(e.target.value);
+                setPage(1);
+              }}
+            >
+              {["All Years / Batches", ...allYears].map((y) => (
+                <option key={y}>{y}</option>
+              ))}
+            </select>
             <select
               className="filter-select"
               aria-label="Filter by branch"
@@ -135,7 +235,9 @@ export function StudentsView({
               {[
                 "All students",
                 "Outstanding",
+                "Carried-Forward Dues",
                 "90+ days overdue",
+                "Exam Ineligible",
                 "Fully paid",
               ].map((option) => (
                 <option key={option}>{option}</option>
@@ -175,12 +277,14 @@ export function StudentsView({
               {[
                 "Student",
                 "Programme",
+                "Admission Mode",
                 "Scholarship",
                 "Concession",
                 "Demand",
                 "Paid",
                 "Outstanding",
-                "Status",
+                "Fee Status",
+                "Exam Eligibility",
               ].map((h) => (
                 <th key={h}>{h}</th>
               ))}
@@ -201,13 +305,35 @@ export function StudentsView({
                       <span className="block font-medium hover:text-primary">
                         {student.name}
                       </span>
-                      <span className="text-sm text-muted-foreground">
-                        {student.id}
+                      <span className="text-sm text-muted-foreground flex flex-wrap items-center gap-1.5">
+                        <span>{student.id}</span>
+                        <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold text-primary">
+                          {(student.yearLabel || "1st Year").split(" ")[0]} · Sem {student.semester || 1}
+                        </span>
+                        <span className={`rounded px-1.5 py-0.5 text-[10px] font-semibold border ${
+                          student.admissionStatus === "Prospective"
+                            ? "bg-purple-500/15 text-purple-700 dark:text-purple-400 border-purple-500/30"
+                            : "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border-emerald-500/30"
+                        }`}>
+                          {student.admissionStatus || "Admitted"}
+                        </span>
                       </span>
                     </span>
                   </button>
                 </td>
                 <td data-label="Programme">{student.programme}</td>
+                <td data-label="Admission Mode">
+                  <div className="flex flex-col gap-0.5 items-start">
+                    <span className="inline-flex items-center rounded px-1.5 py-0.5 text-[11px] font-medium bg-secondary text-foreground border border-border/70">
+                      {student.admissionMode || "V-SAT"}
+                    </span>
+                    {student.entranceRank && (
+                      <span className="text-[10px] text-muted-foreground truncate max-w-[130px]" title={String(student.entranceRank)}>
+                        {student.entranceRank}
+                      </span>
+                    )}
+                  </div>
+                </td>
                 <td data-label="Scholarship">
                   {student.scholarship > 0 ? (
                     <span className="text-success font-medium">
@@ -229,7 +355,26 @@ export function StudentsView({
                 <td data-label="Demand">{inr(student.demand)}</td>
                 <td data-label="Paid">{inr(student.paid)}</td>
                 <td data-label="Outstanding">
-                  {inr(student.demand - student.paid)}
+                  {(() => {
+                    const dues = getStudentDuesBreakdown(student.id);
+                    if (dues.hasCarriedForward) {
+                      return (
+                        <div className="flex flex-col gap-1 items-start">
+                          <span className="font-bold text-amber-600 dark:text-amber-400 tabular-nums">
+                            {inr(dues.totalOutstandingDue)}
+                          </span>
+                          <span className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-semibold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/30 whitespace-nowrap" title={`Current Sem: ${inr(dues.currentSemesterDue)} + Prior Arrears: ${inr(dues.carriedForwardDue)}`}>
+                            Cur: {inr(dues.currentSemesterDue)} + Past: {inr(dues.carriedForwardDue)}
+                          </span>
+                        </div>
+                      );
+                    }
+                    return (
+                      <span className="tabular-nums">
+                        {inr(student.demand - student.paid)}
+                      </span>
+                    );
+                  })()}
                 </td>
                 <td data-label="Status">
                   <span>
@@ -243,6 +388,37 @@ export function StudentsView({
                       }
                     />
                   </span>
+                </td>
+                <td data-label="Exam Eligibility">
+                  {(() => {
+                    const eligibility = getStudentExamEligibility(student.id);
+                    if (eligibility.isEligible) {
+                      return (
+                        <Badge variant="outline" className="bg-emerald-500/10 text-emerald-600 border-emerald-500/30 text-[11px] font-semibold whitespace-nowrap">
+                          ✅ Exam Cleared
+                        </Badge>
+                      );
+                    }
+                    if (eligibility.ineligibleCategory === "DuesOnly") {
+                      return (
+                        <Badge variant="outline" className="bg-amber-500/10 text-amber-600 border-amber-500/30 text-[11px] font-semibold whitespace-nowrap" title={eligibility.primaryReason}>
+                          🚫 Dues ({inr(eligibility.outstandingDues)})
+                        </Badge>
+                      );
+                    }
+                    if (eligibility.ineligibleCategory === "AttendanceOnly") {
+                      return (
+                        <Badge variant="outline" className="bg-orange-500/10 text-orange-600 border-orange-500/30 text-[11px] font-semibold whitespace-nowrap" title={eligibility.primaryReason}>
+                          🚫 Att ({eligibility.currentAttendance.toFixed(1)}%)
+                        </Badge>
+                      );
+                    }
+                    return (
+                      <Badge variant="destructive" className="text-[11px] font-semibold whitespace-nowrap" title={eligibility.primaryReason}>
+                        🚫 Dues + Att
+                      </Badge>
+                    );
+                  })()}
                 </td>
               </tr>
             ))}
@@ -267,6 +443,10 @@ export function FeeStructureView() {
   const [programme, setProgramme] = useState("All programmes");
   const [version, setVersion] = useState("Active versions");
   const [searchHead, setSearchHead] = useState("");
+  const [admissionRouteFilter, setAdmissionRouteFilter] = useState("All routes");
+  const [selectedSlabMode, setSelectedSlabMode] = useState("All");
+  const [calcMode, setCalcMode] = useState<AdmissionMode>("JEE Mains");
+  const [calcScoreInput, setCalcScoreInput] = useState("96.5 %ile");
 
   const allAvailableProgrammes = [
     "All programmes",
@@ -283,23 +463,56 @@ export function FeeStructureView() {
     "BBA",
   ];
 
+  const allAdmissionRoutes = [
+    "All routes",
+    "V-SAT",
+    "JEE Mains",
+    "EAMCET",
+    "Reserved/Lower Caste Category",
+    "Special State Status",
+    "Entrance / ICET",
+    "GATE / PGECET",
+    "Management",
+  ];
+
   const filtered = feeStructures.filter((row) => {
     const matchesProg = programme === "All programmes" || row.programme === programme;
     const matchesVer =
       version === "All versions" ||
       (version === "Active versions" ? row.active : !row.active);
+    const matchesRoute =
+      admissionRouteFilter === "All routes" ||
+      row.route === admissionRouteFilter ||
+      row.route.toLowerCase().includes(admissionRouteFilter.toLowerCase()) ||
+      (admissionRouteFilter === "V-SAT" && (row.route === "V-SAT" || row.route.includes("V-SAT"))) ||
+      (admissionRouteFilter === "JEE Mains" && (row.route === "JEE Mains" || row.route.includes("JEE"))) ||
+      (admissionRouteFilter === "EAMCET" && (row.route === "EAMCET" || row.route.includes("EAMCET"))) ||
+      (admissionRouteFilter === "Reserved/Lower Caste Category" && (row.route === "Reserved/Lower Caste Category" || row.category.includes("Welfare") || row.category.includes("Reserved"))) ||
+      (admissionRouteFilter === "Special State Status" && (row.route === "Special State Status" || row.route.includes("Special State"))) ||
+      (admissionRouteFilter === "Entrance / ICET" && (row.route === "Entrance / ICET" || row.route.includes("ICET"))) ||
+      (admissionRouteFilter === "GATE / PGECET" && (row.route === "GATE / PGECET" || row.route.includes("GATE"))) ||
+      (admissionRouteFilter === "Management" && row.route === "Management");
     const matchesSearch =
       !searchHead ||
       row.head.toLowerCase().includes(searchHead.toLowerCase()) ||
       row.category.toLowerCase().includes(searchHead.toLowerCase()) ||
       row.route.toLowerCase().includes(searchHead.toLowerCase());
-    return matchesProg && matchesVer && matchesSearch;
+    return matchesProg && matchesVer && matchesRoute && matchesSearch;
   });
 
-  // Calculate summary metrics for active selected programme
-  const activeProgrammeRows = feeStructures.filter(
-    (row) => (programme === "All programmes" ? row.active : row.programme === programme && row.active)
-  );
+  // Calculate summary metrics for active selected programme and route
+  const activeProgrammeRows = feeStructures.filter((row) => {
+    const matchProg = programme === "All programmes" ? row.active : row.programme === programme && row.active;
+    const matchRoute =
+      admissionRouteFilter === "All routes"
+        ? row.route === "V-SAT" ||
+          row.route === "Entrance / ICET" ||
+          row.route === "GATE / PGECET" ||
+          row.route === "Merit / Direct" ||
+          row.route === "EAMCET"
+        : row.route === admissionRouteFilter || row.route.toLowerCase().includes(admissionRouteFilter.toLowerCase());
+    return matchProg && matchRoute;
+  });
   const totalPackageAmount = activeProgrammeRows.reduce((sum, r) => sum + r.amount, 0);
   const tuitionAmount = activeProgrammeRows.filter((r) => r.head === "Tuition").reduce((sum, r) => sum + r.amount, 0);
   const hostelAmount = activeProgrammeRows.filter((r) => r.head === "Hostel").reduce((sum, r) => sum + r.amount, 0);
@@ -420,6 +633,173 @@ export function FeeStructureView() {
           </div>
         )}
 
+        {/* Master Scholarship Slab Policy Table (Rule Table) */}
+        <div className="mb-6 rounded-xl border border-border/80 bg-card p-4 sm:p-5 shadow-xs">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 pb-3 mb-4">
+            <div>
+              <h4 className="text-sm sm:text-base font-bold text-foreground flex items-center gap-2">
+                <span>🏛️ Master Scholarship Slab Policy</span>
+                <Badge variant="outline" className="text-[10px] bg-primary/10 text-primary border-primary/30">
+                  Single Source of Truth Rule Table
+                </Badge>
+              </h4>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Official institutional multi-tier tuition waiver slabs per admission route. Auto-derived against {programme === "All programmes" ? "B.Tech CSE" : programme} base tuition ({inr(tuitionAmount || 90000)}).
+              </p>
+            </div>
+            <div className="flex items-center gap-2 text-xs">
+              <span className="text-muted-foreground">Active Policy:</span>
+              <Badge variant="secondary" className="text-xs font-semibold">AY 2026–27 Verified</Badge>
+            </div>
+          </div>
+
+          {/* Slab Mode Filter Tabs */}
+          <div className="mb-3 flex flex-wrap gap-1.5 border-b border-border/40 pb-3">
+            {[
+              { id: "All", label: "All Slabs", count: scholarshipSlabs.length },
+              { id: "V-SAT", label: "V-SAT", count: scholarshipSlabs.filter(s => s.admissionMode === "V-SAT").length },
+              { id: "JEE Mains", label: "JEE Mains", count: scholarshipSlabs.filter(s => s.admissionMode === "JEE Mains").length },
+              { id: "EAMCET", label: "EAMCET", count: scholarshipSlabs.filter(s => s.admissionMode === "EAMCET").length },
+              { id: "Reserved/Lower Caste Category", label: "Reserved Category", count: scholarshipSlabs.filter(s => s.admissionMode === "Reserved/Lower Caste Category").length },
+              { id: "Special State Status", label: "Special State", count: scholarshipSlabs.filter(s => s.admissionMode === "Special State Status").length },
+              { id: "PG", label: "GATE & ICET", count: scholarshipSlabs.filter(s => s.admissionMode === "GATE / PGECET" || s.admissionMode === "ICET").length },
+            ].map((tab) => {
+              const active = selectedSlabMode === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setSelectedSlabMode(tab.id)}
+                  className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 ${
+                    active
+                      ? "bg-primary text-primary-foreground shadow-xs font-semibold"
+                      : "bg-secondary/40 text-muted-foreground hover:bg-secondary hover:text-foreground"
+                  }`}
+                >
+                  <span>{tab.label}</span>
+                  <span className={`text-[10px] px-1 py-0.2 rounded-full ${active ? "bg-white/20 text-white" : "bg-muted text-muted-foreground"}`}>
+                    {tab.count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Slab Table */}
+          <div className="rounded-lg border border-border/70 overflow-hidden mb-4">
+            <table className="w-full text-xs data-table mobile-cards">
+              <thead className="bg-muted/60 text-muted-foreground border-b border-border/60">
+                <tr>
+                  <th className="py-2.5 px-3 text-left">Admission Mode</th>
+                  <th className="py-2.5 px-3 text-left">Tier Name</th>
+                  <th className="py-2.5 px-3 text-left">Score / Rank Criteria</th>
+                  <th className="py-2.5 px-3 text-center">Tuition Waiver</th>
+                  <th className="py-2.5 px-3 text-right">Tuition Relief (₹)</th>
+                  <th className="py-2.5 px-3 text-right">Net Payable Demand (₹)</th>
+                  <th className="py-2.5 px-3 text-left">Statutory Policy Description</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/50">
+                {scholarshipSlabs
+                  .filter((slab) => {
+                    if (selectedSlabMode === "All") return true;
+                    if (selectedSlabMode === "PG") return slab.admissionMode === "GATE / PGECET" || slab.admissionMode === "ICET";
+                    return slab.admissionMode === selectedSlabMode;
+                  })
+                  .map((slab) => {
+                    const activeProg = programme === "All programmes" ? "B.Tech CSE" : programme;
+                    const progTuition = tuitionAmount || 90000;
+                    const progPackage = totalPackageAmount || 140000;
+                    const waiverAmt = Math.round((progTuition * slab.waiverPercent) / 100);
+                    const netPay = Math.max(0, progPackage - waiverAmt);
+                    return (
+                      <tr key={slab.id} className="hover:bg-muted/30 transition-colors">
+                        <td data-label="Admission Mode" className="font-semibold text-foreground">
+                          <span className="inline-flex items-center rounded px-1.5 py-0.5 text-[11px] font-medium bg-secondary border border-border/60">
+                            {slab.admissionMode}
+                          </span>
+                        </td>
+                        <td data-label="Tier Name" className="font-medium text-foreground">
+                          {slab.tierName}
+                        </td>
+                        <td data-label="Criteria" className="font-semibold text-primary">
+                          {slab.criteriaLabel}
+                        </td>
+                        <td data-label="Waiver %" className="text-center font-bold">
+                          <span
+                            className={`inline-block px-2 py-0.5 rounded text-[11px] font-bold ${
+                              slab.waiverPercent === 100
+                                ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400"
+                                : slab.waiverPercent >= 50
+                                ? "bg-blue-500/15 text-blue-700 dark:text-blue-400"
+                                : slab.waiverPercent > 0
+                                ? "bg-amber-500/15 text-amber-700 dark:text-amber-400"
+                                : "bg-muted text-muted-foreground"
+                            }`}
+                          >
+                            {slab.waiverPercent}% Waiver
+                          </span>
+                        </td>
+                        <td data-label="Tuition Relief" className="text-right font-medium text-emerald-600">
+                          {waiverAmt > 0 ? `−${inr(waiverAmt)}` : "—"}
+                        </td>
+                        <td data-label="Net Payable Demand" className="text-right font-bold text-foreground">
+                          {inr(netPay)}
+                        </td>
+                        <td data-label="Description" className="text-muted-foreground text-[11px] max-w-xs">
+                          {slab.description}
+                        </td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Interactive Live Derivation Tester */}
+          <div className="rounded-lg bg-primary/5 border border-primary/20 p-3 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                <span>⚡ Live Derivation Tester:</span>
+              </span>
+              <select
+                className="filter-select text-xs h-8"
+                aria-label="Calculator Mode"
+                value={calcMode}
+                onChange={(e) => setCalcMode(e.target.value as AdmissionMode)}
+              >
+                {["JEE Mains", "V-SAT", "EAMCET", "Reserved/Lower Caste Category", "Special State Status", "GATE / PGECET", "ICET"].map((m) => (
+                  <option key={m} value={m}>{m}</option>
+                ))}
+              </select>
+              <input
+                type="text"
+                className="h-8 px-2.5 rounded-md border border-border/80 bg-background text-xs w-32 focus:outline-hidden focus:ring-1 focus:ring-primary"
+                placeholder="Score (e.g. 96.5 %ile, 142)"
+                value={calcScoreInput}
+                onChange={(e) => setCalcScoreInput(e.target.value)}
+              />
+            </div>
+            {(() => {
+              const testProg = programme === "All programmes" ? "B.Tech CSE" : programme;
+              const result = deriveFeeAndScholarship(testProg, calcMode, calcScoreInput);
+              return (
+                <div className="flex flex-wrap items-center gap-3 text-xs">
+                  <span className="text-muted-foreground">
+                    Matched Tier: <strong className="text-foreground">{result.matchedSlab.tierName}</strong>
+                  </span>
+                  <span className="text-muted-foreground">
+                    Waiver: <strong className="text-emerald-600">{result.slabPercent}% (−{inr(result.scholarshipAmount)})</strong>
+                  </span>
+                  <span className="text-muted-foreground">
+                    Net Demand: <strong className="text-primary text-sm font-bold">{inr(result.netPayable)}</strong>
+                  </span>
+                </div>
+              );
+            })()}
+          </div>
+        </div>
+
         {/* Filters and Search Bar */}
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2">
@@ -432,6 +812,19 @@ export function FeeStructureView() {
               {allAvailableProgrammes.map((o) => (
                 <option key={o} value={o}>
                   {o}
+                </option>
+              ))}
+            </select>
+
+            <select
+              className="filter-select text-xs"
+              aria-label="Filter by admission route"
+              value={admissionRouteFilter}
+              onChange={(e) => setAdmissionRouteFilter(e.target.value)}
+            >
+              {allAdmissionRoutes.map((r) => (
+                <option key={r} value={r}>
+                  {r}
                 </option>
               ))}
             </select>
@@ -1402,10 +1795,14 @@ export function ReportsView({ entries }: { entries: AuditEntry[] }) {
       description: "Student-level demand, collections and dues",
       download: () =>
         downloadExcel("outstanding-balances", [
-          ["Student", "Student ID", "Scholarship", "Concession", "Demand", "Paid", "Outstanding"],
+          ["Student", "Student ID", "Cohort / Year", "Semester", "Section", "Programme", "Scholarship", "Concession", "Demand", "Paid", "Outstanding"],
           ...students.map((s) => [
             s.name,
             s.id,
+            s.yearLabel || "1st Year (AY 2026-27)",
+            s.semester || 1,
+            s.section || 1,
+            s.programme,
             s.scholarship,
             s.concession,
             s.demand,

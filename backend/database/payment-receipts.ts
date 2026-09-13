@@ -1,5 +1,10 @@
 // Auto-generated: payment receipts / transaction ledger per student
-export const paymentReceipts: Record<string, {
+import { paymentReceipts as paymentReceiptsYear2 } from "./payment-receipts-year2-sem3";
+import { paymentReceipts as paymentReceiptsYear3 } from "./payment-receipts-year3-sem5";
+import { paymentReceipts as paymentReceiptsYear4 } from "./payment-receipts-year4-sem7";
+import { paymentReceipts as paymentReceiptsMtech } from "./payment-receipts-mtech-year1-sem1";
+
+const year1PaymentReceipts: Record<string, {
   txnId: string; date: string; channel: string; amount: number;
 }[]> = {
   "251FA04E03": [
@@ -7854,4 +7859,14 @@ export const paymentReceipts: Record<string, {
       "amount": 35500
     }
   ]
+};
+
+export const paymentReceipts: Record<string, {
+  txnId: string; date: string; channel: string; amount: number;
+}[]> = {
+  ...year1PaymentReceipts,
+  ...paymentReceiptsYear2,
+  ...paymentReceiptsYear3,
+  ...paymentReceiptsYear4,
+  ...paymentReceiptsMtech,
 };

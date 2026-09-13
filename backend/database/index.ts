@@ -12,3 +12,5 @@ export * from "./fee-allocations";
 export * from "./scholarship-status";
 export * from "./payment-receipts";
 export * from "./student-credentials";
+export * from "./semester-academic-history";
+export * from "./exam-permission-requests";

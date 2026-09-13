@@ -1,6 +1,11 @@
 // Auto-generated: per-student fee head breakdown for all university programmes
 // Waterfall-allocated: Tuition -> Examination -> Library -> Laboratory -> Transport -> Hostel
-export const feeAllocations: Record<string, {
+import { feeAllocations as feeAllocationsYear2 } from "./fee-allocations-year2-sem3";
+import { feeAllocations as feeAllocationsYear3 } from "./fee-allocations-year3-sem5";
+import { feeAllocations as feeAllocationsYear4 } from "./fee-allocations-year4-sem7";
+import { feeAllocations as feeAllocationsMtech } from "./fee-allocations-mtech-year1-sem1";
+
+const year1FeeAllocations: Record<string, {
   head: string; gross: number; paid: number; outstanding: number; status: string;
 }[]> = {
   "251FA04E03": [
@@ -22137,4 +22142,14 @@ export const feeAllocations: Record<string, {
       "status": "Unpaid"
     }
   ]
+};
+
+export const feeAllocations: Record<string, {
+  head: string; gross: number; paid: number; outstanding: number; status: string;
+}[]> = {
+  ...year1FeeAllocations,
+  ...feeAllocationsYear2,
+  ...feeAllocationsYear3,
+  ...feeAllocationsYear4,
+  ...feeAllocationsMtech,
 };

@@ -35,6 +35,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { openPrintDocument, students, inr } from "@/lib/finance-data";
+import { computeScholarshipEligibilityTimeline, getStudentExamEligibility } from "@/lib/finance-service";
 import { DocumentViewerModal } from "@/components/finance/document-viewer-modal";
 import { type FinanceDocType } from "@/lib/finance-documents";
 
@@ -383,9 +384,30 @@ export function ScholarshipRenewalRiskView() {
   const watchCount = risks.filter((r) => r.risk_level === "WATCH").length;
   const safeCount = risks.filter((r) => r.risk_level === "NONE").length;
 
+  // Pre-compute expensive per-student data once when risks list changes, not on every render
+  const riskMetaMap = useMemo(() => {
+    const map = new Map<string, { isDiscontinued: boolean; isExamEligible: boolean }>();
+    for (const r of risks) {
+      const isDiscontinued = r.cgpa < 7.0 || computeScholarshipEligibilityTimeline(r.student_id).isDiscontinued;
+      const isExamEligible = getStudentExamEligibility(r.student_id).isEligible;
+      map.set(r.student_id, { isDiscontinued, isExamEligible });
+    }
+    return map;
+  }, [risks]);
+
+  const discontinuedCount = useMemo(() => risks.filter((r) => riskMetaMap.get(r.student_id)?.isDiscontinued).length, [risks, riskMetaMap]);
+  const examIneligibleCount = useMemo(() => risks.filter((r) => !riskMetaMap.get(r.student_id)?.isExamEligible).length, [risks, riskMetaMap]);
+
   const filteredRisks = useMemo(() => {
     return risks.filter((r) => {
-      if (filterLevel !== "All" && r.risk_level !== filterLevel) return false;
+      const meta = riskMetaMap.get(r.student_id);
+      if (filterLevel === "DISCONTINUED") {
+        if (!meta?.isDiscontinued) return false;
+      } else if (filterLevel === "EXAM_INELIGIBLE") {
+        if (meta?.isExamEligible) return false;
+      } else if (filterLevel !== "All") {
+        if (r.risk_level !== filterLevel) return false;
+      }
       if (search.trim()) {
         const q = search.toLowerCase();
         const matchesName = r.student_name.toLowerCase().includes(q);
@@ -395,7 +417,7 @@ export function ScholarshipRenewalRiskView() {
       }
       return true;
     });
-  }, [risks, filterLevel, search]);
+  }, [risks, filterLevel, search, riskMetaMap]);
 
   const totalPages = Math.ceil(filteredRisks.length / pageSize) || 1;
   const paginatedRisks = useMemo(() => {
@@ -406,7 +428,7 @@ export function ScholarshipRenewalRiskView() {
   return (
     <div className="flex flex-col gap-6">
       {/* Metric Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
         <Card className="border-emerald-500/20 bg-emerald-500/5">
           <CardHeader className="pb-2">
             <CardDescription className="text-emerald-600 font-medium text-xs">Safe Renewal</CardDescription>
@@ -458,6 +480,19 @@ export function ScholarshipRenewalRiskView() {
             <p className="text-xs text-muted-foreground">Critical double shortfall</p>
           </CardContent>
         </Card>
+
+        <Card className="border-destructive/30 bg-destructive/10">
+          <CardHeader className="pb-2">
+            <CardDescription className="text-destructive font-semibold text-xs">Discontinued</CardDescription>
+            <CardTitle className="text-2xl text-destructive flex items-center justify-between">
+              <span>{discontinuedCount}</span>
+              <ShieldAlert className="size-5" />
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-muted-foreground">&lt; 7.0 CGPA threshold revoked</p>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Risk Table */}
@@ -480,6 +515,8 @@ export function ScholarshipRenewalRiskView() {
                 { label: "Watchlist", val: "WATCH" },
                 { label: "At Risk", val: "AT_RISK" },
                 { label: "Likely Loss", val: "LIKELY_LOSS" },
+                { label: "Discontinued", val: "DISCONTINUED" },
+                { label: `Exam Ineligible (${examIneligibleCount})`, val: "EXAM_INELIGIBLE" },
               ].map((pill) => (
                 <Button
                   key={pill.val}
@@ -523,18 +560,23 @@ export function ScholarshipRenewalRiskView() {
                   <th className="p-3">CGPA</th>
                   <th className="p-3">Risk Level</th>
                   <th className="p-3">Criteria Evaluation</th>
+                  <th className="p-3">Exam Clearance</th>
                   <th className="p-3 text-right">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 {paginatedRisks.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="p-8 text-center text-xs text-muted-foreground">
+                    <td colSpan={8} className="p-8 text-center text-xs text-muted-foreground">
                       No scholarship students match your search or filter.
                     </td>
                   </tr>
                 ) : (
-                  paginatedRisks.map((r) => (
+                  paginatedRisks.map((r) => {
+                    const meta = riskMetaMap.get(r.student_id);
+                    const isDiscontinued = meta?.isDiscontinued ?? (r.cgpa < 7.0);
+                    const isExamEligible = meta?.isExamEligible ?? true;
+                    return (
                     <tr key={r.scholarship_renewal_risk_id} className="hover:bg-muted/30">
                       <td className="p-3">
                         <div className="font-medium text-foreground">{r.student_name}</div>
@@ -553,29 +595,63 @@ export function ScholarshipRenewalRiskView() {
                       <td className="p-3">
                         <span
                           className={`font-semibold ${
-                            r.cgpa < 7.5 ? "text-rose-600" : "text-foreground"
+                            isDiscontinued
+                              ? "text-destructive"
+                              : r.cgpa < 7.5
+                              ? "text-amber-600"
+                              : "text-foreground"
                           }`}
                         >
                           {r.cgpa}
                         </span>
                       </td>
                       <td className="p-3">
-                        {r.risk_level === "NONE" && (
+                        {isDiscontinued ? (
+                          <Badge className="bg-destructive text-white font-semibold text-xs">
+                            Discontinued (&lt;7.0)
+                          </Badge>
+                        ) : r.risk_level === "NONE" ? (
                           <Badge className="bg-emerald-600 text-white font-normal text-xs">Safe</Badge>
-                        )}
-                        {r.risk_level === "WATCH" && (
+                        ) : r.risk_level === "WATCH" ? (
                           <Badge className="bg-amber-600 text-white font-normal text-xs">Watchlist</Badge>
-                        )}
-                        {r.risk_level === "AT_RISK" && (
+                        ) : r.risk_level === "AT_RISK" ? (
                           <Badge className="bg-rose-600 text-white font-normal text-xs">At Risk</Badge>
-                        )}
-                        {r.risk_level === "LIKELY_LOSS" && (
+                        ) : (
                           <Badge className="bg-destructive text-white font-normal text-xs">Likely Loss</Badge>
                         )}
                       </td>
-                      <td className="p-3 text-xs text-muted-foreground max-w-xs">{r.criteria_at_risk.notes}</td>
+                      <td className="p-3 text-xs text-muted-foreground max-w-xs">
+                        {isDiscontinued ? (
+                          <span className="text-destructive font-medium">
+                            ⚠️ Auto-Discontinued: CGPA {r.cgpa} &lt; 7.0 threshold. Full fee applied.
+                          </span>
+                        ) : (
+                          r.criteria_at_risk.notes
+                        )}
+                      </td>
+                      <td className="p-3">
+                        {(() => {
+                          if (isExamEligible) {
+                            return (
+                              <Badge variant="outline" className="bg-emerald-500/10 text-emerald-600 border-emerald-500/30 text-[10px] font-semibold whitespace-nowrap">
+                                ✅ Cleared
+                              </Badge>
+                            );
+                          }
+                          const exam = getStudentExamEligibility(r.student_id);
+                          return (
+                            <Badge variant="outline" className="bg-destructive/10 text-destructive border-destructive/30 text-[10px] font-semibold whitespace-nowrap" title={exam.primaryReason}>
+                              🚫 {exam.ineligibleCategory === "DuesOnly" ? "Dues" : exam.ineligibleCategory === "AttendanceOnly" ? "Attendance" : "Dues + Att"}
+                            </Badge>
+                          );
+                        })()}
+                      </td>
                       <td className="p-3 text-right">
-                        {r.risk_level !== "NONE" ? (
+                        {isDiscontinued ? (
+                          <Badge variant="outline" className="text-destructive border-destructive/30 text-xs">
+                            Fee Recalculated
+                          </Badge>
+                        ) : r.risk_level !== "NONE" ? (
                           <Button
                             size="sm"
                             variant="outline"
@@ -585,11 +661,12 @@ export function ScholarshipRenewalRiskView() {
                             Alert Counselor
                           </Button>
                         ) : (
-                          <span className="text-xs text-muted-foreground">&mdash;</span>
+                          <span className="text-muted-foreground text-xs font-mono">Compliant</span>
                         )}
                       </td>
                     </tr>
-                  ))
+                    );
+                  })
                 )}
               </tbody>
             </table>

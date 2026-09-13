@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   ArrowDownToLine,
   ArrowRight,
@@ -26,6 +26,7 @@ import {
   Sparkles,
   Users,
   X,
+  FileCheck2,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -88,6 +89,8 @@ import {
   BankLoanDeskView,
   SqlSchemaInspector,
 } from "./organizer-views";
+import { CounsellorDeskView } from "./counsellor-desk-view";
+import { AdmitCardOversightView } from "./admit-card-oversight-view";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-context";
 import { type NavigationAction } from "@/lib/ai-finance-engine";
@@ -105,6 +108,8 @@ const navIcons = [
   FileText,
   RotateCcw,
   ChartNoAxesCombined,
+  FileCheck2,
+  GraduationCap,
 ];
 const viewDescriptions: Record<View, string> = {
   Dashboard: "A clearer picture. Smarter decisions. All in one place.",
@@ -119,6 +124,8 @@ const viewDescriptions: Record<View, string> = {
   "Scholarship Risks": "Early-warning academic tracking for CGPA and attendance thresholds.",
   "Loan Requests": "Bank education loan document issuance and verification code tracking.",
   Reports: "Turn institutional finance data into clear, actionable reports.",
+  "Counsellor Desk": "Exam permission letter review, condonation orders, and digital signature approval.",
+  "Admit Cards": "Automated examination admit card generation, dues carry-forward, and provisional hall ticket gatekeeping.",
 };
 
 const primaryNavItems: View[] = [
@@ -134,6 +141,8 @@ const moreNavItems: { label: View; desc: string; badge?: string }[] = [
   { label: "Smart Reminders", desc: "Policy Auto-Suppression", badge: "Policy" },
   { label: "Scholarship Risks", desc: "CGPA & Attendance Retention", badge: "Warning" },
   { label: "Loan Requests", desc: "Bank Document Issuance", badge: "Bank Desk" },
+  { label: "Counsellor Desk", desc: "Exam Permission Orders", badge: "Counsellor" },
+  { label: "Admit Cards", desc: "Automated Admit Card System", badge: "Hall Ticket" },
   { label: "Refunds", desc: "Withdrawals & Caution Deposit", badge: "Approval" },
   { label: "Reports", desc: "Audit Ledger & SQL Dump", badge: "SQL Engine" },
 ];
@@ -164,6 +173,16 @@ export function FinanceDashboard() {
   const [overdueOnly, setOverdueOnly] = useState(false);
   const [audit, setAudit] = useState<AuditEntry[]>(initialAudit);
   const [helpOpen, setHelpOpen] = useState(false);
+  const [cohortFilter, setCohortFilter] = useState("All Batches");
+  const [programmeFilter, setProgrammeFilter] = useState("All Programmes");
+
+  const allCohorts = useMemo(() => {
+    return Array.from(new Set(students.map((s) => s.yearLabel || "1st Year (AY 2026-27)"))).filter(Boolean);
+  }, [students]);
+
+  const allProgrammes = useMemo(() => {
+    return Array.from(new Set(students.map((s) => s.programme))).filter(Boolean);
+  }, [students]);
   function log(action: string, entity: string, status = "Success") {
     setAudit((previous) => [
       {
@@ -232,7 +251,8 @@ export function FinanceDashboard() {
     // 2. Focused Student Drawer Resolution
     if (nav.studentId) {
       const student = students.find(
-        (s) => s.id.toLowerCase() === nav.studentId?.toLowerCase()
+        (s) => s.id.toLowerCase() === nav.studentId?.toLowerCase() ||
+               s.name.toLowerCase() === nav.studentId?.toLowerCase()
       );
       if (student) {
         openStudent(student);
@@ -502,11 +522,53 @@ export function FinanceDashboard() {
                 <RefreshCw className="size-3.5" /> Last synchronized: Today,
                 10:21 AM{" "}
                 <span className="ml-1 rounded bg-muted px-1.5 py-0.5 text-sm">
-                  Demo data
+                  Live Data
                 </span>
               </p>
             </div>
-            <KpiCards onNavigate={navigate} />
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border/70 bg-card/60 p-3 backdrop-blur-sm">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="online-dot" />
+                <span className="text-sm font-semibold">Institutional Scope:</span>
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
+                  {cohortFilter === "All Batches" ? `All 5 Cohorts (${students.length} Enrolled)` : cohortFilter}
+                </span>
+                {programmeFilter !== "All Programmes" && (
+                  <span className="rounded bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
+                    {programmeFilter}
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <select
+                  className="filter-select text-xs h-8"
+                  aria-label="Filter KPI by Academic Year / Batch"
+                  value={cohortFilter}
+                  onChange={(e) => setCohortFilter(e.target.value)}
+                >
+                  <option value="All Batches">All Batches (Consolidated)</option>
+                  {allCohorts.map((c: string) => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
+                </select>
+                <select
+                  className="filter-select text-xs h-8"
+                  aria-label="Filter KPI by Programme"
+                  value={programmeFilter}
+                  onChange={(e) => setProgrammeFilter(e.target.value)}
+                >
+                  <option value="All Programmes">All Programmes</option>
+                  {allProgrammes.map((p: string) => (
+                    <option key={p} value={p}>{p}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <KpiCards
+              onNavigate={navigate}
+              selectedYear={cohortFilter}
+              selectedProgramme={programmeFilter}
+            />
             <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1.95fr)_minmax(340px,1fr)]">
               <div className="flex min-w-0 flex-col gap-5">
                 <div className="grid gap-5 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.45fr)]">
@@ -644,6 +706,8 @@ export function FinanceDashboard() {
             {view === "Smart Reminders" && <SmartRemindersView />}
             {view === "Scholarship Risks" && <ScholarshipRenewalRiskView />}
             {view === "Loan Requests" && <BankLoanDeskView />}
+            {view === "Counsellor Desk" && <CounsellorDeskView onLog={log} />}
+            {view === "Admit Cards" && <AdmitCardOversightView onLog={log} />}
             {view === "Reports" && (
               <>
                 <ReportsView entries={audit} />

@@ -1,6 +1,11 @@
 // Auto-generated: scholarship renewal status for students on Scholarship category
 // Renewal criteria: min 75% attendance, min 7.5 CGPA
-export const scholarshipStatus: Record<string, {
+import { scholarshipStatus as scholarshipStatusYear2 } from "./scholarship-status-year2-sem3";
+import { scholarshipStatus as scholarshipStatusYear3 } from "./scholarship-status-year3-sem5";
+import { scholarshipStatus as scholarshipStatusYear4 } from "./scholarship-status-year4-sem7";
+import { scholarshipStatus as scholarshipStatusMtech } from "./scholarship-status-mtech-year1-sem1";
+
+const year1ScholarshipStatus: Record<string, {
   attendance: number; minAttendance: number; cumulativeGPA: number; minGPA: number; status: string;
 }> = {
   "251FA04645": { attendance: 70.8, minAttendance: 75, cumulativeGPA: 7.51, minGPA: 7.5, status: "Critical" },
@@ -115,4 +120,14 @@ export const scholarshipStatus: Record<string, {
   "251FA08592": { attendance: 84.6, minAttendance: 75, cumulativeGPA: 8.88, minGPA: 7.5, status: "Safe" },
   "251FA08044": { attendance: 70.8, minAttendance: 75, cumulativeGPA: 9.09, minGPA: 7.5, status: "Critical" },
   "251FA08767": { attendance: 91.5, minAttendance: 75, cumulativeGPA: 6.99, minGPA: 7.5, status: "Critical" },
+};
+
+export const scholarshipStatus: Record<string, {
+  attendance: number; minAttendance: number; cumulativeGPA: number; minGPA: number; status: string;
+}> = {
+  ...year1ScholarshipStatus,
+  ...scholarshipStatusYear2,
+  ...scholarshipStatusYear3,
+  ...scholarshipStatusYear4,
+  ...scholarshipStatusMtech,
 };
