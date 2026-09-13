@@ -22,7 +22,6 @@ import {
   ArrowRight,
   CheckCircle2,
   Lock,
-  Crown,
   KeyRound,
   Shield,
   Eye,
@@ -341,17 +340,29 @@ export function LoginScreen() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#07090e] text-white flex flex-col justify-between p-4 sm:p-6 lg:p-8 overflow-x-hidden select-none">
-      {/* React Bits <DarkVeil /> Animated Shader Background (Guaranteed Dark & Visible at z-0) */}
-      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#07090e]">
-        <DarkVeil
-          speed={0.45}
-          warpAmount={0.04}
-          noiseIntensity={0.015}
-          scanlineIntensity={0.02}
-          resolutionScale={1}
-          lightMode={false}
-        />
+    <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50/40 dark:bg-none dark:bg-[#07090e] text-slate-900 dark:text-white flex flex-col justify-between p-4 sm:p-6 lg:p-8 overflow-x-hidden select-none">
+      {/* DarkVeil Animated Shader Background */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-slate-50 dark:bg-[#07090e]">
+        <div className="hidden dark:block h-full w-full">
+          <DarkVeil
+            speed={0.45}
+            warpAmount={0.04}
+            noiseIntensity={0.015}
+            scanlineIntensity={0.02}
+            resolutionScale={1}
+            lightMode={false}
+          />
+        </div>
+        <div className="block dark:hidden h-full w-full">
+          <DarkVeil
+            speed={0.45}
+            warpAmount={0.04}
+            noiseIntensity={0.015}
+            scanlineIntensity={0.02}
+            resolutionScale={1}
+            lightMode={true}
+          />
+        </div>
       </div>
 
       {/* Top Header */}
@@ -362,7 +373,7 @@ export function LoginScreen() {
             textSize="lg"
             subtitle="VFSTR • Vignan's Foundation for Science, Technology & Research"
           />
-          <span className="hidden lg:inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md">
+          <span className="hidden lg:inline-flex items-center gap-1.5 rounded-full bg-slate-200/80 dark:bg-white/10 border border-slate-300 dark:border-white/20 px-3 py-1 text-xs font-semibold text-slate-700 dark:text-white backdrop-blur-md">
             <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
             Active University Portal
           </span>
@@ -370,10 +381,10 @@ export function LoginScreen() {
 
         <div className="flex items-center gap-2">
           {/* Light / Dark Mode Toggle */}
-          <ThemeToggle className="bg-white/10 border-white/20 text-white hover:bg-white/20" />
+          <ThemeToggle className="bg-slate-200/80 dark:bg-white/10 border-slate-300 dark:border-white/20 text-slate-700 dark:text-white hover:bg-slate-300/80 dark:hover:bg-white/20" />
 
-          <div className="hidden sm:flex items-center gap-2 text-xs text-white bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 shadow-xs">
-            <Lock className="size-3.5 text-cyan-400" />
+          <div className="hidden sm:flex items-center gap-2 text-xs text-slate-700 dark:text-white bg-slate-200/80 dark:bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-white/20 shadow-xs">
+            <Lock className="size-3.5 text-cyan-500 dark:text-cyan-400" />
             <span>Select any portal to sign in</span>
           </div>
         </div>
@@ -385,79 +396,24 @@ export function LoginScreen() {
           {/* Left Column: Title + The 3 Crisp White Role Cards */}
           <div className="space-y-6">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 rounded-full bg-cyan-500/20 border border-cyan-400/40 px-3.5 py-1 text-xs font-semibold text-cyan-300 backdrop-blur-md shadow-xs">
-                <Sparkles className="size-3.5 text-cyan-400" />
+              <div className="inline-flex items-center gap-2 rounded-full bg-cyan-500/15 dark:bg-cyan-500/20 border border-cyan-500/30 dark:border-cyan-400/40 px-3.5 py-1 text-xs font-semibold text-cyan-700 dark:text-cyan-300 backdrop-blur-md shadow-xs">
+                <Sparkles className="size-3.5 text-cyan-500 dark:text-cyan-400" />
                 <span>Autonomous Higher-Education Finance Architecture</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white drop-shadow-lg">
-                Explore <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-300 to-indigo-400">finDeck</span>
+              <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white drop-shadow-lg">
+                Explore <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-blue-700 to-indigo-800 dark:from-cyan-300 dark:via-sky-300 dark:to-indigo-400">finDeck</span>
               </h1>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
                 Official University Finance &amp; Treasury Command System. Click any portal below to enter your email and credentials.
               </p>
             </div>
 
-            {/* The 3 CRISP BRIGHT WHITE Cards (High Contrast on DarkVeil) */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 items-stretch">
-              {/* CARD 1: CEO & ADMINISTRATOR (Bright White Card) */}
-              <div
-                onMouseEnter={() => setHoveredRole("admin")}
-                onMouseLeave={() => setHoveredRole(null)}
-                className="h-full"
-              >
-                <TiltedCard
-                  maxTilt={12}
-                  scale={1.03}
-                  glowColor={ROLE_CONFIGS.admin.colorTheme.glowColor}
-                  className="bg-white/95 dark:bg-white/95 text-slate-900 border-2 border-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl h-full rounded-2xl"
-                >
-                  <div className="p-4 sm:p-5 flex flex-col justify-between h-full space-y-4">
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className={`flex size-10 items-center justify-center rounded-xl border shadow-xs ${ROLE_CONFIGS.admin.colorTheme.iconBg}`}>
-                          <Crown className="size-5" />
-                        </span>
-                        <span className={`rounded-full border px-2.5 py-0.5 text-[10px] font-bold ${ROLE_CONFIGS.admin.colorTheme.badgeBg} ${ROLE_CONFIGS.admin.colorTheme.badgeText}`}>
-                          {ROLE_CONFIGS.admin.badge}
-                        </span>
-                      </div>
+            {/* The 2 CRISP BRIGHT WHITE Cards (High Contrast on DarkVeil) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch max-w-2xl">
 
-                      <div>
-                        <h3 className="text-base font-black text-slate-900">
-                          {ROLE_CONFIGS.admin.title}
-                        </h3>
-                        <p className="text-[11px] text-slate-600 font-semibold mt-0.5 truncate">
-                          {ROLE_CONFIGS.admin.subtitle}
-                        </p>
-                      </div>
-
-                      <div className="space-y-1.5 text-[11px] text-slate-700 font-medium pt-2.5 border-t border-slate-200">
-                        {ROLE_CONFIGS.admin.features.map((f, i) => (
-                          <div key={i} className="flex items-start gap-1.5">
-                            <CheckCircle2 className="size-3.5 text-amber-600 shrink-0 mt-0.5" />
-                            <span className="truncate">{f}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="pt-1">
-                      <Button
-                        size="sm"
-                        className={`w-full h-9 gap-1.5 shadow-md cursor-pointer text-xs ${ROLE_CONFIGS.admin.colorTheme.buttonGradient}`}
-                        onClick={() => openRoleLogin("admin")}
-                      >
-                        <span>Sign In</span>
-                        <ArrowRight className="size-3.5" />
-                      </Button>
-                    </div>
-                  </div>
-                </TiltedCard>
-              </div>
-
-              {/* CARD 2: FINANCE OFFICER (Bright White Card) */}
+              {/* CARD 1: FINANCE OFFICER (Bright White Card) */}
               <div
                 onMouseEnter={() => setHoveredRole("finance-officer")}
                 onMouseLeave={() => setHoveredRole(null)}
@@ -467,7 +423,7 @@ export function LoginScreen() {
                   maxTilt={12}
                   scale={1.03}
                   glowColor={ROLE_CONFIGS["finance-officer"].colorTheme.glowColor}
-                  className="bg-white/95 dark:bg-white/95 text-slate-900 border-2 border-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl h-full rounded-2xl"
+                  className="bg-slate-900/95 dark:bg-white/95 text-white dark:text-slate-900 border-2 border-slate-800 dark:border-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl h-full rounded-2xl"
                 >
                   <div className="p-4 sm:p-5 flex flex-col justify-between h-full space-y-4">
                     <div className="space-y-3">
@@ -481,18 +437,18 @@ export function LoginScreen() {
                       </div>
 
                       <div>
-                        <h3 className="text-base font-black text-slate-900">
+                        <h3 className="text-base font-black text-white dark:text-slate-900">
                           {ROLE_CONFIGS["finance-officer"].title}
                         </h3>
-                        <p className="text-[11px] text-slate-600 font-semibold mt-0.5 truncate">
+                        <p className="text-[11px] text-slate-400 dark:text-slate-600 font-semibold mt-0.5 truncate">
                           {ROLE_CONFIGS["finance-officer"].subtitle}
                         </p>
                       </div>
 
-                      <div className="space-y-1.5 text-[11px] text-slate-700 font-medium pt-2.5 border-t border-slate-200">
+                      <div className="space-y-1.5 text-[11px] text-slate-300 dark:text-slate-700 font-medium pt-2.5 border-t border-slate-700 dark:border-slate-200">
                         {ROLE_CONFIGS["finance-officer"].features.map((f, i) => (
                           <div key={i} className="flex items-start gap-1.5">
-                            <CheckCircle2 className="size-3.5 text-indigo-600 shrink-0 mt-0.5" />
+                            <CheckCircle2 className="size-3.5 text-indigo-400 dark:text-indigo-600 shrink-0 mt-0.5" />
                             <span className="truncate">{f}</span>
                           </div>
                         ))}
@@ -513,7 +469,7 @@ export function LoginScreen() {
                 </TiltedCard>
               </div>
 
-              {/* CARD 3: STUDENT PORTAL (Bright White Card) */}
+              {/* CARD 2: STUDENT PORTAL (Bright White Card) */}
               <div
                 onMouseEnter={() => setHoveredRole("student")}
                 onMouseLeave={() => setHoveredRole(null)}
@@ -523,7 +479,7 @@ export function LoginScreen() {
                   maxTilt={12}
                   scale={1.03}
                   glowColor={ROLE_CONFIGS.student.colorTheme.glowColor}
-                  className="bg-white/95 dark:bg-white/95 text-slate-900 border-2 border-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl h-full rounded-2xl"
+                  className="bg-slate-900/95 dark:bg-white/95 text-white dark:text-slate-900 border-2 border-slate-800 dark:border-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl h-full rounded-2xl"
                 >
                   <div className="p-4 sm:p-5 flex flex-col justify-between h-full space-y-4">
                     <div className="space-y-3">
@@ -537,18 +493,18 @@ export function LoginScreen() {
                       </div>
 
                       <div>
-                        <h3 className="text-base font-black text-slate-900">
+                        <h3 className="text-base font-black text-white dark:text-slate-900">
                           {ROLE_CONFIGS.student.title}
                         </h3>
-                        <p className="text-[11px] text-slate-600 font-semibold mt-0.5 truncate">
+                        <p className="text-[11px] text-slate-400 dark:text-slate-600 font-semibold mt-0.5 truncate">
                           {ROLE_CONFIGS.student.subtitle}
                         </p>
                       </div>
 
-                      <div className="space-y-1.5 text-[11px] text-slate-700 font-medium pt-2.5 border-t border-slate-200">
+                      <div className="space-y-1.5 text-[11px] text-slate-300 dark:text-slate-700 font-medium pt-2.5 border-t border-slate-700 dark:border-slate-200">
                         {ROLE_CONFIGS.student.features.map((f, i) => (
                           <div key={i} className="flex items-start gap-1.5">
-                            <CheckCircle2 className="size-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                            <CheckCircle2 className="size-3.5 text-emerald-400 dark:text-emerald-600 shrink-0 mt-0.5" />
                             <span className="truncate">{f}</span>
                           </div>
                         ))}
@@ -591,7 +547,7 @@ export function LoginScreen() {
               maxTilt={6}
               scale={1.01}
               glowColor={ROLE_CONFIGS[activeLoginRole].colorTheme.glowColor}
-              className="bg-white dark:bg-white text-slate-900 border-2 border-white shadow-2xl p-6 sm:p-7 backdrop-blur-2xl rounded-2xl"
+              className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-2 border-slate-800 dark:border-white shadow-2xl p-6 sm:p-7 backdrop-blur-2xl rounded-2xl"
             >
               {/* FORGOT PASSWORD WORKFLOW FOR STUDENTS */}
               {isForgotPassword && activeLoginRole === "student" ? (
@@ -603,10 +559,10 @@ export function LoginScreen() {
                         <KeyRound className="size-5" />
                       </span>
                       <div>
-                        <h3 className="font-black text-base text-slate-900">
+                        <h3 className="font-black text-base text-white dark:text-slate-900">
                           Student Password Recovery
                         </h3>
-                        <p className="text-[11px] text-slate-600 font-medium">
+                        <p className="text-[11px] text-slate-400 dark:text-slate-600 font-medium">
                           Self-Service Reset via Roll Number &amp; Verification
                         </p>
                       </div>
@@ -887,7 +843,7 @@ export function LoginScreen() {
                     <div className="flex items-center gap-3">
                       <span className={`flex size-10 items-center justify-center rounded-xl border ${ROLE_CONFIGS[activeLoginRole].colorTheme.iconBg}`}>
                         {activeLoginRole === "admin" ? (
-                          <Crown className="size-5" />
+                          <Shield className="size-5" />
                         ) : activeLoginRole === "finance-officer" ? (
                           <Building className="size-5" />
                         ) : (
@@ -895,10 +851,10 @@ export function LoginScreen() {
                         )}
                       </span>
                       <div>
-                        <h3 className="font-black text-base text-slate-900">
+                        <h3 className="font-black text-base text-white dark:text-slate-900">
                           Sign in to {ROLE_CONFIGS[activeLoginRole].title}
                         </h3>
-                        <p className="text-[11px] text-slate-600 font-medium">
+                        <p className="text-[11px] text-slate-400 dark:text-slate-600 font-medium">
                           {ROLE_CONFIGS[activeLoginRole].subtitle}
                         </p>
                       </div>
@@ -1135,7 +1091,7 @@ export function LoginScreen() {
       )}
 
       {/* Footer */}
-      <footer className="relative z-10 max-w-7xl w-full mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400 pt-3 border-t border-white/10">
+      <footer className="relative z-10 max-w-7xl w-full mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-200 dark:border-white/10">
         <div className="flex items-center gap-2">
           <Shield className="size-3.5 text-cyan-400" />
           <span>AES-256 Encrypted Session · ISO 27001 Financial Governance</span>
