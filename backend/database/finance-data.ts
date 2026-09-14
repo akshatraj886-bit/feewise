@@ -13,6 +13,10 @@ export const navigation = [
   "Reports",
   "Counsellor Desk",
   "Admit Cards",
+  "CGPA & Attendance Retention",
+  "Bank Document Issuance",
+  "Exam Permission Orders",
+  "Withdrawals & Caution Deposit",
 ] as const;
 export type View = (typeof navigation)[number];
 export const inr = (amount: number) => "₹" + (amount ?? 0).toLocaleString("en-IN");

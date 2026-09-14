@@ -3615,6 +3615,8 @@ export function FullPageAiAssistant({
 
   const [listening, setListening] = useState(false);
 
+  const speechRef = useRef<Recognition | null>(null);
+
 
 
   const [apiKey, setApiKey] = useState("");
