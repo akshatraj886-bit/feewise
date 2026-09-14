@@ -126,6 +126,10 @@ const viewDescriptions: Record<View, string> = {
   Reports: "Turn institutional finance data into clear, actionable reports.",
   "Counsellor Desk": "Exam permission letter review, condonation orders, and digital signature approval.",
   "Admit Cards": "Automated examination admit card generation, dues carry-forward, and provisional hall ticket gatekeeping.",
+  "CGPA & Attendance Retention": "Monitor scholarships and track required thresholds.",
+  "Bank Document Issuance": "Issue and verify financial documents for banking.",
+  "Exam Permission Orders": "Generate and manage condonation orders.",
+  "Withdrawals & Caution Deposit": "Handle deposit returns and student withdrawals.",
 };
 
 const primaryNavItems: View[] = [

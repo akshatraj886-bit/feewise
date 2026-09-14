@@ -2740,6 +2740,38 @@ export async function queryFinanceAi(
 
       },
 
+      "CGPA & Attendance Retention": {
+
+        hi: "Sure — Main **CGPA & Attendance Retention** desk open kar raha hoon.",
+
+        en: "Navigating to **CGPA & Attendance Retention** desk.",
+
+      },
+
+      "Bank Document Issuance": {
+
+        hi: "Sure — Main **Bank Document Issuance** section open kar raha hoon.",
+
+        en: "Navigating to **Bank Document Issuance** section.",
+
+      },
+
+      "Exam Permission Orders": {
+
+        hi: "Sure — Main **Exam Permission Orders** desk open kar raha hoon.",
+
+        en: "Navigating to **Exam Permission Orders** desk.",
+
+      },
+
+      "Withdrawals & Caution Deposit": {
+
+        hi: "Sure — Main **Withdrawals & Caution Deposit** desk open kar raha hoon.",
+
+        en: "Navigating to **Withdrawals & Caution Deposit** desk.",
+
+      },
+
     };
 
 
