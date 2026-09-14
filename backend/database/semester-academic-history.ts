@@ -424,43 +424,7 @@ export const benchmarkSemesterHistories: Record<string, SemesterRecord[]> = {
     },
   ],
 
-  // 7. 251FA04645 (Dharanikota Aaradhya) - Benchmark: Fully Paid (0 Dues) but Attendance 71.0% (< 75% Requirement)
-  "251FA04645": [
-    {
-      studentId: "251FA04645",
-      academicYear: "2025–26",
-      yearNo: 1,
-      semNo: 1,
-      semLabel: "Sem 1 (Jul–Nov 2025)",
-      cgpa: 7.80,
-      cumulativeCgpa: 7.80,
-      attendance: 78.5,
-      grossFee: 50000,
-      scholarshipApplied: 10000,
-      scholarshipPercent: 20,
-      netDemand: 40000,
-      paid: 40000,
-      outstanding: 0,
-      scholarshipStatus: "Active",
-    },
-    {
-      studentId: "251FA04645",
-      academicYear: "2026–27",
-      yearNo: 2,
-      semNo: 3,
-      semLabel: "Sem 3 (Jul–Nov 2026)",
-      cgpa: 7.51,
-      cumulativeCgpa: 7.65,
-      attendance: 71.0, // Low attendance below 75%
-      grossFee: 50000,
-      scholarshipApplied: 10000,
-      scholarshipPercent: 20,
-      netDemand: 40000,
-      paid: 40000,      // Fully paid! 0 Dues
-      outstanding: 0,   // Dues = 0
-      scholarshipStatus: "Active",
-    },
-  ],
+  // (251FA04645 was previously here, but removed so it pulls real outstanding dues from finance-data)
 
   // 8. 251FA04E58 (Chaitanya Varma) - Benchmark: Chained Carry-Forward Across Consecutive Semesters
   // Sem 1 dues carried into Sem 2, Sem 2 dues carried into Sem 3 -> Final outstanding ₹18,000

@@ -771,6 +771,8 @@ export function FloatingAiAssistant({
 
   const [listening, setListening] = useState(false);
 
+  const speechRef = useRef<Recognition | null>(null);
+
 
 
   const [apiKey, setApiKey] = useState("");
@@ -1123,23 +1125,23 @@ export function FloatingAiAssistant({
 
   function startVoice() {
 
+    if (listening && speechRef.current) {
 
+      speechRef.current.stop();
 
-    if (listening) return;
+      setListening(false);
+
+      return;
+
+    }
 
 
 
     const browser = window as unknown as {
 
-
-
       SpeechRecognition?: new () => Recognition;
 
-
-
       webkitSpeechRecognition?: new () => Recognition;
-
-
 
     };
 
@@ -1147,19 +1149,11 @@ export function FloatingAiAssistant({
 
     const Speech = browser.SpeechRecognition || browser.webkitSpeechRecognition;
 
-
-
     if (!Speech) {
-
-
 
       toast.error("Voice input is not supported in this browser. Please use Chrome or Edge.");
 
-
-
       return;
-
-
 
     }
 
@@ -1167,19 +1161,13 @@ export function FloatingAiAssistant({
 
     const speech = new Speech();
 
+    speechRef.current = speech;
 
+    // Use en-IN for broad Indian languages support (English, Hindi, Hinglish, Telugu mixed support)
 
-    // hi-IN handles Hindi + Hinglish queries better than en-IN
-
-
-
-    speech.lang = "hi-IN";
-
-
+    speech.lang = "en-IN";
 
     speech.continuous = false;
-
-
 
     speech.interimResults = false;
 
@@ -1187,11 +1175,7 @@ export function FloatingAiAssistant({
 
     speech.onresult = (event) => {
 
-
-
       const transcript = event.results[0][0].transcript;
-
-
 
       setListening(false);
 
@@ -3955,23 +3939,23 @@ export function FullPageAiAssistant({
 
   function startVoice() {
 
+    if (listening && speechRef.current) {
 
+      speechRef.current.stop();
 
-    if (listening) return;
+      setListening(false);
+
+      return;
+
+    }
 
 
 
     const browser = window as unknown as {
 
-
-
       SpeechRecognition?: new () => Recognition;
 
-
-
       webkitSpeechRecognition?: new () => Recognition;
-
-
 
     };
 
@@ -3979,19 +3963,11 @@ export function FullPageAiAssistant({
 
     const Speech = browser.SpeechRecognition || browser.webkitSpeechRecognition;
 
-
-
     if (!Speech) {
-
-
 
       toast.error("Voice input is not supported in this browser. Please use Chrome or Edge.");
 
-
-
       return;
-
-
 
     }
 
@@ -3999,19 +3975,13 @@ export function FullPageAiAssistant({
 
     const speech = new Speech();
 
+    speechRef.current = speech;
 
+    // Use en-IN for broad Indian languages support (English, Hindi, Hinglish, Telugu mixed support)
 
-    // hi-IN handles Hindi + Hinglish queries better than en-IN
-
-
-
-    speech.lang = "hi-IN";
-
-
+    speech.lang = "en-IN";
 
     speech.continuous = false;
-
-
 
     speech.interimResults = false;
 
@@ -4019,11 +3989,7 @@ export function FullPageAiAssistant({
 
     speech.onresult = (event) => {
 
-
-
       const transcript = event.results[0][0].transcript;
-
-
 
       setListening(false);
 

@@ -877,85 +877,128 @@ export function FeeStructureView() {
           </div>
         </div>
 
-        {/* Segregated Fee Breakdown Table */}
-        <table className="data-table mobile-cards">
-          <thead>
-            <tr>
-              {[
-                "Programme",
-                "Academic Year",
-                "Category",
-                "Admission Route",
-                "Fee Head",
-                "Amount",
-                "Effective Date",
-                "Status",
-              ].map((h) => (
-                <th key={h}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map((row, i) => (
-              <tr key={i} className="hover:bg-muted/30 transition-colors">
-                <td data-label="Programme" className="font-semibold text-foreground">
-                  {row.programme}
-                </td>
-                <td data-label="Academic Year" className="text-muted-foreground">
-                  {row.year}
-                </td>
-                <td data-label="Category">
-                  <Badge variant="outline" className="text-xs font-normal">
-                    {row.category}
-                  </Badge>
-                </td>
-                <td data-label="Admission Route" className="text-xs text-muted-foreground">
-                  {row.route}
-                </td>
-                <td data-label="Fee Head" className="font-medium">
-                  <span className="inline-flex items-center gap-1.5">
-                    {row.head === "Tuition" && "🎓"}
-                    {row.head === "Hostel" && "🏠"}
-                    {row.head === "Examination" && "📝"}
-                    {row.head === "Laboratory" && "🔬"}
-                    {row.head === "Library" && "📚"}
-                    {row.head === "Transport" && "🚌"}
-                    {row.head === "Registration" && "📋"}
-                    {row.head === "Placement & Alumni" && "💼"}
-                    <span className="font-medium">{row.head}</span>
-                  </span>
-                </td>
-                <td data-label="Amount" className="font-bold text-foreground">
-                  {inr(row.amount)}
-                </td>
-                <td data-label="Effective Date" className="text-xs text-muted-foreground">
-                  {row.effective}
-                </td>
-                <td data-label="Status">
-                  <Badge variant={row.active ? "secondary" : "outline"} className="text-xs">
-                    {row.version}
-                    {!row.active && " · Archived"}
-                  </Badge>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-          {filtered.length > 0 && programme !== "All programmes" && (
-            <tfoot>
-              <tr className="bg-muted/40 font-bold border-t-2 border-border">
-                <td colSpan={5} className="text-right py-3 pr-4 font-bold text-foreground">
-                  Total {programme} Segregated Fee Package:
-                </td>
-                <td className="py-3 font-extrabold text-primary text-base">
-                  {inr(filtered.reduce((sum, r) => sum + r.amount, 0))}
-                </td>
-                <td colSpan={2} className="py-3 text-xs text-muted-foreground">
-                  ({filtered.length} Segregated Heads)
-                </td>
-              </tr>
-            </tfoot>
-          )}
-        </table>
+        {/* Segregated Fee Breakdown Table - Grouped View */}
+        <div className="space-y-4">
+          {(() => {
+            // Group by Programme
+            const groupedByProg = filtered.reduce((acc, row) => {
+              if (!acc[row.programme]) acc[row.programme] = {};
+              if (!acc[row.programme][row.route]) acc[row.programme][row.route] = [];
+              acc[row.programme][row.route].push(row);
+              return acc;
+            }, {} as Record<string, Record<string, typeof filtered>>);
+
+            const programmes = Object.keys(groupedByProg).sort();
+
+            if (programmes.length === 0) {
+              return null;
+            }
+
+            return programmes.map(prog => (
+              <details key={prog} className="group border border-border/60 rounded-xl overflow-hidden bg-card shadow-sm" open={programmes.length === 1 || programme !== "All programmes"}>
+                <summary className="cursor-pointer bg-muted/40 px-5 py-4 font-bold text-foreground flex items-center justify-between hover:bg-muted/60 transition-colors select-none">
+                  <div className="flex items-center gap-3">
+                    <span className="text-lg">🎓</span>
+                    <span>{prog}</span>
+                    <Badge variant="outline" className="ml-2 bg-background font-normal text-xs">
+                      {Object.keys(groupedByProg[prog]).length} Routes
+                    </Badge>
+                  </div>
+                  <div className="text-muted-foreground group-open:rotate-180 transition-transform duration-200">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-5"><path d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
+                  </div>
+                </summary>
+                
+                <div className="p-4 sm:p-5 bg-background space-y-4">
+                  {Object.keys(groupedByProg[prog]).sort().map(route => {
+                    const rows = groupedByProg[prog][route];
+                    const totalRouteAmount = rows.reduce((sum, r) => sum + r.amount, 0);
+                    
+                    return (
+                      <details key={route} className="group/route border border-border/40 rounded-lg overflow-hidden bg-card/50" open={Object.keys(groupedByProg[prog]).length <= 2 || admissionRouteFilter !== "All routes"}>
+                        <summary className="cursor-pointer bg-secondary/30 px-4 py-3 font-semibold text-sm flex items-center justify-between hover:bg-secondary/50 transition-colors select-none border-b border-transparent group-open/route:border-border/40">
+                          <div className="flex items-center gap-2">
+                            <Badge variant="secondary" className="bg-background/80 shadow-xs border-border/50">{route}</Badge>
+                            <span className="text-xs text-muted-foreground hidden sm:inline-block">({rows.length} Fee Heads)</span>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <span className="text-xs font-bold text-primary">{inr(totalRouteAmount)}</span>
+                            <div className="text-muted-foreground group-open/route:rotate-180 transition-transform duration-200">
+                              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-4"><path d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
+                            </div>
+                          </div>
+                        </summary>
+                        
+                        <div className="overflow-x-auto">
+                          <table className="w-full text-xs text-left">
+                            <thead className="bg-muted/30 text-muted-foreground border-b border-border/40">
+                              <tr>
+                                <th className="px-4 py-2.5 font-medium">Fee Head</th>
+                                <th className="px-4 py-2.5 font-medium">Category</th>
+                                <th className="px-4 py-2.5 font-medium">Amount</th>
+                                <th className="px-4 py-2.5 font-medium">Effective Date</th>
+                                <th className="px-4 py-2.5 font-medium">Status</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/30">
+                              {rows.map((row, i) => (
+                                <tr key={i} className="hover:bg-muted/20 transition-colors">
+                                  <td className="px-4 py-2.5 font-medium">
+                                    <span className="inline-flex items-center gap-1.5">
+                                      {row.head === "Tuition" && "🎓"}
+                                      {row.head === "Hostel" && "🏠"}
+                                      {row.head === "Examination" && "📝"}
+                                      {row.head === "Laboratory" && "🔬"}
+                                      {row.head === "Library" && "📚"}
+                                      {row.head === "Transport" && "🚌"}
+                                      {row.head === "Registration" && "📋"}
+                                      {row.head === "Placement & Alumni" && "💼"}
+                                      <span>{row.head}</span>
+                                    </span>
+                                  </td>
+                                  <td className="px-4 py-2.5">
+                                    <Badge variant="outline" className="text-[10px] font-normal py-0">
+                                      {row.category}
+                                    </Badge>
+                                  </td>
+                                  <td className="px-4 py-2.5 font-bold text-foreground">
+                                    {inr(row.amount)}
+                                  </td>
+                                  <td className="px-4 py-2.5 text-muted-foreground">
+                                    {row.effective}
+                                  </td>
+                                  <td className="px-4 py-2.5">
+                                    <Badge variant={row.active ? "secondary" : "outline"} className="text-[10px] py-0">
+                                      {row.version}
+                                      {!row.active && " · Archived"}
+                                    </Badge>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </details>
+                    );
+                  })}
+                  
+                  {/* Total Summary for this Programme */}
+                  {programme !== "All programmes" && (
+                    <div className="flex items-center justify-between rounded-lg bg-primary/5 p-3 border border-primary/20 mt-4">
+                      <span className="text-sm font-bold text-foreground">Total {prog} Segregated Fee Package</span>
+                      <div className="flex items-center gap-3">
+                        <span className="text-xs text-muted-foreground">({Object.values(groupedByProg[prog]).flat().length} Segregated Heads)</span>
+                        <span className="text-base font-extrabold text-primary">
+                          {inr(Object.values(groupedByProg[prog]).flat().reduce((sum, r) => sum + r.amount, 0))}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </details>
+            ));
+          })()}
+        </div>
 
         {!filtered.length && (
           <div className="py-12 text-center">

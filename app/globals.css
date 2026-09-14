@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark *):not(.light-mode *):not(.light-mode));
 
 @theme inline {
   --font-sans: var(--font-geist);
@@ -97,6 +97,36 @@
   --chart-3: #a855f7;
   --chart-4: #10b981;
   --chart-5: #f59e0b;
+}
+
+.light-mode {
+  color-scheme: light;
+  --background: #f8faff;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --card-foreground: #0f172a;
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+  --secondary: #eef2ff;
+  --secondary-foreground: #4f46e5;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #eef2ff;
+  --accent-foreground: #4f46e5;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #4f46e5;
+  --violet: #8b5cf6;
+  --success: #059669;
+  --warning: #d97706;
+  --destructive: #e11d48;
+  --chart-1: #4f46e5;
+  --chart-2: #0284c7;
+  --chart-3: #7c3aed;
+  --chart-4: #059669;
+  --chart-5: #d97706;
 }
 @layer base {
   * {

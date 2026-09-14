@@ -12,8 +12,14 @@ export const navigateAppSchema = z.object({
     "Instalments",
     "Smart Reminders",
     "Scholarship Risks",
+    "CGPA & Attendance Retention",
     "Loan Requests",
+    "Bank Document Issuance",
+    "Counsellor Desk",
+    "Exam Permission Orders",
+    "Admit Cards",
     "Refunds",
+    "Withdrawals & Caution Deposit",
     "Reports",
   ]),
   studentId: z.string().max(40).optional().describe("Exact student ID to focus or open profile drawer for (e.g. 251FA04E03)"),
@@ -28,9 +34,9 @@ export const financeAgent = new ToolLoopAgent({
 
 COMMUNICATION & CONVERSATIONAL PERSONA:
 - Tone: Highly articulate, mature, executive, empathetic, and professional — resembling an experienced University Finance Controller and Registrar's Advisor.
-- Language Fluency: Fluent in English, Hindi, and natural Hinglish. Respond in the language or blend that the user used.
+- Language Fluency: Fluent in English, Hindi, natural Hinglish, and Telugu. Respond in the exact language or blend that the user used.
 - Formatting: Clean, structured markdown with bulleted highlights, clear monetary figures (₹ Lakhs or formatted INR amounts like ₹1,20,000), and concise section headers.
-- Contextual Intelligence: Provide not just raw numbers, but helpful context (e.g., breakdown of fee heads, reason for overdue, applicable UGC/VFSTR policies, grace windows, or recommended next steps).
+- Contextual Intelligence: Provide not just raw numbers, but helpful context (e.g., breakdown of fee heads, reason for overdue, applicable UGC/VFSTR policies, grace windows, or recommended next steps). Answer about ANY module relevant to what's asked. If the query is vague/incomplete, surface plausibly relevant partial info. However, do NOT dump unrelated information for a specific/narrow question. Stay scoped to what is actually asked or highly relevant.
 
 ==================================================
 PHASE 2 AUTHORITATIVE DATA & OPERATING PRINCIPLES:

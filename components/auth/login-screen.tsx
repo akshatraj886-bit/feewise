@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth, type UserRole } from "@/lib/auth-context";
 import {
   validateStudentCredentials,
@@ -30,6 +30,25 @@ import {
   Mail,
   Loader2,
   Calendar,
+  Activity,
+  FileText,
+  Database,
+  UserCheck,
+  Layers,
+  Settings,
+  FileCheck2,
+  UserCog,
+  History,
+  MessageSquare,
+  Fingerprint,
+  FileSignature,
+  RefreshCw,
+  MapPin,
+  ClipboardCheck,
+  CreditCard,
+  Network,
+  Sun,
+  Moon
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -118,6 +137,24 @@ const ROLE_CONFIGS: Record<UserRole, RoleConfig> = {
 
 export function LoginScreen() {
   const { login } = useAuth();
+
+  // Landing Page Theme State
+  const [landingTheme, setLandingTheme] = useState<"light" | "dark">("dark");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const saved = localStorage.getItem("landing-theme");
+    if (saved === "light" || saved === "dark") {
+      setLandingTheme(saved);
+    }
+  }, []);
+
+  const toggleLandingTheme = () => {
+    const newTheme = landingTheme === "light" ? "dark" : "light";
+    setLandingTheme(newTheme);
+    localStorage.setItem("landing-theme", newTheme);
+  };
 
   // Active Login Modal State
   const [activeLoginRole, setActiveLoginRole] = useState<UserRole | null>(null);
@@ -263,6 +300,8 @@ export function LoginScreen() {
         }
         setIsAuthenticating(false);
         toast.success(`Authenticated student (${check.studentId}) successfully!`);
+        window.history.replaceState(null, '', window.location.pathname);
+        window.scrollTo(0, 0);
         login("student", check.studentId);
         return;
       }
@@ -298,6 +337,8 @@ export function LoginScreen() {
 
         setIsAuthenticating(false);
         toast.success(`Authenticated as ${ROLE_CONFIGS.admin.title}! Full treasury permissions granted.`);
+        window.history.replaceState(null, '', window.location.pathname);
+        window.scrollTo(0, 0);
         login("admin");
         return;
       }
@@ -333,6 +374,8 @@ export function LoginScreen() {
 
         setIsAuthenticating(false);
         toast.success(`Authenticated as ${ROLE_CONFIGS["finance-officer"].title}!`);
+        window.history.replaceState(null, '', window.location.pathname);
+        window.scrollTo(0, 0);
         login("finance-officer");
         return;
       }
@@ -340,75 +383,123 @@ export function LoginScreen() {
   }
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50/40 dark:bg-none dark:bg-[#07090e] text-slate-900 dark:text-white flex flex-col justify-between p-4 sm:p-6 lg:p-8 overflow-x-hidden select-none">
-      {/* DarkVeil Animated Shader Background */}
-      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-slate-50 dark:bg-[#07090e]">
-        <div className="hidden dark:block h-full w-full">
-          <DarkVeil
-            speed={0.45}
-            warpAmount={0.04}
-            noiseIntensity={0.015}
-            scanlineIntensity={0.02}
-            resolutionScale={1}
-            lightMode={false}
-          />
-        </div>
-        <div className="block dark:hidden h-full w-full">
-          <DarkVeil
-            speed={0.45}
-            warpAmount={0.04}
-            noiseIntensity={0.015}
-            scanlineIntensity={0.02}
-            resolutionScale={1}
-            lightMode={true}
-          />
-        </div>
-      </div>
+    <div className={landingTheme === "light" ? "light-mode" : ""}>
+      <div className="relative min-h-screen bg-gradient-to-tr from-slate-50 via-slate-100 to-indigo-50/30 dark:bg-gradient-to-tr dark:from-[#020408] dark:via-[#0b1021] dark:to-[#040609] text-slate-900 dark:text-white flex flex-col justify-between p-4 sm:p-6 lg:p-8 overflow-x-hidden select-none">
+        
+        {/* Glow Blobs (Dark Mode Only) */}
+        <div className="pointer-events-none fixed top-[10%] left-[-5%] w-[40%] h-[40%] bg-indigo-600/10 dark:bg-indigo-600/20 rounded-full blur-[120px] mix-blend-screen hidden dark:block" />
+        <div className="pointer-events-none fixed bottom-[10%] right-[-5%] w-[30%] h-[30%] bg-cyan-600/10 dark:bg-cyan-600/20 rounded-full blur-[120px] mix-blend-screen hidden dark:block" />
 
-      {/* Top Header */}
-      <header className="relative z-10 max-w-7xl w-full mx-auto flex items-center justify-between pb-2">
-        <div className="flex items-center gap-3">
-          <FinDeckLogo
-            size={40}
-            textSize="lg"
-            subtitle="VFSTR • Vignan's Foundation for Science, Technology & Research"
-          />
-          <span className="hidden lg:inline-flex items-center gap-1.5 rounded-full bg-slate-200/80 dark:bg-white/10 border border-slate-300 dark:border-white/20 px-3 py-1 text-xs font-semibold text-slate-700 dark:text-white backdrop-blur-md">
-            <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
-            Active University Portal
-          </span>
+        {/* DarkVeil Animated Shader Background */}
+        <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden mix-blend-screen dark:mix-blend-normal">
+          <div className="h-full w-full opacity-60 dark:opacity-100">
+            {mounted && (
+              <DarkVeil
+                speed={0.45}
+                warpAmount={0.04}
+                noiseIntensity={landingTheme === "dark" ? 0.05 : 0.015}
+                scanlineIntensity={0.02}
+                hueShift={landingTheme === "dark" ? -15 : 0}
+                resolutionScale={1}
+                lightMode={landingTheme === "light"}
+              />
+            )}
+          </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          {/* Light / Dark Mode Toggle */}
-          <ThemeToggle className="bg-slate-200/80 dark:bg-white/10 border-slate-300 dark:border-white/20 text-slate-700 dark:text-white hover:bg-slate-300/80 dark:hover:bg-white/20" />
+      {/* New Sticky Navbar */}
+      <header className="relative z-50 w-full border-b border-slate-200/50 dark:border-white/10 bg-white/80 dark:bg-[#07090e]/80 backdrop-blur-md sticky top-0">
+        <div className="max-w-7xl w-full mx-auto flex items-center justify-between py-3 px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3">
+            <FinDeckLogo
+              size={36}
+              textSize="lg"
+            />
+          </div>
+          
+          <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+            <a href="#" className="text-slate-900 dark:text-white transition-colors">Home</a>
+            <a href="#features" className="hover:text-slate-900 dark:hover:text-white transition-colors">Features</a>
+            <a href="#how-it-works" className="hover:text-slate-900 dark:hover:text-white transition-colors">How It Works</a>
+            <a href="#modules" className="hover:text-slate-900 dark:hover:text-white transition-colors">Modules</a>
+            <a href="#trust" className="hover:text-slate-900 dark:hover:text-white transition-colors">Trust & Security</a>
+          </nav>
 
-          <div className="hidden sm:flex items-center gap-2 text-xs text-slate-700 dark:text-white bg-slate-200/80 dark:bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-white/20 shadow-xs">
-            <Lock className="size-3.5 text-cyan-500 dark:text-cyan-400" />
-            <span>Select any portal to sign in</span>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={toggleLandingTheme}
+              className="flex items-center justify-center size-9 rounded-full bg-slate-200/80 dark:bg-white/10 border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white hover:bg-slate-300/80 dark:hover:bg-white/20 transition-all shadow-sm"
+              aria-label="Toggle theme"
+            >
+              {mounted && landingTheme === "dark" ? (
+                <Sun className="size-4" />
+              ) : mounted ? (
+                <Moon className="size-4" />
+              ) : null}
+            </button>
+            <Button
+              size="sm"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-md font-semibold px-5 rounded-full"
+              onClick={() => {
+                document.getElementById("portals")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Sign In
+            </Button>
           </div>
         </div>
       </header>
 
-      {/* Main 2-Column Responsive Layout: White Cards on Left, 3D Robot Mascot on Right */}
-      <main className="relative z-10 max-w-7xl w-full mx-auto my-auto py-4">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.55fr_1fr] gap-8 items-center">
-          {/* Left Column: Title + The 3 Crisp White Role Cards */}
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 rounded-full bg-cyan-500/15 dark:bg-cyan-500/20 border border-cyan-500/30 dark:border-cyan-400/40 px-3.5 py-1 text-xs font-semibold text-cyan-700 dark:text-cyan-300 backdrop-blur-md shadow-xs">
-                <Sparkles className="size-3.5 text-cyan-500 dark:text-cyan-400" />
-                <span>Autonomous Higher-Education Finance Architecture</span>
-              </div>
+      {/* New Hero Section */}
+      <section className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-12 lg:pt-20 pb-16 flex flex-col lg:flex-row items-center gap-12">
+        <div className="flex-1 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <div className="inline-flex items-center gap-2 rounded-full bg-cyan-500/15 dark:bg-cyan-500/20 border border-cyan-500/30 dark:border-cyan-400/40 px-3.5 py-1.5 text-xs font-semibold text-cyan-700 dark:text-cyan-300 backdrop-blur-md shadow-xs">
+            <Sparkles className="size-3.5 text-cyan-600 dark:text-cyan-400" />
+            <span>Autonomous Higher-Education Finance Architecture</span>
+          </div>
 
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white drop-shadow-lg">
-                Explore <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-blue-700 to-indigo-800 dark:from-cyan-300 dark:via-sky-300 dark:to-indigo-400">finDeck</span>
-              </h1>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1] drop-shadow-lg">
+            Fee and Finance Agent - <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-500">finDeck</span>
+          </h1>
 
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
-                Official University Finance &amp; Treasury Command System. Click any portal below to enter your email and credentials.
-              </p>
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-medium">
+            Track every student's fee, scholarship, attendance and dues from admission to graduation — auto-calculated, auto-synced, zero manual reconciliation.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+            <div className="bg-white/60 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-5 backdrop-blur-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
+              <div className="text-3xl font-black text-indigo-600 dark:text-indigo-400 mb-2">19</div>
+              <div className="text-xs font-bold text-slate-700 dark:text-slate-300 leading-snug">Modules — Finance, Academic & Compliance</div>
             </div>
+            <div className="bg-white/60 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-5 backdrop-blur-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+              <div className="text-3xl font-black text-cyan-600 dark:text-cyan-400 mb-2">30+</div>
+              <div className="text-xs font-bold text-slate-700 dark:text-slate-300 leading-snug">Scholarship Tiers — Auto-derived per admission mode</div>
+            </div>
+            <div className="bg-white/60 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-5 backdrop-blur-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
+              <div className="text-3xl font-black text-emerald-600 dark:text-emerald-400 mb-2">100%</div>
+              <div className="text-xs font-bold text-slate-700 dark:text-slate-300 leading-snug">MongoDB Synced — Real-time, no stale data</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1 flex justify-center lg:justify-end animate-in fade-in zoom-in-95 duration-1000 delay-300 w-full max-w-lg lg:max-w-none">
+          <MascotRobot hoveredRole={hoveredRole} />
+        </div>
+      </section>
+
+      {/* 5. PORTALS SECTION (Repositioned) */}
+      <main id="portals" className="relative z-10 max-w-7xl w-full mx-auto py-24 px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-center space-y-8">
+          
+          <div className="text-center space-y-3 mb-2 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <h2 className="text-3xl font-black text-slate-900 dark:text-white">Access Your Portal</h2>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Select your authorized dashboard to proceed.</p>
+          </div>
+
+          <div className="flex items-center justify-center gap-3 text-sm text-slate-700 dark:text-white bg-white/60 dark:bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full border border-slate-200 dark:border-white/20 shadow-sm animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
+            <Lock className="size-4 text-cyan-600 dark:text-cyan-400" />
+            <span className="font-semibold tracking-wide">Select any portal to sign in</span>
+          </div>
 
             {/* The 2 CRISP BRIGHT WHITE Cards (High Contrast on DarkVeil) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch max-w-2xl">
@@ -526,13 +617,202 @@ export function LoginScreen() {
               </div>
             </div>
           </div>
+      </main>
 
-          {/* Right Column: 3D Interactive Mascot Robot that tracks mouse cursor & can be 3D rotated */}
-          <div className="flex justify-center items-center py-4 lg:py-0">
-            <MascotRobot hoveredRole={hoveredRole} />
+      {/* 1. HOW IT WORKS SECTION */}
+      <section id="how-it-works" className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200/50 dark:border-white/10 mt-8">
+        <div className="text-center space-y-4 mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <div className="inline-flex items-center gap-2 rounded-full bg-indigo-500/15 dark:bg-indigo-500/20 border border-indigo-500/30 dark:border-indigo-400/40 px-3.5 py-1.5 text-xs font-semibold text-indigo-700 dark:text-indigo-300 backdrop-blur-md shadow-xs">
+            <Activity className="size-3.5 text-indigo-600 dark:text-indigo-400" />
+            <span>END-TO-END AUTOMATED PIPELINE</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">How finDeck Works</h2>
+        </div>
+
+        <div className="relative grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Desktop Connecting Line */}
+          <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-transparent via-slate-200 dark:via-white/10 to-transparent -z-10" />
+
+          {/* Step 1 */}
+          <div className="relative flex flex-col items-center text-center space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
+            <div className="flex size-20 items-center justify-center rounded-2xl bg-white/80 dark:bg-[#0f1219] border border-slate-200 dark:border-white/10 shadow-lg relative backdrop-blur-sm z-10">
+              <span className="absolute -top-3 -right-3 size-7 flex items-center justify-center rounded-full bg-cyan-500 text-white font-bold text-xs shadow-md border-2 border-white dark:border-[#07090e]">1</span>
+              <FileCheck2 className="size-8 text-cyan-600 dark:text-cyan-400" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2">Admission & Fee Mapping</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">Student's admission mode (EAMCET/V-SAT/JEE) auto-generates their fee structure & scholarship slab.</p>
+            </div>
+          </div>
+          {/* Step 2 */}
+          <div className="relative flex flex-col items-center text-center space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+            <div className="flex size-20 items-center justify-center rounded-2xl bg-white/80 dark:bg-[#0f1219] border border-slate-200 dark:border-white/10 shadow-lg relative backdrop-blur-sm z-10">
+              <span className="absolute -top-3 -right-3 size-7 flex items-center justify-center rounded-full bg-indigo-500 text-white font-bold text-xs shadow-md border-2 border-white dark:border-[#07090e]">2</span>
+              <RefreshCw className="size-8 text-indigo-600 dark:text-indigo-400" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2">Live Financial Tracking</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">Payments, instalments, dues and CGPA-linked scholarships update automatically every semester.</p>
+            </div>
+          </div>
+          {/* Step 3 */}
+          <div className="relative flex flex-col items-center text-center space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
+            <div className="flex size-20 items-center justify-center rounded-2xl bg-white/80 dark:bg-[#0f1219] border border-slate-200 dark:border-white/10 shadow-lg relative backdrop-blur-sm z-10">
+              <span className="absolute -top-3 -right-3 size-7 flex items-center justify-center rounded-full bg-emerald-500 text-white font-bold text-xs shadow-md border-2 border-white dark:border-[#07090e]">3</span>
+              <FileSignature className="size-8 text-emerald-600 dark:text-emerald-400" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2">Eligibility & Approvals</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">Attendance/dues-based exam eligibility, and counsellor digital-signature approvals in one flow.</p>
+            </div>
+          </div>
+          {/* Step 4 */}
+          <div className="relative flex flex-col items-center text-center space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-700">
+            <div className="flex size-20 items-center justify-center rounded-2xl bg-white/80 dark:bg-[#0f1219] border border-slate-200 dark:border-white/10 shadow-lg relative backdrop-blur-sm z-10">
+              <span className="absolute -top-3 -right-3 size-7 flex items-center justify-center rounded-full bg-violet-500 text-white font-bold text-xs shadow-md border-2 border-white dark:border-[#07090e]">4</span>
+              <ClipboardCheck className="size-8 text-violet-600 dark:text-violet-400" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2">Admit Card & Reports</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">Automated eligibility checks generate admit cards and university-wide financial reports instantly.</p>
+            </div>
           </div>
         </div>
-      </main>
+      </section>
+
+      {/* 2. FEATURES SECTION */}
+      <section id="features" className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200/50 dark:border-white/10">
+        <div className="text-center space-y-4 mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/15 dark:bg-emerald-500/20 border border-emerald-500/30 dark:border-emerald-400/40 px-3.5 py-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-300 backdrop-blur-md shadow-xs">
+            <Network className="size-3.5 text-emerald-600 dark:text-emerald-400" />
+            <span>COORDINATED FINANCE ARCHITECTURE</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">Everything Your Finance Team Needs</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Feature 1 */}
+          <div className="group bg-white/60 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 backdrop-blur-md hover:-translate-y-1 hover:shadow-xl hover:border-cyan-300/50 dark:hover:border-cyan-400/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+            <div className="flex size-12 items-center justify-center rounded-xl bg-cyan-100 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 mb-4 group-hover:scale-110 transition-transform">
+              <GraduationCap className="size-6" />
+            </div>
+            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Admission-Based Scholarships</h3>
+            <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">Tiered, auto-calculated slabs per route (V-SAT, EAMCET, JEE Mains, Reserved, Special State).</p>
+          </div>
+          {/* Feature 2 */}
+          <div className="group bg-white/60 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 backdrop-blur-md hover:-translate-y-1 hover:shadow-xl hover:border-indigo-300/50 dark:hover:border-indigo-400/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+            <div className="flex size-12 items-center justify-center rounded-xl bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 mb-4 group-hover:scale-110 transition-transform">
+              <History className="size-6" />
+            </div>
+            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Full Academic-Financial History</h3>
+            <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">Semester-wise CGPA, fees, dues & scholarships across the entire course duration.</p>
+          </div>
+          {/* Feature 3 */}
+          <div className="group bg-white/60 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 backdrop-blur-md hover:-translate-y-1 hover:shadow-xl hover:border-emerald-300/50 dark:hover:border-emerald-400/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+            <div className="flex size-12 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 mb-4 group-hover:scale-110 transition-transform">
+              <UserCheck className="size-6" />
+            </div>
+            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Exam Eligibility Engine</h3>
+            <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">Auto-flags dues/attendance issues with an online permission-letter workflow.</p>
+          </div>
+          {/* Feature 4 */}
+          <div className="group bg-white/60 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 backdrop-blur-md hover:-translate-y-1 hover:shadow-xl hover:border-violet-300/50 dark:hover:border-violet-400/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-400">
+            <div className="flex size-12 items-center justify-center rounded-xl bg-violet-100 dark:bg-violet-500/20 text-violet-600 dark:text-violet-400 mb-4 group-hover:scale-110 transition-transform">
+              <UserCog className="size-6" />
+            </div>
+            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Counsellor Approvals</h3>
+            <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">Digital signature & permission-letter generation, fully auditable workflow.</p>
+          </div>
+          {/* Feature 5 */}
+          <div className="group bg-white/60 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 backdrop-blur-md hover:-translate-y-1 hover:shadow-xl hover:border-orange-300/50 dark:hover:border-orange-400/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
+            <div className="flex size-12 items-center justify-center rounded-xl bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 mb-4 group-hover:scale-110 transition-transform">
+              <CreditCard className="size-6" />
+            </div>
+            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Dues Carry-Forward</h3>
+            <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">Previous-semester dues automatically roll into current balance, always traceable.</p>
+          </div>
+          {/* Feature 6 */}
+          <div className="group bg-white/60 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 backdrop-blur-md hover:-translate-y-1 hover:shadow-xl hover:border-sky-300/50 dark:hover:border-sky-400/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-600">
+            <div className="flex size-12 items-center justify-center rounded-xl bg-sky-100 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 mb-4 group-hover:scale-110 transition-transform">
+              <MessageSquare className="size-6" />
+            </div>
+            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Multilingual AI Copilot</h3>
+            <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">Ask fee/dues/scholarship questions in English, Hindi or Hinglish.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. MODULES SECTION */}
+      <section id="modules" className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="bg-slate-100/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-3xl p-8 sm:p-12 text-center shadow-inner backdrop-blur-md">
+          <Layers className="size-10 mx-auto text-indigo-500 dark:text-indigo-400 mb-4 opacity-80" />
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mb-3">19 Modules, One Platform</h2>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mb-8 font-medium">From admissions to graduation, finDeck powers every node of the university finance ecosystem.</p>
+          
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+            {["Dashboard", "Students", "Fee Structure", "Payments", "Reconciliation", "Instalments", "Smart Reminders", "Scholarship Risks", "CGPA & Attendance Retention", "Loan Requests", "Bank Document Issuance", "Counsellor Desk", "Exam Permission Orders", "Admit Cards", "Refunds", "Withdrawals & Caution Deposit", "Reports"].map((module, i) => (
+              <span key={i} className="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-full bg-white/60 dark:bg-white/10 border border-slate-200 dark:border-white/20 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors cursor-default">
+                {module}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. TRUST & SECURITY SECTION */}
+      <section id="trust" className="relative z-0 w-full bg-slate-200/40 dark:bg-[#040609]/60 border-y border-slate-300/50 dark:border-white/5 backdrop-blur-lg mt-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center space-y-4 mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">Built for Institutional-Grade Trust</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="flex items-start gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
+              <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 text-slate-600 dark:text-slate-300 shadow-sm">
+                <Shield className="size-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1.5">Role-Scoped Access</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">Finance Officer and Student portals see only what they're authorized to.</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+              <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 text-slate-600 dark:text-slate-300 shadow-sm">
+                <Database className="size-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1.5">MongoDB Atlas Backed</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">Every record persists and syncs live, no session-only data.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
+              <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 text-slate-600 dark:text-slate-300 shadow-sm">
+                <Fingerprint className="size-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1.5">Auditable Approvals</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">Every counsellor decision and scholarship change is logged with a reason.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* 6. FOOTER */}
+      <footer className="relative z-10 border-t border-slate-200/50 dark:border-white/10 bg-slate-50/50 dark:bg-[#05070a]/50 backdrop-blur-md py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3 text-xs font-semibold text-slate-500 dark:text-slate-400">
+            <Shield className="size-4 text-emerald-500 dark:text-emerald-400" />
+            <span>AES-256 Encrypted Session · ISO 27001 Financial Governance</span>
+          </div>
+          <div className="text-xs font-medium text-slate-500 dark:text-slate-400">
+            © {new Date().getFullYear()} Vignan's Foundation for Science, Technology & Research
+          </div>
+        </div>
+      </footer>
 
       {/* DEDICATED AUTHENTICATION MODAL (Bright White Glassmorphic Card) */}
       {activeLoginRole && (
@@ -1098,6 +1378,7 @@ export function LoginScreen() {
         </div>
         <p>Vignan&apos;s Foundation for Science, Technology &amp; Research (Deemed to be University)</p>
       </footer>
+      </div>
     </div>
   );
 }

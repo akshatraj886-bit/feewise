@@ -164,6 +164,30 @@ export function isHinglishQuery(text: string): boolean {
 
 
 
+// Detect if query is in Telugu
+
+export function isTeluguQuery(text: string): boolean {
+
+  const teluguKeywords = [
+
+    "emiti", "entha", "ela", "cheppu", "kavali", "chupinchu", "ledu", "undhi", "undi",
+
+    "epudu", "ekkada", "naa", "na", "neeku", "naku", "maa", "manadi", "fees", "balance",
+
+    "kattu", "kattali", "open chey", "chudu", "vellu", "ra", "babu", "garu", "ayya"
+
+  ];
+
+  const lower = text.toLowerCase();
+
+  const matched = teluguKeywords.filter(k => new RegExp(`\\b${k}\\b`, "i").test(lower));
+
+  return matched.length >= 2 || /emiti|entha|ela|cheppu|chupinchu|open chey/i.test(lower);
+
+}
+
+
+
 // Smart entity resolution for students using authoritative 5-tier resolution
 
 export function findMentionedStudents(query: string, customPool?: Student[]): Student[] {
@@ -356,6 +380,22 @@ export function detectNavigationIntent(query: string, customPool?: Student[], cu
 
     targetView = "Reports";
 
+  } else if (/cgpa.*attendance.*retention|cgpa.*retention|attendance.*retention/i.test(lower)) {
+
+    targetView = "CGPA & Attendance Retention";
+
+  } else if (/bank document|document issuance|issue document|bank letter/i.test(lower)) {
+
+    targetView = "Bank Document Issuance";
+
+  } else if (/exam permission|permission order|exam.*order/i.test(lower)) {
+
+    targetView = "Exam Permission Orders";
+
+  } else if (/withdrawal|withdraw|caution deposit/i.test(lower)) {
+
+    targetView = "Withdrawals & Caution Deposit";
+
   } else if (/dashboard|overview|home screen|home page|main page|treasury desk|command center/i.test(lower)) {
 
     targetView = "Dashboard";
@@ -478,13 +518,27 @@ export async function queryFinanceAi(
 
     if (requestedOtherStudent || asksAboutPeers || asksMacroTreasury) {
 
-      if (inHindi) {
+      const inTelugu = isTeluguQuery(query);
+
+      if (inTelugu) {
 
         return {
 
           role: "assistant",
 
-          content: `🔒 **Access Restricted (Student Privacy Policy):**\n\nAap **Student Portal** me authenticated hain (${currentStudentId}). University bylaws aur Data Privacy Act ke tahat aap sirf aur sirf **apna individual fee account, payment history, instalment schedule aur certificates** dekh sakte hain.\n\n❌ Anya students ya university-level administrative/treasury data ka access sirf **CEO Administrator** aur **Finance Officer** ke paas hota hai.`,
+          content: `🔒 **Access Restricted (Student Privacy Policy):**\n\nNenu mee gurinchi matrame details chupinchagalanu, vere students gurinchi kaadu. University privacy rules prakaram, meeru mee details matrame chuskovachu. Finance vishayalu chudadaniki permission ledu.`,
+
+          kind: "denied",
+
+        };
+
+      } else if (inHindi) {
+
+        return {
+
+          role: "assistant",
+
+          content: `🔒 **Access Restricted (Student Privacy Policy):**\n\nMain sirf aapka khud ka data dikha sakta hoon, kisi aur student ka data access karne ki permission nahi hai. University bylaws ke mutabiq aapko sirf apni details dekhne ka access hai.`,
 
           kind: "denied",
 
@@ -496,7 +550,7 @@ export async function queryFinanceAi(
 
         role: "assistant",
 
-        content: `🔒 **Access Restricted (Student Data Privacy Policy):**\n\nYou are currently authenticated in the **Student Portal** (${currentStudentId}). Under university regulations and institutional privacy policy, students are strictly authorized to view only their **own individual fee demand, payment receipts, instalments, and certificates**.\n\n❌ Access to peer records, university-wide collections, or administrative financial logs is restricted to the **CEO Administrator** and **Finance Officer**.`,
+        content: `🔒 **Access Restricted (Student Data Privacy Policy):**\n\nI can only show your own data. I am not permitted to access or reveal another student's data. Under university privacy policy, you only have access to your personal financial records.`,
 
         kind: "denied",
 
@@ -842,13 +896,25 @@ export async function queryFinanceAi(
 
       const list = resolution.candidates.map(s => `• **${s.name}** (ID: \`${s.id}\` · ${s.programme})`).join("\n");
 
-      if (inHindi) {
+      const inTelugu = isTeluguQuery(query);
+
+      if (inTelugu) {
 
         return {
 
           role: "assistant",
 
-          content: `🔍 **Multiple Matching Student Records Found:**\nAapke search ke mutabik ek se zyada students mile hain:\n\n${list}\n\nKripya specific student ID mention karein (jaise: *"Student ${resolution.candidates[0].id} ka dues batao"*).`,
+          content: `🔍 **Multiple Matching Student Records Found:**\nMeeru vetukutunna peru to chala students unnaru. Meeru evari gurinchi adugutunnaru?\n\n${list}\n\nDaya chesi correct Student ID ivvandi (e.g. *"Student ${resolution.candidates[0].id} dues entha?"*).`,
+
+        };
+
+      } else if (inHindi) {
+
+        return {
+
+          role: "assistant",
+
+          content: `🔍 **Multiple Matching Student Records Found:**\nAapke search ke mutabik ek se zyada students mile hain. Kya aapka matlab inmein se kisi ek se tha?\n\n${list}\n\nKripya specific student ID mention karein (jaise: *"Student ${resolution.candidates[0].id} ka dues batao"*).`,
 
         };
 
@@ -858,7 +924,7 @@ export async function queryFinanceAi(
 
         role: "assistant",
 
-        content: `🔍 **Ambiguous Student Query:**\nMultiple student records matched your request:\n\n${list}\n\nPlease specify the exact Student ID (e.g. *"Open ledger for ${resolution.candidates[0].id}"*).`,
+        content: `🔍 **Ambiguous Student Query:**\nMultiple student records matched your request. Did you mean one of the following?\n\n${list}\n\nPlease specify the exact Student ID (e.g. *"Open ledger for ${resolution.candidates[0].id}"*).`,
 
       };
 
@@ -3656,7 +3722,7 @@ STRICT ROLE-BASED ACCESS CONTROL (RBAC) & PRIVACY POLICY:
 
 5. If the user asks about other students or administrative financial matters, politely refuse: "As a student, you can only access your own individual fee account. Access to other student profiles and administrative finance logs is restricted to the CEO Administrator and Finance Officer."
 
-6. Tone & Language: Highly empathetic, helpful, clear, and polite. Respond in the language or blend (Hindi, Hinglish, English) used by the student.`;
+6. Tone & Language: Highly empathetic, helpful, clear, and polite. Respond in the exact language or blend (Telugu, Hindi, Hinglish, English) used by the student.`;
 
   } else {
 

@@ -513,7 +513,7 @@ export function getStudentAcademicHistory(studentId: string): SemesterRecord[] {
     const gpa = riskStatus ? riskStatus.cumulativeGPA : 8.2;
     const att = riskStatus ? riskStatus.attendance : 88.0;
 
-    const explicitClean = new Set(["251FA04E03", "251FA04777", "251FA04E17", "251FA04645", "251FA04001"]);
+    const explicitClean = new Set(["251FA04E03", "251FA04777", "251FA04E17", "251FA04001"]);
     const explicitCarry = new Set(["251FA04E58", "251FA04E36", "251FA04E42"]);
 
     let _hashVal = 0;

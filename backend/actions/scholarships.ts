@@ -148,7 +148,11 @@ export async function deriveFeeAndScholarshipAction(
 
         const slabsDocs = await db.collection("scholarship_slabs").find({}).toArray();
         if (slabsDocs.length > 0) {
-          return deriveWithSlabs(programme, mode, slabsDocs, rankOrScore, subQuotaOrCategory);
+          const sanitizedSlabs = slabsDocs.map(d => {
+            const { _id, ...rest } = d;
+            return rest;
+          });
+          return deriveWithSlabs(programme, mode, sanitizedSlabs, rankOrScore, subQuotaOrCategory);
         }
       }
     } catch (err) {
