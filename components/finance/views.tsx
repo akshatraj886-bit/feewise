@@ -81,7 +81,7 @@ export function StudentsView({
   ];
 
   const allBranches = Array.from(new Set(students.map((s) => s.programme)));
-  const allYears = Array.from(new Set(students.map((s) => s.yearLabel || "1st Year (AY 2026-27)"))).filter(Boolean);
+  const allYears = Array.from(new Set(students.map((s) => s.yearLabel || "1st Year (AY 2025-26)"))).filter(Boolean);
 
   const rows = students.filter(
     (student) =>
@@ -91,7 +91,7 @@ export function StudentsView({
       (statusTab === "All" || (student.admissionStatus || "Admitted") === statusTab) &&
       (admissionModeFilter === "All Admission Modes" || (student.admissionMode || "V-SAT") === admissionModeFilter) &&
       (branchFilter === "All branches" || student.programme === branchFilter) &&
-      (yearFilter === "All Years / Batches" || (student.yearLabel || "1st Year (AY 2026-27)") === yearFilter) &&
+      (yearFilter === "All Years / Batches" || (student.yearLabel || "1st Year (AY 2025-26)") === yearFilter) &&
       (filter === "All students" ||
         (filter === "90+ days overdue"
           ? student.overdue > 90
@@ -1799,7 +1799,7 @@ export function ReportsView({ entries }: { entries: AuditEntry[] }) {
           ...students.map((s) => [
             s.name,
             s.id,
-            s.yearLabel || "1st Year (AY 2026-27)",
+            s.yearLabel || "1st Year (AY 2025-26)",
             s.semester || 1,
             s.section || 1,
             s.programme,

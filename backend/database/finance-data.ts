@@ -2229,7 +2229,7 @@ export const year1Students: Student[] = year1StudentsRaw.map((s, idx) =>
   mapEnrolledStudent(
     {
       ...s,
-      yearLabel: "1st Year (AY 2026-27)",
+      yearLabel: "1st Year (AY 2025-26)",
       semester: 1,
       section: (idx % 25) + 1,
     },

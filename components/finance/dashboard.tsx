@@ -177,7 +177,7 @@ export function FinanceDashboard() {
   const [programmeFilter, setProgrammeFilter] = useState("All Programmes");
 
   const allCohorts = useMemo(() => {
-    return Array.from(new Set(students.map((s) => s.yearLabel || "1st Year (AY 2026-27)"))).filter(Boolean);
+    return Array.from(new Set(students.map((s) => s.yearLabel || "1st Year (AY 2025-26)"))).filter(Boolean);
   }, [students]);
 
   const allProgrammes = useMemo(() => {

@@ -224,7 +224,7 @@ export const benchmarkSemesterHistories: Record<string, SemesterRecord[]> = {
     },
   ],
 
-  // 4. Annavarapu Yash - 2nd Year (AY 2026-27), Sem 3 CGPA 6.87 -> Discontinued
+  // 4. Annavarapu Yash - 2nd Year (AY 2024-25), Sem 3 CGPA 6.87 -> Discontinued
   "241FA04711": [
     {
       studentId: "241FA04711",

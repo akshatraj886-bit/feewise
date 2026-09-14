@@ -125,7 +125,7 @@ export function KpiCards({
 
   const filteredStudents = useMemo(() => {
     return students.filter((s) => {
-      if (selectedYear && selectedYear !== "All Batches" && (s.yearLabel || "1st Year (AY 2026-27)") !== selectedYear) {
+      if (selectedYear && selectedYear !== "All Batches" && (s.yearLabel || "1st Year (AY 2025-26)") !== selectedYear) {
         return false;
       }
       if (selectedProgramme && selectedProgramme !== "All Programmes" && s.programme !== selectedProgramme) {
