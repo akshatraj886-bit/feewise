@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import {
   ArrowDownToLine,
   ArrowUpRight,
@@ -45,7 +45,8 @@ import {
   type AdmissionStatus,
 } from "@/lib/finance-data";
 import { useLiveFinance } from "@/context/live-finance-context";
-import { getInstalments, deriveFeeAndScholarship, getStudentExamEligibility, getStudentDuesBreakdown } from "@/lib/finance-service";
+import { getInstalments, getStudentExamEligibility, getStudentDuesBreakdown } from "@/lib/finance-service";
+import { deriveFeeAndScholarshipAction } from "@/backend/actions/scholarships";
 import { Status, AuditLog } from "./operations";
 import { CollectionIntelligence, FeeHeadOverview } from "./overview";
 import { toast } from "sonner";
@@ -447,6 +448,24 @@ export function FeeStructureView() {
   const [selectedSlabMode, setSelectedSlabMode] = useState("All");
   const [calcMode, setCalcMode] = useState<AdmissionMode>("JEE Mains");
   const [calcScoreInput, setCalcScoreInput] = useState("96.5 %ile");
+  const [calcResult, setCalcResult] = useState<any>(null);
+  const [isCalcLoading, setIsCalcLoading] = useState(false);
+
+  useEffect(() => {
+    async function calculate() {
+      setIsCalcLoading(true);
+      const testProg = programme === "All programmes" ? "B.Tech CSE" : programme;
+      try {
+        const result = await deriveFeeAndScholarshipAction(testProg, calcMode, calcScoreInput);
+        setCalcResult(result);
+      } catch (e) {
+        console.error("Live derivation error", e);
+      } finally {
+        setIsCalcLoading(false);
+      }
+    }
+    calculate();
+  }, [programme, calcMode, calcScoreInput]);
 
   const allAvailableProgrammes = [
     "All programmes",
@@ -780,23 +799,23 @@ export function FeeStructureView() {
                 onChange={(e) => setCalcScoreInput(e.target.value)}
               />
             </div>
-            {(() => {
-              const testProg = programme === "All programmes" ? "B.Tech CSE" : programme;
-              const result = deriveFeeAndScholarship(testProg, calcMode, calcScoreInput);
-              return (
-                <div className="flex flex-wrap items-center gap-3 text-xs">
-                  <span className="text-muted-foreground">
-                    Matched Tier: <strong className="text-foreground">{result.matchedSlab.tierName}</strong>
-                  </span>
-                  <span className="text-muted-foreground">
-                    Waiver: <strong className="text-emerald-600">{result.slabPercent}% (−{inr(result.scholarshipAmount)})</strong>
-                  </span>
-                  <span className="text-muted-foreground">
-                    Net Demand: <strong className="text-primary text-sm font-bold">{inr(result.netPayable)}</strong>
-                  </span>
-                </div>
-              );
-            })()}
+            {isCalcLoading || !calcResult ? (
+              <div className="flex flex-wrap items-center gap-3 text-xs">
+                <span className="flex items-center gap-1.5 text-muted-foreground"><span className="size-3 animate-spin rounded-full border-2 border-primary/50 border-r-transparent"></span> Deriving...</span>
+              </div>
+            ) : (
+              <div className="flex flex-wrap items-center gap-3 text-xs">
+                <span className="text-muted-foreground">
+                  Matched Tier: <strong className="text-foreground">{calcResult.matchedSlab.tierName}</strong>
+                </span>
+                <span className="text-muted-foreground">
+                  Waiver: <strong className="text-emerald-600">{calcResult.slabPercent}% (−{inr(calcResult.scholarshipAmount)})</strong>
+                </span>
+                <span className="text-muted-foreground">
+                  Net Demand: <strong className="text-primary text-sm font-bold">{inr(calcResult.netPayable)}</strong>
+                </span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -974,7 +993,7 @@ export function PaymentsView({
 }: {
   onReview: (transaction: Transaction) => void;
 }) {
-  const { students, transactions } = useLiveFinance();
+  const { students, transactions, isLoading } = useLiveFinance();
   const [query, setQuery] = useState("");
   const [method, setMethod] = useState("All methods");
   const [statusFilter, setStatusFilter] = useState("All statuses");
@@ -1033,7 +1052,11 @@ export function PaymentsView({
       <CardHeader>
         <CardTitle>Payment ledger</CardTitle>
         <CardDescription>
-          Complete transaction gateway records &amp; verified ledger allocations across all {students.length} students ({transactions.length} total entries)
+          {isLoading ? (
+            <span className="flex items-center gap-1.5"><span className="size-3 animate-spin rounded-full border-2 border-primary/50 border-r-transparent"></span> Fetching latest transactions...</span>
+          ) : (
+            `Complete transaction gateway records & verified ledger allocations across all ${students.length} students (${transactions.length} total entries)`
+          )}
         </CardDescription>
         <CardAction>
           <Button
@@ -1211,7 +1234,23 @@ export function PaymentsView({
             </tr>
           </thead>
           <tbody>
-            {paginatedRows.map((t: Transaction, index: number) => {
+            {isLoading && paginatedRows.length === 0 ? (
+              <tr>
+                <td colSpan={10} className="py-12 text-center text-muted-foreground text-sm">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <div className="size-6 animate-spin rounded-full border-2 border-primary/50 border-r-transparent"></div>
+                    <span>Loading transactions from secure server...</span>
+                  </div>
+                </td>
+              </tr>
+            ) : paginatedRows.length === 0 ? (
+              <tr>
+                <td colSpan={10} className="py-8 text-center text-muted-foreground">
+                  No transactions match your search criteria.
+                </td>
+              </tr>
+            ) : (
+              paginatedRows.map((t: Transaction, index: number) => {
               const student = studentMap.get(t.student);
               return (
                 <tr key={`${t.id}-${index}`} className="hover:bg-muted/30 transition-colors">
@@ -1286,14 +1325,10 @@ export function PaymentsView({
                   </td>
                 </tr>
               );
-            })}
+            })
+            )}
           </tbody>
         </table>
-        {!rows.length && (
-          <p className="py-8 text-center text-muted-foreground">
-            No payments match your filters.
-          </p>
-        )}
         <div className="mt-4 flex items-start gap-2 rounded-lg bg-secondary p-3 text-sm text-muted-foreground">
           <Printer className="mt-0.5 size-4 shrink-0 text-primary" />
           Click the printer icon on any row to open a print-ready PDF receipt in

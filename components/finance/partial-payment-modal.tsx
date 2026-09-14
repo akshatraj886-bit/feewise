@@ -69,14 +69,14 @@ export function PartialPaymentSimulator({
     setIsGatewayOpen(true);
   }
 
-  function handleGatewaySuccess(txnDetails: {
+  async function handleGatewaySuccess(txnDetails: {
     txnId: string;
     amount: number;
     channel: string;
     date: string;
   }) {
     try {
-      makeLivePayment({
+      await makeLivePayment({
         studentId: student.id,
         amount: txnDetails.amount,
         channel: txnDetails.channel,

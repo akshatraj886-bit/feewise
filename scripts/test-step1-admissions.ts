@@ -1,5 +1,6 @@
+import { deriveFeeAndScholarshipAction } from "../backend/actions/scholarships";
 import { queryFinanceAi } from "../backend/ai/ai-finance-engine";
-import { deriveFeeAndScholarship, readFinance, getUnifiedStudentContext } from "../backend/services/finance-service";
+import {  readFinance, getUnifiedStudentContext } from "../backend/services/finance-service";
 import { admittedStudents, prospectiveStudents, allStudentsWithProspective } from "../backend/database/finance-data";
 
 async function runAdmissionsTests() {
@@ -31,7 +32,7 @@ async function runAdmissionsTests() {
   ];
 
   for (const m of modes) {
-    const res = deriveFeeAndScholarship("B.Tech CSE", m.mode, m.score);
+    const res = await deriveFeeAndScholarshipAction("B.Tech CSE", m.mode, m.score);
     console.log(`   - Mode: ${m.mode} (${m.score}) -> Gross: ₹${res.grossFee}, Scholarship: ₹${res.scholarshipAmount}, Net: ₹${res.netPayable}`);
     console.log(`     Rule: ${res.eligibilityRule}`);
   }

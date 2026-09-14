@@ -2,13 +2,12 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import {
-  getAllPermissionRequests,
-  updatePermissionRequestStatus,
   type ExamPermissionRequest,
   inr,
   type Student,
   students,
 } from "@/lib/finance-data";
+import { getAllPermissionRequestsAction, updatePermissionRequestStatusAction } from "@/backend/actions/exam-permissions";
 import { getStudentExamEligibility } from "@/lib/finance-service";
 import { DocumentViewerModal } from "@/components/finance/document-viewer-modal";
 import { Badge } from "@/components/ui/badge";
@@ -51,6 +50,7 @@ interface CounsellorDeskViewProps {
 
 export function CounsellorDeskView({ onLog }: CounsellorDeskViewProps) {
   const [requests, setRequests] = useState<ExamPermissionRequest[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"Pending" | "All" | "Approved" | "Rejected">("Pending");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<"newest" | "oldest" | "dues">("newest");
@@ -74,8 +74,11 @@ export function CounsellorDeskView({ onLog }: CounsellorDeskViewProps) {
     student: Student | string;
   } | null>(null);
 
-  function reloadRequests() {
-    setRequests(getAllPermissionRequests());
+  async function reloadRequests() {
+    setIsLoading(true);
+    const data = await getAllPermissionRequestsAction();
+    setRequests(data);
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -131,12 +134,12 @@ export function CounsellorDeskView({ onLog }: CounsellorDeskViewProps) {
   }
 
   // Execute Approval
-  function handleConfirmApprove() {
+  async function handleConfirmApprove() {
     if (!selectedForApproval) return;
     setIsApproving(true);
 
-    setTimeout(() => {
-      const updated = updatePermissionRequestStatus(selectedForApproval.id, {
+    try {
+      const updated = await updatePermissionRequestStatusAction(selectedForApproval.id, {
         status: "Approved",
         reviewedBy: `${reviewerName} (${reviewerRole})`,
         counsellorNotes: counsellorNotes.trim() || undefined,
@@ -147,14 +150,19 @@ export function CounsellorDeskView({ onLog }: CounsellorDeskViewProps) {
           onLog("Approved exam permission letter", `${selectedForApproval.studentName} (${selectedForApproval.id})`, "Approved");
         }
         toast.success("Permission Request Approved!", {
-          description: `Generated Official Condonation Order ${updated.letterRef} with Digital Signature.`,
+          description: `Generated Official Condonation Order ${updated.letterRef || updated.id} with Digital Signature.`,
         });
-        reloadRequests();
+        await reloadRequests();
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new Event("feewise_exam_permission_updated"));
+        }
       }
-
+    } catch (e) {
+      toast.error("Failed to approve request.");
+    } finally {
       setIsApproving(false);
       setSelectedForApproval(null);
-    }, 400);
+    }
   }
 
   // Open Rejection Dialog
@@ -165,12 +173,12 @@ export function CounsellorDeskView({ onLog }: CounsellorDeskViewProps) {
   }
 
   // Execute Rejection
-  function handleConfirmReject() {
+  async function handleConfirmReject() {
     if (!selectedForRejection || !rejectionReason.trim()) return;
     setIsRejecting(true);
 
-    setTimeout(() => {
-      const updated = updatePermissionRequestStatus(selectedForRejection.id, {
+    try {
+      const updated = await updatePermissionRequestStatusAction(selectedForRejection.id, {
         status: "Rejected",
         reviewedBy: `${reviewerName} (${reviewerRole})`,
         rejectionReason: rejectionReason.trim(),
@@ -184,12 +192,17 @@ export function CounsellorDeskView({ onLog }: CounsellorDeskViewProps) {
         toast.error("Permission Request Rejected", {
           description: `Recorded official rejection ground for ${selectedForRejection.studentName}.`,
         });
-        reloadRequests();
+        await reloadRequests();
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new Event("feewise_exam_permission_updated"));
+        }
       }
-
+    } catch (e) {
+      toast.error("Failed to reject request.");
+    } finally {
       setIsRejecting(false);
       setSelectedForRejection(null);
-    }, 400);
+    }
   }
 
   // View Official Generated Permission Letter Modal
@@ -248,18 +261,27 @@ export function CounsellorDeskView({ onLog }: CounsellorDeskViewProps) {
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-muted-foreground">Pending Action</span>
-              {pendingCount > 0 && (
-                <span className="relative flex size-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full size-2 bg-amber-500"></span>
-                </span>
+              {isLoading ? (
+                <div className="size-4 animate-spin rounded-full border-2 border-amber-500/50 border-r-transparent"></div>
+              ) : (
+                <Badge variant="outline" className="bg-background/80 text-amber-600 border-amber-500/30">
+                  {pendingCount}
+                </Badge>
               )}
             </div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="text-2xl font-bold tracking-tight text-amber-600 dark:text-amber-400">
-                {pendingCount}
+                {isLoading ? "..." : pendingCount}
               </span>
-              <span className="text-[11px] text-muted-foreground">Needs Review</span>
+              <span className="text-[11px] text-muted-foreground flex items-center gap-2">
+                Needs Review
+                {!isLoading && pendingCount > 0 && (
+                  <span className="relative flex size-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full size-2 bg-amber-500"></span>
+                  </span>
+                )}
+              </span>
             </div>
           </div>
 
@@ -274,11 +296,15 @@ export function CounsellorDeskView({ onLog }: CounsellorDeskViewProps) {
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-muted-foreground">Approved Orders</span>
-              <CheckCircle2 className="size-4 text-emerald-600" />
+              {isLoading ? (
+                <div className="size-4 animate-spin rounded-full border-2 border-emerald-500/50 border-r-transparent"></div>
+              ) : (
+                <CheckCircle2 className="size-4 text-emerald-600" />
+              )}
             </div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="text-2xl font-bold tracking-tight text-emerald-600 dark:text-emerald-400">
-                {approvedCount}
+                {isLoading ? "..." : approvedCount}
               </span>
               <span className="text-[11px] text-muted-foreground">Signed &amp; Issued</span>
             </div>
@@ -295,11 +321,15 @@ export function CounsellorDeskView({ onLog }: CounsellorDeskViewProps) {
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-muted-foreground">Rejected Petitions</span>
-              <XCircle className="size-4 text-destructive" />
+              {isLoading ? (
+                <div className="size-4 animate-spin rounded-full border-2 border-rose-500/50 border-r-transparent"></div>
+              ) : (
+                <XCircle className="size-4 text-destructive" />
+              )}
             </div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="text-2xl font-bold tracking-tight text-rose-600 dark:text-rose-400">
-                {rejectedCount}
+                {isLoading ? "..." : rejectedCount}
               </span>
               <span className="text-[11px] text-muted-foreground">Withheld</span>
             </div>
@@ -316,11 +346,15 @@ export function CounsellorDeskView({ onLog }: CounsellorDeskViewProps) {
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-muted-foreground">Total Registry</span>
-              <FileText className="size-4 text-primary" />
+              {isLoading ? (
+                <div className="size-4 animate-spin rounded-full border-2 border-primary/50 border-r-transparent"></div>
+              ) : (
+                <FileText className="size-4 text-primary" />
+              )}
             </div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="text-2xl font-bold tracking-tight text-foreground">
-                {totalCount}
+                {isLoading ? "..." : totalCount}
               </span>
               <span className="text-[11px] text-muted-foreground">Historical Letters</span>
             </div>

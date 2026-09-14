@@ -34,10 +34,9 @@ import {
 } from "@/lib/finance-data";
 import { cn } from "@/lib/utils";
 import {
-  getSqlDatabaseState,
-  updateRefundStatus,
   type RefundRecord,
 } from "@/lib/sql-store";
+import { getRefundsAction, updateRefundStatusAction } from "@/backend/actions/more-modules";
 import { toast } from "sonner";
 
 export function Status({ status }: { status: string }) {
@@ -318,6 +317,7 @@ export function RefundApproval({
   status?: string;
 }) {
   const [refunds, setRefunds] = useState<RefundRecord[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedId, setSelectedId] = useState<string>("rf-2081");
   const [search, setSearch] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
@@ -325,14 +325,16 @@ export function RefundApproval({
   const [page, setPage] = useState(1);
   const pageSize = 6;
 
-  function reload() {
-    setRefunds(getSqlDatabaseState().refunds);
+  async function reload() {
+    setLoading(true);
+    setRefunds(await getRefundsAction());
+    setLoading(false);
   }
 
   useEffect(() => {
     reload();
-    window.addEventListener("feewise_sql_store_updated", reload);
-    return () => window.removeEventListener("feewise_sql_store_updated", reload);
+    // window.addEventListener("feewise_sql_store_updated", reload);
+    // return () => window.removeEventListener("feewise_sql_store_updated", reload);
   }, []);
 
   const filtered = useMemo(() => {
@@ -358,16 +360,16 @@ export function RefundApproval({
 
   const activeRefund = (refunds.find((r) => r.refund_id === selectedId) || filtered[0] || refunds[0]) ?? null;
 
-  function handleAction(action: "approve" | "reject" | "review") {
+  async function handleAction(action: "approve" | "reject" | "review") {
     if (!activeRefund) return;
     if (action === "approve") {
-      updateRefundStatus(activeRefund.refund_id, "APPROVED");
+      await updateRefundStatusAction(activeRefund.refund_id, "APPROVED");
       toast.success(`Refund #${activeRefund.refund_id.toUpperCase()} Approved!`, {
         description: `Approved amount ₹${activeRefund.approved_amount.toLocaleString("en-IN")} authorized for ${activeRefund.student_name}.`,
       });
       reload();
     } else if (action === "reject") {
-      updateRefundStatus(activeRefund.refund_id, "REJECTED");
+      await updateRefundStatusAction(activeRefund.refund_id, "REJECTED");
       toast.error(`Refund #${activeRefund.refund_id.toUpperCase()} Rejected`, {
         description: `Rejection recorded under university policy rules.`,
       });

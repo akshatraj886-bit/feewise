@@ -4,7 +4,7 @@ import {
   getStudentDuesBreakdown,
   getStudentExamEligibility,
   computeScholarshipEligibilityTimeline,
-  deriveFeeAndScholarship,
+  
   getAllStudentsAdmitCardStatus,
   benchmarkHistoricalStudents,
 } from "../backend/services/finance-service";

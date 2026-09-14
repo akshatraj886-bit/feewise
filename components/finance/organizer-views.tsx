@@ -3,8 +3,6 @@
 import { useState, useEffect, useMemo } from "react";
 import {
   getSqlDatabaseState,
-  dispatchFeeReminder,
-  issueLoanDocument,
   downloadSqlFile,
   resetSqlDatabase,
   type ReminderDispatch,
@@ -12,6 +10,8 @@ import {
   type LoanDocumentRequest,
   type SqlDatabaseState,
 } from "@/lib/sql-store";
+import { getSmartRemindersAction, dispatchFeeReminderAction, getScholarshipRisksAction, getLoanRequestsAction, issueLoanDocumentAction } from "@/backend/actions/more-modules";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -51,18 +51,18 @@ export function SmartRemindersView() {
   const [page, setPage] = useState(1);
   const pageSize = 8;
 
-  function reload() {
-    setReminders(getSqlDatabaseState().reminder_dispatches);
+  async function reload() {
+    setReminders(await getSmartRemindersAction());
   }
 
   useEffect(() => {
     reload();
-    window.addEventListener("feewise_sql_store_updated", reload);
-    return () => window.removeEventListener("feewise_sql_store_updated", reload);
+    // window.addEventListener("feewise_sql_store_updated", reload);
+    // return () => window.removeEventListener("feewise_sql_store_updated", reload);
   }, []);
 
-  function handleDispatch() {
-    const res = dispatchFeeReminder(selectedStudentId);
+  async function handleDispatch() {
+    const res = await dispatchFeeReminderAction(selectedStudentId);
     if (res.suppressed) {
       toast.info("Reminder Auto-Suppressed by Policy!", {
         description: res.suppression_reason,
@@ -363,14 +363,14 @@ export function ScholarshipRenewalRiskView() {
   const [page, setPage] = useState(1);
   const pageSize = 10;
 
-  function reload() {
-    setRisks(getSqlDatabaseState().scholarship_risks);
+  async function reload() {
+    setRisks(await getScholarshipRisksAction());
   }
 
   useEffect(() => {
     reload();
-    window.addEventListener("feewise_sql_store_updated", reload);
-    return () => window.removeEventListener("feewise_sql_store_updated", reload);
+    // window.addEventListener("feewise_sql_store_updated", reload);
+    // return () => window.removeEventListener("feewise_sql_store_updated", reload);
   }, []);
 
   function sendCounselorAlert(studentName: string) {
@@ -720,24 +720,20 @@ export function BankLoanDeskView() {
   const [page, setPage] = useState(1);
   const pageSize = 8;
 
-  function reload() {
-    setRequests(getSqlDatabaseState().loan_requests);
+  async function reload() {
+    setRequests(await getLoanRequestsAction());
   }
 
   useEffect(() => {
     reload();
-    window.addEventListener("feewise_sql_store_updated", reload);
-    return () => window.removeEventListener("feewise_sql_store_updated", reload);
+    // window.addEventListener("feewise_sql_store_updated", reload);
+    // return () => window.removeEventListener("feewise_sql_store_updated", reload);
   }, []);
 
-  function handleIssue(reqId: string) {
-    const updated = issueLoanDocument(reqId, "VFSTR Finance Officer");
-    if (updated) {
-      toast.success("Document Verified & Issued!", {
-        description: `Verification Code: ${updated.verification_code}`,
-      });
-      reload();
-    }
+  async function handleIssue(reqId: string) {
+    await issueLoanDocumentAction(reqId, "VFSTR Finance Officer");
+    toast.success("Document Verified & Issued!");
+    reload();
   }
 
   const [viewerDoc, setViewerDoc] = useState<{
@@ -1005,8 +1001,8 @@ export function SqlSchemaInspector() {
 
   useEffect(() => {
     reload();
-    window.addEventListener("feewise_sql_store_updated", reload);
-    return () => window.removeEventListener("feewise_sql_store_updated", reload);
+    // window.addEventListener("feewise_sql_store_updated", reload);
+    // return () => window.removeEventListener("feewise_sql_store_updated", reload);
   }, []);
 
   function handleReset() {

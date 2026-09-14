@@ -15,10 +15,8 @@ import {
 import {
   paymentReceipts as initialPaymentReceipts,
 } from "@/backend/database/payment-receipts";
-import {
-  recordPayment as serviceRecordPayment,
-  getStudentAccount as serviceGetStudentAccount,
-} from "@/lib/finance-service";
+import { getStudentAccount as serviceGetStudentAccount } from "@/lib/finance-service";
+import { getTransactionsAction, recordPaymentAction } from "@/backend/actions/payments";
 
 interface LivePaymentPayload {
   studentId: string;
@@ -37,10 +35,11 @@ interface LiveFinanceContextType {
   totalCollected: number;
   totalOutstanding: number;
   collectionRate: number;
-  makeLivePayment: (payload: LivePaymentPayload) => any;
+  makeLivePayment: (payload: LivePaymentPayload) => Promise<any>;
   getLiveStudentAccount: (id: string) => any;
   resetAllData: () => void;
   lastUpdated: number;
+  isLoading: boolean;
 }
 
 const STORAGE_KEY_STUDENTS = "findeck_live_students_v8";
@@ -57,11 +56,14 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
   const [paymentReceipts, setPaymentReceipts] = useState(initialPaymentReceipts);
   const [lastUpdated, setLastUpdated] = useState<number>(Date.now());
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Load persisted state from localStorage on mount with cache invalidation
   useEffect(() => {
-    try {
-      // Purge old stale caches from previous demo versions
+    async function loadInitialData() {
+      setIsLoading(true);
+      try {
+        // Purge old stale caches from previous demo versions
       const staleKeys = [
         "findeck_live_students",
         "findeck_live_transactions",
@@ -147,16 +149,25 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
         }
       } else {
         setTransactions(initialTransactions);
+        }
+
+        // Hybrid fetch: try to get real transactions from MongoDB
+        const realTxns = await getTransactionsAction();
+        if (realTxns && realTxns.length > 0) {
+          setTransactions(realTxns);
+        }
+      } catch (e) {
+        console.warn("Live finance local storage restore error:", e);
+        setStudents(initialStudents);
+        setTransactions(initialTransactions);
+        setFeeAllocations(initialFeeAllocations);
+        setPaymentReceipts(initialPaymentReceipts);
+      } finally {
+        setIsLoaded(true);
+        setIsLoading(false);
       }
-    } catch (e) {
-      console.warn("Live finance local storage restore error:", e);
-      setStudents(initialStudents);
-      setTransactions(initialTransactions);
-      setFeeAllocations(initialFeeAllocations);
-      setPaymentReceipts(initialPaymentReceipts);
-    } finally {
-      setIsLoaded(true);
     }
+    loadInitialData();
   }, []);
 
   // Save to localStorage whenever state changes after initial load
@@ -197,9 +208,9 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
   }, [admittedStudents]);
 
   // Execute a live payment and synchronize across all heads, receipts, and students
-  function makeLivePayment({ studentId, amount, channel = "UPI" }: LivePaymentPayload) {
-    // 1. Run core waterfall service
-    const res = serviceRecordPayment(studentId, amount, channel);
+  async function makeLivePayment({ studentId, amount, channel = "UPI" }: LivePaymentPayload) {
+    // 1. Run core waterfall service & MongoDB persist via Server Action
+    const res = await recordPaymentAction(studentId, amount, channel);
 
     // 2. Clone and update student
     const updatedStudents = students.map((s) => {
@@ -360,6 +371,7 @@ export function LiveFinanceProvider({ children }: { children: React.ReactNode })
         getLiveStudentAccount,
         resetAllData,
         lastUpdated,
+        isLoading,
       }}
     >
       {children}

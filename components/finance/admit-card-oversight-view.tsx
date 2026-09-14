@@ -2,12 +2,12 @@
 
 import React, { useState, useMemo, useEffect } from "react";
 import {
-  getAllStudentsAdmitCardStatus,
   type CohortAdmitCardSummary,
   type AdmitCardStatus,
   getStudentDuesBreakdown,
 } from "@/lib/finance-service";
 import { inr, type Student } from "@/lib/finance-data";
+import { getAdmitCardStatusAction } from "@/backend/actions/more-modules";
 import { DocumentViewerModal } from "@/components/finance/document-viewer-modal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -60,21 +60,21 @@ export function AdmitCardOversightView({ onLog }: AdmitCardOversightViewProps) {
 
   // Compute live cohort summary — deferred so UI renders first, then data loads
   const [cohortSummary, setCohortSummary] = useState<CohortAdmitCardSummary | null>(null);
+  const [loading, setLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // setTimeout(0) defers the heavy computation to after the first paint
-    const id = setTimeout(() => {
-      setCohortSummary(getAllStudentsAdmitCardStatus());
+    // Load live status initially
+    getAdmitCardStatusAction().then(res => {
+      setCohortSummary(res);
       setIsLoading(false);
-    }, 0);
-    return () => clearTimeout(id);
+    });
   }, []);
 
   // Reload when exam permission status changes
   useEffect(() => {
     function reload() {
-      setCohortSummary(getAllStudentsAdmitCardStatus());
+      getAdmitCardStatusAction().then(setCohortSummary);
     }
     window.addEventListener("feewise_exam_permission_updated", reload);
     return () => window.removeEventListener("feewise_exam_permission_updated", reload);

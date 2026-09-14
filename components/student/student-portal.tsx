@@ -19,14 +19,15 @@ import {
   computeScholarshipEligibilityTimeline,
   getStudentExamEligibility,
   getStudentDuesBreakdown,
-  getStudentPermissionRequests,
-  createPermissionRequest,
   benchmarkHistoricalStudents,
   type ExamPermissionRequest,
   type ExamEligibilityResult,
 } from "@/lib/finance-service";
 import { useAuth } from "@/lib/auth-context";
 import { useLiveFinance } from "@/context/live-finance-context";
+import { getStudentPermissionRequestsAction, createPermissionRequestAction } from "@/backend/actions/exam-permissions";
+import { getLoanRequestsAction, requestLoanDocumentAction } from "@/backend/actions/more-modules";
+
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { FeeCertificatesPanel } from "@/components/finance/certificates";
 import { DocumentViewerModal } from "@/components/finance/document-viewer-modal";
@@ -120,35 +121,35 @@ export function StudentPortal() {
       scholarshipEligibilityNote: "Regular Admission",
     };
   const account = getLiveStudentAccount(student.id) || getStudentAccount(student.id);
-  const sqlState = getSqlDatabaseState();
+  // const sqlState = getSqlDatabaseState();
 
   // Step 4 & 6: Single Source of Truth Exam Eligibility, Dues Carry-Forward, & Automated Admit Cards
   const examEligibility = getStudentExamEligibility(student.id);
   const duesBreakdown = getStudentDuesBreakdown(student.id);
-  const [permissionRequests, setPermissionRequests] = useState<ExamPermissionRequest[]>(() =>
-    getStudentPermissionRequests(student.id)
-  );
+  const [permissionRequests, setPermissionRequests] = useState<ExamPermissionRequest[]>([]);
   const [isPermissionModalOpen, setIsPermissionModalOpen] = useState(false);
   const [isAdmitCardModalOpen, setIsAdmitCardModalOpen] = useState(false);
   const [permissionReason, setPermissionReason] = useState("Education Loan Disbursement Delay");
   const [supportingInfo, setSupportingInfo] = useState("");
   const [isSubmittingPermission, setIsSubmittingPermission] = useState(false);
 
+  async function fetchPermissions() {
+    const reqs = await getStudentPermissionRequestsAction(student.id);
+    setPermissionRequests(reqs);
+  }
+
   useEffect(() => {
-    setPermissionRequests(getStudentPermissionRequests(student.id));
+    fetchPermissions();
   }, [student.id, refreshKey]);
 
   useEffect(() => {
-    const handleUpdated = () => {
-      setPermissionRequests(getStudentPermissionRequests(student.id));
-    };
-    window.addEventListener("feewise_exam_permission_updated", handleUpdated);
+    window.addEventListener("feewise_exam_permission_updated", fetchPermissions);
     return () => {
-      window.removeEventListener("feewise_exam_permission_updated", handleUpdated);
+      window.removeEventListener("feewise_exam_permission_updated", fetchPermissions);
     };
   }, [student.id]);
 
-  const handleSubmitPermissionLetter = (e: React.FormEvent) => {
+  const handleSubmitPermissionLetter = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!supportingInfo.trim() || supportingInfo.trim().length < 15) {
       toast.error("Please provide detailed supporting explanation (at least 15 characters).");
@@ -156,7 +157,8 @@ export function StudentPortal() {
     }
     setIsSubmittingPermission(true);
     try {
-      const newReq = createPermissionRequest({
+      const newReq = {
+        id: `REQ-${new Date().getFullYear()}-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`,
         studentId: student.id,
         studentName: student.name,
         programme: student.programme,
@@ -164,11 +166,17 @@ export function StudentPortal() {
         supportingInfo: supportingInfo.trim(),
         snapshottedDues: examEligibility.outstandingDues,
         snapshottedAttendance: examEligibility.currentAttendance,
-      });
-      setPermissionRequests(getStudentPermissionRequests(student.id));
+        submittedAt: new Date().toLocaleString("en-IN", { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+        status: "Pending" as const,
+      };
+      await createPermissionRequestAction(newReq);
+      await fetchPermissions();
       setIsPermissionModalOpen(false);
       setSupportingInfo("");
       toast.success(`Permission request ${newReq.id} submitted! Forwarded to Academic Counsellor.`);
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("feewise_exam_permission_updated"));
+      }
     } catch (err) {
       toast.error("Failed to submit permission request. Please try again.");
     } finally {
@@ -2159,22 +2167,30 @@ function StudentLoanDesk({
   const [bankName, setBankName] = useState("State Bank of India (SBI)");
   const [docType, setDocType] = useState<LoanDocumentType>("BONAFIDE");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [myRequests, setMyRequests] = useState<LoanDocumentRequest[]>([]);
+  const [loadingReqs, setLoadingReqs] = useState(true);
 
-  const state = getSqlDatabaseState();
-  const myRequests = state.loan_requests.filter(
-    (r) => r.student_id === student.id
-  );
+  async function loadRequests() {
+    setLoadingReqs(true);
+    const reqs = await getLoanRequestsAction();
+    setMyRequests(reqs.filter((r) => r.student_id === student.id));
+    setLoadingReqs(false);
+  }
+
+  useEffect(() => {
+    loadRequests();
+  }, [student.id]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      requestLoanDocument({
-        student_id: student.id,
-        student_name: student.name,
-        bank_name: bankName,
-        document_type: docType,
-      });
+    requestLoanDocumentAction({
+      student_id: student.id,
+      student_name: student.name,
+      bank_name: bankName,
+      document_type: docType,
+    }).then(() => {
+      loadRequests();
       setIsSubmitting(false);
       toast.success("Education Loan Document Requested!", {
         description: `Your application for ${docType.replace(
@@ -2183,7 +2199,7 @@ function StudentLoanDesk({
         )} has been submitted to the VFSTR Finance Desk.`,
       });
       onRequested();
-    }, 400);
+    });
   }
 
   function handleDownloadOfficialDoc(req: LoanDocumentRequest) {

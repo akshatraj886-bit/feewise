@@ -1,7 +1,8 @@
+import { deriveFeeAndScholarshipAction } from "../backend/actions/scholarships";
 import { 
   scholarshipSlabs, 
   feeStructures, 
-  deriveFeeAndScholarship, 
+   
   getUnifiedStudentContext,
   admittedStudents,
   prospectiveStudents,
@@ -13,6 +14,7 @@ console.log("==================================================");
 console.log("🧪 RUNNING TIERED SCHOLARSHIP & ROUTE FILTER SUITE");
 console.log("==================================================");
 
+async function runTests() {
 let passed = 0;
 let failed = 0;
 
@@ -92,53 +94,53 @@ assert(specialSlabs.length >= 3, `Special State Status has ${specialSlabs.length
 console.log("\n--- TEST SUITE 3: Tiered Derivation Logic ---");
 
 // Test V-SAT Rank Bands
-const vsatT1 = deriveFeeAndScholarship("B.Tech (CSE)", "V-SAT", 25);
+const vsatT1 = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "V-SAT", 25);
 assert(vsatT1.slabPercent === 100, `V-SAT Rank 25 gets 100% waiver (got ${vsatT1.slabPercent}%)`);
 
-const vsatT2 = deriveFeeAndScholarship("B.Tech (CSE)", "V-SAT", 100);
+const vsatT2 = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "V-SAT", 100);
 assert(vsatT2.slabPercent === 75, `V-SAT Rank 100 gets 75% waiver (got ${vsatT2.slabPercent}%)`);
 
-const vsatT3 = deriveFeeAndScholarship("B.Tech (CSE)", "V-SAT", 250);
+const vsatT3 = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "V-SAT", 250);
 assert(vsatT3.slabPercent === 50, `V-SAT Rank 250 gets 50% waiver (got ${vsatT3.slabPercent}%)`);
 
-const vsatT4 = deriveFeeAndScholarship("B.Tech (CSE)", "V-SAT", 800);
+const vsatT4 = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "V-SAT", 800);
 assert(vsatT4.slabPercent === 25, `V-SAT Rank 800 gets 25% waiver (got ${vsatT4.slabPercent}%)`);
 
 // Test JEE Mains Percentiles
-const jeeT1 = deriveFeeAndScholarship("B.Tech (CSE)", "JEE Mains", 99.2);
+const jeeT1 = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "JEE Mains", 99.2);
 assert(jeeT1.slabPercent === 100, `JEE 99.2%ile gets 100% waiver (got ${jeeT1.slabPercent}%)`);
 
-const jeeT2 = deriveFeeAndScholarship("B.Tech (CSE)", "JEE Mains", 96.5);
+const jeeT2 = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "JEE Mains", 96.5);
 assert(jeeT2.slabPercent === 75, `JEE 96.5%ile gets 75% waiver (got ${jeeT2.slabPercent}%)`);
 
-const jeeT3 = deriveFeeAndScholarship("B.Tech (CSE)", "JEE Mains", 92.0);
+const jeeT3 = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "JEE Mains", 92.0);
 assert(jeeT3.slabPercent === 50, `JEE 92.0%ile gets 50% waiver (got ${jeeT3.slabPercent}%)`);
 
-const jeeT4 = deriveFeeAndScholarship("B.Tech (CSE)", "JEE Mains", 86.0);
+const jeeT4 = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "JEE Mains", 86.0);
 assert(jeeT4.slabPercent === 25, `JEE 86.0%ile gets 25% waiver (got ${jeeT4.slabPercent}%)`);
 
 // Test EAMCET Ranks
-const eamcetT1 = deriveFeeAndScholarship("B.Tech (CSE)", "EAMCET", 1500);
+const eamcetT1 = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "EAMCET", 1500);
 assert(eamcetT1.slabPercent === 100, `EAMCET Rank 1500 gets 100% waiver (got ${eamcetT1.slabPercent}%)`);
 
-const eamcetT2 = deriveFeeAndScholarship("B.Tech (CSE)", "EAMCET", 3500);
+const eamcetT2 = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "EAMCET", 3500);
 assert(eamcetT2.slabPercent === 75, `EAMCET Rank 3500 gets 75% waiver (got ${eamcetT2.slabPercent}%)`);
 
-const eamcetT3 = deriveFeeAndScholarship("B.Tech (CSE)", "EAMCET", 7500);
+const eamcetT3 = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "EAMCET", 7500);
 assert(eamcetT3.slabPercent === 50, `EAMCET Rank 7500 gets 50% waiver (got ${eamcetT3.slabPercent}%)`);
 
 // Test Reserved Categories
-const resSC = deriveFeeAndScholarship("B.Tech (CSE)", "Reserved/Lower Caste Category", undefined, "SC/ST Statutory Welfare");
+const resSC = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "Reserved/Lower Caste Category", undefined, "SC/ST Statutory Welfare");
 assert(resSC.slabPercent === 100, `Reserved SC/ST gets 100% waiver (got ${resSC.slabPercent}%)`);
 
-const resBC = deriveFeeAndScholarship("B.Tech (CSE)", "Reserved/Lower Caste Category", undefined, "BC-A/B State Welfare");
+const resBC = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "Reserved/Lower Caste Category", undefined, "BC-A/B State Welfare");
 assert(resBC.slabPercent === 50, `Reserved BC-A/B gets 50% waiver (got ${resBC.slabPercent}%)`);
 
 // Test Special State Status
-const neQuota = deriveFeeAndScholarship("B.Tech (CSE)", "Special State Status", undefined, "NE Quota (Assam, Meghalaya, etc.)");
+const neQuota = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "Special State Status", undefined, "NE Quota (Assam, Meghalaya, etc.)");
 assert(neQuota.slabPercent === 30, `NE Quota gets 30% waiver (got ${neQuota.slabPercent}%)`);
 
-const jkQuota = deriveFeeAndScholarship("B.Tech (CSE)", "Special State Status", undefined, "J&K Resident Quota");
+const jkQuota = await deriveFeeAndScholarshipAction("B.Tech (CSE)", "Special State Status", undefined, "J&K Resident Quota");
 assert(jkQuota.slabPercent === 25, `J&K Quota gets 25% waiver (got ${jkQuota.slabPercent}%)`);
 
 // ----------------------------------------------------
@@ -212,5 +214,14 @@ async function runAiTests() {
   }
 }
 
-runAiTests();
+  console.log("--------------------------------------------------");
+  await runAiTests();
+}
 
+
+async function run() {
+  console.log("\n=======================================================");
+  await runTests();
+}
+
+run().catch(console.error);
