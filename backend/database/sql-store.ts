@@ -1,4 +1,4 @@
-"use client";
+
 
 /**
  * 07_admissions_finance.sql - 100% COMPLIANT SCHEMA STORE
